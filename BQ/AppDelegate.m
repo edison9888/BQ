@@ -12,6 +12,17 @@
 
 @implementation AppDelegate
 
+
+//自定以导航栏
+//适用于 ios 5.0+
+-(void)customerNavigation{
+    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"customerNavigation"] forBarMetrics:UIBarMetricsDefault];
+    
+    
+}
+
+
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
@@ -21,7 +32,8 @@
     MainViewController *mainVC = [[MainViewController alloc]init];
     [self.window setRootViewController:mainVC];
     
-    
+    [self customerNavigation];
+   
     [self.window makeKeyAndVisible];
     return YES;
 }

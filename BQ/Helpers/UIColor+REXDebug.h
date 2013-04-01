@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface UIColor (REXDebug)
-
++(UIColor *)randomColor;
 @end

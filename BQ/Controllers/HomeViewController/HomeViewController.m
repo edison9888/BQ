@@ -8,7 +8,9 @@
 
 #import "HomeViewController.h"
 #import "MapViewController.h"
+#import "SelectBankViewController.h"
 
+#import "TestView.h"
 
 @interface HomeViewController ()
 
@@ -21,18 +23,77 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        /*
+        UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"home"]];
+        homeBG.frame  = self.view.bounds;
         
+        [self.view addSubview:homeBG];
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        [button addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
+        [button setFrame:CGRectMake(224, 200, 100, 100)];
+        [self.view addSubview:button];
+        */
     }
     return self;
+}
+
+-(void)buttonPress{
+    
+   
+    SelectBankViewController  *selectBankVC = [[SelectBankViewController alloc]init];
+    [self.navigationController pushViewController:selectBankVC animated:YES];
+    
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.title = @"首页";
     
-     
+    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"beiJing"]];
+    homeBG.frame  = self.view.bounds;
+    homeBG.userInteractionEnabled =YES;
+    [self.view addSubview:homeBG];
+
+        
+    UIImageView *no07BG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"07"]];
+    no07BG.frame  = CGRectMake(80, 16, 150, 139);
+    no07BG.alpha = 0.3f;
+    [homeBG addSubview:no07BG];
+    
+    
+    
+    UIImageView *bankNameImageView = [[UIImageView alloc]initWithFrame:CGRectMake(60, 165, 327/2, 65/2)];
+    bankNameImageView.image=[UIImage imageNamed:@"bankName"];
+    [homeBG addSubview:bankNameImageView];
+    
+    
+    
+    _bankNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(20,2, 150, 30)];
+    _bankNameLabel.text=@"选择您所需要的银行";
+    _bankNameLabel.backgroundColor=[UIColor clearColor];
+    _bankNameLabel.font = [UIFont systemFontOfSize:14];
+    _bankNameLabel.textColor = [UIColor colorWithRed:173/255.f green:172/255.f blue:172/255.f alpha:1.0];
+    
+    [bankNameImageView addSubview:_bankNameLabel];
+    
+    
+    UIButton *selectBankButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [selectBankButton addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
+    [selectBankButton setImage:[UIImage imageNamed:@"mapBtn"] forState:UIControlStateNormal];
+    [selectBankButton setFrame:CGRectMake(bankNameImageView.frame.size.width+bankNameImageView.frame.origin.x,bankNameImageView.frame.origin.y-10, 33, 42)];
+    [homeBG addSubview:selectBankButton];
+    
+    
+    
+    
 }
+
+
+
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     

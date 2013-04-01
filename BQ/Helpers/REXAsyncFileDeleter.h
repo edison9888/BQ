@@ -10,4 +10,14 @@
 
 @interface REXAsyncFileDeleter : NSObject
 
+//创建一个共享实例
+//+(REXAsyncFileDeleter *)sharedInstance;
+
+
+//Blocks execution of the current thread until the receiver finishes.
+
+//- (void)waitUntilFinished;
+
+
+
 @end

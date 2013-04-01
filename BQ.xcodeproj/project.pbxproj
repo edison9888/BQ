@@ -7,19 +7,83 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0420575B17054029006683E1 /* customerNavigation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0420575A17054029006683E1 /* customerNavigation@2x.png */; };
+		0420576017054252006683E1 /* homeIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0420575F17054252006683E1 /* homeIcon@2x.png */; };
+		042057621705425D006683E1 /* setIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042057611705425D006683E1 /* setIcon@2x.png */; };
+		042057641705426B006683E1 /* personIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042057631705426B006683E1 /* personIcon@2x.png */; };
+		0420576617054317006683E1 /* CustomerTabBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0420576517054317006683E1 /* CustomerTabBar@2x.png */; };
+		042057681705463D006683E1 /* bankName@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 042057671705463D006683E1 /* bankName@2x.png */; };
+		0420576A17056563006683E1 /* mapBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0420576917056563006683E1 /* mapBtn@2x.png */; };
+		0420576C1705682E006683E1 /* backArrows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 0420576B1705682E006683E1 /* backArrows@2x.png */; };
+		04A6ACEF17014BB2009948B3 /* HomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ACEE17014BB2009948B3 /* HomeViewController.m */; };
+		04A6ACF217014BBC009948B3 /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ACF117014BBC009948B3 /* SetViewController.m */; };
+		04A6ACF517014BC4009948B3 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ACF417014BC4009948B3 /* UserViewController.m */; };
+		04A6ACF917017589009948B3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ACF817017589009948B3 /* MapViewController.m */; };
+		04A6ACFB17017620009948B3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A6ACFA17017620009948B3 /* MapKit.framework */; };
+		04A6ACFF17017978009948B3 /* FastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ACFE17017978009948B3 /* FastCell.m */; };
+		04A6AD0217017BB1009948B3 /* NSDictionary+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6AD0117017BB1009948B3 /* NSDictionary+helper.m */; };
+		04A6AD0417018329009948B3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A6AD0317018328009948B3 /* Default.png */; };
+		04A6AD06170185E6009948B3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A6AD05170185E6009948B3 /* Default@2x.png */; };
+		04A6AD0917018B05009948B3 /* UIColor+REXDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6AD0817018B05009948B3 /* UIColor+REXDebug.m */; };
+		04A6AD0C17018D38009948B3 /* REXAsyncFileDeleter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6AD0B17018D37009948B3 /* REXAsyncFileDeleter.m */; };
+		04A6AD0E17019A63009948B3 /* home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A6AD0D17019A63009948B3 /* home@2x.png */; };
+		04A6AD1117019C7F009948B3 /* SelectBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6AD1017019C7F009948B3 /* SelectBankViewController.m */; };
+		04A6AD1317019C8E009948B3 /* selectBank@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A6AD1217019C8E009948B3 /* selectBank@2x.png */; };
+		04A6AD1517019F83009948B3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A6AD1417019F82009948B3 /* CoreLocation.framework */; };
+		04A6AD171702A2A9009948B3 /* CoreText.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A6AD161702A2A8009948B3 /* CoreText.framework */; };
+		04A6AD1A1702C694009948B3 /* TestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6AD191702C694009948B3 /* TestView.m */; };
+		04A6AD1E17053A9F009948B3 /* 07@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A6AD1C17053A9F009948B3 /* 07@2x.png */; };
+		04A6AD1F17053A9F009948B3 /* beiJing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A6AD1D17053A9F009948B3 /* beiJing@2x.png */; };
 		04D2C1EA16FFF74E00E11E82 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D2C1E916FFF74E00E11E82 /* UIKit.framework */; };
 		04D2C1EC16FFF74E00E11E82 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D2C1EB16FFF74E00E11E82 /* Foundation.framework */; };
 		04D2C1EE16FFF74E00E11E82 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D2C1ED16FFF74E00E11E82 /* CoreGraphics.framework */; };
 		04D2C1F416FFF74F00E11E82 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 04D2C1F216FFF74F00E11E82 /* InfoPlist.strings */; };
 		04D2C1F616FFF74F00E11E82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D2C1F516FFF74F00E11E82 /* main.m */; };
 		04D2C1FA16FFF74F00E11E82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D2C1F916FFF74F00E11E82 /* AppDelegate.m */; };
-		04D2C1FC16FFF74F00E11E82 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D2C1FB16FFF74F00E11E82 /* Default.png */; };
-		04D2C1FE16FFF74F00E11E82 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D2C1FD16FFF74F00E11E82 /* Default@2x.png */; };
 		04D2C20016FFF74F00E11E82 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D2C1FF16FFF74F00E11E82 /* Default-568h@2x.png */; };
 		04D2C20D16FFF7B400E11E82 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D2C20C16FFF7B400E11E82 /* MainViewController.m */; };
+		04D2C21017003ED100E11E82 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D2C20E17003ED100E11E82 /* Icon.png */; };
+		04D2C21117003ED100E11E82 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D2C20F17003ED100E11E82 /* Icon@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0420575A17054029006683E1 /* customerNavigation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "customerNavigation@2x.png"; sourceTree = "<group>"; };
+		0420575F17054252006683E1 /* homeIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeIcon@2x.png"; sourceTree = "<group>"; };
+		042057611705425D006683E1 /* setIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "setIcon@2x.png"; sourceTree = "<group>"; };
+		042057631705426B006683E1 /* personIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "personIcon@2x.png"; sourceTree = "<group>"; };
+		0420576517054317006683E1 /* CustomerTabBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "CustomerTabBar@2x.png"; path = "../TabBarIcons/CustomerTabBar@2x.png"; sourceTree = "<group>"; };
+		042057671705463D006683E1 /* bankName@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bankName@2x.png"; sourceTree = "<group>"; };
+		0420576917056563006683E1 /* mapBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapBtn@2x.png"; sourceTree = "<group>"; };
+		0420576B1705682E006683E1 /* backArrows@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "backArrows@2x.png"; sourceTree = "<group>"; };
+		04A6ACED17014BB2009948B3 /* HomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HomeViewController.h; sourceTree = "<group>"; };
+		04A6ACEE17014BB2009948B3 /* HomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HomeViewController.m; sourceTree = "<group>"; };
+		04A6ACF017014BBC009948B3 /* SetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
+		04A6ACF117014BBC009948B3 /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
+		04A6ACF317014BC4009948B3 /* UserViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserViewController.h; sourceTree = "<group>"; };
+		04A6ACF417014BC4009948B3 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
+		04A6ACF717017589009948B3 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
+		04A6ACF817017589009948B3 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
+		04A6ACFA17017620009948B3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		04A6ACFD17017978009948B3 /* FastCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastCell.h; sourceTree = "<group>"; };
+		04A6ACFE17017978009948B3 /* FastCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastCell.m; sourceTree = "<group>"; };
+		04A6AD0017017BB1009948B3 /* NSDictionary+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+helper.h"; sourceTree = "<group>"; };
+		04A6AD0117017BB1009948B3 /* NSDictionary+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+helper.m"; sourceTree = "<group>"; };
+		04A6AD0317018328009948B3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		04A6AD05170185E6009948B3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		04A6AD0717018B05009948B3 /* UIColor+REXDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+REXDebug.h"; sourceTree = "<group>"; };
+		04A6AD0817018B05009948B3 /* UIColor+REXDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+REXDebug.m"; sourceTree = "<group>"; };
+		04A6AD0A17018D37009948B3 /* REXAsyncFileDeleter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REXAsyncFileDeleter.h; sourceTree = "<group>"; };
+		04A6AD0B17018D37009948B3 /* REXAsyncFileDeleter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = REXAsyncFileDeleter.m; sourceTree = "<group>"; };
+		04A6AD0D17019A63009948B3 /* home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "home@2x.png"; sourceTree = "<group>"; };
+		04A6AD0F17019C7F009948B3 /* SelectBankViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SelectBankViewController.h; sourceTree = "<group>"; };
+		04A6AD1017019C7F009948B3 /* SelectBankViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SelectBankViewController.m; sourceTree = "<group>"; };
+		04A6AD1217019C8E009948B3 /* selectBank@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "selectBank@2x.png"; sourceTree = "<group>"; };
+		04A6AD1417019F82009948B3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		04A6AD161702A2A8009948B3 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
+		04A6AD181702C694009948B3 /* TestView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestView.h; sourceTree = "<group>"; };
+		04A6AD191702C694009948B3 /* TestView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TestView.m; sourceTree = "<group>"; };
+		04A6AD1C17053A9F009948B3 /* 07@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "07@2x.png"; sourceTree = "<group>"; };
+		04A6AD1D17053A9F009948B3 /* beiJing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beiJing@2x.png"; sourceTree = "<group>"; };
 		04D2C1E616FFF74E00E11E82 /* BQ.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BQ.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		04D2C1E916FFF74E00E11E82 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		04D2C1EB16FFF74E00E11E82 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -30,11 +94,11 @@
 		04D2C1F716FFF74F00E11E82 /* BQ-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BQ-Prefix.pch"; sourceTree = "<group>"; };
 		04D2C1F816FFF74F00E11E82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04D2C1F916FFF74F00E11E82 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		04D2C1FB16FFF74F00E11E82 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		04D2C1FD16FFF74F00E11E82 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		04D2C1FF16FFF74F00E11E82 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		04D2C20B16FFF7B400E11E82 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		04D2C20C16FFF7B400E11E82 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		04D2C20E17003ED100E11E82 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
+		04D2C20F17003ED100E11E82 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +106,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04A6AD171702A2A9009948B3 /* CoreText.framework in Frameworks */,
+				04A6AD1517019F83009948B3 /* CoreLocation.framework in Frameworks */,
+				04A6ACFB17017620009948B3 /* MapKit.framework in Frameworks */,
 				04D2C1EA16FFF74E00E11E82 /* UIKit.framework in Frameworks */,
 				04D2C1EC16FFF74E00E11E82 /* Foundation.framework in Frameworks */,
 				04D2C1EE16FFF74E00E11E82 /* CoreGraphics.framework in Frameworks */,
@@ -51,6 +118,61 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0420575917053F83006683E1 /* FrameVIewController */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = FrameVIewController;
+			sourceTree = "<group>";
+		};
+		0420575E1705424A006683E1 /* TabBarIcons */ = {
+			isa = PBXGroup;
+			children = (
+				042057631705426B006683E1 /* personIcon@2x.png */,
+				042057611705425D006683E1 /* setIcon@2x.png */,
+				0420575F17054252006683E1 /* homeIcon@2x.png */,
+			);
+			path = TabBarIcons;
+			sourceTree = "<group>";
+		};
+		04A6ACF617014F8F009948B3 /* MapViewController */ = {
+			isa = PBXGroup;
+			children = (
+				04A6ACF717017589009948B3 /* MapViewController.h */,
+				04A6ACF817017589009948B3 /* MapViewController.m */,
+			);
+			path = MapViewController;
+			sourceTree = "<group>";
+		};
+		04A6ACFC1701795E009948B3 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				04A6ACFD17017978009948B3 /* FastCell.h */,
+				04A6ACFE17017978009948B3 /* FastCell.m */,
+				04A6AD0017017BB1009948B3 /* NSDictionary+helper.h */,
+				04A6AD0117017BB1009948B3 /* NSDictionary+helper.m */,
+				04A6AD0717018B05009948B3 /* UIColor+REXDebug.h */,
+				04A6AD0817018B05009948B3 /* UIColor+REXDebug.m */,
+				04A6AD0A17018D37009948B3 /* REXAsyncFileDeleter.h */,
+				04A6AD0B17018D37009948B3 /* REXAsyncFileDeleter.m */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		04A6AD1B17053A92009948B3 /* Homes */ = {
+			isa = PBXGroup;
+			children = (
+				0420576B1705682E006683E1 /* backArrows@2x.png */,
+				0420576917056563006683E1 /* mapBtn@2x.png */,
+				042057671705463D006683E1 /* bankName@2x.png */,
+				0420576517054317006683E1 /* CustomerTabBar@2x.png */,
+				0420575A17054029006683E1 /* customerNavigation@2x.png */,
+				04A6AD1C17053A9F009948B3 /* 07@2x.png */,
+				04A6AD1D17053A9F009948B3 /* beiJing@2x.png */,
+			);
+			path = Homes;
+			sourceTree = "<group>";
+		};
 		04D2C1DD16FFF74E00E11E82 = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +193,9 @@
 		04D2C1E816FFF74E00E11E82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				04A6AD161702A2A8009948B3 /* CoreText.framework */,
+				04A6AD1417019F82009948B3 /* CoreLocation.framework */,
+				04A6ACFA17017620009948B3 /* MapKit.framework */,
 				04D2C1E916FFF74E00E11E82 /* UIKit.framework */,
 				04D2C1EB16FFF74E00E11E82 /* Foundation.framework */,
 				04D2C1ED16FFF74E00E11E82 /* CoreGraphics.framework */,
@@ -81,6 +206,7 @@
 		04D2C1EF16FFF74E00E11E82 /* BQ */ = {
 			isa = PBXGroup;
 			children = (
+				04A6ACFC1701795E009948B3 /* Helpers */,
 				04D2C20916FFF78C00E11E82 /* ThirdParty */,
 				04D2C20816FFF77900E11E82 /* Models */,
 				04D2C20716FFF76F00E11E82 /* Controllers */,
@@ -95,13 +221,15 @@
 		04D2C1F016FFF74F00E11E82 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				04A6AD05170185E6009948B3 /* Default@2x.png */,
+				04A6AD0317018328009948B3 /* Default.png */,
+				04D2C20E17003ED100E11E82 /* Icon.png */,
+				04D2C20F17003ED100E11E82 /* Icon@2x.png */,
 				04D2C20A16FFF79C00E11E82 /* Images */,
 				04D2C1F116FFF74F00E11E82 /* BQ-Info.plist */,
 				04D2C1F216FFF74F00E11E82 /* InfoPlist.strings */,
 				04D2C1F516FFF74F00E11E82 /* main.m */,
 				04D2C1F716FFF74F00E11E82 /* BQ-Prefix.pch */,
-				04D2C1FB16FFF74F00E11E82 /* Default.png */,
-				04D2C1FD16FFF74F00E11E82 /* Default@2x.png */,
 				04D2C1FF16FFF74F00E11E82 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
@@ -110,6 +238,8 @@
 		04D2C20616FFF76500E11E82 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				04A6AD181702C694009948B3 /* TestView.h */,
+				04A6AD191702C694009948B3 /* TestView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -117,6 +247,10 @@
 		04D2C20716FFF76F00E11E82 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				0420575917053F83006683E1 /* FrameVIewController */,
+				04D2C2141701430F00E11E82 /* HomeViewController */,
+				04D2C2131701425A00E11E82 /* SetViewController */,
+				04D2C2121701424700E11E82 /* UserViewController */,
 				04D2C20B16FFF7B400E11E82 /* MainViewController.h */,
 				04D2C20C16FFF7B400E11E82 /* MainViewController.m */,
 			);
@@ -140,8 +274,42 @@
 		04D2C20A16FFF79C00E11E82 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				0420575E1705424A006683E1 /* TabBarIcons */,
+				04A6AD1B17053A92009948B3 /* Homes */,
+				04A6AD1217019C8E009948B3 /* selectBank@2x.png */,
+				04A6AD0D17019A63009948B3 /* home@2x.png */,
 			);
 			path = Images;
+			sourceTree = "<group>";
+		};
+		04D2C2121701424700E11E82 /* UserViewController */ = {
+			isa = PBXGroup;
+			children = (
+				04A6ACF317014BC4009948B3 /* UserViewController.h */,
+				04A6ACF417014BC4009948B3 /* UserViewController.m */,
+			);
+			path = UserViewController;
+			sourceTree = "<group>";
+		};
+		04D2C2131701425A00E11E82 /* SetViewController */ = {
+			isa = PBXGroup;
+			children = (
+				04A6ACF017014BBC009948B3 /* SetViewController.h */,
+				04A6ACF117014BBC009948B3 /* SetViewController.m */,
+			);
+			path = SetViewController;
+			sourceTree = "<group>";
+		};
+		04D2C2141701430F00E11E82 /* HomeViewController */ = {
+			isa = PBXGroup;
+			children = (
+				04A6ACF617014F8F009948B3 /* MapViewController */,
+				04A6ACED17014BB2009948B3 /* HomeViewController.h */,
+				04A6ACEE17014BB2009948B3 /* HomeViewController.m */,
+				04A6AD0F17019C7F009948B3 /* SelectBankViewController.h */,
+				04A6AD1017019C7F009948B3 /* SelectBankViewController.m */,
+			);
+			path = HomeViewController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -196,9 +364,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				04D2C1F416FFF74F00E11E82 /* InfoPlist.strings in Resources */,
-				04D2C1FC16FFF74F00E11E82 /* Default.png in Resources */,
-				04D2C1FE16FFF74F00E11E82 /* Default@2x.png in Resources */,
 				04D2C20016FFF74F00E11E82 /* Default-568h@2x.png in Resources */,
+				04D2C21017003ED100E11E82 /* Icon.png in Resources */,
+				04D2C21117003ED100E11E82 /* Icon@2x.png in Resources */,
+				04A6AD0417018329009948B3 /* Default.png in Resources */,
+				04A6AD06170185E6009948B3 /* Default@2x.png in Resources */,
+				04A6AD0E17019A63009948B3 /* home@2x.png in Resources */,
+				04A6AD1317019C8E009948B3 /* selectBank@2x.png in Resources */,
+				04A6AD1E17053A9F009948B3 /* 07@2x.png in Resources */,
+				04A6AD1F17053A9F009948B3 /* beiJing@2x.png in Resources */,
+				0420575B17054029006683E1 /* customerNavigation@2x.png in Resources */,
+				0420576017054252006683E1 /* homeIcon@2x.png in Resources */,
+				042057621705425D006683E1 /* setIcon@2x.png in Resources */,
+				042057641705426B006683E1 /* personIcon@2x.png in Resources */,
+				0420576617054317006683E1 /* CustomerTabBar@2x.png in Resources */,
+				042057681705463D006683E1 /* bankName@2x.png in Resources */,
+				0420576A17056563006683E1 /* mapBtn@2x.png in Resources */,
+				0420576C1705682E006683E1 /* backArrows@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -212,6 +394,16 @@
 				04D2C1F616FFF74F00E11E82 /* main.m in Sources */,
 				04D2C1FA16FFF74F00E11E82 /* AppDelegate.m in Sources */,
 				04D2C20D16FFF7B400E11E82 /* MainViewController.m in Sources */,
+				04A6ACEF17014BB2009948B3 /* HomeViewController.m in Sources */,
+				04A6ACF217014BBC009948B3 /* SetViewController.m in Sources */,
+				04A6ACF517014BC4009948B3 /* UserViewController.m in Sources */,
+				04A6ACF917017589009948B3 /* MapViewController.m in Sources */,
+				04A6ACFF17017978009948B3 /* FastCell.m in Sources */,
+				04A6AD0217017BB1009948B3 /* NSDictionary+helper.m in Sources */,
+				04A6AD0917018B05009948B3 /* UIColor+REXDebug.m in Sources */,
+				04A6AD0C17018D38009948B3 /* REXAsyncFileDeleter.m in Sources */,
+				04A6AD1117019C7F009948B3 /* SelectBankViewController.m in Sources */,
+				04A6AD1A1702C694009948B3 /* TestView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -326,6 +518,7 @@
 				04D2C20516FFF74F00E11E82 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
