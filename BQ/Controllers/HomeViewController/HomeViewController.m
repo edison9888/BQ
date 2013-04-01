@@ -12,6 +12,10 @@
 
 #import "TestView.h"
 
+#import "PersonalBusinessViewController.h"
+#import "EnterpriseBusinessViewController.h"
+
+
 @interface HomeViewController ()
 
 @end
@@ -86,12 +90,35 @@
     [selectBankButton setFrame:CGRectMake(bankNameImageView.frame.size.width+bankNameImageView.frame.origin.x,bankNameImageView.frame.origin.y-10, 33, 42)];
     [homeBG addSubview:selectBankButton];
     
+    UIButton *personalBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [personalBusinessBtn setFrame:CGRectMake(118/2, selectBankButton.frame.size.height+selectBankButton.frame.origin.y+30, 390/2, 87/2)];
+    [personalBusinessBtn addTarget:self action:@selector(personalBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
+    [personalBusinessBtn setBackgroundImage:[UIImage imageNamed:@"xuanZeYeWuAnNiu"] forState:UIControlStateNormal];
+    [self.view addSubview:personalBusinessBtn];
     
-    
+    UIButton *enterpriseBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [enterpriseBusinessBtn setFrame:CGRectMake(personalBusinessBtn.frame.origin.x, personalBusinessBtn.frame.size.height+personalBusinessBtn.frame.origin.y+15, 390/2, 87/2)];
+    [enterpriseBusinessBtn addTarget:self action:@selector(enterpriseBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
+    [enterpriseBusinessBtn setBackgroundImage:[UIImage imageNamed:@"xuanZeQiYeYeWuAnNiu"] forState:UIControlStateNormal];
+    [self.view addSubview:enterpriseBusinessBtn];
     
 }
 
 
+- (void)personalBusinessClick:(id)sender{
+
+    NSLog(@"personalBusiness");
+    PersonalBusinessViewController *personalVC = [[PersonalBusinessViewController alloc] init];
+    [self.navigationController pushViewController:personalVC animated:YES];
+
+}
+
+- (void)enterpriseBusinessClick:(id)sender{
+
+    NSLog(@"enterpriseBusiness");
+    EnterpriseBusinessViewController *enterpriseVC = [[EnterpriseBusinessViewController alloc] init];
+    [self.navigationController pushViewController:enterpriseVC animated:YES];
+}
 
 
 -(void)viewWillAppear:(BOOL)animated{

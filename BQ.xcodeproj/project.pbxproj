@@ -44,6 +44,12 @@
 		04D2C20D16FFF7B400E11E82 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D2C20C16FFF7B400E11E82 /* MainViewController.m */; };
 		04D2C21017003ED100E11E82 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D2C20E17003ED100E11E82 /* Icon.png */; };
 		04D2C21117003ED100E11E82 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D2C20F17003ED100E11E82 /* Icon@2x.png */; };
+		C86E9BEB17097992000C60F2 /* xuanZeQiYeYeWuAnNiu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C86E9BEA17097992000C60F2 /* xuanZeQiYeYeWuAnNiu@2x.png */; };
+		C86E9BED17097999000C60F2 /* xuanZeYeWuAnNiu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C86E9BEC17097999000C60F2 /* xuanZeYeWuAnNiu@2x.png */; };
+		C86E9BF21709890E000C60F2 /* fenGeXxian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C86E9BF11709890E000C60F2 /* fenGeXxian@2x.png */; };
+		C86E9BF5170993C3000C60F2 /* PersonalBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C86E9BF4170993C2000C60F2 /* PersonalBusinessViewController.m */; };
+		C86E9BF8170993E6000C60F2 /* EnterpriseBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C86E9BF7170993E5000C60F2 /* EnterpriseBusinessViewController.m */; };
+		C86E9BFB170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C86E9BFA170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -99,6 +105,15 @@
 		04D2C20C16FFF7B400E11E82 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		04D2C20E17003ED100E11E82 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		04D2C20F17003ED100E11E82 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		C86E9BEA17097992000C60F2 /* xuanZeQiYeYeWuAnNiu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xuanZeQiYeYeWuAnNiu@2x.png"; sourceTree = "<group>"; };
+		C86E9BEC17097999000C60F2 /* xuanZeYeWuAnNiu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xuanZeYeWuAnNiu@2x.png"; sourceTree = "<group>"; };
+		C86E9BF11709890E000C60F2 /* fenGeXxian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fenGeXxian@2x.png"; sourceTree = "<group>"; };
+		C86E9BF3170993C2000C60F2 /* PersonalBusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalBusinessViewController.h; sourceTree = "<group>"; };
+		C86E9BF4170993C2000C60F2 /* PersonalBusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalBusinessViewController.m; sourceTree = "<group>"; };
+		C86E9BF6170993E5000C60F2 /* EnterpriseBusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseBusinessViewController.h; sourceTree = "<group>"; };
+		C86E9BF7170993E5000C60F2 /* EnterpriseBusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseBusinessViewController.m; sourceTree = "<group>"; };
+		C86E9BF9170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CostomNavigationBar.h"; sourceTree = "<group>"; };
+		C86E9BFA170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+CostomNavigationBar.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +170,8 @@
 				04A6AD0817018B05009948B3 /* UIColor+REXDebug.m */,
 				04A6AD0A17018D37009948B3 /* REXAsyncFileDeleter.h */,
 				04A6AD0B17018D37009948B3 /* REXAsyncFileDeleter.m */,
+				C86E9BF9170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.h */,
+				C86E9BFA170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -169,6 +186,9 @@
 				0420575A17054029006683E1 /* customerNavigation@2x.png */,
 				04A6AD1C17053A9F009948B3 /* 07@2x.png */,
 				04A6AD1D17053A9F009948B3 /* beiJing@2x.png */,
+				C86E9BEA17097992000C60F2 /* xuanZeQiYeYeWuAnNiu@2x.png */,
+				C86E9BEC17097999000C60F2 /* xuanZeYeWuAnNiu@2x.png */,
+				C86E9BF11709890E000C60F2 /* fenGeXxian@2x.png */,
 			);
 			path = Homes;
 			sourceTree = "<group>";
@@ -308,6 +328,10 @@
 				04A6ACEE17014BB2009948B3 /* HomeViewController.m */,
 				04A6AD0F17019C7F009948B3 /* SelectBankViewController.h */,
 				04A6AD1017019C7F009948B3 /* SelectBankViewController.m */,
+				C86E9BF3170993C2000C60F2 /* PersonalBusinessViewController.h */,
+				C86E9BF4170993C2000C60F2 /* PersonalBusinessViewController.m */,
+				C86E9BF6170993E5000C60F2 /* EnterpriseBusinessViewController.h */,
+				C86E9BF7170993E5000C60F2 /* EnterpriseBusinessViewController.m */,
 			);
 			path = HomeViewController;
 			sourceTree = "<group>";
@@ -381,6 +405,9 @@
 				042057681705463D006683E1 /* bankName@2x.png in Resources */,
 				0420576A17056563006683E1 /* mapBtn@2x.png in Resources */,
 				0420576C1705682E006683E1 /* backArrows@2x.png in Resources */,
+				C86E9BEB17097992000C60F2 /* xuanZeQiYeYeWuAnNiu@2x.png in Resources */,
+				C86E9BED17097999000C60F2 /* xuanZeYeWuAnNiu@2x.png in Resources */,
+				C86E9BF21709890E000C60F2 /* fenGeXxian@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,6 +431,9 @@
 				04A6AD0C17018D38009948B3 /* REXAsyncFileDeleter.m in Sources */,
 				04A6AD1117019C7F009948B3 /* SelectBankViewController.m in Sources */,
 				04A6AD1A1702C694009948B3 /* TestView.m in Sources */,
+				C86E9BF5170993C3000C60F2 /* PersonalBusinessViewController.m in Sources */,
+				C86E9BF8170993E6000C60F2 /* EnterpriseBusinessViewController.m in Sources */,
+				C86E9BFB170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

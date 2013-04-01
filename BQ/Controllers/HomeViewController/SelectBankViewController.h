@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SelectBankViewController : UIViewController
+@interface SelectBankViewController : UITableViewController<UITableViewDataSource,UITableViewDelegate>
 
+
+@property(nonatomic,strong) NSArray *banksArr;
 @end
