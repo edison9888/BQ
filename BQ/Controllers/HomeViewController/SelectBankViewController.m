@@ -7,6 +7,8 @@
 //
 
 #import "SelectBankViewController.h"
+#import "MapViewController.h"
+#import "Helper.h"
 
 @interface SelectBankViewController ()
 
@@ -32,40 +34,8 @@
     
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.tableView setBackgroundColor:[UIColor clearColor]];
-	// Do any additional setup after loading the view.
-    /*
-    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"selectBank"]];
-    homeBG.frame  = self.view.bounds;    
-    [self.view addSubview:homeBG];
-    
-    
-    
-    UIButton *backButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [backButton addTarget:self action:@selector(back) forControlEvents:UIControlEventTouchUpInside];
-    backButton.frame =CGRectMake(0, 0, 100, 100);
-    [self.view addSubview:backButton];
-     
-     [self.navigationItem setHidesBackButton:YES];
-     
-     UIButton *backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-     //  backBtn.backgroundColor = [UIColor yellowColor];
-     backBtn.frame = CGRectMake(30, 0, 30, 20);
-     [backBtn setBackgroundImage:[UIImage imageNamed:@"backArrows"] forState:UIControlStateNormal];
-     [backBtn addTarget: self action: @selector(goBackAction) forControlEvents: UIControlEventTouchUpInside];
-     backBtn.backgroundColor = [UIColor blackColor];
-     UIBarButtonItem*back=[[UIBarButtonItem alloc]initWithCustomView:backBtn];
-     
-     self.navigationItem.leftBarButtonItem=back;
-     
-     */
-
-    UIButton *_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_button setBackgroundImage:[UIImage imageNamed:@"backArrows"] forState:UIControlStateNormal];
-    [_button setFrame:CGRectMake(0, 0, 38/2, 20)];
-    [_button addTarget:self action:@selector(backToLastVC) forControlEvents:UIControlEventTouchUpInside];
-
-    UIBarButtonItem *barItem = [[UIBarButtonItem alloc]initWithCustomView:_button];
-    self.navigationItem.leftBarButtonItem = barItem;
+	
+    self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
 
 
 }
@@ -115,7 +85,9 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    
+    MapViewController *mapVC = [[MapViewController alloc] init];
+    mapVC.hidesBottomBarWhenPushed=YES;
+    [self.navigationController pushViewController:mapVC animated:YES];
     
 }
 

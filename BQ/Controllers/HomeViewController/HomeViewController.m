@@ -12,9 +12,6 @@
 
 #import "TestView.h"
 
-#import "PersonalBusinessViewController.h"
-#import "EnterpriseBusinessViewController.h"
-
 
 @interface HomeViewController ()
 
@@ -102,24 +99,45 @@
     [enterpriseBusinessBtn setBackgroundImage:[UIImage imageNamed:@"xuanZeQiYeYeWuAnNiu"] forState:UIControlStateNormal];
     [self.view addSubview:enterpriseBusinessBtn];
     
+    
+    
 }
 
-
+//个人业务
 - (void)personalBusinessClick:(id)sender{
-
-    NSLog(@"personalBusiness");
-    PersonalBusinessViewController *personalVC = [[PersonalBusinessViewController alloc] init];
-    [self.navigationController pushViewController:personalVC animated:YES];
-
+    personalVC = [[PersonalBusinessViewController alloc] init];
+    personalVC.delegate=self;
+    [self addChildViewController:personalVC];
+    personalVC.view.frame=self.view.frame;
+    [self.view addSubview:personalVC.view];
 }
 
+//企业业务
 - (void)enterpriseBusinessClick:(id)sender{
 
-    NSLog(@"enterpriseBusiness");
-    EnterpriseBusinessViewController *enterpriseVC = [[EnterpriseBusinessViewController alloc] init];
-    [self.navigationController pushViewController:enterpriseVC animated:YES];
+    enterpriseVC = [[EnterpriseBusinessViewController alloc] init];
+    enterpriseVC.delegate=self;
+    [self addChildViewController:enterpriseVC];
+    enterpriseVC.view.frame=self.view.frame;
+    [self.view addSubview:enterpriseVC.view];
+    
 }
 
+#pragma mark--
+#pragma mark--出票隐藏
+- (void)OutOfTheTicketDelegate{
+    //个人业务消失
+    [personalVC.view removeFromSuperview];
+    [personalVC removeFromParentViewController];
+
+}
+
+- (void)OutOfEnterpriseBusinessTicketDelegate{
+    //企业业务
+    [enterpriseVC.view removeFromSuperview];
+    [enterpriseVC removeFromParentViewController];
+    
+}
 
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];

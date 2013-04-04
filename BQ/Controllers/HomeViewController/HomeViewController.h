@@ -7,10 +7,19 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "PersonalBusinessViewController.h"
+#import "EnterpriseBusinessViewController.h"
 
-@interface HomeViewController : UIViewController
+typedef enum {
+    personal,
+    enterprise
+} BusinessType;
+
+
+@interface HomeViewController : UIViewController<PersonalBusinessViewControllerDelegate,EnterpriseBusinessViewControllerDelegate>
 {
-    
+    PersonalBusinessViewController *personalVC;
+    EnterpriseBusinessViewController *enterpriseVC;
 }
 
 @property(nonatomic,strong)UILabel *bankNameLabel;

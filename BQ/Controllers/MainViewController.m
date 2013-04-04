@@ -22,7 +22,7 @@
     self.view.backgroundColor = [UIColor clearColor];
     
     //自定义的tabBar背景
-    [self.tabBar setBackgroundImage:[UIImage imageNamed:@"customerTabBar"]];
+//    [self.tabBar setBackgroundImage:[UIImage imageNamed:@"customerTabBar"]];
     
     UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"beiJing"]];
     homeBG.frame  = self.view.bounds;

@@ -8,6 +8,20 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EnterpriseBusinessViewController : UIViewController
+@protocol  EnterpriseBusinessViewControllerDelegate<NSObject>
+
+- (void)OutOfEnterpriseBusinessTicketDelegate;
+
+@end
+
+@interface EnterpriseBusinessViewController : UIViewController<UITableViewDelegate,UITableViewDataSource>
+{
+    UITableView *_tableView;
+    BOOL isSelect;
+    NSString *tickitInfo;
+}
+
+@property(nonatomic,strong) NSArray *businessArr;
+@property(nonatomic,weak) id <EnterpriseBusinessViewControllerDelegate> delegate;
 
 @end
