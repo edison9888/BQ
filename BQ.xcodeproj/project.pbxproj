@@ -19,7 +19,6 @@
 		04A6ACF217014BBC009948B3 /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ACF117014BBC009948B3 /* SetViewController.m */; };
 		04A6ACF517014BC4009948B3 /* UserViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ACF417014BC4009948B3 /* UserViewController.m */; };
 		04A6ACF917017589009948B3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ACF817017589009948B3 /* MapViewController.m */; };
-		04A6ACFB17017620009948B3 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04A6ACFA17017620009948B3 /* MapKit.framework */; };
 		04A6ACFF17017978009948B3 /* FastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ACFE17017978009948B3 /* FastCell.m */; };
 		04A6AD0217017BB1009948B3 /* NSDictionary+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6AD0117017BB1009948B3 /* NSDictionary+helper.m */; };
 		04A6AD0417018329009948B3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A6AD0317018328009948B3 /* Default.png */; };
@@ -49,16 +48,23 @@
 		C8163545170C10580097672D /* tabBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8163542170C10580097672D /* tabBarButton@2x.png */; };
 		C8163549170C1E600097672D /* ToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C8163548170C1E600097672D /* ToolBar.m */; };
 		C816354B170C23380097672D /* tabBarButtonLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C816354A170C23370097672D /* tabBarButtonLocation@2x.png */; };
+		C8385495171275E5007B969A /* pickerToolBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8385494171275E5007B969A /* pickerToolBar@2x.png */; };
+		C8385497171275F1007B969A /* okButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8385496171275F1007B969A /* okButton@2x.png */; };
+		C83854AA17129C40007B969A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83854A917129C40007B969A /* MapKit.framework */; };
 		C86E9BEB17097992000C60F2 /* xuanZeQiYeYeWuAnNiu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C86E9BEA17097992000C60F2 /* xuanZeQiYeYeWuAnNiu@2x.png */; };
 		C86E9BED17097999000C60F2 /* xuanZeYeWuAnNiu@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C86E9BEC17097999000C60F2 /* xuanZeYeWuAnNiu@2x.png */; };
 		C86E9BF21709890E000C60F2 /* fenGeXxian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C86E9BF11709890E000C60F2 /* fenGeXxian@2x.png */; };
 		C86E9BF5170993C3000C60F2 /* PersonalBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C86E9BF4170993C2000C60F2 /* PersonalBusinessViewController.m */; };
 		C86E9BF8170993E6000C60F2 /* EnterpriseBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C86E9BF7170993E5000C60F2 /* EnterpriseBusinessViewController.m */; };
 		C86E9BFB170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C86E9BFA170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m */; };
+		C885D6CA1712A21D009E3A13 /* Bank.m in Sources */ = {isa = PBXBuildFile; fileRef = C83854A0171297B8007B969A /* Bank.m */; };
+		C885D6CB1712A220009E3A13 /* Picker.m in Sources */ = {isa = PBXBuildFile; fileRef = C83854A2171297F3007B969A /* Picker.m */; };
 		C88939A1170AB850008165D9 /* alertWindow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C889399D170AB850008165D9 /* alertWindow@2x.png */; };
 		C88939A2170AB850008165D9 /* buttonSelect@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C889399E170AB850008165D9 /* buttonSelect@2x.png */; };
 		C88939A3170AB850008165D9 /* button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C889399F170AB850008165D9 /* button@2x.png */; };
 		C88939A4170AB850008165D9 /* numberButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C88939A0170AB850008165D9 /* numberButton@2x.png */; };
+		C891491B1711218800958605 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C891491A1711218800958605 /* MyAnnotation.m */; };
+		C8DB413017117D070055341F /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DB412F17117D070055341F /* PickerView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -78,7 +84,6 @@
 		04A6ACF417014BC4009948B3 /* UserViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserViewController.m; sourceTree = "<group>"; };
 		04A6ACF717017589009948B3 /* MapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapViewController.h; sourceTree = "<group>"; };
 		04A6ACF817017589009948B3 /* MapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapViewController.m; sourceTree = "<group>"; };
-		04A6ACFA17017620009948B3 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		04A6ACFD17017978009948B3 /* FastCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FastCell.h; sourceTree = "<group>"; };
 		04A6ACFE17017978009948B3 /* FastCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastCell.m; sourceTree = "<group>"; };
 		04A6AD0017017BB1009948B3 /* NSDictionary+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+helper.h"; sourceTree = "<group>"; };
@@ -121,6 +126,13 @@
 		C8163547170C1E600097672D /* ToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBar.h; sourceTree = "<group>"; };
 		C8163548170C1E600097672D /* ToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolBar.m; sourceTree = "<group>"; };
 		C816354A170C23370097672D /* tabBarButtonLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonLocation@2x.png"; sourceTree = "<group>"; };
+		C8385494171275E5007B969A /* pickerToolBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pickerToolBar@2x.png"; sourceTree = "<group>"; };
+		C8385496171275F1007B969A /* okButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "okButton@2x.png"; sourceTree = "<group>"; };
+		C838549F171297B8007B969A /* Bank.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bank.h; sourceTree = "<group>"; };
+		C83854A0171297B8007B969A /* Bank.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bank.m; sourceTree = "<group>"; };
+		C83854A1171297F3007B969A /* Picker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Picker.h; sourceTree = "<group>"; };
+		C83854A2171297F3007B969A /* Picker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Picker.m; sourceTree = "<group>"; };
+		C83854A917129C40007B969A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = BQ/MapKit.framework; sourceTree = "<group>"; };
 		C86E9BEA17097992000C60F2 /* xuanZeQiYeYeWuAnNiu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xuanZeQiYeYeWuAnNiu@2x.png"; sourceTree = "<group>"; };
 		C86E9BEC17097999000C60F2 /* xuanZeYeWuAnNiu@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "xuanZeYeWuAnNiu@2x.png"; sourceTree = "<group>"; };
 		C86E9BF11709890E000C60F2 /* fenGeXxian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fenGeXxian@2x.png"; sourceTree = "<group>"; };
@@ -134,6 +146,10 @@
 		C889399E170AB850008165D9 /* buttonSelect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonSelect@2x.png"; sourceTree = "<group>"; };
 		C889399F170AB850008165D9 /* button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button@2x.png"; sourceTree = "<group>"; };
 		C88939A0170AB850008165D9 /* numberButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "numberButton@2x.png"; sourceTree = "<group>"; };
+		C89149191711218800958605 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
+		C891491A1711218800958605 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
+		C8DB412E17117D070055341F /* PickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerView.h; sourceTree = "<group>"; };
+		C8DB412F17117D070055341F /* PickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,10 +159,10 @@
 			files = (
 				04A6AD171702A2A9009948B3 /* CoreText.framework in Frameworks */,
 				04A6AD1517019F83009948B3 /* CoreLocation.framework in Frameworks */,
-				04A6ACFB17017620009948B3 /* MapKit.framework in Frameworks */,
 				04D2C1EA16FFF74E00E11E82 /* UIKit.framework in Frameworks */,
 				04D2C1EC16FFF74E00E11E82 /* Foundation.framework in Frameworks */,
 				04D2C1EE16FFF74E00E11E82 /* CoreGraphics.framework in Frameworks */,
+				C83854AA17129C40007B969A /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -192,6 +208,8 @@
 				04A6AD0B17018D37009948B3 /* REXAsyncFileDeleter.m */,
 				C86E9BF9170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.h */,
 				C86E9BFA170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m */,
+				C89149191711218800958605 /* MyAnnotation.h */,
+				C891491A1711218800958605 /* MyAnnotation.m */,
 				C816353D170C0E800097672D /* Helper.h */,
 				C816353E170C0E800097672D /* Helper.m */,
 			);
@@ -235,9 +253,9 @@
 		04D2C1E816FFF74E00E11E82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C83854A917129C40007B969A /* MapKit.framework */,
 				04A6AD161702A2A8009948B3 /* CoreText.framework */,
 				04A6AD1417019F82009948B3 /* CoreLocation.framework */,
-				04A6ACFA17017620009948B3 /* MapKit.framework */,
 				04D2C1E916FFF74E00E11E82 /* UIKit.framework */,
 				04D2C1EB16FFF74E00E11E82 /* Foundation.framework */,
 				04D2C1ED16FFF74E00E11E82 /* CoreGraphics.framework */,
@@ -248,9 +266,9 @@
 		04D2C1EF16FFF74E00E11E82 /* BQ */ = {
 			isa = PBXGroup;
 			children = (
+				C838549E17129716007B969A /* Models */,
 				04A6ACFC1701795E009948B3 /* Helpers */,
 				04D2C20916FFF78C00E11E82 /* ThirdParty */,
-				04D2C20816FFF77900E11E82 /* Models */,
 				04D2C20716FFF76F00E11E82 /* Controllers */,
 				04D2C20616FFF76500E11E82 /* Views */,
 				04D2C1F816FFF74F00E11E82 /* AppDelegate.h */,
@@ -284,6 +302,8 @@
 				04A6AD191702C694009948B3 /* TestView.m */,
 				C8163547170C1E600097672D /* ToolBar.h */,
 				C8163548170C1E600097672D /* ToolBar.m */,
+				C8DB412E17117D070055341F /* PickerView.h */,
+				C8DB412F17117D070055341F /* PickerView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -301,13 +321,6 @@
 			path = Controllers;
 			sourceTree = "<group>";
 		};
-		04D2C20816FFF77900E11E82 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		04D2C20916FFF78C00E11E82 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
@@ -318,6 +331,7 @@
 		04D2C20A16FFF79C00E11E82 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C8385493171275D7007B969A /* PickerViewImage */,
 				C8163540170C103F0097672D /* Map */,
 				C889399C170AB83B008165D9 /* SelectBusiness */,
 				0420575E1705424A006683E1 /* TabBarIcons */,
@@ -370,6 +384,26 @@
 				C816354A170C23370097672D /* tabBarButtonLocation@2x.png */,
 			);
 			path = Map;
+			sourceTree = "<group>";
+		};
+		C8385493171275D7007B969A /* PickerViewImage */ = {
+			isa = PBXGroup;
+			children = (
+				C8385496171275F1007B969A /* okButton@2x.png */,
+				C8385494171275E5007B969A /* pickerToolBar@2x.png */,
+			);
+			path = PickerViewImage;
+			sourceTree = "<group>";
+		};
+		C838549E17129716007B969A /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				C838549F171297B8007B969A /* Bank.h */,
+				C83854A0171297B8007B969A /* Bank.m */,
+				C83854A1171297F3007B969A /* Picker.h */,
+				C83854A2171297F3007B969A /* Picker.m */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		C889399C170AB83B008165D9 /* SelectBusiness */ = {
@@ -463,6 +497,8 @@
 				C8163544170C10580097672D /* navBarIcon@2x.png in Resources */,
 				C8163545170C10580097672D /* tabBarButton@2x.png in Resources */,
 				C816354B170C23380097672D /* tabBarButtonLocation@2x.png in Resources */,
+				C8385495171275E5007B969A /* pickerToolBar@2x.png in Resources */,
+				C8385497171275F1007B969A /* okButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -489,8 +525,12 @@
 				C86E9BF5170993C3000C60F2 /* PersonalBusinessViewController.m in Sources */,
 				C86E9BF8170993E6000C60F2 /* EnterpriseBusinessViewController.m in Sources */,
 				C86E9BFB170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m in Sources */,
+				C885D6CA1712A21D009E3A13 /* Bank.m in Sources */,
 				C816353F170C0E800097672D /* Helper.m in Sources */,
+				C885D6CB1712A220009E3A13 /* Picker.m in Sources */,
 				C8163549170C1E600097672D /* ToolBar.m in Sources */,
+				C891491B1711218800958605 /* MyAnnotation.m in Sources */,
+				C8DB413017117D070055341F /* PickerView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -512,6 +552,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -533,9 +574,10 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
+				VALID_ARCHS = armv7;
 			};
 			name = Debug;
 		};
@@ -543,6 +585,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = armv7;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
@@ -557,19 +600,26 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 6.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
+				VALID_ARCHS = armv7;
 			};
 			name = Release;
 		};
 		04D2C20416FFF74F00E11E82 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BQ/BQ-Prefix.pch";
 				INFOPLIST_FILE = "BQ/BQ-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -578,9 +628,15 @@
 		04D2C20516FFF74F00E11E82 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				FRAMEWORK_SEARCH_PATHS = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BQ/BQ-Prefix.pch";
 				INFOPLIST_FILE = "BQ/BQ-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

@@ -53,8 +53,8 @@
 }
 
 -(void)getTicketClick:(id)sender{
-    if ([self.delegate respondsToSelector:@selector(OutOfTheTicketDelegate)]) {
-        [self.delegate performSelector:@selector(OutOfTheTicketDelegate)];
+    if ([self.delegate respondsToSelector:@selector(OutOfEnterpriseBusinessTicketDelegate)]) {
+        [self.delegate performSelector:@selector(OutOfEnterpriseBusinessTicketDelegate)];
         NSLog(@"出票");
         [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",tickitInfo] forKey:@"tickitInfo"];
         

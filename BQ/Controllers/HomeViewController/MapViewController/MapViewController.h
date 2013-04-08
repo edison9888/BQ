@@ -8,13 +8,19 @@
 
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
+#import "Bank.h"
+#import "PickerView.h"
 
+#import "HomeViewController.h"
 
-@interface MapViewController : UIViewController
+@interface MapViewController : UIViewController<MKMapViewDelegate>
 {
-    
+    NSMutableArray *annotionViews;
+    PickerView *pickerViewController;
 }
 
 @property(nonatomic,strong) MKMapView * map;
+@property(nonatomic,strong) NSMutableArray *locationArrs;
+@property(nonatomic,weak) HomeViewController *homeVC;
 
 @end

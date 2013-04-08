@@ -24,10 +24,10 @@
     //自定义的tabBar背景
 //    [self.tabBar setBackgroundImage:[UIImage imageNamed:@"customerTabBar"]];
     
-    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"beiJing"]];
-    homeBG.frame  = self.view.bounds;
-    homeBG.userInteractionEnabled =YES;
-    [self.view insertSubview:homeBG atIndex:0];
+//    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"beiJing"]];
+//    homeBG.frame  = self.view.bounds;
+//    homeBG.userInteractionEnabled =YES;
+//    [self.view insertSubview:homeBG atIndex:0];
 
     HomeViewController *homeVC = [[HomeViewController alloc]init];
     homeVC.title = @"首页";
@@ -50,6 +50,7 @@
     
     self.viewControllers = @[navHome,navUser,navSet];
     
-    
 }
+
+
 @end

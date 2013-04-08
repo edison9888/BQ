@@ -8,7 +8,6 @@
 
 #import "HomeViewController.h"
 #import "MapViewController.h"
-#import "SelectBankViewController.h"
 
 #import "TestView.h"
 
@@ -19,56 +18,97 @@
 
 @implementation HomeViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+static HomeViewController *instance = nil;
+
++ (HomeViewController *)instance  {
+    static HomeViewController *instance;
+    
+    @synchronized(self) {
+        if(!instance) {
+            instance = [[HomeViewController alloc] init];
+        }
+    }
+    return instance;
+}
+
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
-        // Custom initialization
-        /*
-        UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"home"]];
-        homeBG.frame  = self.view.bounds;
-        
-        [self.view addSubview:homeBG];
-        
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-        [button addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
-        [button setFrame:CGRectMake(224, 200, 100, 100)];
-        [self.view addSubview:button];
-        */
+        instance=self;
     }
     return self;
 }
 
--(void)buttonPress{
+
+
+#pragma mark--
+#pragma mark--隐藏tabbar
+- (void)hidenTabbar:(BOOL) hidden{
     
-   
-    SelectBankViewController  *selectBankVC = [[SelectBankViewController alloc]init];
-    [self.navigationController pushViewController:selectBankVC animated:YES];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0];
+    [UIView setAnimationDuration:0.3f];
     
+//    NSLog(@"%@",self.tabBarController.view.subviews);
+    for(UIView *view in self.tabBarController.view.subviews)
+    {
+        if([view isKindOfClass:[UITabBar class]])
+        {
+            if (hidden) {
+                [view setFrame:CGRectMake(view.frame.origin.x, iPhone5?568:480, view.frame.size.width, view.frame.size.height)];
+            } else {
+                [view setFrame:CGRectMake(view.frame.origin.x, iPhone5?568-49:480-49, view.frame.size.width, view.frame.size.height)];
+            }
+        }
+        else
+        {
+            if (hidden) {
+                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width, iPhone5?568:480)];
+            } else {
+                [view setFrame:CGRectMake(view.frame.origin.x, view.frame.origin.y, view.frame.size.width,  iPhone5?568-49:480-49)];
+            }
+        }
+    }
+    
+    [UIView commitAnimations];
+    
+//    for (UIView *subView in self.view.subviews) {
+//        if ([subView isKindOfClass:NSClassFromString(@"UITransitionView")]) {
+//            //调整子视图的高度，UITransitionView视图为UINavitaionController的根视图
+//            
+//            CGRect frame = subView.frame;
+//            frame.size.height = iPhone5?568:480;
+//            subView.frame = frame;
+//        }  
+//    }
 }
 
+
+#pragma mark--
+#pragma mark--viewdidload
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.title = @"首页";
     
-    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"beiJing"]];
-    homeBG.frame  = self.view.bounds;
-    homeBG.userInteractionEnabled =YES;
-    [self.view addSubview:homeBG];
+//    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
+//    homeBG.frame  = self.view.bounds;
+//    homeBG.userInteractionEnabled =YES;
+//    [self.view addSubview:homeBG];
 
         
     UIImageView *no07BG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"07"]];
     no07BG.frame  = CGRectMake(80, 16, 150, 139);
     no07BG.alpha = 0.3f;
-    [homeBG addSubview:no07BG];
+    [self.view addSubview:no07BG];
     
     
     
     UIImageView *bankNameImageView = [[UIImageView alloc]initWithFrame:CGRectMake(60, 165, 327/2, 65/2)];
-    bankNameImageView.image=[UIImage imageNamed:@"bankName"];
-    [homeBG addSubview:bankNameImageView];
+    bankNameImageView.image=[UIImage imageNamed:@"bankName@2x.png"];
+    [self.view addSubview:bankNameImageView];
     
     
     
@@ -77,7 +117,6 @@
     _bankNameLabel.backgroundColor=[UIColor clearColor];
     _bankNameLabel.font = [UIFont systemFontOfSize:14];
     _bankNameLabel.textColor = [UIColor colorWithRed:173/255.f green:172/255.f blue:172/255.f alpha:1.0];
-    
     [bankNameImageView addSubview:_bankNameLabel];
     
     
@@ -85,7 +124,7 @@
     [selectBankButton addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
     [selectBankButton setImage:[UIImage imageNamed:@"mapBtn"] forState:UIControlStateNormal];
     [selectBankButton setFrame:CGRectMake(bankNameImageView.frame.size.width+bankNameImageView.frame.origin.x,bankNameImageView.frame.origin.y-10, 33, 42)];
-    [homeBG addSubview:selectBankButton];
+    [self.view addSubview:selectBankButton];
     
     UIButton *personalBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [personalBusinessBtn setFrame:CGRectMake(118/2, selectBankButton.frame.size.height+selectBankButton.frame.origin.y+30, 390/2, 87/2)];
@@ -97,12 +136,33 @@
     [enterpriseBusinessBtn setFrame:CGRectMake(personalBusinessBtn.frame.origin.x, personalBusinessBtn.frame.size.height+personalBusinessBtn.frame.origin.y+15, 390/2, 87/2)];
     [enterpriseBusinessBtn addTarget:self action:@selector(enterpriseBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
     [enterpriseBusinessBtn setBackgroundImage:[UIImage imageNamed:@"xuanZeQiYeYeWuAnNiu"] forState:UIControlStateNormal];
-    [self.view addSubview:enterpriseBusinessBtn];
-    
-    
+    [self.view addSubview:enterpriseBusinessBtn];    
     
 }
 
+//更改首页银行提示
+- (void)setBank:(Bank *)bank{
+    [self.bankNameLabel setText:bank.title];
+}
+
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
+    [self hidenTabbar:NO];
+    
+}
+
+#pragma mark--
+#pragma mark--选择银行
+-(void)buttonPress{
+    SelectBankViewController  *selectBankVC = [[SelectBankViewController alloc]init];
+    selectBankVC.delegate=self;
+    [self.navigationController pushViewController:selectBankVC animated:YES];
+    
+}
+
+#pragma mark--
+#pragma mark--业务按钮事件
 //个人业务
 - (void)personalBusinessClick:(id)sender{
     personalVC = [[PersonalBusinessViewController alloc] init];
@@ -127,22 +187,16 @@
 #pragma mark--出票隐藏
 - (void)OutOfTheTicketDelegate{
     //个人业务消失
-    [personalVC.view removeFromSuperview];
     [personalVC removeFromParentViewController];
+    [personalVC.view removeFromSuperview];
 
 }
 
 - (void)OutOfEnterpriseBusinessTicketDelegate{
     //企业业务
-    [enterpriseVC.view removeFromSuperview];
     [enterpriseVC removeFromParentViewController];
+    [enterpriseVC.view removeFromSuperview];
     
-}
-
--(void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
-    
-   
 }
 
 - (void)didReceiveMemoryWarning

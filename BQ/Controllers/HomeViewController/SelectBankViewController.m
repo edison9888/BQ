@@ -40,6 +40,16 @@
 
 }
 
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    if([_delegate respondsToSelector:@selector(hidenTabbar:)])
+    {
+        [_delegate hidenTabbar:NO];
+    }
+}
+
 //返回上一层
 - (void)backToLastVC{
     [self.navigationController popViewControllerAnimated:YES];
@@ -86,7 +96,12 @@
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     MapViewController *mapVC = [[MapViewController alloc] init];
-    mapVC.hidesBottomBarWhenPushed=YES;
+    mapVC.homeVC=(HomeViewController *)self.delegate;
+//    mapVC.hidesBottomBarWhenPushed=YES;
+    if([_delegate respondsToSelector:@selector(hidenTabbar:)])
+    {
+        [_delegate hidenTabbar:YES];
+    }
     [self.navigationController pushViewController:mapVC animated:YES];
     
 }

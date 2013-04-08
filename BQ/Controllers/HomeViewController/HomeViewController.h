@@ -10,19 +10,26 @@
 #import "PersonalBusinessViewController.h"
 #import "EnterpriseBusinessViewController.h"
 
+#import "MainViewController.h"
+#import "SelectBankViewController.h"
+
+@class Bank;
 typedef enum {
     personal,
     enterprise
 } BusinessType;
 
 
-@interface HomeViewController : UIViewController<PersonalBusinessViewControllerDelegate,EnterpriseBusinessViewControllerDelegate>
+@interface HomeViewController : UIViewController<PersonalBusinessViewControllerDelegate,EnterpriseBusinessViewControllerDelegate,SelectBankViewControllerDelegate>
 {
     PersonalBusinessViewController *personalVC;
     EnterpriseBusinessViewController *enterpriseVC;
 }
 
 @property(nonatomic,strong)UILabel *bankNameLabel;
+@property(nonatomic,weak) MainViewController *viewController;
+@property(nonatomic,strong) Bank *bank;
 
++ (HomeViewController *)instance;
 
 @end
