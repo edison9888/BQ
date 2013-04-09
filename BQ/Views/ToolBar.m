@@ -24,7 +24,7 @@
         
         UIButton *areaBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         [areaBtn setFrame:CGRectMake(18, 8, 55, 30)];
-        [areaBtn setTitle:@"区域" forState:UIControlStateNormal];
+        [areaBtn setTitle:@"" forState:UIControlStateNormal];
         [areaBtn setBackgroundImage:[UIImage imageNamed:@"tabBarButton"] forState:UIControlStateNormal];
         [areaBtn addTarget:viewController action:@selector(selectAreas) forControlEvents:UIControlEventTouchUpInside];
         [bgImageView addSubview:areaBtn];

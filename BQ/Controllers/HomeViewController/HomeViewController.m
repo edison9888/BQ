@@ -84,17 +84,15 @@ static HomeViewController *instance = nil;
 	// Do any additional setup after loading the view.
     self.title = @"首页";
         
-    UIImageView *no07BG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"07"]];
-    no07BG.frame  = CGRectMake(80, 16, 150, 139);
-    no07BG.alpha = 0.3f;
-    [self.view addSubview:no07BG];
-        
+//    UIImageView *no07BG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"07"]];
+//    no07BG.frame  = CGRectMake(80, 16, 150, 139);
+//    no07BG.alpha = 0.3f;
+//    [self.view addSubview:no07BG];
+    
     UIImageView *bankNameImageView = [[UIImageView alloc]initWithFrame:CGRectMake(60, 165, 327/2, 65/2)];
-    bankNameImageView.image=[UIImage imageNamed:@"bankName@2x.png"];
+    bankNameImageView.image=[UIImage imageNamed:@"bankName"];
     [self.view addSubview:bankNameImageView];
-    
-    
-    
+        
     _bankNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(20,2, 150, 30)];
     _bankNameLabel.text=@"选择您所需要的银行";
     _bankNameLabel.backgroundColor=[UIColor clearColor];

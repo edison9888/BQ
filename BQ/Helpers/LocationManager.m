@@ -52,13 +52,19 @@
     if ([self.delegate respondsToSelector:@selector(locationReceivedFromLocationManagerDelegate:)]) {
         [self.delegate locationReceivedFromLocationManagerDelegate:newLocation];
     }
+    
+    CLGeocoder *geocoder = [[CLGeocoder alloc]init];
+    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        NSLog(@"placemarks%@",placemarks);
+    }];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
 
     NSLog(@"locations%@",locations);
-
+    
 }
+
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
 

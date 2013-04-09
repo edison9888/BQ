@@ -26,11 +26,6 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    
-    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"beiJing"]];
-    homeBG.frame  = self.window.bounds;
-    homeBG.userInteractionEnabled =YES;
-    [self.window insertSubview:homeBG atIndex:0];
 
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
@@ -38,6 +33,11 @@
     
     MainViewController *mainVC = [[MainViewController alloc]init];
     [self.window setRootViewController:mainVC];
+    
+    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"beiJing"]];
+    homeBG.frame  = self.window.bounds;
+    homeBG.userInteractionEnabled =YES;
+    [self.window insertSubview:homeBG atIndex:0];
     
 //    [self customerNavigation];
    

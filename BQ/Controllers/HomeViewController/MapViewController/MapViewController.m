@@ -97,6 +97,20 @@
     
 }
 
+#pragma mark--
+#pragma mark--ReloadData---MapVC///MapListVC
+-(void)reloadData{
+
+//    self.locationArrs数据相应时更改
+    if (viewTag==MapTag) {
+        self.mapVC.locationArrs=_locationArrs;
+        [self.mapVC showAnnotaionViews];
+
+    }else{
+        self.mapListVC.locationArrs=_locationArrs;
+        [self.mapListVC.tableView reloadData];
+    }
+}
 
 #pragma mark--
 #pragma mark--Navigation-Method
@@ -122,6 +136,7 @@
         
         self.navigationItem.rightBarButtonItem = [Helper rightBarButtonItemListIcon:self];
         
+        //此处获取数据重新加载
     }else{
         viewTag=MapTag;
 
@@ -131,6 +146,8 @@
         toVC = mapVC;
     
         self.navigationItem.rightBarButtonItem = [Helper rightBarButtonItem:self];
+
+        //此处获取数据重新加载
 
     }
     
@@ -154,7 +171,6 @@
 - (void)locationSelf{
     //
     if (viewTag==MapTag) {
-        
         CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:self.mapVC._map.userLocation.coordinate.latitude longitude:self.mapVC._map.userLocation.location.coordinate.longitude];
         
         MKCoordinateSpan span ;
@@ -162,19 +178,13 @@
         span.longitudeDelta=0.5;
         MKCoordinateRegion region = {userLocation.coordinate, span};
         [self.mapVC._map setRegion:region];
-        
-        //刷新地图数据
-//        self.mapVC.locationArrs = self.locationArrs;
-//        [self.mapVC showAnnotaionViews];
     }
+    
+    //刷新地图数据
     //列表界面刷新界面数据，当前定位地区银行
-    else{
-        
-        //刷新列表数据
-//        self.mapListVC.locationArrs = self.locationArrs;
-//        [self.mapListVC.tableView reloadData];
 
-    }
+    //重新加载数据
+    [self reloadData];
 }
 
 #pragma mark--
@@ -218,15 +228,8 @@
     
     self.locationArrs=[NSMutableArray arrayWithObjects:bank1,bank2,bank3, nil];
     
-    if (viewTag==MapTag) {
-        self.mapVC.locationArrs = self.locationArrs;
-        [self.mapVC showAnnotaionViews];
-    }
-    else{
-        self.mapListVC.locationArrs = self.locationArrs;
-        [self.mapListVC.tableView reloadData];
-    }
-
+    //重新加载数据
+    [self reloadData];
 }
 
 

@@ -55,13 +55,15 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 116/2;
-    
-}
+
 
 #pragma mark--
 #pragma mark--TableViewDelegate
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
+    
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return self.banksArr.count;
 }
@@ -77,18 +79,18 @@
 //    }
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    
-    UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,116/2)];
-    [bankLabel setText:[self.banksArr objectAtIndex:indexPath.row]];
-    [bankLabel setFont:[UIFont systemFontOfSize:20]];
-    [bankLabel setBackgroundColor:[UIColor clearColor]];
-    [bankLabel setTextColor:[UIColor colorWithRed:75/255 green:85/255 blue:95/255 alpha:1.0f]];
-    [bankLabel setTextAlignment:NSTextAlignmentCenter];
-    [cell addSubview:bankLabel];
-    
-    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 116/2-2, cell.frame.size.width, 4)];
-    [lineImageView setImage:[UIImage imageNamed:@"fenGeXxian"]];
+        
+    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 310, 45)];
+    [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
     [cell addSubview:lineImageView];
+    
+    UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-30,lineImageView.frame.size.height)];
+    [bankLabel setText:[self.banksArr objectAtIndex:indexPath.row]];
+    [bankLabel setFont:[UIFont systemFontOfSize:15]];
+    [bankLabel setBackgroundColor:[UIColor clearColor]];
+    [bankLabel setTextColor:[UIColor colorWithRed:65/255 green:75/255 blue:85/255 alpha:1.0f]];
+    [bankLabel setTextAlignment:NSTextAlignmentLeft];
+    [cell addSubview:bankLabel];    
     
     
     return cell;
