@@ -14,4 +14,6 @@
 
 + (UIBarButtonItem *)rightBarButtonItem:(id)sender;
 
++ (UIBarButtonItem *)rightBarButtonItemListIcon:(id)sender;
+
 @end

@@ -13,14 +13,33 @@
 
 #import "HomeViewController.h"
 
-@interface MapViewController : UIViewController<MKMapViewDelegate>
+#import <QuartzCore/QuartzCore.h>
+
+
+#import "MapListViewController.h"
+#import "MapShowViewController.h"
+
+typedef enum {
+    MapTag,
+    TableViewTag
+} ViewTag;
+
+@interface MapViewController : UIViewController
 {
-    NSMutableArray *annotionViews;
+    @private
     PickerView *pickerViewController;
+    ViewTag viewTag;
+    
+    MapListViewController *mapListVC;//列表显示
+    MapShowViewController *mapShowVC;//地图显示
 }
 
-@property(nonatomic,strong) MKMapView * map;
-@property(nonatomic,strong) NSMutableArray *locationArrs;
+@property(nonatomic,strong) MapListViewController * mapListVC;
+@property(nonatomic,strong) MapShowViewController * mapVC;
+
+
 @property(nonatomic,weak) HomeViewController *homeVC;
+
+@property(nonatomic,strong) NSMutableArray *locationArrs;//地图显示数据数组 Bank数组
 
 @end

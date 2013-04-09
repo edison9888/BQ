@@ -11,9 +11,9 @@
 
 @implementation UINavigationBar (CostomNavigationBar)
 
-- (UIImage *)barBackground//粉红条的导航栏
+- (UIImage *)barBackground
 {
-    return [UIImage imageNamed:@"customerTabBar"];
+    return [UIImage imageNamed:@"navigationBarQ"];
 }
 
 

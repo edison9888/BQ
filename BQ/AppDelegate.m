@@ -15,16 +15,23 @@
 
 //自定以导航栏
 //适用于 ios 5.0+
--(void)customerNavigation{
-    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"customerNavigation"] forBarMetrics:UIBarMetricsDefault];
-    
-    
-}
+//-(void)customerNavigation{
+//    
+//    [[UINavigationBar appearance] setBackgroundImage:[UIImage imageNamed:@"navigationBarQ@2x"] forBarMetrics:UIBarMetricsDefault];
+//    
+//    
+//}
 
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    
+    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"beiJing"]];
+    homeBG.frame  = self.window.bounds;
+    homeBG.userInteractionEnabled =YES;
+    [self.window insertSubview:homeBG atIndex:0];
+
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
@@ -32,7 +39,7 @@
     MainViewController *mainVC = [[MainViewController alloc]init];
     [self.window setRootViewController:mainVC];
     
-    [self customerNavigation];
+//    [self customerNavigation];
    
     [self.window makeKeyAndVisible];
     return YES;

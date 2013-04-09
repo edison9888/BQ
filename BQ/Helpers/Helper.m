@@ -15,7 +15,7 @@
 
     UIButton *_button = [UIButton buttonWithType:UIButtonTypeCustom];
     [_button setBackgroundImage:[UIImage imageNamed:@"backArrows"] forState:UIControlStateNormal];
-    [_button setFrame:CGRectMake(0, 0, 38/2, 20)];
+    [_button setFrame:CGRectMake(0, 0, 54, 35)];
     [_button addTarget:sender action:@selector(backToLastVC) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc]initWithCustomView:_button];
@@ -25,8 +25,8 @@
 
 + (UIBarButtonItem *)rightBarButtonItem:(id)sender{
     UIButton *_button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [_button setBackgroundImage:[UIImage imageNamed:@"navBarIcon"] forState:UIControlStateNormal];
-    [_button setFrame:CGRectMake(0, 0, 47/2, 16)];
+    [_button setBackgroundImage:[UIImage imageNamed:@"mapListButton"] forState:UIControlStateNormal];
+    [_button setFrame:CGRectMake(0, 0, 54, 35)];
     [_button addTarget:sender action:@selector(turnToListVC) forControlEvents:UIControlEventTouchUpInside];
     
     UIBarButtonItem *barItem = [[UIBarButtonItem alloc]initWithCustomView:_button];
@@ -34,5 +34,15 @@
     return barItem;
 }
 
++ (UIBarButtonItem *)rightBarButtonItemListIcon:(id)sender{
+    UIButton *_button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_button setBackgroundImage:[UIImage imageNamed:@"mapButton"] forState:UIControlStateNormal];
+    [_button setFrame:CGRectMake(0, 0, 54,35)];
+    [_button addTarget:sender action:@selector(turnToListVC) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc]initWithCustomView:_button];
+    
+    return barItem;
+}
 
 @end

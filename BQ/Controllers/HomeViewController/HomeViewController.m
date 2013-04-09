@@ -72,16 +72,7 @@ static HomeViewController *instance = nil;
     }
     
     [UIView commitAnimations];
-    
-//    for (UIView *subView in self.view.subviews) {
-//        if ([subView isKindOfClass:NSClassFromString(@"UITransitionView")]) {
-//            //调整子视图的高度，UITransitionView视图为UINavitaionController的根视图
-//            
-//            CGRect frame = subView.frame;
-//            frame.size.height = iPhone5?568:480;
-//            subView.frame = frame;
-//        }  
-//    }
+
 }
 
 
@@ -92,20 +83,12 @@ static HomeViewController *instance = nil;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.title = @"首页";
-    
-//    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@""]];
-//    homeBG.frame  = self.view.bounds;
-//    homeBG.userInteractionEnabled =YES;
-//    [self.view addSubview:homeBG];
-
         
     UIImageView *no07BG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"07"]];
     no07BG.frame  = CGRectMake(80, 16, 150, 139);
     no07BG.alpha = 0.3f;
     [self.view addSubview:no07BG];
-    
-    
-    
+        
     UIImageView *bankNameImageView = [[UIImageView alloc]initWithFrame:CGRectMake(60, 165, 327/2, 65/2)];
     bankNameImageView.image=[UIImage imageNamed:@"bankName@2x.png"];
     [self.view addSubview:bankNameImageView];

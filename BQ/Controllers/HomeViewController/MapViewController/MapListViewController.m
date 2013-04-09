@@ -1,27 +1,24 @@
 //
-//  SelectBankViewController.m
+//  MapListViewController.m
 //  BQ
 //
-//  Created by zzlmilk on 13-3-26.
+//  Created by Zoe on 13-4-8.
 //  Copyright (c) 2013年 zzlmilk. All rights reserved.
 //
 
-#import "SelectBankViewController.h"
-#import "MapViewController.h"
-#import "Helper.h"
+#import "MapListViewController.h"
 
-@interface SelectBankViewController ()
+@interface MapListViewController ()
 
 @end
 
-@implementation SelectBankViewController
+@implementation MapListViewController
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.banksArr = [NSArray arrayWithObjects:@"中国工商银行",@"中国农业银行",@"浦发银行",@"中信银行",@"交通银行",@"中国邮政储蓄银行", nil];
     }
     return self;
 }
@@ -29,57 +26,31 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    self.title =@"选择银行";
-    
+	// Do any additional setup after loading the view.
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    [self.tableView setBackgroundColor:[UIColor clearColor]];
-	
-    self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
-
-
-}
-
--(void)viewWillAppear:(BOOL)animated
-{
-    [super viewWillAppear:animated];
-    
-    if([_delegate respondsToSelector:@selector(hidenTabbar:)])
-    {
-        [_delegate hidenTabbar:NO];
-    }
-}
-
-//返回上一层
-- (void)backToLastVC{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 116/2;
-    
 }
 
 #pragma mark--
 #pragma mark--TableViewDelegate
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.banksArr.count;
+    return self.locationArrs.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"CustomCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-//    if (!cell) {
-    
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        
-//    }
+    //    if (!cell) {
+    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    //    }
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
+    Bank *bank = [[Bank alloc] init];
+    bank = [self.locationArrs objectAtIndex:indexPath.row];
+    
     UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,116/2)];
-    [bankLabel setText:[self.banksArr objectAtIndex:indexPath.row]];
+    [bankLabel setText:bank.title];
     [bankLabel setFont:[UIFont systemFontOfSize:20]];
     [bankLabel setBackgroundColor:[UIColor clearColor]];
     [bankLabel setTextColor:[UIColor colorWithRed:75/255 green:85/255 blue:95/255 alpha:1.0f]];
@@ -97,15 +68,12 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    MapViewController *mapVC = [[MapViewController alloc] init];
-    mapVC.homeVC=(HomeViewController *)self.delegate;
-//    mapVC.hidesBottomBarWhenPushed=YES;
-    if([_delegate respondsToSelector:@selector(hidenTabbar:)])
-    {
-        [_delegate hidenTabbar:YES];
-    }
-    [self.navigationController pushViewController:mapVC animated:YES];
+    Bank *bank;
+    bank = [self.locationArrs objectAtIndex:indexPath.row];
     
+    _homeVC.bankNameLabel.text = bank.title;
+
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 
