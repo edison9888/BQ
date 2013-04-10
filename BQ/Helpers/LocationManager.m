@@ -48,21 +48,34 @@
     
     NSLog(@"%f,%f",lat,lon);
     
-    //获取新位置信息
-    if ([self.delegate respondsToSelector:@selector(locationReceivedFromLocationManagerDelegate:)]) {
-        [self.delegate locationReceivedFromLocationManagerDelegate:newLocation];
-    }
-    
-    CLGeocoder *geocoder = [[CLGeocoder alloc]init];
-    [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
-        NSLog(@"placemarks%@",placemarks);
-    }];
 }
 
 - (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations{
 
-    NSLog(@"locations%@",locations);
-    
+    CLLocation *currentLocation = [locations lastObject];
+    CLGeocoder *geocoder = [[CLGeocoder alloc]init];
+    [geocoder reverseGeocodeLocation:currentLocation completionHandler:^(NSArray *placemarks, NSError *error) {
+        
+            CLPlacemark *placemark = [placemarks objectAtIndex:0];
+//            NSString *cityName = placemark.administrativeArea;
+            NSDictionary *dictionary = placemark.addressDictionary;
+            NSArray *arr = [dictionary allKeys];
+        
+            for (int i=0; i<arr.count; i++) {
+                NSString *key = [arr objectAtIndex:i];
+                NSLog(@"placemarks---%@---%@",key,[placemark.addressDictionary objectForKey:[NSString stringWithFormat:@"%@",key]]);
+            }
+        
+        //区
+        [[NSUserDefaults standardUserDefaults] setValue:[placemark.addressDictionary objectForKey:@"SubLocality"] forKey:@"SubLocality"];
+        
+        //获取新位置信息
+        if ([self.delegate respondsToSelector:@selector(locationReceivedFromLocationManagerDelegate:)]) {
+            [self.delegate locationReceivedFromLocationManagerDelegate:[placemark.addressDictionary objectForKey:@"SubLocality"]];
+        }
+
+    }];
+
 }
 
 
@@ -72,12 +85,6 @@
     [self stopUpdate];
 }
 
-////获得方向信息（比如往南走）
-//-(void)locationManager:(CLLocationManager *)manager didUpdateHeading:(CLHeading *)newHeading
-//{
-//    //获得方向
-//    CLLocationDirection heading = newHeading .trueHeading;
-//}
 
 
 @end

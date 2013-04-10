@@ -18,8 +18,6 @@
 		04A6ACF917017589009948B3 /* MapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ACF817017589009948B3 /* MapViewController.m */; };
 		04A6ACFF17017978009948B3 /* FastCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6ACFE17017978009948B3 /* FastCell.m */; };
 		04A6AD0217017BB1009948B3 /* NSDictionary+helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6AD0117017BB1009948B3 /* NSDictionary+helper.m */; };
-		04A6AD0417018329009948B3 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A6AD0317018328009948B3 /* Default.png */; };
-		04A6AD06170185E6009948B3 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04A6AD05170185E6009948B3 /* Default@2x.png */; };
 		04A6AD0917018B05009948B3 /* UIColor+REXDebug.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6AD0817018B05009948B3 /* UIColor+REXDebug.m */; };
 		04A6AD0C17018D38009948B3 /* REXAsyncFileDeleter.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6AD0B17018D37009948B3 /* REXAsyncFileDeleter.m */; };
 		04A6AD1117019C7F009948B3 /* SelectBankViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04A6AD1017019C7F009948B3 /* SelectBankViewController.m */; };
@@ -37,13 +35,18 @@
 		04D2C20D16FFF7B400E11E82 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D2C20C16FFF7B400E11E82 /* MainViewController.m */; };
 		04D2C21017003ED100E11E82 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D2C20E17003ED100E11E82 /* Icon.png */; };
 		04D2C21117003ED100E11E82 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D2C20F17003ED100E11E82 /* Icon@2x.png */; };
+		C80CF82C1715197500889D03 /* Number.m in Sources */ = {isa = PBXBuildFile; fileRef = C80CF82B1715197500889D03 /* Number.m */; };
+		C80CF82E171519AC00889D03 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CF82D171519AC00889D03 /* Default.png */; };
+		C80CF832171535AA00889D03 /* GetTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C80CF831171535AA00889D03 /* GetTicketViewController.m */; };
+		C80CF838171536F700889D03 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CF834171536F700889D03 /* line@2x.png */; };
+		C80CF839171536F700889D03 /* morebutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CF835171536F700889D03 /* morebutton@2x.png */; };
+		C80CF83A171536F700889D03 /* nail@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CF836171536F700889D03 /* nail@2x.png */; };
+		C80CF83B171536F700889D03 /* ticket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CF837171536F700889D03 /* ticket@2x.png */; };
+		C80CF83E1715542A00889D03 /* TicketView.m in Sources */ = {isa = PBXBuildFile; fileRef = C80CF83D1715542A00889D03 /* TicketView.m */; };
 		C816353F170C0E800097672D /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = C816353E170C0E800097672D /* Helper.m */; };
-		C8163545170C10580097672D /* tabBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8163542170C10580097672D /* tabBarButton@2x.png */; };
 		C8163549170C1E600097672D /* ToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C8163548170C1E600097672D /* ToolBar.m */; };
-		C816354B170C23380097672D /* tabBarButtonLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C816354A170C23370097672D /* tabBarButtonLocation@2x.png */; };
 		C8385495171275E5007B969A /* pickerToolBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8385494171275E5007B969A /* pickerToolBar@2x.png */; };
 		C8385497171275F1007B969A /* okButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8385496171275F1007B969A /* okButton@2x.png */; };
-		C83854AA17129C40007B969A /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C83854A917129C40007B969A /* MapKit.framework */; };
 		C85CD6C31712AD4C007512C3 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CD6C21712AD4C007512C3 /* LocationManager.m */; };
 		C85CD6C61712B5DC007512C3 /* MapListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CD6C51712B5DC007512C3 /* MapListViewController.m */; };
 		C85CD6C81712C4B1007512C3 /* mapButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CD6C71712C4B1007512C3 /* mapButton@2x.png */; };
@@ -60,6 +63,13 @@
 		C883E58E1713C8390029B6B5 /* beiJing@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C883E58D1713C8380029B6B5 /* beiJing@2x.png */; };
 		C883E5911713C9020029B6B5 /* navigationBarQ@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C883E58F1713C9010029B6B5 /* navigationBarQ@2x.png */; };
 		C883E5921713C9020029B6B5 /* tabBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C883E5901713C9010029B6B5 /* tabBar@2x.png */; };
+		C883E5961713EBC20029B6B5 /* districtAlert@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C883E5931713EBC20029B6B5 /* districtAlert@2x.png */; };
+		C883E5971713EBC20029B6B5 /* tabBarButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C883E5941713EBC20029B6B5 /* tabBarButton@2x.png */; };
+		C883E5981713EBC20029B6B5 /* tabBarButtonLocation@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C883E5951713EBC20029B6B5 /* tabBarButtonLocation@2x.png */; };
+		C883E59A1713EBD50029B6B5 /* tableViewCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C883E5991713EBD50029B6B5 /* tableViewCell@2x.png */; };
+		C883E59C1713F8B80029B6B5 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C883E59B1713F8B80029B6B5 /* MapKit.framework */; };
+		C883E59E171414A20029B6B5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C883E59D171414A20029B6B5 /* Default@2x.png */; };
+		C883E5A017141E460029B6B5 /* homeIcon-selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C883E59F17141E460029B6B5 /* homeIcon-selected@2x.png */; };
 		C885D6CA1712A21D009E3A13 /* Bank.m in Sources */ = {isa = PBXBuildFile; fileRef = C83854A0171297B8007B969A /* Bank.m */; };
 		C885D6CB1712A220009E3A13 /* Picker.m in Sources */ = {isa = PBXBuildFile; fileRef = C83854A2171297F3007B969A /* Picker.m */; };
 		C88939A1170AB850008165D9 /* alertWindow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C889399D170AB850008165D9 /* alertWindow@2x.png */; };
@@ -88,8 +98,6 @@
 		04A6ACFE17017978009948B3 /* FastCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FastCell.m; sourceTree = "<group>"; };
 		04A6AD0017017BB1009948B3 /* NSDictionary+helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDictionary+helper.h"; sourceTree = "<group>"; };
 		04A6AD0117017BB1009948B3 /* NSDictionary+helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDictionary+helper.m"; sourceTree = "<group>"; };
-		04A6AD0317018328009948B3 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
-		04A6AD05170185E6009948B3 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		04A6AD0717018B05009948B3 /* UIColor+REXDebug.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+REXDebug.h"; sourceTree = "<group>"; };
 		04A6AD0817018B05009948B3 /* UIColor+REXDebug.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+REXDebug.m"; sourceTree = "<group>"; };
 		04A6AD0A17018D37009948B3 /* REXAsyncFileDeleter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = REXAsyncFileDeleter.h; sourceTree = "<group>"; };
@@ -116,19 +124,27 @@
 		04D2C20C16FFF7B400E11E82 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
 		04D2C20E17003ED100E11E82 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
 		04D2C20F17003ED100E11E82 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		C80CF82A1715197500889D03 /* Number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Number.h; sourceTree = "<group>"; };
+		C80CF82B1715197500889D03 /* Number.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Number.m; sourceTree = "<group>"; };
+		C80CF82D171519AC00889D03 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		C80CF830171535AA00889D03 /* GetTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetTicketViewController.h; sourceTree = "<group>"; };
+		C80CF831171535AA00889D03 /* GetTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetTicketViewController.m; sourceTree = "<group>"; };
+		C80CF834171536F700889D03 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
+		C80CF835171536F700889D03 /* morebutton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "morebutton@2x.png"; sourceTree = "<group>"; };
+		C80CF836171536F700889D03 /* nail@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "nail@2x.png"; sourceTree = "<group>"; };
+		C80CF837171536F700889D03 /* ticket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ticket@2x.png"; sourceTree = "<group>"; };
+		C80CF83C1715542A00889D03 /* TicketView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketView.h; sourceTree = "<group>"; };
+		C80CF83D1715542A00889D03 /* TicketView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketView.m; sourceTree = "<group>"; };
 		C816353D170C0E800097672D /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		C816353E170C0E800097672D /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
-		C8163542170C10580097672D /* tabBarButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButton@2x.png"; sourceTree = "<group>"; };
 		C8163547170C1E600097672D /* ToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBar.h; sourceTree = "<group>"; };
 		C8163548170C1E600097672D /* ToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolBar.m; sourceTree = "<group>"; };
-		C816354A170C23370097672D /* tabBarButtonLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonLocation@2x.png"; sourceTree = "<group>"; };
 		C8385494171275E5007B969A /* pickerToolBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pickerToolBar@2x.png"; sourceTree = "<group>"; };
 		C8385496171275F1007B969A /* okButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "okButton@2x.png"; sourceTree = "<group>"; };
 		C838549F171297B8007B969A /* Bank.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Bank.h; sourceTree = "<group>"; };
 		C83854A0171297B8007B969A /* Bank.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Bank.m; sourceTree = "<group>"; };
 		C83854A1171297F3007B969A /* Picker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Picker.h; sourceTree = "<group>"; };
 		C83854A2171297F3007B969A /* Picker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Picker.m; sourceTree = "<group>"; };
-		C83854A917129C40007B969A /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = BQ/MapKit.framework; sourceTree = "<group>"; };
 		C85CD6C11712AD4C007512C3 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		C85CD6C21712AD4C007512C3 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		C85CD6C41712B5DC007512C3 /* MapListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapListViewController.h; sourceTree = "<group>"; };
@@ -151,6 +167,13 @@
 		C883E58D1713C8380029B6B5 /* beiJing@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "beiJing@2x.png"; sourceTree = "<group>"; };
 		C883E58F1713C9010029B6B5 /* navigationBarQ@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "navigationBarQ@2x.png"; sourceTree = "<group>"; };
 		C883E5901713C9010029B6B5 /* tabBar@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBar@2x.png"; sourceTree = "<group>"; };
+		C883E5931713EBC20029B6B5 /* districtAlert@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "districtAlert@2x.png"; sourceTree = "<group>"; };
+		C883E5941713EBC20029B6B5 /* tabBarButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButton@2x.png"; sourceTree = "<group>"; };
+		C883E5951713EBC20029B6B5 /* tabBarButtonLocation@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabBarButtonLocation@2x.png"; sourceTree = "<group>"; };
+		C883E5991713EBD50029B6B5 /* tableViewCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableViewCell@2x.png"; sourceTree = "<group>"; };
+		C883E59B1713F8B80029B6B5 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = BQ/MapKit.framework; sourceTree = "<group>"; };
+		C883E59D171414A20029B6B5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		C883E59F17141E460029B6B5 /* homeIcon-selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeIcon-selected@2x.png"; sourceTree = "<group>"; };
 		C889399D170AB850008165D9 /* alertWindow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertWindow@2x.png"; sourceTree = "<group>"; };
 		C889399E170AB850008165D9 /* buttonSelect@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonSelect@2x.png"; sourceTree = "<group>"; };
 		C889399F170AB850008165D9 /* button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "button@2x.png"; sourceTree = "<group>"; };
@@ -172,7 +195,7 @@
 				04D2C1EA16FFF74E00E11E82 /* UIKit.framework in Frameworks */,
 				04D2C1EC16FFF74E00E11E82 /* Foundation.framework in Frameworks */,
 				04D2C1EE16FFF74E00E11E82 /* CoreGraphics.framework in Frameworks */,
-				C83854AA17129C40007B969A /* MapKit.framework in Frameworks */,
+				C883E59C1713F8B80029B6B5 /* MapKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +258,7 @@
 		04A6AD1B17053A92009948B3 /* Homes */ = {
 			isa = PBXGroup;
 			children = (
+				C883E59F17141E460029B6B5 /* homeIcon-selected@2x.png */,
 				C883E58B1713C50F0029B6B5 /* backArrows@2x.png */,
 				0420576917056563006683E1 /* mapBtn@2x.png */,
 				042057671705463D006683E1 /* bankName@2x.png */,
@@ -269,8 +293,8 @@
 		04D2C1E816FFF74E00E11E82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C883E59B1713F8B80029B6B5 /* MapKit.framework */,
 				C85CD6C91712CA3C007512C3 /* QuartzCore.framework */,
-				C83854A917129C40007B969A /* MapKit.framework */,
 				04A6AD161702A2A8009948B3 /* CoreText.framework */,
 				04A6AD1417019F82009948B3 /* CoreLocation.framework */,
 				04D2C1E916FFF74E00E11E82 /* UIKit.framework */,
@@ -298,8 +322,8 @@
 		04D2C1F016FFF74F00E11E82 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				04A6AD05170185E6009948B3 /* Default@2x.png */,
-				04A6AD0317018328009948B3 /* Default.png */,
+				C80CF82D171519AC00889D03 /* Default.png */,
+				C883E59D171414A20029B6B5 /* Default@2x.png */,
 				04D2C20E17003ED100E11E82 /* Icon.png */,
 				04D2C20F17003ED100E11E82 /* Icon@2x.png */,
 				04D2C20A16FFF79C00E11E82 /* Images */,
@@ -321,6 +345,8 @@
 				C8163548170C1E600097672D /* ToolBar.m */,
 				C8DB412E17117D070055341F /* PickerView.h */,
 				C8DB412F17117D070055341F /* PickerView.m */,
+				C80CF83C1715542A00889D03 /* TicketView.h */,
+				C80CF83D1715542A00889D03 /* TicketView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -348,6 +374,7 @@
 		04D2C20A16FFF79C00E11E82 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C80CF833171536D200889D03 /* GetTicketImage */,
 				C8385493171275D7007B969A /* PickerViewImage */,
 				C8163540170C103F0097672D /* Map */,
 				C889399C170AB83B008165D9 /* SelectBusiness */,
@@ -387,8 +414,30 @@
 				C86E9BF4170993C2000C60F2 /* PersonalBusinessViewController.m */,
 				C86E9BF6170993E5000C60F2 /* EnterpriseBusinessViewController.h */,
 				C86E9BF7170993E5000C60F2 /* EnterpriseBusinessViewController.m */,
+				C80CF82F17151C6D00889D03 /* TicketViewController */,
 			);
 			path = HomeViewController;
+			sourceTree = "<group>";
+		};
+		C80CF82F17151C6D00889D03 /* TicketViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C80CF830171535AA00889D03 /* GetTicketViewController.h */,
+				C80CF831171535AA00889D03 /* GetTicketViewController.m */,
+			);
+			name = TicketViewController;
+			path = ../SetViewController/TicketViewController;
+			sourceTree = "<group>";
+		};
+		C80CF833171536D200889D03 /* GetTicketImage */ = {
+			isa = PBXGroup;
+			children = (
+				C80CF834171536F700889D03 /* line@2x.png */,
+				C80CF835171536F700889D03 /* morebutton@2x.png */,
+				C80CF836171536F700889D03 /* nail@2x.png */,
+				C80CF837171536F700889D03 /* ticket@2x.png */,
+			);
+			path = GetTicketImage;
 			sourceTree = "<group>";
 		};
 		C8163540170C103F0097672D /* Map */ = {
@@ -396,8 +445,10 @@
 			children = (
 				C85CD6C71712C4B1007512C3 /* mapButton@2x.png */,
 				C883E5891713C4670029B6B5 /* mapListButton@2x.png */,
-				C8163542170C10580097672D /* tabBarButton@2x.png */,
-				C816354A170C23370097672D /* tabBarButtonLocation@2x.png */,
+				C883E5931713EBC20029B6B5 /* districtAlert@2x.png */,
+				C883E5941713EBC20029B6B5 /* tabBarButton@2x.png */,
+				C883E5951713EBC20029B6B5 /* tabBarButtonLocation@2x.png */,
+				C883E5991713EBD50029B6B5 /* tableViewCell@2x.png */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -418,6 +469,8 @@
 				C83854A0171297B8007B969A /* Bank.m */,
 				C83854A1171297F3007B969A /* Picker.h */,
 				C83854A2171297F3007B969A /* Picker.m */,
+				C80CF82A1715197500889D03 /* Number.h */,
+				C80CF82B1715197500889D03 /* Number.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -489,8 +542,6 @@
 				04D2C20016FFF74F00E11E82 /* Default-568h@2x.png in Resources */,
 				04D2C21017003ED100E11E82 /* Icon.png in Resources */,
 				04D2C21117003ED100E11E82 /* Icon@2x.png in Resources */,
-				04A6AD0417018329009948B3 /* Default.png in Resources */,
-				04A6AD06170185E6009948B3 /* Default@2x.png in Resources */,
 				04A6AD1E17053A9F009948B3 /* 07@2x.png in Resources */,
 				0420576017054252006683E1 /* homeIcon@2x.png in Resources */,
 				042057621705425D006683E1 /* setIcon@2x.png in Resources */,
@@ -504,8 +555,6 @@
 				C88939A2170AB850008165D9 /* buttonSelect@2x.png in Resources */,
 				C88939A3170AB850008165D9 /* button@2x.png in Resources */,
 				C88939A4170AB850008165D9 /* numberButton@2x.png in Resources */,
-				C8163545170C10580097672D /* tabBarButton@2x.png in Resources */,
-				C816354B170C23380097672D /* tabBarButtonLocation@2x.png in Resources */,
 				C8385495171275E5007B969A /* pickerToolBar@2x.png in Resources */,
 				C8385497171275F1007B969A /* okButton@2x.png in Resources */,
 				C85CD6C81712C4B1007512C3 /* mapButton@2x.png in Resources */,
@@ -514,6 +563,17 @@
 				C883E58E1713C8390029B6B5 /* beiJing@2x.png in Resources */,
 				C883E5911713C9020029B6B5 /* navigationBarQ@2x.png in Resources */,
 				C883E5921713C9020029B6B5 /* tabBar@2x.png in Resources */,
+				C883E5961713EBC20029B6B5 /* districtAlert@2x.png in Resources */,
+				C883E5971713EBC20029B6B5 /* tabBarButton@2x.png in Resources */,
+				C883E5981713EBC20029B6B5 /* tabBarButtonLocation@2x.png in Resources */,
+				C883E59A1713EBD50029B6B5 /* tableViewCell@2x.png in Resources */,
+				C883E59E171414A20029B6B5 /* Default@2x.png in Resources */,
+				C883E5A017141E460029B6B5 /* homeIcon-selected@2x.png in Resources */,
+				C80CF82E171519AC00889D03 /* Default.png in Resources */,
+				C80CF838171536F700889D03 /* line@2x.png in Resources */,
+				C80CF839171536F700889D03 /* morebutton@2x.png in Resources */,
+				C80CF83A171536F700889D03 /* nail@2x.png in Resources */,
+				C80CF83B171536F700889D03 /* ticket@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -549,6 +609,9 @@
 				C85CD6C31712AD4C007512C3 /* LocationManager.m in Sources */,
 				C85CD6C61712B5DC007512C3 /* MapListViewController.m in Sources */,
 				C883E5881713B6580029B6B5 /* MapShowViewController.m in Sources */,
+				C80CF82C1715197500889D03 /* Number.m in Sources */,
+				C80CF832171535AA00889D03 /* GetTicketViewController.m in Sources */,
+				C80CF83E1715542A00889D03 /* TicketView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -630,7 +693,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/BQ\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BQ/BQ-Prefix.pch";
 				INFOPLIST_FILE = "BQ/BQ-Info.plist";
@@ -649,7 +715,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				FRAMEWORK_SEARCH_PATHS = "";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/BQ\"",
+				);
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BQ/BQ-Prefix.pch";
 				INFOPLIST_FILE = "BQ/BQ-Info.plist";

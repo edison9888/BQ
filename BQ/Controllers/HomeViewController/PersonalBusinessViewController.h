@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 
 
+@class HomeViewController;
 @protocol  PersonalBusinessViewControllerDelegate<NSObject>
 
 - (void)OutOfTheTicketDelegate;
@@ -24,4 +25,5 @@
 
 @property(nonatomic,strong) NSArray *businessArr;
 @property(nonatomic,weak) id <PersonalBusinessViewControllerDelegate> delegate;
+@property(nonatomic,weak) HomeViewController *homeVC;
 @end

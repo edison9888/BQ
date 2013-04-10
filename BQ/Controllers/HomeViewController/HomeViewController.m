@@ -11,7 +11,9 @@
 
 #import "TestView.h"
 
+#import "GetTicketViewController.h"
 
+#import "Helper.h"
 @interface HomeViewController ()
 
 @end
@@ -76,6 +78,11 @@ static HomeViewController *instance = nil;
 }
 
 
+//返回上一层
+- (void)backToLastVC{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
 #pragma mark--
 #pragma mark--viewdidload
 - (void)viewDidLoad
@@ -83,7 +90,11 @@ static HomeViewController *instance = nil;
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     self.title = @"首页";
-        
+    
+    isLocation=NO;
+    
+    self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
+    
 //    UIImageView *no07BG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"07"]];
 //    no07BG.frame  = CGRectMake(80, 16, 150, 139);
 //    no07BG.alpha = 0.3f;
@@ -108,22 +119,41 @@ static HomeViewController *instance = nil;
     [self.view addSubview:selectBankButton];
     
     UIButton *personalBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    personalBusinessBtn.enabled=NO;
     [personalBusinessBtn setFrame:CGRectMake(118/2, selectBankButton.frame.size.height+selectBankButton.frame.origin.y+30, 390/2, 87/2)];
     [personalBusinessBtn addTarget:self action:@selector(personalBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
     [personalBusinessBtn setBackgroundImage:[UIImage imageNamed:@"xuanZeYeWuAnNiu"] forState:UIControlStateNormal];
+    personalBusinessBtn.tag=11;
     [self.view addSubview:personalBusinessBtn];
     
     UIButton *enterpriseBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+    enterpriseBusinessBtn.enabled=NO;
     [enterpriseBusinessBtn setFrame:CGRectMake(personalBusinessBtn.frame.origin.x, personalBusinessBtn.frame.size.height+personalBusinessBtn.frame.origin.y+15, 390/2, 87/2)];
     [enterpriseBusinessBtn addTarget:self action:@selector(enterpriseBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
     [enterpriseBusinessBtn setBackgroundImage:[UIImage imageNamed:@"xuanZeQiYeYeWuAnNiu"] forState:UIControlStateNormal];
-    [self.view addSubview:enterpriseBusinessBtn];    
+    enterpriseBusinessBtn.tag=12;
+    [self.view addSubview:enterpriseBusinessBtn];
     
 }
 
 //更改首页银行提示
 - (void)setBank:(Bank *)bank{
-    [self.bankNameLabel setText:bank.title];
+    [_bankNameLabel setText:bank.title];
+    
+    [self changeBtnState];
+}
+
+//改变按钮状态--个人业务/企业业务
+-(void)changeBtnState{
+
+    UIButton *personalBusinessBtn,*enterpriseBusinessBtn;
+    if (isLocation) {
+        personalBusinessBtn =(UIButton*)[self.view viewWithTag:11];
+        enterpriseBusinessBtn =(UIButton*)[self.view viewWithTag:12];
+        personalBusinessBtn.enabled=YES;
+        enterpriseBusinessBtn.enabled=YES;
+        
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -136,6 +166,9 @@ static HomeViewController *instance = nil;
 #pragma mark--
 #pragma mark--选择银行
 -(void)buttonPress{
+    
+    isLocation = YES;
+    
     SelectBankViewController  *selectBankVC = [[SelectBankViewController alloc]init];
     selectBankVC.delegate=self;
     [self.navigationController pushViewController:selectBankVC animated:YES];
@@ -157,10 +190,20 @@ static HomeViewController *instance = nil;
 - (void)enterpriseBusinessClick:(id)sender{
 
     enterpriseVC = [[EnterpriseBusinessViewController alloc] init];
+    enterpriseVC.homeVC=self;
     enterpriseVC.delegate=self;
     [self addChildViewController:enterpriseVC];
     enterpriseVC.view.frame=self.view.frame;
     [self.view addSubview:enterpriseVC.view];
+    
+}
+
+
+//调转领票界面
+- (void)pushToGetTicketVC{
+    
+    GetTicketViewController *ticketVC = [[GetTicketViewController alloc] init];
+    [self.navigationController pushViewController: ticketVC animated:YES];
     
 }
 
@@ -170,6 +213,8 @@ static HomeViewController *instance = nil;
     //个人业务消失
     [personalVC removeFromParentViewController];
     [personalVC.view removeFromSuperview];
+    
+    [self pushToGetTicketVC];
 
 }
 
@@ -178,6 +223,8 @@ static HomeViewController *instance = nil;
     [enterpriseVC removeFromParentViewController];
     [enterpriseVC.view removeFromSuperview];
     
+    [self pushToGetTicketVC];
+
 }
 
 - (void)didReceiveMemoryWarning

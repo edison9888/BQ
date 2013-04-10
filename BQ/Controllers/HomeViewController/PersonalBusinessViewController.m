@@ -60,11 +60,14 @@
 -(void)getTicketClick:(id)sender{
     if ([self.delegate respondsToSelector:@selector(OutOfTheTicketDelegate)]) {
         [self.delegate performSelector:@selector(OutOfTheTicketDelegate)];
-        NSLog(@"出票");
+
         [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",tickitInfo] forKey:@"tickitInfo"];
 
     } ;
 
+    
+    
+    
 }
 
 

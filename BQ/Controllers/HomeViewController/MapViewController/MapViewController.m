@@ -92,8 +92,7 @@
     
     self.locationArrs = [NSMutableArray arrayWithObjects:bank1,bank2,bank3, nil];
 
-    self.mapVC.locationArrs=_locationArrs;
-    self.mapListVC.locationArrs=_locationArrs;
+    [self reloadData];
     
 }
 
@@ -109,6 +108,10 @@
     }else{
         self.mapListVC.locationArrs=_locationArrs;
         [self.mapListVC.tableView reloadData];
+        
+        //重新定位获得列表地点
+        [self.mapVC.locationManager startUpdate];
+        self.mapVC.locationManager.delegate=self.mapListVC;
     }
 }
 
@@ -150,9 +153,11 @@
         //此处获取数据重新加载
 
     }
-    
+    //翻转动画
     [self transitionFromViewController:fromVC toViewController:toVC duration:0.4f options:options animations:nil completion:nil];
-
+    //加载数据
+    [self reloadData];
+   
 }
 
 #pragma mark--
@@ -169,7 +174,12 @@
 
 //点击定位自己
 - (void)locationSelf{
-    //
+    //刷新地图数据
+    //列表界面刷新界面数据，当前定位地区银行
+    
+    //重新加载数据
+    [self reloadData];
+    
     if (viewTag==MapTag) {
         CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:self.mapVC._map.userLocation.coordinate.latitude longitude:self.mapVC._map.userLocation.location.coordinate.longitude];
         
@@ -179,12 +189,7 @@
         MKCoordinateRegion region = {userLocation.coordinate, span};
         [self.mapVC._map setRegion:region];
     }
-    
-    //刷新地图数据
-    //列表界面刷新界面数据，当前定位地区银行
-
-    //重新加载数据
-    [self reloadData];
+  
 }
 
 #pragma mark--

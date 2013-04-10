@@ -13,7 +13,7 @@
 @end
 
 @implementation MapShowViewController
-@synthesize _map;
+@synthesize _map,locationManager;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -112,13 +112,15 @@
     
     MyAnnotation *ann = view.annotation;
     
-    if (view.annotation != _map.userLocation) {
+    if (view.annotation != _map.userLocation ) {
         
-        _homeVC.bankNameLabel.text = ann.bank.title;
+        _homeVC.bank = ann.bank;
         [self.navigationController popToRootViewControllerAnimated:YES];
         
     }
 }
+
+
 
 
 - (void)didReceiveMemoryWarning

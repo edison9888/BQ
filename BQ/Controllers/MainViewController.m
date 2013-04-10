@@ -22,7 +22,9 @@
     self.view.backgroundColor = [UIColor clearColor];
     
     //自定义的tabBar背景
-    
+//    UIImage *tabBackground = [[UIImage imageNamed:@"tabBar"] resizableImageWithCapInsets:UIEdgeInsetsMake(0, 0, 0, 0)];
+//    [[UITabBar appearance] setBackgroundImage:tabBackground];
+//    [[UITabBar appearance] setSelectionIndicatorImage:[UIImage imageNamed:@"homeIcon-selected"]];
     
     HomeViewController *homeVC = [[HomeViewController alloc]init];
     homeVC.title = @"首页";

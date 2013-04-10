@@ -32,15 +32,18 @@
     [titleImgView setImage:[UIImage imageNamed:@"districtAlert"]];
     [self.view addSubview:titleImgView];
     
-    UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, titleImgView.frame.size.width,titleImgView.frame.size.height)];
-    [bankLabel setText:@"闵行区"];
-    [bankLabel setFont:[UIFont systemFontOfSize:11]];
-    [bankLabel setBackgroundColor:[UIColor clearColor]];
-    [bankLabel setTextColor:[UIColor whiteColor]];
-    [bankLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleImgView addSubview:bankLabel];
+    bankTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, titleImgView.frame.size.width,titleImgView.frame.size.height)];
+    if (SubLocality ==NULL) {
+        [bankTitleLabel setText:@"上海市"];
+    }else
+        [bankTitleLabel setText:SubLocality];
+    [bankTitleLabel setFont:[UIFont systemFontOfSize:11]];
+    [bankTitleLabel setBackgroundColor:[UIColor clearColor]];
+    [bankTitleLabel setTextColor:[UIColor whiteColor]];
+    [bankTitleLabel setTextAlignment:NSTextAlignmentCenter];
+    [titleImgView addSubview:bankTitleLabel];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, titleImgView.frame.origin.y+titleImgView.frame.size.height-8, self.view.frame.size.width, self.view.frame.size.height-44-49-26) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, titleImgView.frame.origin.y+titleImgView.frame.size.height-4, self.view.frame.size.width, self.view.frame.size.height-44-49-titleImgView.frame.size.height+4) style:UITableViewStylePlain];
     _tableView.delegate=self;
     _tableView.dataSource=self;
     _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -69,24 +72,31 @@
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
-    Bank *bank = [[Bank alloc] init];
-    bank = [self.locationArrs objectAtIndex:indexPath.row];
+    Bank *bank = [self.locationArrs objectAtIndex:indexPath.row];
     
     UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 310, 45)];
     [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
     [cell addSubview:lineImageView];
     
-    UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-30,lineImageView.frame.size.height)];
-    [bankLabel setText:bank.title];
-    [bankLabel setFont:[UIFont systemFontOfSize:15]];
-    [bankLabel setBackgroundColor:[UIColor clearColor]];
-    [bankLabel setTextColor:[UIColor colorWithRed:65/255 green:75/255 blue:85/255 alpha:1.0f]];
-    [bankLabel setTextAlignment:NSTextAlignmentLeft];
-    [cell addSubview:bankLabel];
+    UILabel *_bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-30,lineImageView.frame.size.height)];
+    [_bankLabel setText:bank.title];
+    [_bankLabel setFont:[UIFont systemFontOfSize:15]];
+    [_bankLabel setBackgroundColor:[UIColor clearColor]];
+    [_bankLabel setTextColor:[UIColor colorWithRed:65/255 green:75/255 blue:85/255 alpha:1.0f]];
+    [_bankLabel setTextAlignment:NSTextAlignmentLeft];
+    [cell addSubview:_bankLabel];
     
-    
-    
-    
+    //距离需要动态获取--协调
+    UILabel *distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(222, 22, 50,lineImageView.frame.size.height)];
+    [distanceLabel setText:@"500m"];
+//    [[distanceLabel setText:[bank title]]];距离bank的属性
+    [distanceLabel setFont:[UIFont systemFontOfSize:11]];
+    [distanceLabel setBackgroundColor:[UIColor clearColor]];
+    [distanceLabel setTextColor:[UIColor colorWithRed:65/255 green:75/255 blue:85/255 alpha:1.0f]];
+    [distanceLabel setTextAlignment:NSTextAlignmentLeft];
+    [distanceLabel sizeToFit];
+    [cell addSubview:distanceLabel];
+
     return cell;
 }
 
@@ -96,11 +106,19 @@
     Bank *bank;
     bank = [self.locationArrs objectAtIndex:indexPath.row];
     
-    _homeVC.bankNameLabel.text = bank.title;
+    _homeVC.bank = bank;
 
     [self.navigationController popToRootViewControllerAnimated:YES];
+    
 }
 
+#pragma mark--
+#pragma mark--LocationManagerDelegate
+- (void)locationReceivedFromLocationManagerDelegate:(NSString *)SubLocalityName{
+    if (SubLocalityName!=NULL) {
+        [bankTitleLabel setText:[NSString stringWithFormat:@"%@",SubLocalityName]];
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {

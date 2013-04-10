@@ -11,7 +11,7 @@
 
 @protocol LocationManagerDelegate <NSObject>
 
-- (void)locationReceivedFromLocationManagerDelegate:(CLLocation*)location;
+- (void)locationReceivedFromLocationManagerDelegate:(NSString *)SubLocalityName;
 
 @end
 

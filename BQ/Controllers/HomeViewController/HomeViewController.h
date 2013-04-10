@@ -13,6 +13,8 @@
 #import "MainViewController.h"
 #import "SelectBankViewController.h"
 
+
+
 @class Bank;
 typedef enum {
     personal,
@@ -22,11 +24,12 @@ typedef enum {
 
 @interface HomeViewController : UIViewController<PersonalBusinessViewControllerDelegate,EnterpriseBusinessViewControllerDelegate,SelectBankViewControllerDelegate>
 {
+    BOOL isLocation;
     PersonalBusinessViewController *personalVC;
     EnterpriseBusinessViewController *enterpriseVC;
+    UILabel *_bankNameLabel;
 }
 
-@property(nonatomic,strong)UILabel *bankNameLabel;
 @property(nonatomic,weak) MainViewController *viewController;
 @property(nonatomic,strong) Bank *bank;
 

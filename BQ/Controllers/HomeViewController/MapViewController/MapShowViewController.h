@@ -22,12 +22,13 @@
 {
     @private
     NSMutableArray *annotionViews;
-    LocationManager *locationManager;
 }
 
 @property(nonatomic,strong) NSMutableArray *locationArrs;//地图显示数据数组 Bank数组
 @property(nonatomic,weak) HomeViewController *homeVC;
 @property(nonatomic,strong)MKMapView *_map;
+
+@property(nonatomic,strong)LocationManager *locationManager;
 
 - (void)showAnnotaionViews;
 @end

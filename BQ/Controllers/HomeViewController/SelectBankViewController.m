@@ -33,7 +33,6 @@
     self.title =@"选择银行";
     
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    [self.tableView setBackgroundColor:[UIColor clearColor]];
 	
     self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
 

@@ -23,14 +23,14 @@
         [self addSubview:bgImageView];
         
         UIButton *areaBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        [areaBtn setFrame:CGRectMake(18, 8, 55, 30)];
+        [areaBtn setFrame:CGRectMake(18, 6, 54, 35)];
         [areaBtn setTitle:@"" forState:UIControlStateNormal];
         [areaBtn setBackgroundImage:[UIImage imageNamed:@"tabBarButton"] forState:UIControlStateNormal];
         [areaBtn addTarget:viewController action:@selector(selectAreas) forControlEvents:UIControlEventTouchUpInside];
         [bgImageView addSubview:areaBtn];
         
         UIButton *location = [UIButton buttonWithType:UIButtonTypeCustom];
-        [location setFrame:CGRectMake(245, 8, 55, 30)];
+        [location setFrame:CGRectMake(245, 6, 54, 35)];
         [location setBackgroundImage:[UIImage imageNamed:@"tabBarButtonLocation"] forState:UIControlStateNormal];
         [location addTarget:viewController action:@selector(locationSelf) forControlEvents:UIControlEventTouchUpInside];
         [bgImageView addSubview:location];
