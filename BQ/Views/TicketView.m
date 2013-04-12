@@ -21,13 +21,16 @@
         bankNameLabel.text = @"中国工商银行";
         bankNameLabel.font = [UIFont systemFontOfSize:15];
         bankNameLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
+        bankNameLabel.backgroundColor = [UIColor clearColor];
+        bankNameLabel.numberOfLines = 0;
         [bankNameLabel sizeToFit];
         [self addSubview:bankNameLabel];
         
-        UILabel *asideLabel = [[UILabel alloc] initWithFrame:CGRectMake(25,bankNameLabel.frame.size.height+bankNameLabel.frame.origin.y+rowledge, 92, 18)];
+        UILabel *asideLabel = [[UILabel alloc] initWithFrame:CGRectMake(25,bankNameLabel.frame.size.height+bankNameLabel.frame.origin.y+rowledge, 140, 18)];
         asideLabel.text = @"您的轮候号码";
         asideLabel.font = [UIFont systemFontOfSize:16];
         asideLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
+        asideLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:asideLabel];
         
         numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, asideLabel.frame.size.height+asideLabel.frame.origin.y+rowledge, frame.size.width, 30)];
@@ -46,12 +49,14 @@
         businessLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
         businessLabel.text=@"主办业务：  理财";
         businessLabel.font = [UIFont systemFontOfSize:12];
+        businessLabel.backgroundColor = [UIColor clearColor];
         [businessLabel sizeToFit];
         [self addSubview:businessLabel];
         
         presentNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(businessLabel.frame.origin.x, businessLabel.frame.size.height+businessLabel.frame.origin.y+rowledge, 140, 12)];
         presentNumberLabel.font = [UIFont systemFontOfSize:12];
         presentNumberLabel.text=@"目前叫号：  A001";
+        presentNumberLabel.backgroundColor = [UIColor clearColor];
         [presentNumberLabel sizeToFit];
         [self addSubview:presentNumberLabel];
         
@@ -59,12 +64,14 @@
         remindLabel.text = @"您所在的排列前还有5个人";
         remindLabel.font = [UIFont systemFontOfSize:12];
         remindLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
+        remindLabel.backgroundColor = [UIColor clearColor];
         [self addSubview:remindLabel];
         
         UILabel *alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(remindLabel.frame.origin.x, remindLabel.frame.size.height+remindLabel.frame.origin.y+rowledge, 202, 18)];
         alertLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
         alertLabel.font = [UIFont systemFontOfSize:7];
         alertLabel.text = @"我们会于5个号码前发信息通知您 请确保您的手机网络正常";
+        alertLabel.backgroundColor= [UIColor clearColor];
         [self addSubview:alertLabel];
         
         timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(alertLabel.frame.origin.x,alertLabel.frame.size.height+alertLabel.frame.origin.y+rowledge , 100, 18)];

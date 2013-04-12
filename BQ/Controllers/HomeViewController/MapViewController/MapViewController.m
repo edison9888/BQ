@@ -46,13 +46,6 @@
             
     ToolBar *toolBar = [[ToolBar alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height-TabBarHeight-NavigationHeight, self.view.frame.size.width, TabBarHeight) viewController:self];
     [self.view addSubview:toolBar];
- 
-    pickerViewController  = [[PickerView alloc] init];
-    [self addChildViewController:pickerViewController];
-    [pickerViewController.view setFrame:CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 215+45)];
-//    pickerViewController.pickerArrs=xxx;获取pickerArr刷新数据
-    [[self.view superview] addSubview:pickerViewController.view];
-
     
     self.mapVC = [[MapShowViewController alloc] init];
     self.mapVC.view.frame=CGRectMake(0, 0,self.view.bounds.size.width, self.view.bounds.size.height-TabBarHeight-TabBarHeight);
@@ -64,7 +57,13 @@
     self.mapListVC.view.frame=self.mapVC.view.frame;
     self.mapListVC.homeVC=self.homeVC;
     [self addChildViewController:self.mapListVC];
-    
+ 
+    pickerViewController  = [[PickerView alloc] init];
+    [self addChildViewController:pickerViewController];
+    [pickerViewController.view setFrame:CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 215+45)];
+    //    pickerViewController.pickerArrs=xxx;获取pickerArr刷新数据
+    [[self.view superview] addSubview:pickerViewController.view];
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -164,10 +163,11 @@
 #pragma mark--ToolBar--Method
 //点击地区
 -(void)selectAreas{
-    [self addChildViewController:pickerViewController];
-    [self.view insertSubview:pickerViewController.view atIndex:100];
     [UIView beginAnimations:nil context:nil];
     [UIView setAnimationDuration:0.3f];
+    [self addChildViewController:pickerViewController];
+    [self.view addSubview:pickerViewController.view];
+    [self.view bringSubviewToFront:pickerViewController.view];
     [pickerViewController.view setFrame:CGRectMake(0, self.view.frame.size.height-215, self.view.bounds.size.width, 215)];
     [UIView commitAnimations];
 }

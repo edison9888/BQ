@@ -77,12 +77,6 @@ static HomeViewController *instance = nil;
 
 }
 
-
-//返回上一层
-- (void)backToLastVC{
-    [self.navigationController popViewControllerAnimated:YES];
-}
-
 #pragma mark--
 #pragma mark--viewdidload
 - (void)viewDidLoad
@@ -91,49 +85,62 @@ static HomeViewController *instance = nil;
 	// Do any additional setup after loading the view.
     self.title = @"首页";
     
-    isLocation=NO;
+    isLocation=NO;    
+
     
-    self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
-    
-//    UIImageView *no07BG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"07"]];
-//    no07BG.frame  = CGRectMake(80, 16, 150, 139);
-//    no07BG.alpha = 0.3f;
-//    [self.view addSubview:no07BG];
-    
-    UIImageView *bankNameImageView = [[UIImageView alloc]initWithFrame:CGRectMake(60, 165, 327/2, 65/2)];
-    bankNameImageView.image=[UIImage imageNamed:@"bankName"];
-    [self.view addSubview:bankNameImageView];
-        
-    _bankNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(20,2, 150, 30)];
-    _bankNameLabel.text=@"选择您所需要的银行";
-    _bankNameLabel.backgroundColor=[UIColor clearColor];
-    _bankNameLabel.font = [UIFont systemFontOfSize:14];
-    _bankNameLabel.textColor = [UIColor colorWithRed:173/255.f green:172/255.f blue:172/255.f alpha:1.0];
-    [bankNameImageView addSubview:_bankNameLabel];
-    
+    [self bankbackGroundImageView];
+
+    UIImageView *bankButtonBg = [[UIImageView alloc]initWithFrame:CGRectMake(37, 50, 493/2, 103/2)];
+    bankButtonBg.image=[UIImage imageNamed:@"bankButtonBg"];
+    bankButtonBg.userInteractionEnabled=YES;
+    [self.view addSubview:bankButtonBg];
     
     UIButton *selectBankButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [selectBankButton addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
     [selectBankButton setImage:[UIImage imageNamed:@"mapBtn"] forState:UIControlStateNormal];
-    [selectBankButton setFrame:CGRectMake(bankNameImageView.frame.size.width+bankNameImageView.frame.origin.x,bankNameImageView.frame.origin.y-10, 33, 42)];
-    [self.view addSubview:selectBankButton];
+    [selectBankButton setFrame:CGRectMake(bankButtonBg.frame.size.width-57,1, 56, 50)];
+    [bankButtonBg addSubview:selectBankButton];
+
+        
+    _bankNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(48,155, 219, 22)];
+    _bankNameLabel.text=@"中国工商银行";
+    _bankNameLabel.backgroundColor=[UIColor clearColor];
+    _bankNameLabel.font = [UIFont systemFontOfSize:18];
+//    _bankNameLabel.textColor = [UIColor colorWithRed:173/255.f green:172/255.f blue:172/255.f alpha:1.0];
+    [_bankNameLabel setTextAlignment:NSTextAlignmentCenter];
+    [self.view addSubview:_bankNameLabel];
     
+    
+       
     UIButton *personalBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     personalBusinessBtn.enabled=NO;
-    [personalBusinessBtn setFrame:CGRectMake(118/2, selectBankButton.frame.size.height+selectBankButton.frame.origin.y+30, 390/2, 87/2)];
+    [personalBusinessBtn setTitle:@"个人业务" forState:UIControlStateNormal];
+    [personalBusinessBtn.titleLabel setFont:[UIFont systemFontOfSize:18]];
+    [personalBusinessBtn setFrame:CGRectMake(48, 213, 222, 95/2)];
     [personalBusinessBtn addTarget:self action:@selector(personalBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
-    [personalBusinessBtn setBackgroundImage:[UIImage imageNamed:@"xuanZeYeWuAnNiu"] forState:UIControlStateNormal];
+    [personalBusinessBtn setBackgroundImage:[UIImage imageNamed:@"busButton"] forState:UIControlStateNormal];
     personalBusinessBtn.tag=11;
     [self.view addSubview:personalBusinessBtn];
     
     UIButton *enterpriseBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     enterpriseBusinessBtn.enabled=NO;
-    [enterpriseBusinessBtn setFrame:CGRectMake(personalBusinessBtn.frame.origin.x, personalBusinessBtn.frame.size.height+personalBusinessBtn.frame.origin.y+15, 390/2, 87/2)];
+    [enterpriseBusinessBtn setTitle:@"企业业务" forState:UIControlStateNormal];
+    [enterpriseBusinessBtn.titleLabel setFont:[UIFont systemFontOfSize:18]];
+    [enterpriseBusinessBtn setFrame:CGRectMake(personalBusinessBtn.frame.origin.x, personalBusinessBtn.frame.size.height+personalBusinessBtn.frame.origin.y+10, 222, 95/2)];
     [enterpriseBusinessBtn addTarget:self action:@selector(enterpriseBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
-    [enterpriseBusinessBtn setBackgroundImage:[UIImage imageNamed:@"xuanZeQiYeYeWuAnNiu"] forState:UIControlStateNormal];
+    [enterpriseBusinessBtn setBackgroundImage:[UIImage imageNamed:@"busButton"] forState:UIControlStateNormal];
     enterpriseBusinessBtn.tag=12;
     [self.view addSubview:enterpriseBusinessBtn];
     
+}
+
+-(void)bankbackGroundImageView{
+    UIImage *image = [[UIImage imageNamed:@"backGround"] resizableImageWithCapInsets:UIEdgeInsetsMake(360, 0, self.view.bounds.size.height, 0)];
+    
+    UIImageView *homeBG = [[UIImageView alloc]initWithImage:image];
+    homeBG.userInteractionEnabled =YES;
+    homeBG.frame = self.view.bounds;
+    [self.view addSubview:homeBG];
 }
 
 //更改首页银行提示

@@ -8,6 +8,14 @@
 
 #import <Foundation/Foundation.h>
 
+//票状态
+typedef enum {
+    waitingStatus,//等待
+    dealedStatus,//过期
+    outOfTimeStatus,//已处理
+}TicketStatus;
+
+
 @interface Number : NSObject
 
 
@@ -18,5 +26,5 @@
 @property(nonatomic,strong) NSString *presentNumber;//目前叫号
 @property(nonatomic,assign) NSInteger peopleNumber;//人数
 @property(nonatomic,strong) NSString *time;//时间
-
+@property(nonatomic,assign) NSInteger status;//票的状态 1，2，3，4 
 @end

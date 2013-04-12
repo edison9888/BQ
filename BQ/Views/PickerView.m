@@ -26,13 +26,13 @@
     [super viewDidLoad];
     
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.view.bounds.size.width, 45+pickerViewHeight)];
-    bgView.userInteractionEnabled=YES;
     [self.view addSubview:bgView];
     
     UIImageView *toolBarBg = [[UIImageView alloc] initWithFrame:CGRectMake(-2, 1,323,45)];
     [toolBarBg setImage:[UIImage imageNamed:@"pickerToolBar"]];
     toolBarBg.userInteractionEnabled=YES;
     [bgView addSubview:toolBarBg];
+    
     
     UIButton *dismissBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     [dismissBtn setFrame:CGRectMake(7, 7.5, 45, 30)];

@@ -97,7 +97,8 @@
         pinView.animatesDrop = YES;
         
         UIButton *accessoryView =[UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        [accessoryView setFrame:CGRectMake(0, 0, 20,20)];
+        [accessoryView setFrame:CGRectMake(0, 0, 30,30)];
+//        [accessoryView addTarget:self action:@selector(pushToHomeVC:) forControlEvents:UIControlEventTouchUpInside];
         pinView.rightCalloutAccessoryView=accessoryView;
     }
     else
@@ -107,18 +108,37 @@
     
 }
 
-
-- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view{
+- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
     
     MyAnnotation *ann = view.annotation;
     
     if (view.annotation != _map.userLocation ) {
-        
+    
         _homeVC.bank = ann.bank;
         [self.navigationController popToRootViewControllerAnimated:YES];
-        
-    }
+           
+     }
+
 }
+
+
+//- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view{
+//    
+//    MyAnnotation *ann = view.annotation;
+//    
+//    if (view.annotation != _map.userLocation ) {
+//        
+//        _homeVC.bank = ann.bank;
+//        [self.navigationController popToRootViewControllerAnimated:YES];
+//        
+//    }
+
+//    for (view in [_map subviews]) {
+//        if ([view isKindOfClass:[MKAnnotationView class]]) {
+//            [self.navigationController popToRootViewControllerAnimated:YES];
+//        }
+//    }   
+//}
 
 
 

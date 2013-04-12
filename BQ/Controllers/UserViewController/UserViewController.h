@@ -7,7 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Number.h"
+#import "MyTicketView.h"
 
-@interface UserViewController : UIViewController
+@interface UserViewController : UIViewController<MyTicketViewDelegate>
+{
+    UIScrollView *scrollView;
+}
 
+@property(nonatomic,strong) NSMutableArray *numberArr;
 @end

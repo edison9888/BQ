@@ -30,14 +30,11 @@
     homeVC.title = @"首页";
     homeVC.tabBarItem.image = [UIImage imageNamed:@"homeIcon"];
     UINavigationController *navHome = [[UINavigationController alloc]initWithRootViewController:homeVC];
-    
-    
-    
+        
     UserViewController *userVC = [[UserViewController alloc]init];
     userVC.title=@"我的排号";
     userVC.tabBarItem.image = [UIImage imageNamed:@"personIcon"];
     UINavigationController *navUser = [[UINavigationController alloc]initWithRootViewController:userVC];
-    
     
     SetViewController *setVC = [[SetViewController alloc]init];
     setVC.title=@"设置";
