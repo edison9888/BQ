@@ -48,45 +48,54 @@
     
     self.title = @"领取号码";
     self.view.backgroundColor = [UIColor clearColor];
-    
-    //图钉imageView
-    //[self nailImageView];
-    
-    UIImageView *ticketBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ticket"]];
-    [ticketBg setFrame:CGRectMake(32, 50, 255, 20)];
-    [self.view addSubview:ticketBg];
-    
-    TicketView *ticketView = [[TicketView alloc] initWithFrame:CGRectMake(0, 0, ticketBg.frame.size.width,0)];
-    ticketView.number = number;
-    [ticketBg addSubview:ticketView];
-    
-    [UIView animateWithDuration:0.5f animations:^{
-        [ticketBg setFrame:CGRectMake(32, 50, 255, 266)];
-        ticketView.frame = CGRectMake(0, 0, ticketBg.frame.size.width, ticketBg.frame.size.height);
-    }];
 
+    ticketBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"flashTicket"]];
+    [ticketBg setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
+    [self.view insertSubview:ticketBg atIndex:3];
+    
+    TicketView *ticketView = [[TicketView alloc] initWithFrame:CGRectMake(20,-122, 242,285)];
+    ticketView.number = number;
+    [self.view insertSubview:ticketView atIndex:2];
+        
+    UIImageView *ticketBg1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, ticketBg.frame.origin.y+ticketBg.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-TabBarHeight-NavigationHeight-ticketBg.frame.size.height)];
+    if (iPhone5)
+        [ticketBg1 setImage:[UIImage imageNamed:@"flashTicketIphone5"]];
+    else
+        [ticketBg1 setImage:[UIImage imageNamed:@"flashTicket1"]];
+    
+    [self.view insertSubview:ticketBg1 belowSubview:ticketView];
+    
+    [self animateGetTicket:ticketView];
 }
 
-//图钉
-- (void)nailImageView{
+//出票动画
+-(void)animateGetTicket:(TicketView *)ticketView{
+
+    double __block originY;
     
-    CGFloat x,y;
-    for (int i=0;i<4; i++) {
-        if (i==0||i==2)
-            x=17;
-        else if(i==3||i==1)
-            x=292;
+    originY=ticketView.frame.origin.y;
+    
+    [UIView animateWithDuration:0.2f animations:^{
+        [ticketView setFrame:CGRectMake(20, originY+20, 242,285)];
+        [self.view insertSubview:ticketBg aboveSubview:ticketView];
         
-        if (i==0||i==1)
-            y=15;
-        else if(i==2||i==3)
-            y=337;
+        } completion:^(BOOL finished) {
+            
+            if (originY<=145-200) {
+                
+                [self performSelector:@selector(callBack:) withObject:ticketView afterDelay:0.05f];
+                
+            }else{
+                [UIView animateWithDuration:0.3f animations:^{
+                    [ticketView setFrame:CGRectMake(20, 179, 242,285)];
+                    return ;
+                }];
+            }
+    }];
+}
 
-        UIImageView *nailImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"nail"]];
-        nailImageView.frame = CGRectMake(x, y, 19, 18);
-        [self.view addSubview:nailImageView];
-    }
-
+- (void)callBack:(TicketView *)ticketView{
+    [self animateGetTicket:ticketView];
 }
 
 - (void)didReceiveMemoryWarning

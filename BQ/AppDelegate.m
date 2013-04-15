@@ -8,10 +8,14 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "DBConnection.h"
 
+#import <SystemConfiguration/SCNetworkReachability.h>
+#import <netinet/in.h>
+
+#define isNetingWork 0
 
 @implementation AppDelegate
-
 
 //自定以导航栏
 //适用于 ios 5.0+
@@ -22,25 +26,49 @@
 //    
 //}
 
+//判断是否连网
++(BOOL)isNetworkReachable{
+    // Create zero addy
+    struct sockaddr_in zeroAddress;
+    bzero(&zeroAddress, sizeof(zeroAddress));
+    zeroAddress.sin_len = sizeof(zeroAddress);
+    zeroAddress.sin_family = AF_INET;
+    
+    // Recover reachability flags
+    SCNetworkReachabilityRef defaultRouteReachability = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *)&zeroAddress);
+    SCNetworkReachabilityFlags flags;
+    
+    BOOL didRetrieveFlags = SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags);
+    CFRelease(defaultRouteReachability);
+    
+    if (!didRetrieveFlags)
+    {
+        return NO;
+    }
+    
+    BOOL isReachable = flags & kSCNetworkFlagsReachable;
+    BOOL needsConnection = flags & kSCNetworkFlagsConnectionRequired;
+    return (isReachable && !needsConnection) ? YES : NO;
+}
+
++ (id)getAppdelegate{
+   return [UIApplication sharedApplication].delegate;
+}
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
+    
+    [DBConnection createEditableCopyOfDatabaseIfNeeded:NO];
+    [DBConnection getSharedDatabase];
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor whiteColor];
     
     MainViewController *mainVC = [[MainViewController alloc]init];
     [self.window setRootViewController:mainVC];
-    
-    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"beiJing"]];
-    homeBG.frame  = self.window.bounds;
-    homeBG.userInteractionEnabled =YES;
-    [self.window insertSubview:homeBG atIndex:0];
-    
-//    [self customerNavigation];
-   
+       
     [self.window makeKeyAndVisible];
     return YES;
 }

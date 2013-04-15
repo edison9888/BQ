@@ -135,11 +135,17 @@ static HomeViewController *instance = nil;
 }
 
 -(void)bankbackGroundImageView{
-    UIImage *image = [[UIImage imageNamed:@"backGround"] resizableImageWithCapInsets:UIEdgeInsetsMake(360, 0, self.view.bounds.size.height, 0)];
+//    UIImage *image = [[UIImage imageNamed:@"backGround"] resizableImageWithCapInsets:UIEdgeInsetsMake(360, 0, self.view.bounds.size.height, 0)];
     
+    UIImage *image;
+    if (iPhone5)
+        image= [UIImage imageNamed:@"backGroundIp5"];
+    else
+        image= [UIImage imageNamed:@"backGround"];
+
     UIImageView *homeBG = [[UIImageView alloc]initWithImage:image];
     homeBG.userInteractionEnabled =YES;
-    homeBG.frame = self.view.bounds;
+    homeBG.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-44-49);
     [self.view addSubview:homeBG];
 }
 
@@ -232,6 +238,18 @@ static HomeViewController *instance = nil;
     
     [self pushToGetTicketVC];
 
+}
+
+//消失业务视图
+-(void)dismissPresentVC{
+
+    //个人业务消失
+    [personalVC removeFromParentViewController];
+    [personalVC.view removeFromSuperview];
+    
+    //企业业务
+    [enterpriseVC removeFromParentViewController];
+    [enterpriseVC.view removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning

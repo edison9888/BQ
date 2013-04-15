@@ -9,5 +9,8 @@
 #import <UIKit/UIKit.h>
 
 @interface GetTicketViewController : UIViewController
-
+{
+    @private
+    UIImageView *ticketBg;
+}
 @end

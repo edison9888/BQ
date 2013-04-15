@@ -14,11 +14,12 @@
 #import "LocationManager.h"
 @interface MapListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,LocationManagerDelegate>
 {
-    UILabel *bankTitleLabel;
+    
 }
 
 @property(nonatomic,weak) HomeViewController *homeVC;
 @property(nonatomic,strong) NSMutableArray *locationArrs;//地图显示数据数组 Bank数组
 @property(nonatomic,strong) Bank *bank;
 @property(nonatomic,strong) UITableView *tableView;
+@property(nonatomic,strong) UILabel *bankTitleLabel;
 @end

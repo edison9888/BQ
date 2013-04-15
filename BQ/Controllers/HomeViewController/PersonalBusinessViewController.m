@@ -65,9 +65,6 @@
 
     } ;
 
-    
-    
-    
 }
 
 
@@ -142,8 +139,10 @@
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self getTicketClick:nil];
-    
+//    [self getTicketClick:nil];
+    if ([self.delegate respondsToSelector:@selector(dismissPresentVC)]) {
+        [self.delegate performSelector:@selector(dismissPresentVC)];
+    }
 }
 
 - (void)didReceiveMemoryWarning

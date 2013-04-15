@@ -16,6 +16,10 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
+        UIImageView *ticketBg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"ticket"]];
+        [ticketBg setFrame:CGRectMake(frame.origin.x,frame.origin.y, frame.size.width, frame.size.height)];
+        [self addSubview:ticketBg];
 
         bankNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(120, 20, 100, 20)];
         bankNameLabel.text = @"中国工商银行";
@@ -24,14 +28,14 @@
         bankNameLabel.backgroundColor = [UIColor clearColor];
         bankNameLabel.numberOfLines = 0;
         [bankNameLabel sizeToFit];
-        [self addSubview:bankNameLabel];
+        [ticketBg addSubview:bankNameLabel];
         
         UILabel *asideLabel = [[UILabel alloc] initWithFrame:CGRectMake(25,bankNameLabel.frame.size.height+bankNameLabel.frame.origin.y+rowledge, 140, 18)];
         asideLabel.text = @"您的轮候号码";
         asideLabel.font = [UIFont systemFontOfSize:16];
         asideLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
         asideLabel.backgroundColor = [UIColor clearColor];
-        [self addSubview:asideLabel];
+        [ticketBg addSubview:asideLabel];
         
         numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, asideLabel.frame.size.height+asideLabel.frame.origin.y+rowledge, frame.size.width, 30)];
         numberLabel.textColor = [UIColor colorWithRed:238.0f/255.0f green:0 blue:0 alpha:1.0f];
@@ -39,11 +43,11 @@
         numberLabel.text=@"A007";
         numberLabel.backgroundColor = [UIColor clearColor];
         numberLabel.textAlignment = NSTextAlignmentCenter;
-        [self addSubview:numberLabel];
+        [ticketBg addSubview:numberLabel];
         
         UIImageView *imageView  = [[UIImageView alloc] initWithFrame:CGRectMake(25, numberLabel.frame.size.height+numberLabel.frame.origin.y+rowledge, 200, 7)];
         imageView.image = [UIImage imageNamed:@"line"];
-        [self addSubview:imageView];
+        [ticketBg addSubview:imageView];
         
         businessLabel = [[UILabel alloc] initWithFrame:CGRectMake(imageView.frame.origin.x,imageView.frame.origin.y+imageView.frame.size.height+rowledge , 140, 12)];
         businessLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
@@ -51,41 +55,41 @@
         businessLabel.font = [UIFont systemFontOfSize:12];
         businessLabel.backgroundColor = [UIColor clearColor];
         [businessLabel sizeToFit];
-        [self addSubview:businessLabel];
+        [ticketBg addSubview:businessLabel];
         
         presentNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(businessLabel.frame.origin.x, businessLabel.frame.size.height+businessLabel.frame.origin.y+rowledge, 140, 12)];
         presentNumberLabel.font = [UIFont systemFontOfSize:12];
         presentNumberLabel.text=@"目前叫号：  A001";
         presentNumberLabel.backgroundColor = [UIColor clearColor];
         [presentNumberLabel sizeToFit];
-        [self addSubview:presentNumberLabel];
+        [ticketBg addSubview:presentNumberLabel];
         
         remindLabel = [[UILabel alloc] initWithFrame:CGRectMake(presentNumberLabel.frame.origin.x, presentNumberLabel.frame.origin.y+presentNumberLabel.frame.size.height+rowledge, 150, 12)];
         remindLabel.text = @"您所在的排列前还有5个人";
         remindLabel.font = [UIFont systemFontOfSize:12];
         remindLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
         remindLabel.backgroundColor = [UIColor clearColor];
-        [self addSubview:remindLabel];
+        [ticketBg addSubview:remindLabel];
         
         UILabel *alertLabel = [[UILabel alloc] initWithFrame:CGRectMake(remindLabel.frame.origin.x, remindLabel.frame.size.height+remindLabel.frame.origin.y+rowledge, 202, 18)];
         alertLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
         alertLabel.font = [UIFont systemFontOfSize:7];
         alertLabel.text = @"我们会于5个号码前发信息通知您 请确保您的手机网络正常";
         alertLabel.backgroundColor= [UIColor clearColor];
-        [self addSubview:alertLabel];
+        [ticketBg addSubview:alertLabel];
         
         timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(alertLabel.frame.origin.x,alertLabel.frame.size.height+alertLabel.frame.origin.y+rowledge , 100, 18)];
         timeLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
         timeLabel.font = [UIFont systemFontOfSize:8];
         timeLabel.text = @"2013/3/13  13:14:25";
         timeLabel.backgroundColor = [UIColor clearColor];
-        [self addSubview:timeLabel];
+        [ticketBg addSubview:timeLabel];
         
         UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        infoBtn.frame = CGRectMake(210, 213, 20, 20);
+        infoBtn.frame = CGRectMake(175, 200, 108/2, 73/2);
         [infoBtn setBackgroundImage:[UIImage imageNamed:@"morebutton"] forState:UIControlStateNormal];
 //        [infoBtn addTarget:self action:@selector(infoClick:) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:infoBtn];
+        [ticketBg addSubview:infoBtn];
     }
     return self;
 }

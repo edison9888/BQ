@@ -121,28 +121,6 @@
 
 }
 
-
-//- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view{
-//    
-//    MyAnnotation *ann = view.annotation;
-//    
-//    if (view.annotation != _map.userLocation ) {
-//        
-//        _homeVC.bank = ann.bank;
-//        [self.navigationController popToRootViewControllerAnimated:YES];
-//        
-//    }
-
-//    for (view in [_map subviews]) {
-//        if ([view isKindOfClass:[MKAnnotationView class]]) {
-//            [self.navigationController popToRootViewControllerAnimated:YES];
-//        }
-//    }   
-//}
-
-
-
-
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

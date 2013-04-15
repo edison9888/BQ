@@ -13,7 +13,7 @@
 @protocol  PersonalBusinessViewControllerDelegate<NSObject>
 
 - (void)OutOfTheTicketDelegate;
-
+-(void)dismissPresentVC;
 @end
 
 @interface PersonalBusinessViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>

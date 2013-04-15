@@ -1,13 +1,13 @@
 //
-//  Bank.m
+//  FatherBank.m
 //  BQ
 //
 //  Created by Zoe on 13-4-15.
 //  Copyright (c) 2013年 zzlmilk. All rights reserved.
 //
 
-#import "Bank.h"
+#import "FatherBank.h"
 
-@implementation Bank
+@implementation FatherBank
 
 @end

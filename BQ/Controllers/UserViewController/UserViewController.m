@@ -55,6 +55,12 @@
     number2.peopleNumber = 11;
     number2.time = @"2013/4/10  17:32";
     number2.status=0;
+    
+    //背景图
+    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"beiJing"]];
+    homeBG.frame  = self.view.bounds;
+    homeBG.userInteractionEnabled =YES;
+    [self.view addSubview:homeBG];
 
     //此处调用接口获取数据
     self.numberArr = [NSMutableArray arrayWithObjects:number,number1,number2,nil];

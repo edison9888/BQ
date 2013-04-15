@@ -7,6 +7,7 @@
 //
 
 #import "LocationManager.h"
+#import "DatabaseOperations.h"
 
 @implementation LocationManager
 
@@ -58,16 +59,22 @@
         
             CLPlacemark *placemark = [placemarks objectAtIndex:0];
 //            NSString *cityName = placemark.administrativeArea;
-            NSDictionary *dictionary = placemark.addressDictionary;
-            NSArray *arr = [dictionary allKeys];
+ //           NSDictionary *dictionary = placemark.addressDictionary;
+ //           NSArray *arr = [dictionary allKeys];
+//            for (int i=0; i<arr.count; i++) {
+//                NSString *key = [arr objectAtIndex:i];
+//                NSLog(@"placemarks---%@---%@",key,[placemark.addressDictionary objectForKey:[NSString stringWithFormat:@"%@",key]]);
+//            }
         
-            for (int i=0; i<arr.count; i++) {
-                NSString *key = [arr objectAtIndex:i];
-                NSLog(@"placemarks---%@---%@",key,[placemark.addressDictionary objectForKey:[NSString stringWithFormat:@"%@",key]]);
-            }
+        //根据省检索Proid
+        [DatabaseOperations selectProIdFromDatabase:[placemark.addressDictionary objectForKey:@"State"]];
         
         //区
         [[NSUserDefaults standardUserDefaults] setValue:[placemark.addressDictionary objectForKey:@"SubLocality"] forKey:@"SubLocality"];
+        //经纬度
+        [[NSUserDefaults standardUserDefaults] setDouble:placemark.location.coordinate.latitude forKey:@"Lat"];
+        [[NSUserDefaults standardUserDefaults] setDouble:placemark.location.coordinate.latitude forKey:@"Log"];
+
         
         //获取新位置信息
         if ([self.delegate respondsToSelector:@selector(locationReceivedFromLocationManagerDelegate:)]) {

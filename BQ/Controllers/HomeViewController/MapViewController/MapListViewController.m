@@ -32,16 +32,16 @@
     [titleImgView setImage:[UIImage imageNamed:@"districtAlert"]];
     [self.view addSubview:titleImgView];
     
-    bankTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, titleImgView.frame.size.width,titleImgView.frame.size.height)];
+    _bankTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, titleImgView.frame.size.width,titleImgView.frame.size.height)];
     if (SubLocality ==NULL) {
-        [bankTitleLabel setText:@"上海市"];
+        [_bankTitleLabel setText:@"上海市"];
     }else
-        [bankTitleLabel setText:SubLocality];
-    [bankTitleLabel setFont:[UIFont systemFontOfSize:11]];
-    [bankTitleLabel setBackgroundColor:[UIColor clearColor]];
-    [bankTitleLabel setTextColor:[UIColor whiteColor]];
-    [bankTitleLabel setTextAlignment:NSTextAlignmentCenter];
-    [titleImgView addSubview:bankTitleLabel];
+        [_bankTitleLabel setText:SubLocality];
+    [_bankTitleLabel setFont:[UIFont systemFontOfSize:11]];
+    [_bankTitleLabel setBackgroundColor:[UIColor clearColor]];
+    [_bankTitleLabel setTextColor:[UIColor whiteColor]];
+    [_bankTitleLabel setTextAlignment:NSTextAlignmentCenter];
+    [titleImgView addSubview:_bankTitleLabel];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, titleImgView.frame.origin.y+titleImgView.frame.size.height-4, self.view.frame.size.width, self.view.frame.size.height-44-49-titleImgView.frame.size.height+4) style:UITableViewStylePlain];
     _tableView.delegate=self;
@@ -116,7 +116,7 @@
 #pragma mark--LocationManagerDelegate
 - (void)locationReceivedFromLocationManagerDelegate:(NSString *)SubLocalityName{
     if (SubLocalityName!=NULL) {
-        [bankTitleLabel setText:[NSString stringWithFormat:@"%@",SubLocalityName]];
+        [_bankTitleLabel setText:[NSString stringWithFormat:@"%@",SubLocalityName]];
     }
 }
 

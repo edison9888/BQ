@@ -7,16 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "Country.h"
 
 @class MapViewController;
 @interface PickerView : UIViewController<UIPickerViewDataSource,UIPickerViewDelegate>
-{
-    
-}
+
 
 @property(nonatomic,strong) NSMutableArray *pickerArrs;
 @property(nonatomic,strong) UIPickerView *pickerView;
-@property(nonatomic,strong) NSString *cityId;
+@property(nonatomic,strong) Country *county;
 
 @property(nonatomic,weak) MapViewController *viewController;
 @end

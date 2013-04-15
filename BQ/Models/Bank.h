@@ -2,7 +2,7 @@
 //  Bank.h
 //  BQ
 //
-//  Created by Zoe on 13-4-7.
+//  Created by Zoe on 13-4-15.
 //  Copyright (c) 2013年 zzlmilk. All rights reserved.
 //
 
@@ -16,4 +16,5 @@
 
 @property(nonatomic,strong) NSString *title;
 @property(nonatomic,strong) NSString *subtitle;
+
 @end

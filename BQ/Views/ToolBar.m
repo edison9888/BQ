@@ -10,7 +10,7 @@
 
 @implementation ToolBar
 
-#define TabBarHeight 49
+//#define TabBarHeight 49
 
 - (id)initWithFrame:(CGRect)frame viewController:(UIViewController *)viewController
 {

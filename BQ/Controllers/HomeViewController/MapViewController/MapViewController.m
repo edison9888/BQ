@@ -11,9 +11,11 @@
 #import "ToolBar.h"
 #import "Bank.h"
 #import "HomeViewController.h"
+#import "DatabaseOperations.h"
 
-#define NavigationHeight 44
-#define TabBarHeight 49
+#import "AppDelegate.h"
+//#define NavigationHeight 44
+//#define TabBarHeight 49
 
 
 @interface MapViewController ()
@@ -28,7 +30,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-       //        self.locationArrs = [NSMutableArray arrayWithObjects:@[@"31.00",@"120.00"],@[@"32.00",@"121.00"],@[@"32.00",@"121.00"],@[@"31.90",@"121.90"],@[@"31.50",@"121.00"],@[@"32.50",@"121.90"],@[@"32.50",@"121.50"],@[@"31.50",@"121.00"], nil];
+       
+        
     }
     return self;
 }
@@ -43,27 +46,37 @@
     self.navigationItem.rightBarButtonItem = [Helper rightBarButtonItem:self];
     
     self.title = @"附近银行";
-            
+    
+    //工具条
     ToolBar *toolBar = [[ToolBar alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height-TabBarHeight-NavigationHeight, self.view.frame.size.width, TabBarHeight) viewController:self];
     [self.view addSubview:toolBar];
     
+    //地图
     self.mapVC = [[MapShowViewController alloc] init];
     self.mapVC.view.frame=CGRectMake(0, 0,self.view.bounds.size.width, self.view.bounds.size.height-TabBarHeight-TabBarHeight);
     self.mapVC.homeVC=self.homeVC;
     [self.view addSubview:self.mapVC.view];
     [self addChildViewController:self.mapVC];
     
+    //列表
     self.mapListVC = [[MapListViewController alloc] init];
     self.mapListVC.view.frame=self.mapVC.view.frame;
     self.mapListVC.homeVC=self.homeVC;
     [self addChildViewController:self.mapListVC];
  
+    //区域PickerVC
     pickerViewController  = [[PickerView alloc] init];
     [self addChildViewController:pickerViewController];
     [pickerViewController.view setFrame:CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 215+45)];
     //    pickerViewController.pickerArrs=xxx;获取pickerArr刷新数据
     [[self.view superview] addSubview:pickerViewController.view];
 
+    //判断是否联网
+    if (![AppDelegate isNetworkReachable]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"网络异常" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -88,6 +101,9 @@
     bank3.title = @"招商银行(沪闵路)";
     bank3.subtitle = @"沪闵路776号";
     
+//    根据银行id，经纬度获取银行列表
+//    （getBanksByGPS(String，double，double)） 距离当前的距离
+//fahterBank.id Lat Log
     
     self.locationArrs = [NSMutableArray arrayWithObjects:bank1,bank2,bank3, nil];
 
@@ -98,8 +114,13 @@
 #pragma mark--
 #pragma mark--ReloadData---MapVC///MapListVC
 -(void)reloadData{
-
+//    •	根据区域id和银行id获取所有分行列表
+//    getBanksByArea(areaId,bankTypeId)
 //    self.locationArrs数据相应时更改
+    //调用接口===传pickerViewController.county.countyId 和selectViewController界面的银行id
+
+    
+    
     if (viewTag==MapTag) {
         self.mapVC.locationArrs=_locationArrs;
         [self.mapVC showAnnotaionViews];
@@ -108,9 +129,6 @@
         self.mapListVC.locationArrs=_locationArrs;
         [self.mapListVC.tableView reloadData];
         
-        //重新定位获得列表地点
-        [self.mapVC.locationManager startUpdate];
-        self.mapVC.locationManager.delegate=self.mapListVC;
     }
 }
 
@@ -138,7 +156,6 @@
         
         self.navigationItem.rightBarButtonItem = [Helper rightBarButtonItemListIcon:self];
         
-        //此处获取数据重新加载
     }else{
         viewTag=MapTag;
 
@@ -149,13 +166,11 @@
     
         self.navigationItem.rightBarButtonItem = [Helper rightBarButtonItem:self];
 
-        //此处获取数据重新加载
-
     }
     //翻转动画
     [self transitionFromViewController:fromVC toViewController:toVC duration:0.4f options:options animations:nil completion:nil];
-    //加载数据
-    [self reloadData];
+//    //加载数据
+//    [self reloadData];
    
 }
 
@@ -188,6 +203,10 @@
         span.longitudeDelta=0.5;
         MKCoordinateRegion region = {userLocation.coordinate, span};
         [self.mapVC._map setRegion:region];
+    }else{
+        //重新定位获得列表地点
+        [self.mapVC.locationManager startUpdate];
+        self.mapVC.locationManager.delegate=self.mapListVC;
     }
   
 }
@@ -231,7 +250,11 @@
     bank3.title = @"工商银行(沪闵路)";
     bank3.subtitle = @"沪闵路776号";
     
+    //传county_id获取  self.locationArrs
     self.locationArrs=[NSMutableArray arrayWithObjects:bank1,bank2,bank3, nil];
+    
+    //选择了地区，更改list的地区
+    [mapListVC.bankTitleLabel setText:pickerViewController.county.countryName];
     
     //重新加载数据
     [self reloadData];

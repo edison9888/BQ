@@ -9,6 +9,7 @@
 #import "SelectBankViewController.h"
 #import "MapViewController.h"
 #import "Helper.h"
+#import "FatherBank.h"
 
 @interface SelectBankViewController ()
 
@@ -36,6 +37,7 @@
 	
     self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
 
+    //调用接口 获得banksArr 解析存放fatherBank类
 
 }
 
@@ -83,8 +85,11 @@
     [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
     [cell addSubview:lineImageView];
     
+//    FatherBank *fatherBank = [self.banksArr objectAtIndex:indexPath.row];
+    
     UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-30,lineImageView.frame.size.height)];
     [bankLabel setText:[self.banksArr objectAtIndex:indexPath.row]];
+//    [bankLabel setText:fatherBank.fatherBankName];
     [bankLabel setFont:[UIFont systemFontOfSize:15]];
     [bankLabel setBackgroundColor:[UIColor clearColor]];
     [bankLabel setTextColor:[UIColor colorWithRed:65/255 green:75/255 blue:85/255 alpha:1.0f]];

@@ -13,6 +13,7 @@
 @protocol  EnterpriseBusinessViewControllerDelegate<NSObject>
 
 - (void)OutOfEnterpriseBusinessTicketDelegate;
+-(void)dismissPresentVC;
 
 @end
 
@@ -21,6 +22,7 @@
     UITableView *_tableView;
     BOOL isSelect;
     NSString *tickitInfo;
+
 }
 
 @property(nonatomic,strong) NSArray *businessArr;

@@ -18,6 +18,7 @@
 
 #import "MapListViewController.h"
 #import "MapShowViewController.h"
+#import "FatherBank.h"
 
 typedef enum {
     MapTag,
@@ -42,4 +43,5 @@ typedef enum {
 
 @property(nonatomic,strong) NSMutableArray *locationArrs;//地图显示数据数组 Bank数组
 
+@property(nonatomic,strong) FatherBank *fatherBank;
 @end

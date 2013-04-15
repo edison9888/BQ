@@ -133,8 +133,10 @@
 }
 
 -(void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event{
-    [self getTicketClick:nil];
     
+    if ([self.delegate respondsToSelector:@selector(dismissPresentVC)]) {
+        [self.delegate performSelector:@selector(dismissPresentVC)];
+    }
 }
 
 

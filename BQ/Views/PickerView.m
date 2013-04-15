@@ -7,7 +7,10 @@
 //
 
 #import "PickerView.h"
+#import "DatabaseOperations.h"
+
 #define pickerViewHeight 215
+
 
 @implementation PickerView
 
@@ -15,7 +18,6 @@
 
     self =[super init];
     if (self) {
-        self.pickerArrs = [NSMutableArray arrayWithObjects:@"松江",@"闵行",@"黄浦",@"普陀",@"宝山", nil];
         
     }
     return self;
@@ -24,6 +26,12 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+//    self.pickerArrs = [NSMutableArray arrayWithObjects:@"松江",@"闵行",@"黄浦",@"普陀",@"宝山", nil];
+    // 获取pickerViewArr
+    self.pickerArrs = [DatabaseOperations selectCountryFromDatabase:ProId];
+
+    _county = [[Country alloc] init];
     
     UIView *bgView = [[UIView alloc] initWithFrame:CGRectMake(0, 0,self.view.bounds.size.width, 45+pickerViewHeight)];
     [self.view addSubview:bgView];
@@ -69,12 +77,13 @@
 }
 
 - (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component{
-    return [self.pickerArrs objectAtIndex:row];
+    Country *con  = [self.pickerArrs objectAtIndex:row];
+    return con.countryName;
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
-    _cityId = [self.pickerArrs objectAtIndex:row];
-    NSLog(@"_cityId%@",_cityId);
+    _county = [self.pickerArrs objectAtIndex:row];
+    NSLog(@"_cityId%d===%@",_county.countyId,_county.countryName);
 
 }
 

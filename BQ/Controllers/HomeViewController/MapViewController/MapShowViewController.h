@@ -15,8 +15,6 @@
 
 #import "Bank.h"
 
-#define NavigationHeight 44
-#define TabBarHeight 49
 
 @interface MapShowViewController : UIViewController<MKMapViewDelegate>
 {

@@ -72,14 +72,14 @@
         [businessLabel sizeToFit];
         [bgView addSubview:businessLabel];
         
-        presentNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(businessLabel.frame.origin.x, businessLabel.frame.size.height+businessLabel.frame.origin.y+BetweenHeight, 140, 16)];
-        presentNumberLabel.font = [UIFont systemFontOfSize:15];
-        presentNumberLabel.text=@"目前叫号：  A001";
-        presentNumberLabel.backgroundColor = [UIColor clearColor];
-        [presentNumberLabel sizeToFit];
-        [bgView addSubview:presentNumberLabel];
+//        presentNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(businessLabel.frame.origin.x, businessLabel.frame.size.height+businessLabel.frame.origin.y+BetweenHeight, 140, 16)];
+//        presentNumberLabel.font = [UIFont systemFontOfSize:15];
+//        presentNumberLabel.text=@"目前叫号：  A001";
+//        presentNumberLabel.backgroundColor = [UIColor clearColor];
+//        [presentNumberLabel sizeToFit];
+//        [bgView addSubview:presentNumberLabel];
         
-        remindLabel = [[UILabel alloc] initWithFrame:CGRectMake(presentNumberLabel.frame.origin.x, presentNumberLabel.frame.origin.y+presentNumberLabel.frame.size.height+BetweenHeight, 250, 16)];
+        remindLabel = [[UILabel alloc] initWithFrame:CGRectMake(businessLabel.frame.origin.x, businessLabel.frame.origin.y+businessLabel.frame.size.height+BetweenHeight*3, 250, 16)];
         remindLabel.text = @"您所在的排列前还有5个人";
         remindLabel.font = [UIFont systemFontOfSize:15];
         remindLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
@@ -92,19 +92,19 @@
         alertLabel.text = @"我们会于5个号码前发信息通知您 请确保您的手机网络正常";
         alertLabel.backgroundColor= [UIColor clearColor];
         [bgView addSubview:alertLabel];
-        
-        UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        infoBtn.frame = CGRectMake(270, 292, 20, 20);
-        [infoBtn setBackgroundImage:[UIImage imageNamed:@"morebutton"] forState:UIControlStateNormal];
-        //[infoBtn addTarget:self action:@selector(infoClick:) forControlEvents:UIControlEventTouchUpInside];
-        [bgView addSubview:infoBtn];
-        
+                
         UIButton *refreshBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        refreshBtn.frame = CGRectMake(270, remindLabel.frame.origin.y, 21.5, 20);
+        refreshBtn.frame = CGRectMake(526/2-10, remindLabel.frame.origin.y-8, 87/2, 40);
         [refreshBtn setBackgroundImage:[UIImage imageNamed:@"refreshButton"] forState:UIControlStateNormal];
         [refreshBtn addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventTouchUpInside];
         refreshBtn.tag = index;
         [bgView addSubview:refreshBtn];
+        
+        UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        infoBtn.frame = CGRectMake(refreshBtn.frame.origin.x-5, alertLabel.frame.origin.y+alertLabel.frame.size.height+45, 108/2, 73/2);
+        [infoBtn setBackgroundImage:[UIImage imageNamed:@"morebutton"] forState:UIControlStateNormal];
+        //[infoBtn addTarget:self action:@selector(infoClick:) forControlEvents:UIControlEventTouchUpInside];
+        [bgView addSubview:infoBtn];
     }
     return self;
 }
