@@ -11,8 +11,9 @@
 
 @interface BQNetClient : AFHTTPClient
 
-- (BQNetClient *)sharedClient;
++ (BQNetClient *)sharedClient;
 
 
++(NSDictionary *)nsdataTurnToNSDictionary:(id)responseObject;
 
 @end

@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SetViewController : UIViewController
-
+@interface SetViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+{
+    NSMutableArray *setArr;
+}
 @end

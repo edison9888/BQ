@@ -22,7 +22,7 @@
 
 #import "AFHTTPRequestOperation.h"
 #import <objc/runtime.h>
-
+#import "NSString+SBJSON.h"
 // Workaround for change in imp_implementationWithBlock() with Xcode 4.5
 #if defined(__IPHONE_6_0) || defined(__MAC_10_8)
 #define AF_CAST_TO_BLOCK id
@@ -253,6 +253,7 @@ static void AFSwizzleClassMethodWithClassAndSelectorUsingBlock(Class klass, SEL 
             }
         } else {
             if (success) {
+               
                 dispatch_async(self.successCallbackQueue ?: dispatch_get_main_queue(), ^{
                     success(self, self.responseData);
                 });

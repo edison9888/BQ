@@ -9,6 +9,7 @@
 #import "GetTicketViewController.h"
 #import "TicketView.h"
 #import "Helper.h"
+#import "MyTicketView.h"
 
 @interface GetTicketViewController ()
 
@@ -20,7 +21,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
     }
     return self;
 }
@@ -53,7 +53,8 @@
     [ticketBg setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
     [self.view insertSubview:ticketBg atIndex:3];
     
-    TicketView *ticketView = [[TicketView alloc] initWithFrame:CGRectMake(20,-122, 242,285)];
+    MyTicketView *ticketView = [[MyTicketView alloc] initWithFrame:CGRectMake(16,-182, 290,342) index:0 type:getTicket];
+    ticketView.ticketType=getTicket;
     ticketView.number = number;
     [self.view insertSubview:ticketView atIndex:2];
         
@@ -69,14 +70,14 @@
 }
 
 //出票动画
--(void)animateGetTicket:(TicketView *)ticketView{
+-(void)animateGetTicket:(MyTicketView *)ticketView{
 
     double __block originY;
     
     originY=ticketView.frame.origin.y;
     
     [UIView animateWithDuration:0.2f animations:^{
-        [ticketView setFrame:CGRectMake(20, originY+20, 242,285)];
+        [ticketView setFrame:CGRectMake(ticketView.frame.origin.x, originY+20, ticketView.frame.size.width,ticketView.frame.size.height)];
         [self.view insertSubview:ticketBg aboveSubview:ticketView];
         
         } completion:^(BOOL finished) {
@@ -87,14 +88,14 @@
                 
             }else{
                 [UIView animateWithDuration:0.3f animations:^{
-                    [ticketView setFrame:CGRectMake(20, 179, 242,285)];
+                    [ticketView setFrame:CGRectMake(ticketView.frame.origin.x, 57, ticketView.frame.size.width,ticketView.frame.size.height)];
                     return ;
                 }];
             }
     }];
 }
 
-- (void)callBack:(TicketView *)ticketView{
+- (void)callBack:(MyTicketView *)ticketView{
     [self animateGetTicket:ticketView];
 }
 

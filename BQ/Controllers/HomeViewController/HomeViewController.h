@@ -12,7 +12,7 @@
 
 #import "MainViewController.h"
 #import "SelectBankViewController.h"
-
+#import "MyTicketView.h"
 
 
 @class Bank;
@@ -22,7 +22,7 @@ typedef enum {
 } BusinessType;
 
 
-@interface HomeViewController : UIViewController<PersonalBusinessViewControllerDelegate,EnterpriseBusinessViewControllerDelegate,SelectBankViewControllerDelegate>
+@interface HomeViewController : UIViewController<PersonalBusinessViewControllerDelegate,EnterpriseBusinessViewControllerDelegate,SelectBankViewControllerDelegate,MyTicketViewDelegate>
 {
     BOOL isLocation;
     PersonalBusinessViewController *personalVC;

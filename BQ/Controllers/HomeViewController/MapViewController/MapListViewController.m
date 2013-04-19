@@ -75,7 +75,7 @@
     Bank *bank = [self.locationArrs objectAtIndex:indexPath.row];
     
     UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 310, 45)];
-    [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
+    [lineImageView setImage:[UIImage imageNamed:@"banktableViewCell"]];
     [cell addSubview:lineImageView];
     
     UILabel *_bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-30,lineImageView.frame.size.height)];

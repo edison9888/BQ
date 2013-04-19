@@ -14,12 +14,18 @@
 #import "HomeViewController.h"
 
 #import "Bank.h"
+#import "CustomAnnotationView.h"
+#import "CalloutMapAnnotation.h"
 
 
-@interface MapShowViewController : UIViewController<MKMapViewDelegate>
+
+
+@interface MapShowViewController : UIViewController<MKMapViewDelegate,UIGestureRecognizerDelegate>
 {
     @private
-    NSMutableArray *annotionViews;
+    NSMutableArray *annotionViews,*calloutAnnotationViews;
+    CalloutMapAnnotation *_calloutAnnotation;
+
 }
 
 @property(nonatomic,strong) NSMutableArray *locationArrs;//地图显示数据数组 Bank数组
@@ -29,4 +35,5 @@
 @property(nonatomic,strong)LocationManager *locationManager;
 
 - (void)showAnnotaionViews;
+- (void)showCalloutAnnotaionViews;
 @end

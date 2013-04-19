@@ -7,6 +7,7 @@
 //
 
 #import "UserViewController.h"
+#import "SelectBankViewController.h"
 
 @interface UserViewController ()
 
@@ -26,8 +27,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    self.title = @"我的排号";
+
+    //背景图
+    UIImageView *homeBG = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    if (iPhone5) {
+        [homeBG setImage:[UIImage imageNamed:@"bigBack5"]];
+    }else{
+        [homeBG setImage:[UIImage imageNamed:@"bigBack4"]];
+    }
+    homeBG.userInteractionEnabled =YES;
+    [self.view addSubview:homeBG];
+
+    
+    self.title = @"我的号码";
     
     Number *number  = [[Number alloc] init];
     number.bankName = @"中国建设银行";
@@ -56,18 +68,19 @@
     number2.time = @"2013/4/10  17:32";
     number2.status=0;
     
-    //背景图
-    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"beiJing"]];
-    homeBG.frame  = self.view.bounds;
-    homeBG.userInteractionEnabled =YES;
-    [self.view addSubview:homeBG];
-
+    UIButton *selectBankButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [selectBankButton addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
+    [selectBankButton setImage:[UIImage imageNamed:@"mapBtn"] forState:UIControlStateNormal];
+    [selectBankButton setFrame:CGRectMake(self.view.bounds.size.width/2-111/2,self.view.bounds.size.height-100, 111, 63)];
+    [self.view addSubview:selectBankButton];
+    
     //此处调用接口获取数据
     self.numberArr = [NSMutableArray arrayWithObjects:number,number1,number2,nil];
 
     scrollView =[[UIScrollView alloc] initWithFrame:self.view.bounds];
     scrollView.bounces=YES;
     scrollView.contentSize = CGSizeMake(self.view.bounds.size.width,9*2+340*self.numberArr.count+20*(self.numberArr.count-1)+90);
+    [scrollView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:scrollView];
     
 }
@@ -86,9 +99,23 @@
     }
 }
 
--(void)createMyTicket:(CGRect)rect index:(NSInteger)i{
+#pragma mark--
+#pragma mark--选择银行
+-(void)buttonPress{
+    self.navigationController.navigationBar.hidden = NO;
     
-    MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:rect index:i];
+//    isLocation = YES;
+    
+    SelectBankViewController  *selectBankVC = [[SelectBankViewController alloc]init];
+    selectBankVC.delegate=self;
+    [self.navigationController pushViewController:selectBankVC animated:YES];
+    
+}
+
+-(void)createMyTicket:(CGRect)rect index:(NSInteger)i{
+
+    
+    MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:rect index:i type:myTicket];
     myTicketView.number=[self.numberArr objectAtIndex:i];
     myTicketView.delegate=self;
     myTicketView.tag=i+10;

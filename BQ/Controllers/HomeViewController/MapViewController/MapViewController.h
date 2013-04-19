@@ -21,8 +21,8 @@
 #import "FatherBank.h"
 
 typedef enum {
+    TableViewTag,
     MapTag,
-    TableViewTag
 } ViewTag;
 
 @interface MapViewController : UIViewController

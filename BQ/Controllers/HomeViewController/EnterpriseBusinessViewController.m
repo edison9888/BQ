@@ -34,7 +34,7 @@
     UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"alertWindow"]];
     bgImageView.userInteractionEnabled=YES;
     [bgImageView setBackgroundColor:[UIColor clearColor]];
-    [bgImageView setFrame:CGRectMake(30, 136/2,  516/2, 478/2)];
+    [bgImageView setFrame:CGRectMake(50, 160,  449/2, 345/2)];
     [self.view addSubview:bgImageView];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(1, 1, bgImageView.frame.size.width-2, 346/2) style:UITableViewStylePlain];
@@ -44,11 +44,11 @@
     _tableView.dataSource=self;
     [bgImageView addSubview:_tableView];
     
-    UIButton *getTicketBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [getTicketBtn setBackgroundImage:[UIImage imageNamed:@"numberButton"] forState:UIControlStateNormal];
-    [getTicketBtn setFrame:CGRectMake(75, 180, 105, 42)];
-    [getTicketBtn addTarget:self action:@selector(getTicketClick:) forControlEvents:UIControlEventTouchUpInside];
-    [bgImageView addSubview:getTicketBtn];
+//    UIButton *getTicketBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [getTicketBtn setBackgroundImage:[UIImage imageNamed:@"numberButton"] forState:UIControlStateNormal];
+//    [getTicketBtn setFrame:CGRectMake(75, 180, 105, 42)];
+//    [getTicketBtn addTarget:self action:@selector(getTicketClick:) forControlEvents:UIControlEventTouchUpInside];
+//    [bgImageView addSubview:getTicketBtn];
 
 }
 
@@ -98,9 +98,9 @@
     [cell addSubview:imageView];
     
     
-    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 116/2-4, cell.frame.size.width, 4)];
-    [lineImageView setImage:[UIImage imageNamed:@"fenGeXxian"]];
-    [cell addSubview:lineImageView];
+//    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 116/2-4, cell.frame.size.width, 4)];
+//    [lineImageView setImage:[UIImage imageNamed:@"fenGeXxian"]];
+//    [cell addSubview:lineImageView];
     
     //    if (isSelect) {
     //        isSelect=NO;
@@ -125,7 +125,7 @@
             NSLog(@"出票--%@",[self.businessArr objectAtIndex:indexPath.row]);
             
         }else
-            imageView.image = [UIImage imageNamed:@"button"];
+            imageView.image = [UIImage imageNamed:@""];
         
     }
     

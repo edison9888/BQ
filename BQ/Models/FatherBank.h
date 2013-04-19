@@ -10,6 +10,12 @@
 
 @interface FatherBank : NSObject
 
-@property(nonatomic,assign) NSInteger fatherBankId;
-@property(nonatomic,assign) NSString *fatherBankName;
+@property(nonatomic,strong) NSString *bankTypeId;
+@property(nonatomic,strong) NSString *bankTypeName;
+@property(nonatomic,strong) NSString *parentId;
+
+- (id)initWithItem:(id)dic;
+
++ (void)getAllBankInfo:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block;
+
 @end

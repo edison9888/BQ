@@ -16,9 +16,13 @@
 @property (nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property (nonatomic, readonly, copy) NSString *title;
 @property (nonatomic, readonly, copy) NSString *subtitle;
+@property (nonatomic,assign) BOOL isCallOut;
+
 @property (nonatomic,strong) Bank *bank;
 
-- (id)initWithTitle:(NSString *)title subTitle:(NSString *)subtitle andCoordinate:(CLLocationCoordinate2D)coordinate;
+//- (id)initWithTitle:(NSString *)title subTitle:(NSString *)subtitle andCoordinate:(CLLocationCoordinate2D)coordinate;
+
+- (id)initWithCoordinate:(CLLocationCoordinate2D)coordinate;
 
 
 @end

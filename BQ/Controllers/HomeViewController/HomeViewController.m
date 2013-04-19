@@ -14,6 +14,7 @@
 #import "GetTicketViewController.h"
 
 #import "Helper.h"
+
 @interface HomeViewController ()
 
 @end
@@ -87,21 +88,17 @@ static HomeViewController *instance = nil;
     
     isLocation=NO;    
 
+    self.view.backgroundColor = [UIColor blackColor];
     
-    [self bankbackGroundImageView];
+    //背景图
+    //[self bankbackGroundImageView];
 
-    UIImageView *bankButtonBg = [[UIImageView alloc]initWithFrame:CGRectMake(37, 50, 493/2, 103/2)];
-    bankButtonBg.image=[UIImage imageNamed:@"bankButtonBg"];
-    bankButtonBg.userInteractionEnabled=YES;
-    [self.view addSubview:bankButtonBg];
+//    UIImageView *bankButtonBg = [[UIImageView alloc]initWithFrame:CGRectMake(37, 50, 493/2, 103/2)];
+//    bankButtonBg.image=[UIImage imageNamed:@"bankButtonBg"];
+//    bankButtonBg.userInteractionEnabled=YES;
+//    [self.view addSubview:bankButtonBg];
     
-    UIButton *selectBankButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [selectBankButton addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
-    [selectBankButton setImage:[UIImage imageNamed:@"mapBtn"] forState:UIControlStateNormal];
-    [selectBankButton setFrame:CGRectMake(bankButtonBg.frame.size.width-57,1, 56, 50)];
-    [bankButtonBg addSubview:selectBankButton];
-
-        
+    /*
     _bankNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(48,155, 219, 22)];
     _bankNameLabel.text=@"中国工商银行";
     _bankNameLabel.backgroundColor=[UIColor clearColor];
@@ -109,9 +106,7 @@ static HomeViewController *instance = nil;
 //    _bankNameLabel.textColor = [UIColor colorWithRed:173/255.f green:172/255.f blue:172/255.f alpha:1.0];
     [_bankNameLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:_bankNameLabel];
-    
-    
-       
+*/
     UIButton *personalBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     personalBusinessBtn.enabled=NO;
     [personalBusinessBtn setTitle:@"个人业务" forState:UIControlStateNormal];
@@ -131,6 +126,42 @@ static HomeViewController *instance = nil;
     [enterpriseBusinessBtn setBackgroundImage:[UIImage imageNamed:@"busButton"] forState:UIControlStateNormal];
     enterpriseBusinessBtn.tag=12;
     [self.view addSubview:enterpriseBusinessBtn];
+    
+    
+    self.navigationController.navigationBar.hidden = YES;
+    
+    
+//    MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:CGRectMake(0, 0, 290, 342) index:10];
+//    myTicketView.delegate=self;
+//    myTicketView.tag=10;
+//    [bgView addSubview:myTicketView];
+    
+    UIButton *selectBankButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [selectBankButton addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
+    [selectBankButton setImage:[UIImage imageNamed:@"mapBtn"] forState:UIControlStateNormal];
+    [selectBankButton setFrame:CGRectMake(self.view.bounds.size.width/2-111/2,self.view.bounds.size.height-100, 111, 63)];
+    [self.view addSubview:selectBankButton];
+
+}
+
+#pragma mark--
+#pragma mark--MyTicketRefreshDelegate
+//刷新票数据----刷新单张还是多张
+- (void)refreshTicketsDelegate:(Number *)number btnIndex:(NSInteger)index{
+    //number.numberId 票据id  网络请求
+    
+    //模拟数据
+    Number *_number  = [[Number alloc] init];
+    _number.bankName = @"光大银行";
+    _number.bankNumber = @"H009";
+    _number.business = @"贷款";
+    _number.presentNumber = @"B007";
+    _number.peopleNumber = 18;
+    _number.time = @"2013/4/10  17:32";
+    _number.status=1;
+    
+    MyTicketView *myTicketView = (MyTicketView *)[self.view viewWithTag: index+10];
+    myTicketView.number = _number;
     
 }
 
@@ -172,13 +203,14 @@ static HomeViewController *instance = nil;
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
 
-    [self hidenTabbar:NO];
+   // [self hidenTabbar:NO];
     
 }
 
 #pragma mark--
 #pragma mark--选择银行
 -(void)buttonPress{
+    self.navigationController.navigationBar.hidden = NO;
     
     isLocation = YES;
     

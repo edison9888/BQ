@@ -33,22 +33,31 @@
     
     self.title =@"选择银行";
     
+    self.tableView.backgroundView=nil;
+    self.tableView.backgroundColor = [UIColor blackColor];
+    
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
 	
     self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
 
     //调用接口 获得banksArr 解析存放fatherBank类
 
+    [FatherBank getAllBankInfo:nil WithBlock:^(NSArray *arr) {
+//        self.banksArr = arr;
+//        [self.tableView reloadData];
+    }];
+    
+    
 }
 
 -(void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
     
-    if([_delegate respondsToSelector:@selector(hidenTabbar:)])
-    {
-        [_delegate hidenTabbar:NO];
-    }
+//    if([_delegate respondsToSelector:@selector(hidenTabbar:)])
+//    {
+//        [_delegate hidenTabbar:NO];
+//    }
 }
 
 //返回上一层
@@ -92,7 +101,7 @@
 //    [bankLabel setText:fatherBank.fatherBankName];
     [bankLabel setFont:[UIFont systemFontOfSize:15]];
     [bankLabel setBackgroundColor:[UIColor clearColor]];
-    [bankLabel setTextColor:[UIColor colorWithRed:65/255 green:75/255 blue:85/255 alpha:1.0f]];
+    [bankLabel setTextColor:[UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1.0f]];
     [bankLabel setTextAlignment:NSTextAlignmentLeft];
     [cell addSubview:bankLabel];    
     
@@ -106,11 +115,11 @@
     MapViewController *mapVC = [[MapViewController alloc] init];
     mapVC.homeVC=(HomeViewController *)self.delegate;
 //    mapVC.hidesBottomBarWhenPushed=YES;
-    if([_delegate respondsToSelector:@selector(hidenTabbar:)])
-    {
-        [_delegate hidenTabbar:YES];
-    }
-    [self.navigationController pushViewController:mapVC animated:YES];
+//    if([_delegate respondsToSelector:@selector(hidenTabbar:)])
+//    {
+//        [_delegate hidenTabbar:YES];
+//    }
+//    [self.navigationController pushViewController:mapVC animated:YES];
     
 }
 

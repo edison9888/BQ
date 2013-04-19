@@ -100,8 +100,8 @@
     [bankNameLabel sizeToFit];
     
     numberLabel.text = number.bankNumber;
-    businessLabel.text = [NSString stringWithFormat:@"主办业务：  %@",number.business];
-    presentNumberLabel.text = [NSString stringWithFormat:@"目前叫号：  %@",number.presentNumber];
+    businessLabel.text = [NSString stringWithFormat:@"%@",number.business];
+    presentNumberLabel.text = [NSString stringWithFormat:@"%@",number.presentNumber];
     remindLabel.text = [NSString stringWithFormat:@"您所在的排列前还有%d个人",number.peopleNumber];
     timeLabel.text = number.time;
     
