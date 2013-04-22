@@ -9,10 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "Number.h"
 #import "MyTicketView.h"
+#import "SelectBankViewController.h"
 
 @interface UserViewController : UIViewController<MyTicketViewDelegate>
 {
+    @private
     UIScrollView *scrollView;
+    BOOL isFisrt;
+    UIImageView *myhomeBG;
+    UIButton *selectBankButton;
 }
 
 @property(nonatomic,strong) NSMutableArray *numberArr;

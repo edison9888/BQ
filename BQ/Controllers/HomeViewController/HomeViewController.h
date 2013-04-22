@@ -22,7 +22,7 @@ typedef enum {
 } BusinessType;
 
 
-@interface HomeViewController : UIViewController<PersonalBusinessViewControllerDelegate,EnterpriseBusinessViewControllerDelegate,SelectBankViewControllerDelegate,MyTicketViewDelegate>
+@interface HomeViewController : UIViewController<PersonalBusinessViewControllerDelegate,EnterpriseBusinessViewControllerDelegate,MyTicketViewDelegate>
 {
     BOOL isLocation;
     PersonalBusinessViewController *personalVC;

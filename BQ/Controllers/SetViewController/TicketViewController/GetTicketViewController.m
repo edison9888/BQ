@@ -28,7 +28,7 @@
 
 //返回上一层
 - (void)backToLastVC{
-    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popToRootViewControllerAnimated:YES];
 }
 
 - (void)viewDidLoad
@@ -58,7 +58,7 @@
     ticketView.number = number;
     [self.view insertSubview:ticketView atIndex:2];
         
-    UIImageView *ticketBg1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, ticketBg.frame.origin.y+ticketBg.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-TabBarHeight-NavigationHeight-ticketBg.frame.size.height)];
+    UIImageView *ticketBg1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, ticketBg.frame.origin.y+ticketBg.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-NavigationHeight-ticketBg.frame.size.height)];
     if (iPhone5)
         [ticketBg1 setImage:[UIImage imageNamed:@"flashTicketIphone5"]];
     else

@@ -12,7 +12,7 @@
 
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <netinet/in.h>
-#import "HomeViewController.h"
+#import "UserViewController.h"
 
 #define isNetingWork 0
 
@@ -56,6 +56,10 @@
    return [UIApplication sharedApplication].delegate;
 }
 
+- (void)setNavigateBarHidden:(BOOL)isHidden{
+    
+    navHomeVc.navigationBarHidden=isHidden;
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -65,17 +69,12 @@
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor blackColor];
     
     
-//    MainViewController *mainVC = [[MainViewController alloc]init];
-//    [self.window setRootViewController:mainVC];
-    
-//    HomeViewController *homeVC = [[HomeViewController alloc]init];
-//
-//    UINavigationController *navHomeVc = [[UINavigationController alloc] initWithRootViewController:homeVC];
-//    
-//    [self.window setRootViewController:navHomeVc];
+    UserViewController *userVC = [[UserViewController alloc]init];
+    navHomeVc = [[UINavigationController alloc] initWithRootViewController:userVC];
+    navHomeVc.navigationBarHidden=YES;
+    [self.window setRootViewController:navHomeVc];
 
     [self.window makeKeyAndVisible];
     return YES;

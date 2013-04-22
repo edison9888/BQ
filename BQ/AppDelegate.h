@@ -9,9 +9,12 @@
 #import <UIKit/UIKit.h>
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
-
+{
+    UINavigationController *navHomeVc;
+}
 @property (strong, nonatomic) UIWindow *window;
 
 +(BOOL)isNetworkReachable;
 + (id)getAppdelegate;
+- (void)setNavigateBarHidden:(BOOL)isHidden;
 @end

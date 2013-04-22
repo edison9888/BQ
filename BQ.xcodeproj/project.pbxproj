@@ -39,7 +39,6 @@
 		C80CF83E1715542A00889D03 /* TicketView.m in Sources */ = {isa = PBXBuildFile; fileRef = C80CF83D1715542A00889D03 /* TicketView.m */; };
 		C816353F170C0E800097672D /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = C816353E170C0E800097672D /* Helper.m */; };
 		C8163549170C1E600097672D /* ToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C8163548170C1E600097672D /* ToolBar.m */; };
-		C8177A7B171FD259003C2BB1 /* mapBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8177A7A171FD259003C2BB1 /* mapBtn@2x.png */; };
 		C8177A7D171FD440003C2BB1 /* myTicketBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8177A7C171FD440003C2BB1 /* myTicketBg@2x.png */; };
 		C8177A7F171FD479003C2BB1 /* ticket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8177A7E171FD478003C2BB1 /* ticket@2x.png */; };
 		C8177A81171FD9E7003C2BB1 /* refreshButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8177A80171FD9E7003C2BB1 /* refreshButton@2x.png */; };
@@ -79,6 +78,14 @@
 		C82EC4C81717E98600579E5F /* morebutton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C82EC4C71717E98500579E5F /* morebutton@2x.png */; };
 		C8385495171275E5007B969A /* pickerToolBar@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8385494171275E5007B969A /* pickerToolBar@2x.png */; };
 		C8385497171275F1007B969A /* okButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8385496171275F1007B969A /* okButton@2x.png */; };
+		C83CD6331724E4F400835F70 /* homeTicket5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD6321724E4F400835F70 /* homeTicket5@2x.png */; };
+		C83CD6351724E53F00835F70 /* bigBack5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD6341724E53F00835F70 /* bigBack5@2x.png */; };
+		C83CD6371724E54F00835F70 /* homeTicket4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD6361724E54F00835F70 /* homeTicket4@2x.png */; };
+		C83CD6391724E57E00835F70 /* downTicket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD6381724E57E00835F70 /* downTicket@2x.png */; };
+		C83CD63B1724E83700835F70 /* mapBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD63A1724E83700835F70 /* mapBtn@2x.png */; };
+		C83CD641172522A300835F70 /* light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD640172522A300835F70 /* light@2x.png */; };
+		C83CD643172522AF00835F70 /* noNetwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD642172522AF00835F70 /* noNetwork@2x.png */; };
+		C83CD64517252E1700835F70 /* buttonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD64417252E1700835F70 /* buttonSelected@2x.png */; };
 		C85CD6C31712AD4C007512C3 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CD6C21712AD4C007512C3 /* LocationManager.m */; };
 		C85CD6C61712B5DC007512C3 /* MapListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CD6C51712B5DC007512C3 /* MapListViewController.m */; };
 		C85CD6C81712C4B1007512C3 /* mapButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CD6C71712C4B1007512C3 /* mapButton@2x.png */; };
@@ -122,7 +129,8 @@
 		C8D64A221720EC2E0012FA2E /* flashTicket1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D64A211720EC2E0012FA2E /* flashTicket1@2x.png */; };
 		C8D64A241720EC510012FA2E /* flashTicketIphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D64A231720EC510012FA2E /* flashTicketIphone5@2x.png */; };
 		C8D64A271720FA9D0012FA2E /* bigBack4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D64A251720FA9D0012FA2E /* bigBack4@2x.png */; };
-		C8D64A281720FA9D0012FA2E /* bigBack5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D64A261720FA9D0012FA2E /* bigBack5@2x.png */; };
+		C8D64A2B172147B60012FA2E /* back4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D64A29172147B60012FA2E /* back4@2x.png */; };
+		C8D64A2C172147B60012FA2E /* back5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D64A2A172147B60012FA2E /* back5@2x.png */; };
 		C8DB413017117D070055341F /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DB412F17117D070055341F /* PickerView.m */; };
 /* End PBXBuildFile section */
 
@@ -178,7 +186,6 @@
 		C816353E170C0E800097672D /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		C8163547170C1E600097672D /* ToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBar.h; sourceTree = "<group>"; };
 		C8163548170C1E600097672D /* ToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolBar.m; sourceTree = "<group>"; };
-		C8177A7A171FD259003C2BB1 /* mapBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapBtn@2x.png"; sourceTree = "<group>"; };
 		C8177A7C171FD440003C2BB1 /* myTicketBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myTicketBg@2x.png"; sourceTree = "<group>"; };
 		C8177A7E171FD478003C2BB1 /* ticket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ticket@2x.png"; sourceTree = "<group>"; };
 		C8177A80171FD9E7003C2BB1 /* refreshButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refreshButton@2x.png"; sourceTree = "<group>"; };
@@ -235,6 +242,14 @@
 		C8385496171275F1007B969A /* okButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "okButton@2x.png"; sourceTree = "<group>"; };
 		C83854A1171297F3007B969A /* Picker.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Picker.h; sourceTree = "<group>"; };
 		C83854A2171297F3007B969A /* Picker.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Picker.m; sourceTree = "<group>"; };
+		C83CD6321724E4F400835F70 /* homeTicket5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeTicket5@2x.png"; sourceTree = "<group>"; };
+		C83CD6341724E53F00835F70 /* bigBack5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bigBack5@2x.png"; sourceTree = "<group>"; };
+		C83CD6361724E54F00835F70 /* homeTicket4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeTicket4@2x.png"; sourceTree = "<group>"; };
+		C83CD6381724E57E00835F70 /* downTicket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "downTicket@2x.png"; sourceTree = "<group>"; };
+		C83CD63A1724E83700835F70 /* mapBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapBtn@2x.png"; sourceTree = "<group>"; };
+		C83CD640172522A300835F70 /* light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light@2x.png"; sourceTree = "<group>"; };
+		C83CD642172522AF00835F70 /* noNetwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noNetwork@2x.png"; sourceTree = "<group>"; };
+		C83CD64417252E1700835F70 /* buttonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonSelected@2x.png"; sourceTree = "<group>"; };
 		C85CD6C11712AD4C007512C3 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		C85CD6C21712AD4C007512C3 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		C85CD6C41712B5DC007512C3 /* MapListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapListViewController.h; sourceTree = "<group>"; };
@@ -301,7 +316,8 @@
 		C8D64A211720EC2E0012FA2E /* flashTicket1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flashTicket1@2x.png"; sourceTree = "<group>"; };
 		C8D64A231720EC510012FA2E /* flashTicketIphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flashTicketIphone5@2x.png"; sourceTree = "<group>"; };
 		C8D64A251720FA9D0012FA2E /* bigBack4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bigBack4@2x.png"; sourceTree = "<group>"; };
-		C8D64A261720FA9D0012FA2E /* bigBack5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bigBack5@2x.png"; sourceTree = "<group>"; };
+		C8D64A29172147B60012FA2E /* back4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back4@2x.png"; sourceTree = "<group>"; };
+		C8D64A2A172147B60012FA2E /* back5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "back5@2x.png"; sourceTree = "<group>"; };
 		C8DB412E17117D070055341F /* PickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerView.h; sourceTree = "<group>"; };
 		C8DB412F17117D070055341F /* PickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -381,7 +397,7 @@
 		04A6AD1B17053A92009948B3 /* Homes */ = {
 			isa = PBXGroup;
 			children = (
-				C8177A7A171FD259003C2BB1 /* mapBtn@2x.png */,
+				C83CD63A1724E83700835F70 /* mapBtn@2x.png */,
 				C86068D0171BD36100534197 /* beiJing@2x.png */,
 				C82CD9A11716B5440084E732 /* bankButtonBg@2x.png */,
 				C883E58B1713C50F0029B6B5 /* backArrows@2x.png */,
@@ -393,7 +409,9 @@
 				C82EC4BD1717E2D400579E5F /* backGroundIp5@2x.png */,
 				C82CD9A71716B6BD0084E732 /* busButton@2x.png */,
 				C8D64A251720FA9D0012FA2E /* bigBack4@2x.png */,
-				C8D64A261720FA9D0012FA2E /* bigBack5@2x.png */,
+				C83CD6341724E53F00835F70 /* bigBack5@2x.png */,
+				C8D64A29172147B60012FA2E /* back4@2x.png */,
+				C8D64A2A172147B60012FA2E /* back5@2x.png */,
 			);
 			path = Homes;
 			sourceTree = "<group>";
@@ -558,6 +576,7 @@
 		C80CF833171536D200889D03 /* GetTicketImage */ = {
 			isa = PBXGroup;
 			children = (
+				C83CD64417252E1700835F70 /* buttonSelected@2x.png */,
 				C8177A7E171FD478003C2BB1 /* ticket@2x.png */,
 				C80CF834171536F700889D03 /* line@2x.png */,
 				C82EC4C71717E98500579E5F /* morebutton@2x.png */,
@@ -585,9 +604,14 @@
 		C82CD91B17165D720084E732 /* MyTicketImage */ = {
 			isa = PBXGroup;
 			children = (
+				C83CD642172522AF00835F70 /* noNetwork@2x.png */,
+				C83CD640172522A300835F70 /* light@2x.png */,
 				C8177A80171FD9E7003C2BB1 /* refreshButton@2x.png */,
 				C82CD91D17165D810084E732 /* stamp@2x.png */,
 				C8177A7C171FD440003C2BB1 /* myTicketBg@2x.png */,
+				C83CD6361724E54F00835F70 /* homeTicket4@2x.png */,
+				C83CD6321724E4F400835F70 /* homeTicket5@2x.png */,
+				C83CD6381724E57E00835F70 /* downTicket@2x.png */,
 			);
 			path = MyTicketImage;
 			sourceTree = "<group>";
@@ -841,7 +865,6 @@
 				C82EC4BE1717E2D400579E5F /* backGroundIp5@2x.png in Resources */,
 				C82EC4C81717E98600579E5F /* morebutton@2x.png in Resources */,
 				C86068D1171BD36100534197 /* beiJing@2x.png in Resources */,
-				C8177A7B171FD259003C2BB1 /* mapBtn@2x.png in Resources */,
 				C8177A7D171FD440003C2BB1 /* myTicketBg@2x.png in Resources */,
 				C8177A7F171FD479003C2BB1 /* ticket@2x.png in Resources */,
 				C8177A81171FD9E7003C2BB1 /* refreshButton@2x.png in Resources */,
@@ -853,7 +876,16 @@
 				C8D64A221720EC2E0012FA2E /* flashTicket1@2x.png in Resources */,
 				C8D64A241720EC510012FA2E /* flashTicketIphone5@2x.png in Resources */,
 				C8D64A271720FA9D0012FA2E /* bigBack4@2x.png in Resources */,
-				C8D64A281720FA9D0012FA2E /* bigBack5@2x.png in Resources */,
+				C8D64A2B172147B60012FA2E /* back4@2x.png in Resources */,
+				C8D64A2C172147B60012FA2E /* back5@2x.png in Resources */,
+				C83CD6331724E4F400835F70 /* homeTicket5@2x.png in Resources */,
+				C83CD6351724E53F00835F70 /* bigBack5@2x.png in Resources */,
+				C83CD6371724E54F00835F70 /* homeTicket4@2x.png in Resources */,
+				C83CD6391724E57E00835F70 /* downTicket@2x.png in Resources */,
+				C83CD63B1724E83700835F70 /* mapBtn@2x.png in Resources */,
+				C83CD641172522A300835F70 /* light@2x.png in Resources */,
+				C83CD643172522AF00835F70 /* noNetwork@2x.png in Resources */,
+				C83CD64517252E1700835F70 /* buttonSelected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -84,64 +84,57 @@ static HomeViewController *instance = nil;
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.title = @"首页";
-    
-    isLocation=NO;    
-
-    self.view.backgroundColor = [UIColor blackColor];
+    self.title = @"选择业务";
+//    isLocation=NO;    
     
     //背景图
-    //[self bankbackGroundImageView];
-
-//    UIImageView *bankButtonBg = [[UIImageView alloc]initWithFrame:CGRectMake(37, 50, 493/2, 103/2)];
-//    bankButtonBg.image=[UIImage imageNamed:@"bankButtonBg"];
-//    bankButtonBg.userInteractionEnabled=YES;
-//    [self.view addSubview:bankButtonBg];
-    
-    /*
-    _bankNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(48,155, 219, 22)];
-    _bankNameLabel.text=@"中国工商银行";
+    [self bankbackGroundImageView];
+    _bankNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(35,82, 239, 35)];
+    if (_bank.title.length==0) {
+        _bankNameLabel.text=_bank.title;
+    }else{
+        _bankNameLabel.text=@"中国工商银行";
+    }
     _bankNameLabel.backgroundColor=[UIColor clearColor];
-    _bankNameLabel.font = [UIFont systemFontOfSize:18];
-//    _bankNameLabel.textColor = [UIColor colorWithRed:173/255.f green:172/255.f blue:172/255.f alpha:1.0];
+    _bankNameLabel.font = [UIFont systemFontOfSize:28];
+    _bankNameLabel.textColor = [UIColor colorWithRed:232/255.f green:232/255.f blue:232/255.f alpha:1.0];
     [_bankNameLabel setTextAlignment:NSTextAlignmentCenter];
     [self.view addSubview:_bankNameLabel];
-*/
+    
+    UIImageView *bankButtonBg = [[UIImageView alloc]initWithFrame:CGRectMake(_bankNameLabel.frame.origin.x,_bankNameLabel.frame.origin.y+_bankNameLabel.frame.size.height+5, 239, 7.5)];
+    bankButtonBg.image=[UIImage imageNamed:@"light"];
+    bankButtonBg.userInteractionEnabled=YES;
+    [self.view addSubview:bankButtonBg];
+    
     UIButton *personalBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    personalBusinessBtn.enabled=NO;
+//    personalBusinessBtn.enabled=NO;
     [personalBusinessBtn setTitle:@"个人业务" forState:UIControlStateNormal];
-    [personalBusinessBtn.titleLabel setFont:[UIFont systemFontOfSize:18]];
+    [personalBusinessBtn.titleLabel setFont:[UIFont systemFontOfSize:22]];
     [personalBusinessBtn setFrame:CGRectMake(48, 213, 222, 95/2)];
     [personalBusinessBtn addTarget:self action:@selector(personalBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
     [personalBusinessBtn setBackgroundImage:[UIImage imageNamed:@"busButton"] forState:UIControlStateNormal];
     personalBusinessBtn.tag=11;
+    personalBusinessBtn.titleLabel.textColor = [UIColor colorWithRed:232/255.f green:232/255.f blue:232/255.f alpha:1.0];
     [self.view addSubview:personalBusinessBtn];
     
     UIButton *enterpriseBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-    enterpriseBusinessBtn.enabled=NO;
+//    enterpriseBusinessBtn.enabled=NO;
     [enterpriseBusinessBtn setTitle:@"企业业务" forState:UIControlStateNormal];
-    [enterpriseBusinessBtn.titleLabel setFont:[UIFont systemFontOfSize:18]];
+    [enterpriseBusinessBtn.titleLabel setFont:[UIFont systemFontOfSize:22]];
     [enterpriseBusinessBtn setFrame:CGRectMake(personalBusinessBtn.frame.origin.x, personalBusinessBtn.frame.size.height+personalBusinessBtn.frame.origin.y+10, 222, 95/2)];
     [enterpriseBusinessBtn addTarget:self action:@selector(enterpriseBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
     [enterpriseBusinessBtn setBackgroundImage:[UIImage imageNamed:@"busButton"] forState:UIControlStateNormal];
     enterpriseBusinessBtn.tag=12;
+    enterpriseBusinessBtn.titleLabel.textColor = [UIColor colorWithRed:232/255.f green:232/255.f blue:232/255.f alpha:1.0];
     [self.view addSubview:enterpriseBusinessBtn];
     
-    
-    self.navigationController.navigationBar.hidden = YES;
-    
-    
-//    MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:CGRectMake(0, 0, 290, 342) index:10];
-//    myTicketView.delegate=self;
-//    myTicketView.tag=10;
-//    [bgView addSubview:myTicketView];
-    
-    UIButton *selectBankButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [selectBankButton addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
-    [selectBankButton setImage:[UIImage imageNamed:@"mapBtn"] forState:UIControlStateNormal];
-    [selectBankButton setFrame:CGRectMake(self.view.bounds.size.width/2-111/2,self.view.bounds.size.height-100, 111, 63)];
-    [self.view addSubview:selectBankButton];
+    self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
 
+}
+
+//返回上一层
+- (void)backToLastVC{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 #pragma mark--
@@ -170,22 +163,22 @@ static HomeViewController *instance = nil;
     
     UIImage *image;
     if (iPhone5)
-        image= [UIImage imageNamed:@"backGroundIp5"];
+        image= [UIImage imageNamed:@"back4"];
     else
-        image= [UIImage imageNamed:@"backGround"];
+        image= [UIImage imageNamed:@"back5"];
 
     UIImageView *homeBG = [[UIImageView alloc]initWithImage:image];
     homeBG.userInteractionEnabled =YES;
-    homeBG.frame = CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height-44-49);
+    homeBG.frame = self.view.bounds;
     [self.view addSubview:homeBG];
 }
 
-//更改首页银行提示
-- (void)setBank:(Bank *)bank{
-    [_bankNameLabel setText:bank.title];
-    
-    [self changeBtnState];
-}
+////更改首页银行提示
+//- (void)setBank:(Bank *)bank{
+//    [_bankNameLabel setText:bank.title];
+//    
+//    //[self changeBtnState];
+//}
 
 //改变按钮状态--个人业务/企业业务
 -(void)changeBtnState{
@@ -207,18 +200,7 @@ static HomeViewController *instance = nil;
     
 }
 
-#pragma mark--
-#pragma mark--选择银行
--(void)buttonPress{
-    self.navigationController.navigationBar.hidden = NO;
-    
-    isLocation = YES;
-    
-    SelectBankViewController  *selectBankVC = [[SelectBankViewController alloc]init];
-    selectBankVC.delegate=self;
-    [self.navigationController pushViewController:selectBankVC animated:YES];
-    
-}
+
 
 #pragma mark--
 #pragma mark--业务按钮事件

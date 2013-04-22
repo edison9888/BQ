@@ -208,7 +208,8 @@
     CalloutMapAnnotation *ann = view.annotation;
     
     if (view.annotation != _map.userLocation ) {
-        _homeVC.bank = ann.bank;
+        HomeViewController *homeVC = [[HomeViewController alloc] init];
+        homeVC.bank = ann.bank;
         [self.navigationController popToRootViewControllerAnimated:YES];
     }
 }

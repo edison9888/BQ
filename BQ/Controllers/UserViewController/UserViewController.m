@@ -7,7 +7,9 @@
 //
 
 #import "UserViewController.h"
-#import "SelectBankViewController.h"
+#import "AppDelegate.h"
+
+#define NavigationHeight 44
 
 @interface UserViewController ()
 
@@ -19,7 +21,7 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        isFisrt=YES;
     }
     return self;
 }
@@ -27,20 +29,19 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    //背景图
-    UIImageView *homeBG = [[UIImageView alloc]initWithFrame:self.view.bounds];
-    if (iPhone5) {
-        [homeBG setImage:[UIImage imageNamed:@"bigBack5"]];
-    }else{
-        [homeBG setImage:[UIImage imageNamed:@"bigBack4"]];
+    
+    if (isFisrt) {
+        //背景图
+        myhomeBG = [[UIImageView alloc]initWithFrame:self.view.bounds];
+        if (iPhone5) {
+            [myhomeBG setImage:[UIImage imageNamed:@"bigBack5"]];
+        }else{
+            [myhomeBG setImage:[UIImage imageNamed:@"bigBack4"]];
+        }
+        myhomeBG.userInteractionEnabled =YES;
+        [self.view addSubview:myhomeBG];
     }
-    homeBG.userInteractionEnabled =YES;
-    [self.view addSubview:homeBG];
-
-    
-    self.title = @"我的号码";
-    
+        
     Number *number  = [[Number alloc] init];
     number.bankName = @"中国建设银行";
     number.bankNumber = @"B009";
@@ -68,35 +69,101 @@
     number2.time = @"2013/4/10  17:32";
     number2.status=0;
     
-    UIButton *selectBankButton = [UIButton buttonWithType:UIButtonTypeCustom];
-    [selectBankButton addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
-    [selectBankButton setImage:[UIImage imageNamed:@"mapBtn"] forState:UIControlStateNormal];
-    [selectBankButton setFrame:CGRectMake(self.view.bounds.size.width/2-111/2,self.view.bounds.size.height-100, 111, 63)];
-    [self.view addSubview:selectBankButton];
-    
+      
     //此处调用接口获取数据
     self.numberArr = [NSMutableArray arrayWithObjects:number,number1,number2,nil];
 
-    scrollView =[[UIScrollView alloc] initWithFrame:self.view.bounds];
+    scrollView =[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.bounds.size.height-57+NavigationHeight)];
     scrollView.bounces=YES;
-    scrollView.contentSize = CGSizeMake(self.view.bounds.size.width,9*2+340*self.numberArr.count+20*(self.numberArr.count-1)+90);
+    scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width, scrollView.frame.size.height);
     [scrollView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:scrollView];
     
+    selectBankButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [selectBankButton addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
+    [selectBankButton setImage:[UIImage imageNamed:@"mapBtn@2x"] forState:UIControlStateNormal];
+    [selectBankButton setFrame:CGRectMake(self.view.bounds.size.width/2-102/2,self.view.bounds.size.height-50, 102, 50)];
+    [self.view addSubview:selectBankButton];
+    
+    if (![AppDelegate isNetworkReachable]) {
+       
+        UILabel *netStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width-60)/2, 10,60, 15)];
+        [netStatusLabel setFont:[UIFont systemFontOfSize:13]];
+        [netStatusLabel setBackgroundColor:[UIColor clearColor]];
+        [netStatusLabel setText:@"网络异常"];
+        [netStatusLabel setTextColor:[UIColor colorWithRed:42/255.0f green:180/255.0f blue:173/255.0f alpha:1.0f]];
+        [scrollView addSubview:netStatusLabel];
+        
+        UIImageView *statusImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-202.5)/2,25 , 202.5, 20)];
+        [statusImageView setImage:[UIImage imageNamed:@"noNetwork"]];
+        [scrollView addSubview:statusImageView];
+    }
 }
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
+    //回到初始位置
+    [scrollView setContentOffset:CGPointMake(0, 0)];
     
+    [[AppDelegate getAppdelegate] setNavigateBarHidden:YES];
+
     for (UIView *view in  [scrollView subviews]) {
         if ([view isKindOfClass:[MyTicketView class]]) {
             [view removeFromSuperview];
+            
         }
-    }    
-    
-    for (int i=0; i<self.numberArr.count; i++) {
-        [self createMyTicket:CGRectMake(4, 9+i*(340+20), 310, 340) index:i];
     }
+    if (isFisrt) {
+        MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16, 45, 290, 342) index:111 type:myTicket];
+        myTicketView.delegate=self;
+        [scrollView addSubview:myTicketView];
+        
+        isFisrt=NO;
+
+    }else{
+        for (int i=0; i<self.numberArr.count; i++) {
+            [self createMyTicket:CGRectMake(16, 45+i*(342+20), 310, 342) index:i];
+        }
+        
+        scrollView.contentSize = CGSizeMake(self.view.bounds.size.width,45+(self.view.bounds.size.height-102)*self.numberArr.count);
+
+        [self changeBgImageView];
+    }
+}
+
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    
+    [[AppDelegate getAppdelegate] setNavigateBarHidden:NO];
+}
+
+//改变背景图
+- (void)changeBgImageView{
+    //背景图
+    UIImageView *downTicketImage =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"downTicket"]];
+    [downTicketImage setFrame:CGRectMake(0,self.view.frame.size.height+NavigationHeight-57, self.view.frame.size.width, 57)];
+    [self.view insertSubview:downTicketImage atIndex:100];
+    
+    [myhomeBG setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+NavigationHeight-downTicketImage.frame.size.height)];
+    if (iPhone5) {
+        [myhomeBG setImage:[UIImage imageNamed:@"homeTicket5@2x"]];
+    }else{
+        [myhomeBG setImage:[UIImage imageNamed:@"homeTicket4@2x"]];
+    }
+    
+    [self.view bringSubviewToFront:selectBankButton];
+
+}
+
+-(void)createMyTicket:(CGRect)rect index:(NSInteger)i{
+    
+    
+    MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:rect index:i type:myTicket];
+    myTicketView.number=[self.numberArr objectAtIndex:i];
+    myTicketView.delegate=self;
+    myTicketView.tag=i+10;
+    [scrollView addSubview:myTicketView];
+    
 }
 
 #pragma mark--
@@ -107,21 +174,13 @@
 //    isLocation = YES;
     
     SelectBankViewController  *selectBankVC = [[SelectBankViewController alloc]init];
-    selectBankVC.delegate=self;
+//    selectBankVC.delegate=self;
     [self.navigationController pushViewController:selectBankVC animated:YES];
     
 }
 
--(void)createMyTicket:(CGRect)rect index:(NSInteger)i{
 
-    
-    MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:rect index:i type:myTicket];
-    myTicketView.number=[self.numberArr objectAtIndex:i];
-    myTicketView.delegate=self;
-    myTicketView.tag=i+10;
-    [scrollView addSubview:myTicketView];
 
-}
 
 #pragma mark--
 #pragma mark--MyTicketRefreshDelegate

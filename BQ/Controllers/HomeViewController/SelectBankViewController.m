@@ -10,6 +10,7 @@
 #import "MapViewController.h"
 #import "Helper.h"
 #import "FatherBank.h"
+#import "AppDelegate.h"
 
 @interface SelectBankViewController ()
 
@@ -31,15 +32,29 @@
 {
     [super viewDidLoad];
     
+    [[AppDelegate getAppdelegate] setNavigateBarHidden:NO];
+    
+    //背景图
+    UIImageView *myhomeBG = [[UIImageView alloc]initWithFrame:self.view.bounds];
+    if (iPhone5) {
+        [myhomeBG setImage:[UIImage imageNamed:@"bigBack5"]];
+    }else{
+        [myhomeBG setImage:[UIImage imageNamed:@"bigBack4"]];
+    }
+    myhomeBG.userInteractionEnabled =YES;
+    [self.view addSubview:myhomeBG];
+
+    
     self.title =@"选择银行";
     
-    self.tableView.backgroundView=nil;
-    self.tableView.backgroundColor = [UIColor blackColor];
+    self.tableView.backgroundView=myhomeBG;
+    self.tableView.backgroundColor = [UIColor clearColor];
     
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
 	
     self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
 
+   
     //调用接口 获得banksArr 解析存放fatherBank类
 
     [FatherBank getAllBankInfo:nil WithBlock:^(NSArray *arr) {
@@ -114,12 +129,13 @@
     
     MapViewController *mapVC = [[MapViewController alloc] init];
     mapVC.homeVC=(HomeViewController *)self.delegate;
+    
 //    mapVC.hidesBottomBarWhenPushed=YES;
 //    if([_delegate respondsToSelector:@selector(hidenTabbar:)])
 //    {
 //        [_delegate hidenTabbar:YES];
 //    }
-//    [self.navigationController pushViewController:mapVC animated:YES];
+    [self.navigationController pushViewController:mapVC animated:YES];
     
 }
 

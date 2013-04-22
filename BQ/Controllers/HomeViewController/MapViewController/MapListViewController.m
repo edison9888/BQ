@@ -7,6 +7,7 @@
 //
 
 #import "MapListViewController.h"
+#import "HomeViewController.h"
 
 @interface MapListViewController ()
 
@@ -106,9 +107,9 @@
     Bank *bank;
     bank = [self.locationArrs objectAtIndex:indexPath.row];
     
-    _homeVC.bank = bank;
-
-    [self.navigationController popToRootViewControllerAnimated:YES];
+    HomeViewController *homeVC = [[HomeViewController alloc] init];
+    homeVC.bank = bank;
+    [self.navigationController pushViewController:homeVC animated:YES];
     
 }
 

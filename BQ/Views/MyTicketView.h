@@ -25,7 +25,7 @@ typedef enum {
 {
     @private
         UILabel *bankNameLabel;//银行名称
-        
+        UILabel *asideLabel;
         UILabel *numberLabel;//排队号
         UILabel *businessLabel;//业务
         UILabel *presentNumberLabel;//目前叫号
