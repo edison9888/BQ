@@ -90,7 +90,7 @@ static HomeViewController *instance = nil;
     //背景图
     [self bankbackGroundImageView];
     _bankNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(35,82, 239, 35)];
-    if (_bank.title.length==0) {
+    if (_bank.title!=nil) {
         _bankNameLabel.text=_bank.title;
     }else{
         _bankNameLabel.text=@"中国工商银行";
@@ -130,6 +130,10 @@ static HomeViewController *instance = nil;
     
     self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
 
+    personalVC = [[PersonalBusinessViewController alloc] init];
+    personalVC.delegate=self;
+    [self addChildViewController:personalVC];
+    personalVC.view.frame=self.view.frame;
 }
 
 //返回上一层
@@ -206,23 +210,15 @@ static HomeViewController *instance = nil;
 #pragma mark--业务按钮事件
 //个人业务
 - (void)personalBusinessClick:(id)sender{
-    personalVC = [[PersonalBusinessViewController alloc] init];
-    personalVC.delegate=self;
-    [self addChildViewController:personalVC];
-    personalVC.view.frame=self.view.frame;
+    personalVC.businessType=PersonalType;
     [self.view addSubview:personalVC.view];
 }
 
 //企业业务
 - (void)enterpriseBusinessClick:(id)sender{
 
-    enterpriseVC = [[EnterpriseBusinessViewController alloc] init];
-    enterpriseVC.homeVC=self;
-    enterpriseVC.delegate=self;
-    [self addChildViewController:enterpriseVC];
-    enterpriseVC.view.frame=self.view.frame;
-    [self.view addSubview:enterpriseVC.view];
-    
+    personalVC.businessType=EnterPriseType;
+    [self.view addSubview:personalVC.view];
 }
 
 
@@ -245,14 +241,14 @@ static HomeViewController *instance = nil;
 
 }
 
-- (void)OutOfEnterpriseBusinessTicketDelegate{
-    //企业业务
-    [enterpriseVC removeFromParentViewController];
-    [enterpriseVC.view removeFromSuperview];
-    
-    [self pushToGetTicketVC];
-
-}
+//- (void)OutOfEnterpriseBusinessTicketDelegate{
+//    //企业业务
+//    [enterpriseVC removeFromParentViewController];
+//    [enterpriseVC.view removeFromSuperview];
+//    
+//    [self pushToGetTicketVC];
+//
+//}
 
 //消失业务视图
 -(void)dismissPresentVC{
@@ -261,9 +257,9 @@ static HomeViewController *instance = nil;
     [personalVC removeFromParentViewController];
     [personalVC.view removeFromSuperview];
     
-    //企业业务
-    [enterpriseVC removeFromParentViewController];
-    [enterpriseVC.view removeFromSuperview];
+//    //企业业务
+//    [enterpriseVC removeFromParentViewController];
+//    [enterpriseVC.view removeFromSuperview];
 }
 
 - (void)didReceiveMemoryWarning

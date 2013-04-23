@@ -20,11 +20,12 @@
 
 
 
-@interface MapShowViewController : UIViewController<MKMapViewDelegate,UIGestureRecognizerDelegate>
+@interface MapShowViewController : UIViewController<MKMapViewDelegate,UIGestureRecognizerDelegate,CustomAnnotationViewDelegate>
 {
     @private
     NSMutableArray *annotionViews,*calloutAnnotationViews;
     CalloutMapAnnotation *_calloutAnnotation;
+     NSInteger index;
 
 }
 

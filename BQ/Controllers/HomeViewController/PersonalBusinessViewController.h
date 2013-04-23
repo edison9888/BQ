@@ -16,6 +16,13 @@
 -(void)dismissPresentVC;
 @end
 
+typedef enum {
+    PersonalType,
+    EnterPriseType,
+} BusinessType;
+
+
+
 @interface PersonalBusinessViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
     UITableView *_tableView;
@@ -26,4 +33,5 @@
 @property(nonatomic,strong) NSArray *businessArr;
 @property(nonatomic,weak) id <PersonalBusinessViewControllerDelegate> delegate;
 @property(nonatomic,weak) HomeViewController *homeVC;
+@property(nonatomic,assign) BusinessType businessType;
 @end

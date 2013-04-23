@@ -7,6 +7,7 @@
 //
 
 #import "PersonalBusinessViewController.h"
+#define CellHeight 56
 
 @interface PersonalBusinessViewController ()
 
@@ -30,13 +31,11 @@
 	// Do any additional setup after loading the view.
     isSelect=YES;
     
-
-    [self.view setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.25]];
     
     UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"alertWindow"]];
     bgImageView.userInteractionEnabled=YES;
     [bgImageView setBackgroundColor:[UIColor clearColor]];
-    [bgImageView setFrame:CGRectMake(50, 160,  224.5, 172.5)];
+    [bgImageView setFrame:CGRectMake(50, 160,  220, 170)];
     [self.view addSubview:bgImageView];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, bgImageView.frame.size.width-2, bgImageView.frame.size.height) style:UITableViewStylePlain];
@@ -72,7 +71,7 @@
 #pragma mark--
 #pragma mark--TableViewDelegate---TableViewDatasource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 56;
+    return CellHeight;
     
 }
 
@@ -88,9 +87,8 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     //    }
     
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
-    UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(0.25, 0, 224,56)];
+    UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 224,CellHeight)];
     [bankLabel setText:[self.businessArr objectAtIndex:indexPath.row]];
     [bankLabel setFont:[UIFont systemFontOfSize:20]];
     [bankLabel setBackgroundColor:[UIColor clearColor]];
@@ -98,16 +96,16 @@
     [bankLabel setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:bankLabel];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(52,20, 320, 56)];
-    [imageView setImage:[UIImage imageNamed:@"buttonSelected"]];
-    imageView.backgroundColor = [UIColor yellowColor];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, cell.frame.size.width, CellHeight)];
+   [imageView setImage:[UIImage imageNamed:@"buttonSelected"]];
     cell.selectedBackgroundView = imageView;
     
-
-//    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 116/2-4, cell.frame.size.width, 4)];
-//    [lineImageView setImage:[UIImage imageNamed:@"fenGeXxian"]];
-//    [cell addSubview:lineImageView];
-    
+    if (indexPath.row!=self.businessArr.count-1) {
+        UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,CellHeight-4, cell.frame.size.width, 4)];
+        [lineImageView setImage:[UIImage imageNamed:@"fenGeXxian"]];
+        [cell addSubview:lineImageView];
+    }
+       
 //    if (isSelect) {
 //        isSelect=NO;
 //        NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
@@ -120,10 +118,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-        tickitInfo = [self.businessArr objectAtIndex:indexPath.row];
-        NSLog(@"出票--%@",[self.businessArr objectAtIndex:indexPath.row]);
-        
-        [self getTicketClick:nil];
+    tickitInfo = [self.businessArr objectAtIndex:indexPath.row];
+    NSLog(@"出票--%@",[self.businessArr objectAtIndex:indexPath.row]);
+    
+    [self getTicketClick:nil];
 
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import "EnterpriseBusinessViewController.h"
+#define CellHeight 56
 
 @interface EnterpriseBusinessViewController ()
 
@@ -28,13 +29,13 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     [self.view setBackgroundColor:[UIColor clearColor]];
-
-    [self.view setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.25]];
+    
+    isSelect=YES;
     
     UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"alertWindow"]];
     bgImageView.userInteractionEnabled=YES;
     [bgImageView setBackgroundColor:[UIColor clearColor]];
-    [bgImageView setFrame:CGRectMake(50, 160,   224.5, 172.5)];
+    [bgImageView setFrame:CGRectMake(50, 160,220, 170)];
     [self.view addSubview:bgImageView];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, bgImageView.frame.size.width-2, bgImageView.frame.size.height) style:UITableViewStylePlain];
@@ -66,7 +67,7 @@
 #pragma mark--
 #pragma mark--TableViewDelegate---TableViewDatasource
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 56;
+    return CellHeight;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -80,10 +81,8 @@
     //    if (!cell) {
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     //    }
-    
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    
-    UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 224,56)];
+        
+    UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 220,CellHeight)];
     [bankLabel setText:[self.businessArr objectAtIndex:indexPath.row]];
     [bankLabel setFont:[UIFont systemFontOfSize:20]];
     [bankLabel setBackgroundColor:[UIColor clearColor]];
@@ -91,22 +90,22 @@
     [bankLabel setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:bankLabel];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(52,20, 113, 9)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, cell.frame.size.width, 9)];
     [imageView setImage:[UIImage imageNamed:@"buttonSelected"]];
-    [imageView setBackgroundColor:[UIColor yellowColor]];
-//    cell.backgroundView = imageView;
     cell.selectedBackgroundView=imageView;
 
     
-//    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 116/2-4, cell.frame.size.width, 4)];
-//    [lineImageView setImage:[UIImage imageNamed:@"fenGeXxian"]];
-//    [cell addSubview:lineImageView];
+    if (indexPath.row!=self.businessArr.count-1) {
+        UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,CellHeight-4, cell.frame.size.width, 4)];
+        [lineImageView setImage:[UIImage imageNamed:@"fenGeXxian"]];
+        [cell addSubview:lineImageView];
+    }
     
-    //    if (isSelect) {
-    //        isSelect=NO;
-//    NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-//    [self tableView:_tableView didSelectRowAtIndexPath:selectedIndexPath];
-    //    }
+//    if (isSelect) {
+//        isSelect=NO;
+//        NSIndexPath *selectedIndexPath = [NSIndexPath indexPathForRow:0 inSection:0];
+//        [self tableView:_tableView didSelectRowAtIndexPath:selectedIndexPath];
+//    }
     
     return cell;
 }

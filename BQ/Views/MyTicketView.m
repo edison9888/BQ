@@ -166,7 +166,7 @@
         remindLabel.text = [NSString stringWithFormat:@"%d",number.peopleNumber];
         [remindLabel sizeToFit];
         [remindLabel setTextColor:[UIColor colorWithRed:233/255.0f green:100/255.0f blue:163/255.0f alpha:1.0f]];
-        appendLabel.frame = CGRectMake(remindLabel.frame.origin.x+remindLabel.frame.size.width+5,115,appendLabel.frame.size.width, appendLabel.frame.origin.y);
+        appendLabel.frame = CGRectMake(remindLabel.frame.origin.x+remindLabel.frame.size.width+5,114,appendLabel.frame.size.width, appendLabel.frame.origin.y);
         
     }
     timeLabel.text = number.time;

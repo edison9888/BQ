@@ -12,8 +12,8 @@
 
 @protocol  EnterpriseBusinessViewControllerDelegate<NSObject>
 
-- (void)OutOfEnterpriseBusinessTicketDelegate;
--(void)dismissPresentVC;
+//- (void)OutOfEnterpriseBusinessTicketDelegate;
+//-(void)dismissPresentVC;
 
 @end
 

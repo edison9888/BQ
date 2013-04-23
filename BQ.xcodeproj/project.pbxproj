@@ -45,7 +45,6 @@
 		C8177A83171FED09003C2BB1 /* tableViewCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8177A82171FED09003C2BB1 /* tableViewCell@2x.png */; };
 		C8177A85171FF0B1003C2BB1 /* banktableViewCell@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8177A84171FF0B1003C2BB1 /* banktableViewCell@2x.png */; };
 		C8177A87171FF687003C2BB1 /* buttonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8177A86171FF687003C2BB1 /* buttonSelected@2x.png */; };
-		C8177A89171FF6F7003C2BB1 /* alertWindow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8177A88171FF6F7003C2BB1 /* alertWindow@2x.png */; };
 		C82CD91A17165C690084E732 /* MyTicketView.m in Sources */ = {isa = PBXBuildFile; fileRef = C82CD91917165C690084E732 /* MyTicketView.m */; };
 		C82CD92017165D810084E732 /* stamp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C82CD91D17165D810084E732 /* stamp@2x.png */; };
 		C82CD9241716825A0084E732 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C82CD923171662580084E732 /* MainViewController.m */; };
@@ -85,7 +84,10 @@
 		C83CD63B1724E83700835F70 /* mapBtn@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD63A1724E83700835F70 /* mapBtn@2x.png */; };
 		C83CD641172522A300835F70 /* light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD640172522A300835F70 /* light@2x.png */; };
 		C83CD643172522AF00835F70 /* noNetwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD642172522AF00835F70 /* noNetwork@2x.png */; };
-		C83CD64517252E1700835F70 /* buttonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD64417252E1700835F70 /* buttonSelected@2x.png */; };
+		C84FF44D17262D05000D5BE9 /* fenGeXxian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C84FF44C17262D05000D5BE9 /* fenGeXxian@2x.png */; };
+		C84FF45117262D63000D5BE9 /* notePin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C84FF45017262D63000D5BE9 /* notePin@2x.png */; };
+		C84FF45317262DB9000D5BE9 /* alertWindow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C84FF45217262DB9000D5BE9 /* alertWindow@2x.png */; };
+		C84FF45517263125000D5BE9 /* buttonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C84FF45417263125000D5BE9 /* buttonSelected@2x.png */; };
 		C85CD6C31712AD4C007512C3 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CD6C21712AD4C007512C3 /* LocationManager.m */; };
 		C85CD6C61712B5DC007512C3 /* MapListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CD6C51712B5DC007512C3 /* MapListViewController.m */; };
 		C85CD6C81712C4B1007512C3 /* mapButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CD6C71712C4B1007512C3 /* mapButton@2x.png */; };
@@ -101,7 +103,6 @@
 		C86068E5171C056C00534197 /* FatherBank.m in Sources */ = {isa = PBXBuildFile; fileRef = C86068E4171C056C00534197 /* FatherBank.m */; };
 		C8660FF5171E94C800F247B8 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8660FF4171E94C800F247B8 /* CustomAnnotationView.m */; };
 		C8660FF8171EA49300F247B8 /* CalloutMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C8660FF7171EA3F300F247B8 /* CalloutMapAnnotation.m */; };
-		C86E9BF21709890E000C60F2 /* fenGeXxian@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C86E9BF11709890E000C60F2 /* fenGeXxian@2x.png */; };
 		C86E9BF5170993C3000C60F2 /* PersonalBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C86E9BF4170993C2000C60F2 /* PersonalBusinessViewController.m */; };
 		C86E9BF8170993E6000C60F2 /* EnterpriseBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C86E9BF7170993E5000C60F2 /* EnterpriseBusinessViewController.m */; };
 		C86E9BFB170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C86E9BFA170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m */; };
@@ -192,7 +193,6 @@
 		C8177A82171FED09003C2BB1 /* tableViewCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tableViewCell@2x.png"; sourceTree = "<group>"; };
 		C8177A84171FF0B1003C2BB1 /* banktableViewCell@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "banktableViewCell@2x.png"; sourceTree = "<group>"; };
 		C8177A86171FF687003C2BB1 /* buttonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonSelected@2x.png"; sourceTree = "<group>"; };
-		C8177A88171FF6F7003C2BB1 /* alertWindow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertWindow@2x.png"; sourceTree = "<group>"; };
 		C82CD91817165C690084E732 /* MyTicketView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTicketView.h; sourceTree = "<group>"; };
 		C82CD91917165C690084E732 /* MyTicketView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTicketView.m; sourceTree = "<group>"; };
 		C82CD91D17165D810084E732 /* stamp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stamp@2x.png"; sourceTree = "<group>"; };
@@ -249,7 +249,10 @@
 		C83CD63A1724E83700835F70 /* mapBtn@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "mapBtn@2x.png"; sourceTree = "<group>"; };
 		C83CD640172522A300835F70 /* light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light@2x.png"; sourceTree = "<group>"; };
 		C83CD642172522AF00835F70 /* noNetwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noNetwork@2x.png"; sourceTree = "<group>"; };
-		C83CD64417252E1700835F70 /* buttonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonSelected@2x.png"; sourceTree = "<group>"; };
+		C84FF44C17262D05000D5BE9 /* fenGeXxian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fenGeXxian@2x.png"; sourceTree = "<group>"; };
+		C84FF45017262D63000D5BE9 /* notePin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notePin@2x.png"; sourceTree = "<group>"; };
+		C84FF45217262DB9000D5BE9 /* alertWindow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "alertWindow@2x.png"; sourceTree = "<group>"; };
+		C84FF45417263125000D5BE9 /* buttonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonSelected@2x.png"; sourceTree = "<group>"; };
 		C85CD6C11712AD4C007512C3 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		C85CD6C21712AD4C007512C3 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		C85CD6C41712B5DC007512C3 /* MapListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapListViewController.h; sourceTree = "<group>"; };
@@ -275,7 +278,6 @@
 		C8660FF4171E94C800F247B8 /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
 		C8660FF6171EA3F200F247B8 /* CalloutMapAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalloutMapAnnotation.h; sourceTree = "<group>"; };
 		C8660FF7171EA3F300F247B8 /* CalloutMapAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalloutMapAnnotation.m; sourceTree = "<group>"; };
-		C86E9BF11709890E000C60F2 /* fenGeXxian@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "fenGeXxian@2x.png"; sourceTree = "<group>"; };
 		C86E9BF3170993C2000C60F2 /* PersonalBusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalBusinessViewController.h; sourceTree = "<group>"; };
 		C86E9BF4170993C2000C60F2 /* PersonalBusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalBusinessViewController.m; sourceTree = "<group>"; };
 		C86E9BF6170993E5000C60F2 /* EnterpriseBusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseBusinessViewController.h; sourceTree = "<group>"; };
@@ -404,7 +406,7 @@
 				C883E58F1713C9010029B6B5 /* navigationBarQ@2x.png */,
 				C883E5901713C9010029B6B5 /* tabBar@2x.png */,
 				04A6AD1C17053A9F009948B3 /* 07@2x.png */,
-				C86E9BF11709890E000C60F2 /* fenGeXxian@2x.png */,
+				C84FF44C17262D05000D5BE9 /* fenGeXxian@2x.png */,
 				C82CD9A51716B6740084E732 /* backGround@2x.png */,
 				C82EC4BD1717E2D400579E5F /* backGroundIp5@2x.png */,
 				C82CD9A71716B6BD0084E732 /* busButton@2x.png */,
@@ -576,7 +578,7 @@
 		C80CF833171536D200889D03 /* GetTicketImage */ = {
 			isa = PBXGroup;
 			children = (
-				C83CD64417252E1700835F70 /* buttonSelected@2x.png */,
+				C84FF45417263125000D5BE9 /* buttonSelected@2x.png */,
 				C8177A7E171FD478003C2BB1 /* ticket@2x.png */,
 				C80CF834171536F700889D03 /* line@2x.png */,
 				C82EC4C71717E98500579E5F /* morebutton@2x.png */,
@@ -590,6 +592,7 @@
 		C8163540170C103F0097672D /* Map */ = {
 			isa = PBXGroup;
 			children = (
+				C84FF45017262D63000D5BE9 /* notePin@2x.png */,
 				C85CD6C71712C4B1007512C3 /* mapButton@2x.png */,
 				C883E5891713C4670029B6B5 /* mapListButton@2x.png */,
 				C883E5931713EBC20029B6B5 /* districtAlert@2x.png */,
@@ -749,7 +752,7 @@
 			isa = PBXGroup;
 			children = (
 				C8177A86171FF687003C2BB1 /* buttonSelected@2x.png */,
-				C8177A88171FF6F7003C2BB1 /* alertWindow@2x.png */,
+				C84FF45217262DB9000D5BE9 /* alertWindow@2x.png */,
 			);
 			name = SelectBusiness;
 			path = Homes/SelectBusiness;
@@ -834,7 +837,6 @@
 				0420576017054252006683E1 /* homeIcon@2x.png in Resources */,
 				042057621705425D006683E1 /* setIcon@2x.png in Resources */,
 				042057641705426B006683E1 /* personIcon@2x.png in Resources */,
-				C86E9BF21709890E000C60F2 /* fenGeXxian@2x.png in Resources */,
 				C8385495171275E5007B969A /* pickerToolBar@2x.png in Resources */,
 				C8385497171275F1007B969A /* okButton@2x.png in Resources */,
 				C85CD6C81712C4B1007512C3 /* mapButton@2x.png in Resources */,
@@ -871,7 +873,6 @@
 				C8177A83171FED09003C2BB1 /* tableViewCell@2x.png in Resources */,
 				C8177A85171FF0B1003C2BB1 /* banktableViewCell@2x.png in Resources */,
 				C8177A87171FF687003C2BB1 /* buttonSelected@2x.png in Resources */,
-				C8177A89171FF6F7003C2BB1 /* alertWindow@2x.png in Resources */,
 				C8D64A201720EC150012FA2E /* flashTicket@2x.png in Resources */,
 				C8D64A221720EC2E0012FA2E /* flashTicket1@2x.png in Resources */,
 				C8D64A241720EC510012FA2E /* flashTicketIphone5@2x.png in Resources */,
@@ -885,7 +886,10 @@
 				C83CD63B1724E83700835F70 /* mapBtn@2x.png in Resources */,
 				C83CD641172522A300835F70 /* light@2x.png in Resources */,
 				C83CD643172522AF00835F70 /* noNetwork@2x.png in Resources */,
-				C83CD64517252E1700835F70 /* buttonSelected@2x.png in Resources */,
+				C84FF44D17262D05000D5BE9 /* fenGeXxian@2x.png in Resources */,
+				C84FF45117262D63000D5BE9 /* notePin@2x.png in Resources */,
+				C84FF45317262DB9000D5BE9 /* alertWindow@2x.png in Resources */,
+				C84FF45517263125000D5BE9 /* buttonSelected@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PersonalBusinessViewController.h"
-#import "EnterpriseBusinessViewController.h"
+//#import "EnterpriseBusinessViewController.h"
 
 #import "MainViewController.h"
 #import "SelectBankViewController.h"
@@ -16,17 +16,11 @@
 
 
 @class Bank;
-typedef enum {
-    personal,
-    enterprise
-} BusinessType;
-
-
-@interface HomeViewController : UIViewController<PersonalBusinessViewControllerDelegate,EnterpriseBusinessViewControllerDelegate,MyTicketViewDelegate>
+@interface HomeViewController : UIViewController<PersonalBusinessViewControllerDelegate,MyTicketViewDelegate>
 {
     BOOL isLocation;
     PersonalBusinessViewController *personalVC;
-    EnterpriseBusinessViewController *enterpriseVC;
+//    EnterpriseBusinessViewController *enterpriseVC;
     UILabel *_bankNameLabel;
 }
 

@@ -8,43 +8,59 @@
 
 #import "CustomAnnotationView.h"
 #import <QuartzCore/QuartzCore.h>
+
 #define  Arror_height 15
 
 @implementation CustomAnnotationView
 
-- (id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier
+- (id)initWithAnnotation:(id<MKAnnotation>)annotation reuseIdentifier:(NSString *)reuseIdentifier clickVC:(MapShowViewController*)mapShowVC
 {
     self = [super initWithAnnotation:annotation reuseIdentifier:reuseIdentifier];
     if (self) {
+        
         _myAnnotaion = annotation;
         self.backgroundColor = [UIColor blueColor];
         
-        self.centerOffset = CGPointMake(-25, -45);
-        self.frame = CGRectMake(0, 0, 100, 50);
+        self.centerOffset = CGPointMake(-50, -45);
+        self.frame = CGRectMake(0, 0, 165, 50);
         self.canShowCallout = NO;
+        
+        self.userInteractionEnabled=YES;
 
-        UIView *contentViewBg = [[UIView alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        UIButton *contentViewBg = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, self.frame.size.width, self.frame.size.height)];
+        contentViewBg.userInteractionEnabled=YES;
         contentViewBg.backgroundColor   = [UIColor clearColor];
+        [contentViewBg setBackgroundImage:[UIImage imageNamed:@"notePin"]forState:UIControlStateNormal];
+        [contentViewBg addTarget:self action:@selector(turnToGetTicket) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:contentViewBg];
         self.contentView = contentViewBg;
 
-        UIButton *annotationViewBg = [UIButton buttonWithType:UIButtonTypeCustom];
-        [annotationViewBg setBackgroundColor:[UIColor yellowColor]];
-        annotationViewBg.frame = CGRectMake(0, 0, 20, 20);
-        [annotationViewBg addTarget:self action:@selector(selectAnnotaionBtn:) forControlEvents:UIControlEventTouchUpInside];
-      //  [self.contentView addSubview:annotationViewBg];
+        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(5, 5, 136, 17)];
+        [titleLabel setText:_myAnnotaion.title];
+        titleLabel.font = [UIFont systemFontOfSize:16];
+        titleLabel.textColor=[UIColor whiteColor];
+        [titleLabel setBackgroundColor:[UIColor clearColor]];
+        [self.contentView addSubview:titleLabel];
         
-        UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, annotationViewBg.frame.size.width, annotationViewBg.frame.size.height/2)];
-        titleLabel.text = _myAnnotaion.title;
-      //  [annotationViewBg addSubview:titleLabel];
+        UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(titleLabel.frame.origin.x, titleLabel.frame.size.height+titleLabel.frame.origin.y, titleLabel.frame.size.width, 14)];
+        [subtitleLabel setText:_myAnnotaion.subtitle];
+        subtitleLabel.font = [UIFont systemFontOfSize:13];
+        [subtitleLabel setBackgroundColor:[UIColor clearColor]];
+        subtitleLabel.textColor=[UIColor whiteColor];
+        [self.contentView addSubview:subtitleLabel];
         
-        UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, annotationViewBg.frame.size.height/2, annotationViewBg.frame.size.width, annotationViewBg.frame.size.height/2)];
-        subtitleLabel.text = _myAnnotaion.subtitle;
-      //  [annotationViewBg addSubview:subtitleLabel];
-        
-           }
+    }
     return self;
 }
+
+- (void)turnToGetTicket{
+    if ([self.delegate respondsToSelector:@selector(didSelectAnnotationViewDelegate:)]) {
+        [self.delegate didSelectAnnotationViewDelegate:_myAnnotaion];
+    }
+    
+}
+
+
 
 //- (void)selectAnnotaionBtn:(id)sender{
 //

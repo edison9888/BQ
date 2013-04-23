@@ -84,10 +84,10 @@
             
             if (originY<=145-200) {
                 
-                [self performSelector:@selector(callBack:) withObject:ticketView afterDelay:0.05f];
+                [self performSelector:@selector(callBack:) withObject:ticketView afterDelay:0.04f];
                 
             }else{
-                [UIView animateWithDuration:0.3f animations:^{
+                [UIView animateWithDuration:0.2f animations:^{
                     [ticketView setFrame:CGRectMake(ticketView.frame.origin.x, 57, ticketView.frame.size.width,ticketView.frame.size.height)];
                     return ;
                 }];

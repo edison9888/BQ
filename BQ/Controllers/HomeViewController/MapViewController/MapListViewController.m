@@ -90,7 +90,7 @@
     //距离需要动态获取--协调
     UILabel *distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(222, 22, 50,lineImageView.frame.size.height)];
     [distanceLabel setText:@"500m"];
-//    [[distanceLabel setText:[bank title]]];距离bank的属性
+//  [[distanceLabel setText:[bank title]]];距离bank的属性
     [distanceLabel setFont:[UIFont systemFontOfSize:11]];
     [distanceLabel setBackgroundColor:[UIColor clearColor]];
     [distanceLabel setTextColor:[UIColor colorWithRed:65/255 green:75/255 blue:85/255 alpha:1.0f]];

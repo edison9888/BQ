@@ -80,8 +80,15 @@
 //显示annotationViews
 - (void)showAnnotaionViews{
     
+    for (UIView * view in [_map subviews]) {
+        if ([view isKindOfClass:[MKAnnotationView class]] ){
+            [view removeFromSuperview];
+        }
+    }
+    
     if (annotionViews.count!=0) {
         [_map removeAnnotations:annotionViews];
+        [annotionViews removeAllObjects];
     }
     
     for (int i=0; i<self.locationArrs.count; i++) {
@@ -94,9 +101,15 @@
 
 //显示callout==annotationViews
 - (void)showCalloutAnnotaionViews{
+//    for (UIView * view in [_map subviews]) {
+//        if ([view isKindOfClass:[CustomAnnotationView class]]){
+//            [view removeFromSuperview];
+//        }
+//    }
     
     if (calloutAnnotationViews.count!=0) {
         [_map removeAnnotations:calloutAnnotationViews];
+        [calloutAnnotationViews removeAllObjects];
     }
     
     for (int i=0; i<self.locationArrs.count; i++) {
@@ -162,18 +175,10 @@
         
         CustomAnnotationView *annotationView = (CustomAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:@"CalloutView"];
             if (!annotationView) {
-                annotationView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:@"CalloutView"];
-            
-                UILabel *titleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, annotationView.bounds.size.width, 20)];
-                [titleLabel setText:calloutMapAnnotation.title];
-                titleLabel.font = [UIFont systemFontOfSize:15];
-                [annotationView.contentView addSubview:titleLabel];
-                
-                UILabel *subtitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, titleLabel.frame.size.height, titleLabel.frame.size.width, titleLabel.frame.size.height)];
-                [subtitleLabel setText:calloutMapAnnotation.subtitle];
-                subtitleLabel.font = [UIFont systemFontOfSize:13];
-                [annotationView.contentView addSubview:subtitleLabel];                
+                annotationView = [[CustomAnnotationView alloc] initWithAnnotation:calloutMapAnnotation reuseIdentifier:@"CalloutView" clickVC:self];
+                annotationView.delegate=self;
             }
+        
             return annotationView;
 
         }else if ([annotation isKindOfClass:[MyAnnotation class]]) {
@@ -192,27 +197,50 @@
     return nil;
 }
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-	if ([view.annotation isKindOfClass:[MyAnnotation class]]) {
+-(void)didSelectAnnotationViewDelegate:(CalloutMapAnnotation *)callAnn{
 
-	}
-    else{
+    NSLog(@"calloutAnn--- %@",callAnn.title);
         
-        [_map deselectAnnotation:view.annotation animated:NO];
-        NSLog(@"calloutannotion");
-    }
+    HomeViewController *homeVC = [[HomeViewController alloc] init];
+    homeVC.bank =callAnn.bank;
+    [self.navigationController pushViewController:homeVC animated:YES];
+
+    
 }
 
-- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-    
-    CalloutMapAnnotation *ann = view.annotation;
-    
-    if (view.annotation != _map.userLocation ) {
-        HomeViewController *homeVC = [[HomeViewController alloc] init];
-        homeVC.bank = ann.bank;
-        [self.navigationController popToRootViewControllerAnimated:YES];
-    }
-}
+
+
+//- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
+//    
+//	if ([view.annotation isKindOfClass:[MyAnnotation class]]) {
+//
+//	}
+//    else{
+//        
+////        [_map deselectAnnotation:view.annotation animated:NO];
+//        NSLog(@"calloutannotion");
+//        CalloutMapAnnotation *ann = view.annotation;
+//        
+//        if (view.annotation != _map.userLocation ) {
+//            
+//            HomeViewController *homeVC = [[HomeViewController alloc] init];
+//            homeVC.bank =ann.bank;
+//            [self.navigationController pushViewController:homeVC animated:YES];    }
+//
+//        }
+//}
+
+//- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
+
+//    CalloutMapAnnotation *ann = view.annotation;
+//    
+//    if (view.annotation != _map.userLocation ) {
+//        
+//        HomeViewController *homeVC = [[HomeViewController alloc] init];
+//        homeVC.bank =ann.bank;
+//        [self.navigationController pushViewController:homeVC animated:YES];
+//    }
+//}
 
 
 //- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
