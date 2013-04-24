@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Number.h"
 
 //票状态
 typedef enum {
@@ -19,12 +20,23 @@ typedef enum {
 @interface Number : NSObject
 
 
-@property(nonatomic,assign) NSInteger numberId;//报号id
-@property(nonatomic,strong) NSString *bankName;//银行名称
-@property(nonatomic,strong) NSString *bankNumber;//排队号码
-@property(nonatomic,strong) NSString *business;//业务类型
+@property(nonatomic,strong) NSString *beforeCount;//等待人数
+@property(nonatomic,strong) NSString *myNum;//我的号码
 @property(nonatomic,strong) NSString *presentNumber;//目前叫号
-@property(nonatomic,assign) NSInteger peopleNumber;//人数
-@property(nonatomic,strong) NSString *time;//时间
-@property(nonatomic,assign) NSInteger status;//票的状态 1，2，3，4 
+@property(nonatomic,strong) NSString *numDate;//时间
+@property(nonatomic,assign) NSInteger numStatus;//票的状态 2：未办理  3：正在办理 4：已办理
+@property(nonatomic,strong) NSString *numTag;//编号标识 
+
+@property(nonatomic,assign) NSString *bankId;//排号id
+@property(nonatomic,strong) NSString *bankName;//银行名称
+
+@property(nonatomic,strong) NSString *serviceId;//业务id
+@property(nonatomic,strong) NSString *serviceName;//业务类型
+@property(nonatomic,strong) NSString *serParentId;//父类业务id
+
+//领取票号==生成我的号码
++ (void)getBankNumberInfo:(NSDictionary *)parameters WithBlock:(void (^)(Number*num))block;
+
+//刷新我的排号
++ (void)refreshBankNumbers:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block;
 @end

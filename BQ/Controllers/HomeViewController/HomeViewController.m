@@ -14,6 +14,7 @@
 #import "GetTicketViewController.h"
 
 #import "Helper.h"
+#import "Business.h"
 
 @interface HomeViewController ()
 
@@ -83,15 +84,13 @@ static HomeViewController *instance = nil;
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
     self.title = @"选择业务";
-//    isLocation=NO;    
     
     //背景图
     [self bankbackGroundImageView];
     _bankNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(35,82, 239, 35)];
-    if (_bank.title!=nil) {
-        _bankNameLabel.text=_bank.title;
+    if (_bank.bankName!=nil) {
+        _bankNameLabel.text=_bank.bankName;
     }else{
         _bankNameLabel.text=@"中国工商银行";
     }
@@ -99,6 +98,7 @@ static HomeViewController *instance = nil;
     _bankNameLabel.font = [UIFont systemFontOfSize:28];
     _bankNameLabel.textColor = [UIColor colorWithRed:232/255.f green:232/255.f blue:232/255.f alpha:1.0];
     [_bankNameLabel setTextAlignment:NSTextAlignmentCenter];
+    [_bankNameLabel sizeThatFits:CGSizeMake(239, 35)];
     [self.view addSubview:_bankNameLabel];
     
     UIImageView *bankButtonBg = [[UIImageView alloc]initWithFrame:CGRectMake(_bankNameLabel.frame.origin.x,_bankNameLabel.frame.origin.y+_bankNameLabel.frame.size.height+5, 239, 7.5)];
@@ -130,11 +130,42 @@ static HomeViewController *instance = nil;
     
     self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
 
-    personalVC = [[PersonalBusinessViewController alloc] init];
-    personalVC.delegate=self;
-    [self addChildViewController:personalVC];
-    personalVC.view.frame=self.view.frame;
+
+    
+    //调用接口
+    [self getBusinessFromNet:personalBusinessBtn :enterpriseBusinessBtn];
 }
+
+//初始化子业务控制器
+- (void)initPersonalVC{
+    if (personalVC==nil) {
+        personalVC = [[PersonalBusinessViewController alloc] init];
+        personalVC.delegate=self;
+        [self addChildViewController:personalVC];
+
+    }
+}
+
+//调用接口
+- (void)getBusinessFromNet:(UIButton *)personalBtn :(UIButton *)enterpriseBtn{
+    
+    [Business getfatherService:nil WithBlock:^(NSArray *arr) {
+        
+        _fatherBusinessArr=arr;
+        
+        Business *business;
+        for (int i=0; i<_fatherBusinessArr.count; i++) {
+            business=[_fatherBusinessArr objectAtIndex:i];
+            if (i==0) 
+                [personalBtn setTitle:business.serviceName forState:UIControlStateNormal];
+            else
+                [enterpriseBtn setTitle:business.serviceName forState:UIControlStateNormal];
+        }
+        
+    }];
+}
+
+
 
 //返回上一层
 - (void)backToLastVC{
@@ -148,23 +179,21 @@ static HomeViewController *instance = nil;
     //number.numberId 票据id  网络请求
     
     //模拟数据
-    Number *_number  = [[Number alloc] init];
-    _number.bankName = @"光大银行";
-    _number.bankNumber = @"H009";
-    _number.business = @"贷款";
-    _number.presentNumber = @"B007";
-    _number.peopleNumber = 18;
-    _number.time = @"2013/4/10  17:32";
-    _number.status=1;
-    
-    MyTicketView *myTicketView = (MyTicketView *)[self.view viewWithTag: index+10];
-    myTicketView.number = _number;
+//    Number *_number  = [[Number alloc] init];
+//    _number.bankName = @"光大银行";
+//    _number.bankNumber = @"H009";
+//    _number.business = @"贷款";
+//    _number.presentNumber = @"B007";
+//    _number.peopleNumber = 18;
+//    _number.time = @"2013/4/10  17:32";
+//    _number.status=1;
+//    
+//    MyTicketView *myTicketView = (MyTicketView *)[self.view viewWithTag: index+10];
+//    myTicketView.number = _number;
     
 }
 
 -(void)bankbackGroundImageView{
-//    UIImage *image = [[UIImage imageNamed:@"backGround"] resizableImageWithCapInsets:UIEdgeInsetsMake(360, 0, self.view.bounds.size.height, 0)];
-    
     UIImage *image;
     if (iPhone5)
         image= [UIImage imageNamed:@"back4"];
@@ -185,17 +214,17 @@ static HomeViewController *instance = nil;
 //}
 
 //改变按钮状态--个人业务/企业业务
--(void)changeBtnState{
-
-    UIButton *personalBusinessBtn,*enterpriseBusinessBtn;
-    if (isLocation) {
-        personalBusinessBtn =(UIButton*)[self.view viewWithTag:11];
-        enterpriseBusinessBtn =(UIButton*)[self.view viewWithTag:12];
-        personalBusinessBtn.enabled=YES;
-        enterpriseBusinessBtn.enabled=YES;
-        
-    }
-}
+//-(void)changeBtnState{
+//
+//    UIButton *personalBusinessBtn,*enterpriseBusinessBtn;
+//    if (isLocation) {
+//        personalBusinessBtn =(UIButton*)[self.view viewWithTag:11];
+//        enterpriseBusinessBtn =(UIButton*)[self.view viewWithTag:12];
+//        personalBusinessBtn.enabled=YES;
+//        enterpriseBusinessBtn.enabled=YES;
+//        
+//    }
+//}
 
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
@@ -210,34 +239,44 @@ static HomeViewController *instance = nil;
 #pragma mark--业务按钮事件
 //个人业务
 - (void)personalBusinessClick:(id)sender{
+    //初始化子业务控制器
+    [self initPersonalVC];
+    
+    personalVC.busniess=[_fatherBusinessArr objectAtIndex:0];
     personalVC.businessType=PersonalType;
     [self.view addSubview:personalVC.view];
+//    personalVC.view.frame=self.view.frame;
 }
 
 //企业业务
 - (void)enterpriseBusinessClick:(id)sender{
-
+    [self initPersonalVC];
+    
+    personalVC.busniess=[_fatherBusinessArr objectAtIndex:1];
     personalVC.businessType=EnterPriseType;
     [self.view addSubview:personalVC.view];
+    personalVC.view.frame=self.view.frame;
 }
 
 
 //调转领票界面
-- (void)pushToGetTicketVC{
+- (void)pushToGetTicketVC:(Business *)bus{
     
     GetTicketViewController *ticketVC = [[GetTicketViewController alloc] init];
+    ticketVC.busniess=bus;
+    ticketVC.bank=_bank;
     [self.navigationController pushViewController: ticketVC animated:YES];
     
 }
 
 #pragma mark--
 #pragma mark--出票隐藏
-- (void)OutOfTheTicketDelegate{
+- (void)OutOfTheTicketDelegate:(Business *)bus{
     //个人业务消失
     [personalVC removeFromParentViewController];
     [personalVC.view removeFromSuperview];
     
-    [self pushToGetTicketVC];
+    [self pushToGetTicketVC:(Business *)bus];
 
 }
 

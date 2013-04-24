@@ -21,4 +21,5 @@
 }
 
 @property(nonatomic,strong) NSMutableArray *numberArr;
+@property(nonatomic,assign) BOOL isNetWork;
 @end

@@ -23,7 +23,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
-        self.banksArr = [NSArray arrayWithObjects:@"中国工商银行",@"中国农业银行",@"浦发银行",@"中信银行",@"交通银行",@"中国邮政储蓄银行", nil];
+//        self.banksArr = [NSArray arrayWithObjects:@"中国工商银行",@"中国农业银行",@"浦发银行",@"中信银行",@"交通银行",@"中国邮政储蓄银行", nil];
+        self.banksArr = [NSArray array];
+
     }
     return self;
 }
@@ -53,13 +55,12 @@
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
 	
     self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
-
    
     //调用接口 获得banksArr 解析存放fatherBank类
 
     [FatherBank getAllBankInfo:nil WithBlock:^(NSArray *arr) {
-//        self.banksArr = arr;
-//        [self.tableView reloadData];
+        self.banksArr = arr;
+        [self.tableView reloadData];
     }];
     
     
@@ -109,10 +110,10 @@
     [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
     [cell addSubview:lineImageView];
     
-//    FatherBank *fatherBank = [self.banksArr objectAtIndex:indexPath.row];
+    FatherBank *fatherBank = [self.banksArr objectAtIndex:indexPath.row];
     
     UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-30,lineImageView.frame.size.height)];
-    [bankLabel setText:[self.banksArr objectAtIndex:indexPath.row]];
+    [bankLabel setText:fatherBank.bankTypeName];
 //    [bankLabel setText:fatherBank.fatherBankName];
     [bankLabel setFont:[UIFont systemFontOfSize:15]];
     [bankLabel setBackgroundColor:[UIColor clearColor]];
@@ -127,9 +128,11 @@
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    FatherBank *fatherBank = [self.banksArr objectAtIndex:indexPath.row];
+
     MapViewController *mapVC = [[MapViewController alloc] init];
     mapVC.homeVC=(HomeViewController *)self.delegate;
-    
+    mapVC.fatherBank=fatherBank;
 //    mapVC.hidesBottomBarWhenPushed=YES;
 //    if([_delegate respondsToSelector:@selector(hidenTabbar:)])
 //    {

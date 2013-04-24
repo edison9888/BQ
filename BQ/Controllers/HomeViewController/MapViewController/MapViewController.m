@@ -45,6 +45,10 @@
     
     self.title = @"附近银行";
     
+    locationManager = [[LocationManager alloc] init];
+    locationManager.roloadDelegate=self;
+    [locationManager startUpdate];
+    
     //工具条
     ToolBar *toolBar = [[ToolBar alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height-TabBarHeight-NavigationHeight, self.view.frame.size.width, TabBarHeight) viewController:self];
     [self.view addSubview:toolBar];
@@ -53,6 +57,7 @@
     self.mapVC = [[MapShowViewController alloc] init];
     self.mapVC.view.frame=CGRectMake(0, 0,self.view.bounds.size.width, self.view.bounds.size.height-TabBarHeight-TabBarHeight);
     self.mapVC.homeVC=self.homeVC;
+    self.mapVC.locationManager=locationManager;
 //    [self.view addSubview:self.mapVC.view];
     [self addChildViewController:self.mapVC];
     
@@ -71,7 +76,7 @@
     [[self.view superview] addSubview:pickerViewController.view];
 
     //判断是否联网
-    [self isNetWork];
+    //[self isNetWork];
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -81,35 +86,48 @@
     Bank *bank1 = [[Bank alloc] init];
     bank1.lat = 32.00;
     bank1.lon = 120.00;
-    bank1.title = @"招商银行（莘庄）";
-    bank1.subtitle = @"莘松路985号";
+    bank1.bankName = @"招商银行（莘庄）";
+    bank1.address = @"莘松路985号";
     
     Bank *bank2 = [[Bank alloc] init];
     bank2.lat = 32.90;
     bank2.lon = 121.00;
-    bank2.title = @"招商银行(闵行支行)";
-    bank2.subtitle = @"莘建路776号";
+    bank2.bankName = @"招商银行(闵行支行)";
+    bank2.address = @"莘建路776号";
     
     Bank *bank3 = [[Bank alloc] init];
     bank3.lat = 31.20;
     bank3.lon = 120.00;
-    bank3.title = @"招商银行(沪闵路)";
-    bank3.subtitle = @"沪闵路776号";
-    
-//    根据银行id，经纬度获取银行列表
-//    （getBanksByGPS(String，double，double)） 距离当前的距离
-//fahterBank.id Lat Log
+    bank3.bankName = @"招商银行(沪闵路)";
+    bank3.address = @"沪闵路776号";
     
     self.locationArrs = [NSMutableArray arrayWithObjects:bank1,bank2,bank3, nil];
-    [self reloadData];
+    
+    //调用接口
+//    [self getDataFormApi];
+   
+}
+
+- (void)getDataFormApi{
+    NSString *fatherBankId = [NSString stringWithFormat:@"%@",self.fatherBank.bankTypeId];
+
+    NSString *latStr = [NSString stringWithFormat:@"%f",Lat];
+    NSString *logStr = [NSString stringWithFormat:@"%f",Log];
+    
+    if ([[NSString stringWithFormat:@"%f",Lat] isEqualToString:@"0.000000"] && [[NSString stringWithFormat:@"%f",Log] isEqualToString:@"0.000000"]) {
+        latStr=@"31.230000";
+        logStr=@"121.000000";
+        NSLog(@"没定位");
+        return;
+    }
+
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:fatherBankId,@"id",latStr,@"lat",logStr,@"ing", nil];
     
     //获取附近银行信息
-    [Bank getBanksInfo:nil WithBlock:^(NSArray *arr) {
-//        self.locationArrs= [NSMutableArray arrayWithArray:arr];
-//        [self reloadData];
-
+    [Bank getBanksInfo:dic WithBlock:^(NSArray *arr) {
+        self.locationArrs= [NSMutableArray arrayWithArray:arr];
+        [self reloadData];
     }];
-
 }
 
 //判断是否联网
@@ -122,10 +140,16 @@
 }
 
 #pragma mark--
+#pragma mark--LocationManagerDelegate
+-(void)locationManagerRoloadDataAddtionToLatAndLogDelegage{
+    
+    [self getDataFormApi];
+}
+
+#pragma mark--
 #pragma mark--ReloadData---MapVC///MapListVC
 -(void)reloadData{
 
-    
     if (viewTag==TableViewTag) {
         self.mapListVC.locationArrs=_locationArrs;
         [self.mapListVC.tableView reloadData];
@@ -191,25 +215,13 @@
     [pickerViewController.view setFrame:CGRectMake(0, self.view.frame.size.height-215, self.view.bounds.size.width, 215)];
     [UIView commitAnimations];
     
-    //刷新地图数据
-    //列表界面刷新界面数据，当前定位地区银行
-    //    •	根据区域id和银行id获取所有分行列表
-    //    getBanksByArea(areaId,bankTypeId)
-    //    self.locationArrs数据相应时更改
-    //调用接口===传pickerViewController.county.countyId 和selectViewController界面的银行id
 }
 
 //点击定位自己
 - (void)locationSelf{
-    //刷新地图数据
     //列表界面刷新界面数据，当前定位地区银行
-    
     //获取附近银行信息
-    [Bank getBanksInfo:nil WithBlock:^(NSArray *arr) {
-        //        self.locationArrs= [NSMutableArray arrayWithArray:arr];
-        //        [self reloadData];
-        
-    }];
+    [self getDataFormApi];
     
     if (viewTag==MapTag) {
         CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:self.mapVC._map.userLocation.coordinate.latitude longitude:self.mapVC._map.userLocation.location.coordinate.longitude];
@@ -242,7 +254,6 @@
 
 //区域确定刷新按钮
 - (void)confirmPickerView{
-    
     NSLog(@"确定刷界面");
     [self dismissPickerView];
         
@@ -251,34 +262,46 @@
     Bank *bank1 = [[Bank alloc] init];
     bank1.lat = 32.00;
     bank1.lon = 120.00;
-    bank1.title = @"工商银行（莘庄）";
-    bank1.subtitle = @"莘松路985号";
+    bank1.bankName = @"工商银行（莘庄）";
+    bank1.address = @"莘松路985号";
     
     Bank *bank2 = [[Bank alloc] init];
     bank2.lat = 32.90;
     bank2.lon = 121.00;
-    bank2.title = @"工商银行(闵行支行)";
-    bank2.subtitle = @"莘建路776号";
+    bank2.bankName = @"工商银行(闵行支行)";
+    bank2.address = @"莘建路776号";
     
     Bank *bank3 = [[Bank alloc] init];
     bank3.lat = 31.20;
     bank3.lon = 120.00;
-    bank3.title = @"工商银行(沪闵路)";
-    bank3.subtitle = @"沪闵路776号";
+    bank3.bankName = @"工商银行(沪闵路)";
+    bank3.address = @"沪闵路776号";
     
-    //调接口
-    //传county_id获取  self.locationArrs
     self.locationArrs=[NSMutableArray arrayWithObjects:bank1,bank2,bank3, nil];    
-    
     
     //选择了地区，更改list的地区
     [mapListVC.bankTitleLabel setText:pickerViewController.county.countryName];
     
-    //重新加载数据
-    [self reloadData];
+    //调接口加载数据
+    [self accordingToAreaGetData];
+
 }
 
+-(void)accordingToAreaGetData{
+    //调用接口===传pickerViewController.county.countyId 和selectViewController界面的银行id    
+    
+    NSString *areaIdStr = [NSString stringWithFormat:@"%d",pickerViewController.county.countyId];
+    NSString *bankIdStr =_fatherBank.bankTypeId;
+    
+//    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"100108",@"areaId",@"f7250bc7-9f8d-11e2-b7ab-208984337244",@"bankId", nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:areaIdStr,@"areaId",bankIdStr,@"bankId", nil];
 
+    [Bank selectAreaGetBanksInfo:dic WithBlock:^(NSArray *arr) {
+        
+        self.locationArrs=(NSMutableArray *)arr;
+        [self reloadData];
+    }];
+}
 
 
 - (void)didReceiveMemoryWarning

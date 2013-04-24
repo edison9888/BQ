@@ -19,7 +19,7 @@
     if (self) {
         
         _myAnnotaion = annotation;
-        self.backgroundColor = [UIColor blueColor];
+        self.backgroundColor = [UIColor clearColor];
         
         self.centerOffset = CGPointMake(-50, -45);
         self.frame = CGRectMake(0, 0, 165, 50);

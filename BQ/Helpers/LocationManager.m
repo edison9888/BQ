@@ -8,6 +8,8 @@
 
 #import "LocationManager.h"
 #import "DatabaseOperations.h"
+#import <CoreLocation/CoreLocation.h>
+#import "MapViewController.h"
 
 @implementation LocationManager
 
@@ -73,8 +75,12 @@
         [[NSUserDefaults standardUserDefaults] setValue:[placemark.addressDictionary objectForKey:@"SubLocality"] forKey:@"SubLocality"];
         //经纬度
         [[NSUserDefaults standardUserDefaults] setDouble:placemark.location.coordinate.latitude forKey:@"Lat"];
-        [[NSUserDefaults standardUserDefaults] setDouble:placemark.location.coordinate.latitude forKey:@"Log"];
-
+        [[NSUserDefaults standardUserDefaults] setDouble:placemark.location.coordinate.longitude forKey:@"Log"];
+        
+        if ([self.roloadDelegate respondsToSelector:@selector(locationManagerRoloadDataAddtionToLatAndLogDelegage)]) {
+            [self.roloadDelegate locationManagerRoloadDataAddtionToLatAndLogDelegage];
+        }
+        
         
         //获取新位置信息
         if ([self.delegate respondsToSelector:@selector(locationReceivedFromLocationManagerDelegate:)]) {
@@ -89,7 +95,15 @@
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
 
     NSLog(@"更新失败");
+    
+    if (![CLLocationManager locationServicesEnabled]) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"请打开定位" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
+        [alertView show];
+        return;
+    }
+
     [self stopUpdate];
+
 }
 
 

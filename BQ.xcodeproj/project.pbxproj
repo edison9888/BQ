@@ -36,7 +36,6 @@
 		C80CF82E171519AC00889D03 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CF82D171519AC00889D03 /* Default.png */; };
 		C80CF832171535AA00889D03 /* GetTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C80CF831171535AA00889D03 /* GetTicketViewController.m */; };
 		C80CF838171536F700889D03 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CF834171536F700889D03 /* line@2x.png */; };
-		C80CF83E1715542A00889D03 /* TicketView.m in Sources */ = {isa = PBXBuildFile; fileRef = C80CF83D1715542A00889D03 /* TicketView.m */; };
 		C816353F170C0E800097672D /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = C816353E170C0E800097672D /* Helper.m */; };
 		C8163549170C1E600097672D /* ToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C8163548170C1E600097672D /* ToolBar.m */; };
 		C8177A7D171FD440003C2BB1 /* myTicketBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8177A7C171FD440003C2BB1 /* myTicketBg@2x.png */; };
@@ -126,6 +125,7 @@
 		C8AE8EE1171D28FD00098213 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8ED9171D28FD00098213 /* SBJsonBase.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C8AE8EE2171D28FD00098213 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8EDB171D28FD00098213 /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C8AE8EE3171D28FD00098213 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8EDD171D28FD00098213 /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C8B6EBA617278CDA00AEC617 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B6EBA517278CDA00AEC617 /* Business.m */; };
 		C8D64A201720EC150012FA2E /* flashTicket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D64A1F1720EC150012FA2E /* flashTicket@2x.png */; };
 		C8D64A221720EC2E0012FA2E /* flashTicket1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D64A211720EC2E0012FA2E /* flashTicket1@2x.png */; };
 		C8D64A241720EC510012FA2E /* flashTicketIphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D64A231720EC510012FA2E /* flashTicketIphone5@2x.png */; };
@@ -181,8 +181,6 @@
 		C80CF830171535AA00889D03 /* GetTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetTicketViewController.h; sourceTree = "<group>"; };
 		C80CF831171535AA00889D03 /* GetTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetTicketViewController.m; sourceTree = "<group>"; };
 		C80CF834171536F700889D03 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
-		C80CF83C1715542A00889D03 /* TicketView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketView.h; sourceTree = "<group>"; };
-		C80CF83D1715542A00889D03 /* TicketView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketView.m; sourceTree = "<group>"; };
 		C816353D170C0E800097672D /* Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Helper.h; sourceTree = "<group>"; };
 		C816353E170C0E800097672D /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		C8163547170C1E600097672D /* ToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBar.h; sourceTree = "<group>"; };
@@ -314,6 +312,8 @@
 		C8AE8EDB171D28FD00098213 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
 		C8AE8EDC171D28FD00098213 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		C8AE8EDD171D28FD00098213 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		C8B6EBA417278CDA00AEC617 /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
+		C8B6EBA517278CDA00AEC617 /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Business.m; sourceTree = "<group>"; };
 		C8D64A1F1720EC150012FA2E /* flashTicket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flashTicket@2x.png"; sourceTree = "<group>"; };
 		C8D64A211720EC2E0012FA2E /* flashTicket1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flashTicket1@2x.png"; sourceTree = "<group>"; };
 		C8D64A231720EC510012FA2E /* flashTicketIphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flashTicketIphone5@2x.png"; sourceTree = "<group>"; };
@@ -493,8 +493,6 @@
 				C8163548170C1E600097672D /* ToolBar.m */,
 				C8DB412E17117D070055341F /* PickerView.h */,
 				C8DB412F17117D070055341F /* PickerView.m */,
-				C80CF83C1715542A00889D03 /* TicketView.h */,
-				C80CF83D1715542A00889D03 /* TicketView.m */,
 				C82CD91817165C690084E732 /* MyTicketView.h */,
 				C82CD91917165C690084E732 /* MyTicketView.m */,
 			);
@@ -731,6 +729,8 @@
 				C83854A2171297F3007B969A /* Picker.m */,
 				C80CF82A1715197500889D03 /* Number.h */,
 				C80CF82B1715197500889D03 /* Number.m */,
+				C8B6EBA417278CDA00AEC617 /* Business.h */,
+				C8B6EBA517278CDA00AEC617 /* Business.m */,
 				C86068DE171BE1B000534197 /* Country.h */,
 				C86068DF171BE1B000534197 /* Country.m */,
 			);
@@ -927,7 +927,6 @@
 				C883E5881713B6580029B6B5 /* MapShowViewController.m in Sources */,
 				C80CF82C1715197500889D03 /* Number.m in Sources */,
 				C80CF832171535AA00889D03 /* GetTicketViewController.m in Sources */,
-				C80CF83E1715542A00889D03 /* TicketView.m in Sources */,
 				C82CD91A17165C690084E732 /* MyTicketView.m in Sources */,
 				C82CD98A171691D70084E732 /* AFHTTPClient.m in Sources */,
 				C86068DA171BDABB00534197 /* DBConnection.m in Sources */,
@@ -956,6 +955,7 @@
 				C8AE8EE2171D28FD00098213 /* SBJsonParser.m in Sources */,
 				C8AE8EE3171D28FD00098213 /* SBJsonWriter.m in Sources */,
 				C8660FF5171E94C800F247B8 /* CustomAnnotationView.m in Sources */,
+				C8B6EBA617278CDA00AEC617 /* Business.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

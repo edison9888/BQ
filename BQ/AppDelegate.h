@@ -7,10 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
+    @private
     UINavigationController *navHomeVc;
+    UserViewController *userVC;
 }
 @property (strong, nonatomic) UIWindow *window;
 

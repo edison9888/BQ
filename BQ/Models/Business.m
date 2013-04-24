@@ -1,0 +1,93 @@
+//
+//  Business.m
+//  BQ
+//
+//  Created by Zoe on 13-4-24.
+//  Copyright (c) 2013年 zzlmilk. All rights reserved.
+//
+
+#import "Business.h"
+#import "BQNetClient.h"
+
+@implementation Business
+
+-(id)initWithItem:(NSDictionary *)dic{
+
+    if (self=[super init]) {
+        
+        _parentId = [dic objectForKey:@"parentId"];
+        _serviceId = [dic objectForKey:@"serviceId"];
+        _serviceName = [dic objectForKey:@"serviceName"];
+        _serviceTag = [dic objectForKey:@"serviceTag"];
+        _startLevel=[dic objectForKey:@"startLevel"];
+        
+    }
+    return self;
+}
+
+//获取父类业务
++ (void)getfatherService:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block{
+    
+    [[BQNetClient sharedClient] getPath:@"service/getList" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+
+        NSMutableArray *businessArr = [NSMutableArray array];
+        
+        NSDictionary *dic = [BQNetClient nsdataTurnToNSDictionary:responseObject];
+        NSArray *jsonArr = [dic objectForKey:@"serviceType"];
+        NSLog(@"responseObject%@",dic);
+
+        if ([jsonArr isKindOfClass:[NSDictionary class]]) {
+            Business *business = [[Business alloc] initWithItem:(NSDictionary *)jsonArr];
+            [businessArr addObject:business];
+        }else{
+        
+            for ( int i=0; i<jsonArr.count; i++) {
+                NSDictionary *bankDic = [jsonArr objectAtIndex:i];
+                Business *business = [[Business alloc] initWithItem:bankDic];
+                [businessArr addObject:business];
+            }        
+        }
+        
+        if (block)
+            block(businessArr);
+        
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+    
+}
+
+//根据父类类型获取子类业务
++ (void)getChildService:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block{
+
+    [[BQNetClient sharedClient] getPath:@"service/getChildList" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSMutableArray *businessArr = [NSMutableArray array];
+        
+        NSDictionary *dic = [BQNetClient nsdataTurnToNSDictionary:responseObject];
+        NSArray *jsonArr = [dic objectForKey:@"serviceType"];
+        NSLog(@"responseObject%@",dic);
+        
+        if ([jsonArr isKindOfClass:[NSDictionary class]]) {
+            Business *business = [[Business alloc] initWithItem:(NSDictionary *)jsonArr];
+            [businessArr addObject:business];
+        }else{
+            
+            for ( int i=0; i<jsonArr.count; i++) {
+                NSDictionary *bankDic = [jsonArr objectAtIndex:i];
+                Business *business = [[Business alloc] initWithItem:bankDic];
+                [businessArr addObject:business];
+            }
+        }
+        
+        if (block)
+            block(businessArr);
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.userInfo);
+    }];
+}
+
+
+@end

@@ -7,9 +7,7 @@
 //
 
 #import "GetTicketViewController.h"
-#import "TicketView.h"
 #import "Helper.h"
-#import "MyTicketView.h"
 
 @interface GetTicketViewController ()
 
@@ -36,15 +34,14 @@
     [super viewDidLoad];
     
     self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
-
     
-    Number *number  = [[Number alloc] init];
-    number.bankName = @"中国建设银行";
-    number.bankNumber = @"B009";
-    number.business = @"贷款";
-    number.presentNumber = @"B007";
-    number.peopleNumber = 10;
-    number.time = @"2013/4/10  17:32";
+//    Number *number  = [[Number alloc] init];
+//    number.bankName = @"中国建设银行";
+//    number.bankNumber = @"B009";
+//    number.business = @"贷款";
+//    number.presentNumber = @"B007";
+//    number.peopleNumber = 10;
+//    number.time = @"2013/4/10  17:32";
     
     self.title = @"领取号码";
     self.view.backgroundColor = [UIColor clearColor];
@@ -53,32 +50,64 @@
     [ticketBg setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
     [self.view insertSubview:ticketBg atIndex:3];
     
-    MyTicketView *ticketView = [[MyTicketView alloc] initWithFrame:CGRectMake(16,-182, 290,342) index:0 type:getTicket];
-    ticketView.ticketType=getTicket;
-    ticketView.number = number;
-    [self.view insertSubview:ticketView atIndex:2];
         
-    UIImageView *ticketBg1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, ticketBg.frame.origin.y+ticketBg.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-NavigationHeight-ticketBg.frame.size.height)];
+    ticketBg1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, ticketBg.frame.origin.y+ticketBg.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-NavigationHeight-ticketBg.frame.size.height)];
     if (iPhone5)
         [ticketBg1 setImage:[UIImage imageNamed:@"flashTicketIphone5"]];
     else
         [ticketBg1 setImage:[UIImage imageNamed:@"flashTicket1"]];
     
-    [self.view insertSubview:ticketBg1 belowSubview:ticketView];
+    [self.view insertSubview:ticketBg1 atIndex:-10];
     
-    [self animateGetTicket:ticketView];
 }
 
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+    
+    //领票
+    [self getTicketFromNet];
+
+}
+
+
+- (void)getTicketFromNet{
+    
+    NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:_bank.bankId,@"bankId",_busniess.serviceId,@"serviceId", nil];
+    
+    [Number getBankNumberInfo:dic WithBlock:^(Number *num) {
+        //生成票号
+        ticketView= [self createMyTicket:num];
+        //动画
+        [self animateGetTicket:ticketView];
+
+        [self.view insertSubview:ticketBg1 atIndex:-10];
+
+    }];
+    
+}
+
+- (MyTicketView *)createMyTicket:(Number *)num{
+
+    MyTicketView *_ticketView = [[MyTicketView alloc] initWithFrame:CGRectMake(16,-182, 290,342) index:0 type:getTicket];
+    _ticketView.ticketType=getTicket;
+    _ticketView.number = num;
+    [self.view insertSubview:_ticketView atIndex:2];
+    
+    return _ticketView;
+}
+
+#pragma mark--
+#pragma mark--AnimateTicket
 //出票动画
--(void)animateGetTicket:(MyTicketView *)ticketView{
+-(void)animateGetTicket:(MyTicketView *)_ticketView{
 
     double __block originY;
     
-    originY=ticketView.frame.origin.y;
+    originY=_ticketView.frame.origin.y;
     
     [UIView animateWithDuration:0.2f animations:^{
-        [ticketView setFrame:CGRectMake(ticketView.frame.origin.x, originY+20, ticketView.frame.size.width,ticketView.frame.size.height)];
-        [self.view insertSubview:ticketBg aboveSubview:ticketView];
+        [_ticketView setFrame:CGRectMake(_ticketView.frame.origin.x, originY+20, _ticketView.frame.size.width,_ticketView.frame.size.height)];
+        [self.view insertSubview:ticketBg aboveSubview:_ticketView];
         
         } completion:^(BOOL finished) {
             
@@ -88,16 +117,21 @@
                 
             }else{
                 [UIView animateWithDuration:0.2f animations:^{
-                    [ticketView setFrame:CGRectMake(ticketView.frame.origin.x, 57, ticketView.frame.size.width,ticketView.frame.size.height)];
+                    [_ticketView setFrame:CGRectMake(_ticketView.frame.origin.x, 57, _ticketView.frame.size.width,_ticketView.frame.size.height)];
                     return ;
+                } completion:^(BOOL finished) {
+                    [self backToLastVC];
                 }];
             }
     }];
 }
 
-- (void)callBack:(MyTicketView *)ticketView{
-    [self animateGetTicket:ticketView];
+- (void)callBack:(MyTicketView *)_ticketView{
+    [self animateGetTicket:_ticketView];
 }
+
+
+
 
 - (void)didReceiveMemoryWarning
 {

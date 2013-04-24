@@ -34,7 +34,6 @@
     _map.delegate=self;
     [self.view addSubview:_map];
 
-    locationManager = [[LocationManager alloc] init];
     //    locationManager.delegate=self;
     [locationManager startUpdate];
 }
@@ -55,14 +54,19 @@
     span.latitudeDelta=0.5;
     span.longitudeDelta=0.5;
     
-	CLLocation *location = [[CLLocation alloc] initWithLatitude:bank.lat longitude:bank.lon];
-    MKCoordinateRegion region = {location.coordinate, span};
-    [_map setRegion:region];
-    
+    if((bank.lat >= -90) && (bank.lat <= 90) && (bank.lon >= -180) && (bank.lon <= 180)){
+        CLLocation *location = [[CLLocation alloc] initWithLatitude:bank.lat longitude:bank.lon];
+        MKCoordinateRegion region = {location.coordinate, span};
+        [_map setRegion:region];
+    }
+    else{
+        NSLog(@"invalid region");
+        return;
+    }
 }
 
 - (void)showCallOutAnnotationOnMapView:(Bank *)bank{
-    CalloutMapAnnotation *calloutMapAnnotion = [[CalloutMapAnnotation alloc] initWithLatitude:bank.lat andLongitude:bank.lon title:bank.title subTitle:bank.subtitle];
+    CalloutMapAnnotation *calloutMapAnnotion = [[CalloutMapAnnotation alloc] initWithLatitude:bank.lat andLongitude:bank.lon title:bank.bankName subTitle:bank.address];
     [self getAnnotationLocation:bank];
     calloutMapAnnotion.bank =bank;
     [calloutAnnotationViews addObject:calloutMapAnnotion];
@@ -80,11 +84,11 @@
 //显示annotationViews
 - (void)showAnnotaionViews{
     
-    for (UIView * view in [_map subviews]) {
-        if ([view isKindOfClass:[MKAnnotationView class]] ){
-            [view removeFromSuperview];
-        }
-    }
+//    for (UIView * view in [_map subviews]) {
+//        if ([view isKindOfClass:[MKAnnotationView class]] ){
+//            [view removeFromSuperview];
+//        }
+//    }
     
     if (annotionViews.count!=0) {
         [_map removeAnnotations:annotionViews];
@@ -199,8 +203,8 @@
 
 -(void)didSelectAnnotationViewDelegate:(CalloutMapAnnotation *)callAnn{
 
-    NSLog(@"calloutAnn--- %@",callAnn.title);
-        
+//    NSLog(@"calloutAnn--- %@",callAnn.title);
+    
     HomeViewController *homeVC = [[HomeViewController alloc] init];
     homeVC.bank =callAnn.bank;
     [self.navigationController pushViewController:homeVC animated:YES];
@@ -230,31 +234,8 @@
 //        }
 //}
 
-//- (void)mapView:(MKMapView *)mapView didDeselectAnnotationView:(MKAnnotationView *)view {
-
-//    CalloutMapAnnotation *ann = view.annotation;
-//    
-//    if (view.annotation != _map.userLocation ) {
-//        
-//        HomeViewController *homeVC = [[HomeViewController alloc] init];
-//        homeVC.bank =ann.bank;
-//        [self.navigationController pushViewController:homeVC animated:YES];
-//    }
-//}
 
 
-//- (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control{
-//    
-//    MyAnnotation *ann = view.annotation;
-//    
-//    if (view.annotation != _map.userLocation ) {
-//    
-//        _homeVC.bank = ann.bank;
-//        [self.navigationController popToRootViewControllerAnimated:YES];
-//           
-//     }
-//
-//}
 
 - (void)didReceiveMemoryWarning
 {

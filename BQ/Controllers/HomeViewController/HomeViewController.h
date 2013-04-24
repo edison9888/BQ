@@ -26,6 +26,7 @@
 
 @property(nonatomic,weak) MainViewController *viewController;
 @property(nonatomic,strong) Bank *bank;
+@property(nonatomic,strong) NSArray *fatherBusinessArr;
 
 + (HomeViewController *)instance;
 

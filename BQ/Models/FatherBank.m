@@ -8,15 +8,16 @@
 
 #import "FatherBank.h"
 #import "BQNetClient.h"
+#import "SVProgressHUD.h"
 
 @implementation FatherBank
 
 - (id)initWithItem:(NSDictionary *)dic{
     
     if (self=[super init]) {
-//        _bankTypeId = [dic objectForKey:@"bankTypeId"];
-//        _bankTypeName=[dic objectForKey:@"bankTypeName"];
-//        _parentId = [dic objectForKey:@"parentId"];
+        _bankTypeId = [dic objectForKey:@"bankTypeId"];
+        _bankTypeName=[dic objectForKey:@"bankTypeName"];
+        _parentId = [dic objectForKey:@"parentId"];
     }
     return self;
 }
@@ -26,20 +27,27 @@
 
     BQNetClient *client = [BQNetClient sharedClient];
     [client getPath:@"bankType/getAllType" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-       NSDictionary *dic= [BQNetClient nsdataTurnToNSDictionary:responseObject];
-        NSArray *jsonArr = [NSArray arrayWithObject:dic];
+        
         NSMutableArray *fatherBanks = [NSMutableArray array];
+
+        NSDictionary *dic= [BQNetClient nsdataTurnToNSDictionary:responseObject];
+        NSArray *jsonArr;
         
-        for (int i=0; i<jsonArr.count; i++) {
-            FatherBank *bank = [[FatherBank alloc] initWithItem:[jsonArr objectAtIndex:i]];
-            [fatherBanks addObject:bank];
+        if (![dic isKindOfClass:[NSString class]]) {
+            jsonArr =(NSArray *)[dic objectForKey:@"bankType"];
+            
+            for (int i=0; i<jsonArr.count; i++) {
+                FatherBank *bank = [[FatherBank alloc] initWithItem:[jsonArr objectAtIndex:i]];
+                [fatherBanks addObject:bank];
+            }
         }
-        
+                       
         if(block)
             block(fatherBanks);
      
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-//        NSLog(@"%@",error.userInfo);
+        [SVProgressHUD dismissWithError:@"网络异常" afterDelay:0.4f];
+        NSLog(@"%@",error.userInfo);
     }];
 
 }

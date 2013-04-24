@@ -12,7 +12,6 @@
 
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <netinet/in.h>
-#import "UserViewController.h"
 
 #define isNetingWork 0
 
@@ -67,16 +66,21 @@
     [DBConnection createEditableCopyOfDatabaseIfNeeded:NO];
     [DBConnection getSharedDatabase];
     
+    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
     
-    UserViewController *userVC = [[UserViewController alloc]init];
+    userVC = [[UserViewController alloc]init];
     navHomeVc = [[UINavigationController alloc] initWithRootViewController:userVC];
     navHomeVc.navigationBarHidden=YES;
     [self.window setRootViewController:navHomeVc];
 
     [self.window makeKeyAndVisible];
+    
+    
+    userVC.isNetWork = [[self class] isNetworkReachable];
+
     return YES;
 }
 
@@ -95,6 +99,8 @@
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
+    
+    userVC.isNetWork = [[self class] isNetworkReachable];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

@@ -19,13 +19,14 @@
 #import "MapListViewController.h"
 #import "MapShowViewController.h"
 #import "FatherBank.h"
+#import "LocationManager.h"
 
 typedef enum {
     TableViewTag,
     MapTag,
 } ViewTag;
 
-@interface MapViewController : UIViewController
+@interface MapViewController : UIViewController<LocationManagerRoloadDataAddtionToLatAndLogDelegage>
 {
     @private
     PickerView *pickerViewController;
@@ -33,6 +34,8 @@ typedef enum {
     
     MapListViewController *mapListVC;//列表显示
     MapShowViewController *mapShowVC;//地图显示
+    
+    LocationManager *locationManager;
 }
 
 @property(nonatomic,strong) MapListViewController * mapListVC;
@@ -44,4 +47,6 @@ typedef enum {
 @property(nonatomic,strong) NSMutableArray *locationArrs;//地图显示数据数组 Bank数组
 
 @property(nonatomic,strong) FatherBank *fatherBank;
+
+- (void)getDataFormApi;
 @end

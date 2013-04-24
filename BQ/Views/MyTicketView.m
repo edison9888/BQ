@@ -157,21 +157,21 @@
     
     bankNameLabel.text = number.bankName;
     
-    numberLabel.text = number.bankNumber;
-    businessLabel.text = [NSString stringWithFormat:@"%@",number.business];
+    numberLabel.text = number.myNum;
+    businessLabel.text = [NSString stringWithFormat:@"%@",number.serviceName];
     presentNumberLabel.text = [NSString stringWithFormat:@"%@",number.presentNumber];
     
-    if (number.peopleNumber!=0) {
+    if (number.beforeCount!=0) {
         
-        remindLabel.text = [NSString stringWithFormat:@"%d",number.peopleNumber];
+        remindLabel.text = number.beforeCount;
         [remindLabel sizeToFit];
         [remindLabel setTextColor:[UIColor colorWithRed:233/255.0f green:100/255.0f blue:163/255.0f alpha:1.0f]];
         appendLabel.frame = CGRectMake(remindLabel.frame.origin.x+remindLabel.frame.size.width+5,114,appendLabel.frame.size.width, appendLabel.frame.origin.y);
         
     }
-    timeLabel.text = number.time;
+    timeLabel.text = number.numDate;
     
-    if (number.status)
+    if (number.numStatus)
         stampImageView.hidden=NO;
     
     [asideLabel setTextColor:[UIColor whiteColor]];

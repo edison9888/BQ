@@ -15,6 +15,12 @@
 
 @end
 
+@protocol LocationManagerRoloadDataAddtionToLatAndLogDelegage <NSObject>
+
+- (void)locationManagerRoloadDataAddtionToLatAndLogDelegage;
+
+@end
+
 
 @interface LocationManager : NSObject<CLLocationManagerDelegate>
 {
@@ -22,7 +28,7 @@
 }
 
 @property(nonatomic,weak) id<LocationManagerDelegate> delegate;
-
+@property(nonatomic,weak) id<LocationManagerRoloadDataAddtionToLatAndLogDelegage> roloadDelegate;
 - (void)startUpdate;
 
 - (void)stopUpdate;

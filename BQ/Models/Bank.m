@@ -14,25 +14,45 @@
 - (id)initWithItem:(NSDictionary *)dic{
     
     if (self=[super init]) {
-//        _bankTypeId = [dic objectForKey:@"bankTypeId"];
-//        _bankTypeName=[dic objectForKey:@"bankTypeName"];
-//        _parentId = [dic objectForKey:@"parentId"];
         
-        
+        _address = [dic objectForKey:@"address"];
+        _bankArea = [dic objectForKey:@"bankArea"];
+        _bankCity=[dic objectForKey:@"bankCity"];
+        _bankId= [dic objectForKey:@"bankId"];
+        _bankName=[dic objectForKey:@"bankName"];
+        _bankProvince=[dic objectForKey:@"bankProvince"];
+        _bankTypeId=[dic objectForKey:@"bankTypeId"];
+        _distance=[dic objectForKey:@"distince"];
+        _lat=[[dic objectForKey:@"latitude"] doubleValue];
+        _lon=[[dic objectForKey:@"longitude"] doubleValue];
+        _phoneStr=[dic objectForKey:@"phone"];        
     }
     return self;
 }
 
-
-
 + (void)getBanksInfo:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block{
     
-    [[BQNetClient sharedClient] getPath:@"/bankInfo/getList/f7250bc7-9f8d-11e2-b7ab-208984337244/200/198" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[BQNetClient sharedClient] getPath:@"bankInfo/getList" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+            NSMutableArray *bankArr = [NSMutableArray array];
+        
             NSDictionary *dic = [BQNetClient nsdataTurnToNSDictionary:responseObject];
+            NSArray *jsonArr = [dic objectForKey:@"BankInfo"];
         
-        NSLog(@"response%@",dic);
-        
-        
+        if ([jsonArr isKindOfClass:[NSDictionary class]]) {
+            Bank *bank = [[Bank alloc] initWithItem:(NSDictionary *)jsonArr];
+            [bankArr addObject:bank];
+            
+        }else{
+            for ( int i=0; i<jsonArr.count; i++) {
+                
+                NSDictionary *bankDic = [jsonArr objectAtIndex:i];
+                Bank *bank = [[Bank alloc] initWithItem:bankDic];
+                [bankArr addObject:bank];
+            }
+        }
+            NSLog(@"response%@",dic);
+        if (block)
+            block(bankArr);        
         
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             NSLog(@"%@",error.userInfo);
@@ -41,14 +61,29 @@
 
 //根据区域或定位筛选银行
 + (void)selectAreaGetBanksInfo:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block{
-    [[BQNetClient sharedClient] getPath:@"/bankInfo/getBank/3063219c-a28c-11e2-b03a-208984337244" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[BQNetClient sharedClient] getPath:@"bankInfo/getByArea" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        NSMutableArray *bankArr =[NSMutableArray array];
         NSDictionary *dic = [BQNetClient nsdataTurnToNSDictionary:responseObject];
         
-        NSLog(@"response%@",dic);
+        NSArray *jsonArr = [dic objectForKey:@"BankInfo"];
         
+        if ([jsonArr isKindOfClass:[NSDictionary class]]) {
+            Bank *bank = [[Bank alloc] initWithItem:(NSDictionary *)jsonArr];
+            [bankArr addObject:bank];
+        }else{
+            for ( int i=0; i<jsonArr.count; i++) {
+                
+                NSDictionary *bankDic = [jsonArr objectAtIndex:i];
+                Bank *bank = [[Bank alloc] initWithItem:bankDic];
+                [bankArr addObject:bank];
+            }
+        }
+        NSLog(@"response%@",bankArr);
+        if (block)
+            block(bankArr);
         
-        
-    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.userInfo);
     }];
 }

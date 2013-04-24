@@ -7,12 +7,12 @@
 //
 
 #import <UIKit/UIKit.h>
-
+#import "Business.h"
 
 @class HomeViewController;
 @protocol  PersonalBusinessViewControllerDelegate<NSObject>
 
-- (void)OutOfTheTicketDelegate;
+- (void)OutOfTheTicketDelegate:(Business*)bus;
 -(void)dismissPresentVC;
 @end
 
@@ -34,4 +34,5 @@ typedef enum {
 @property(nonatomic,weak) id <PersonalBusinessViewControllerDelegate> delegate;
 @property(nonatomic,weak) HomeViewController *homeVC;
 @property(nonatomic,assign) BusinessType businessType;
+@property(nonatomic,strong) Business *busniess;
 @end

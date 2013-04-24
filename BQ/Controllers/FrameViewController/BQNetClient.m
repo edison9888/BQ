@@ -29,8 +29,11 @@
 +(NSDictionary *)nsdataTurnToNSDictionary:(id)responseObject{
 
     NSError *error;
-    NSDictionary *dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
-    
+    NSDictionary *dic;
+    if (responseObject !=nil) {
+        
+        dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+    }
     return dic;
     NSLog(@"jsonObjects===%@,error===%@",dic,error);
 

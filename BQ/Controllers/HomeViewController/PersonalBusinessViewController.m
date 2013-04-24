@@ -7,6 +7,7 @@
 //
 
 #import "PersonalBusinessViewController.h"
+#import "Business.h"
 #define CellHeight 56
 
 @interface PersonalBusinessViewController ()
@@ -20,7 +21,7 @@
     self = [super init];
     if (self) {
         // Custom initialization
-        self.businessArr = [NSArray arrayWithObjects:@"转 账",@"汇 款",@"办 卡",nil];
+        self.businessArr = [NSArray array];
     }
     return self;
 }
@@ -45,6 +46,8 @@
     _tableView.dataSource=self;
     [bgImageView addSubview:_tableView];
     
+    //调接口获取子业务
+    [self getChildServiceFromData];
 //    UIButton *getTicketBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [getTicketBtn setBackgroundImage:[UIImage imageNamed:@"numberButton"] forState:UIControlStateNormal];
 //    [getTicketBtn setFrame:CGRectMake(75, 180, 105, 42)];
@@ -52,16 +55,28 @@
 //    [bgImageView addSubview:getTicketBtn];
 }
 
+-(void)getChildServiceFromData{
+    
+    NSDictionary *dic =[NSDictionary dictionaryWithObject:_busniess.serviceId forKey:@"id"];
+    
+    [Business getChildService:dic WithBlock:^(NSArray *arr) {
+        
+        self.businessArr=arr;
+        [_tableView reloadData];
+        
+    }];
+}
+
 -(void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
 }
 
--(void)getTicketClick:(id)sender{
-    if ([self.delegate respondsToSelector:@selector(OutOfTheTicketDelegate)]) {
-        [self.delegate performSelector:@selector(OutOfTheTicketDelegate)];
+-(void)getTicketClick:(Business *)bus{
+    if ([self.delegate respondsToSelector:@selector(OutOfTheTicketDelegate:)]) {
+        [self.delegate OutOfTheTicketDelegate:bus];
 
-        [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",tickitInfo] forKey:@"tickitInfo"];
+//        [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"%@",tickitInfo] forKey:@"tickitInfo"];
 
     } ;
 }
@@ -87,9 +102,14 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     //    }
     
+    if (self.businessArr.count==0){
+        return nil;
+    }
     
+    Business *bus = [self.businessArr objectAtIndex:indexPath.row];
+        
     UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, 224,CellHeight)];
-    [bankLabel setText:[self.businessArr objectAtIndex:indexPath.row]];
+    [bankLabel setText:[NSString stringWithFormat:@"%@",bus.serviceName]];
     [bankLabel setFont:[UIFont systemFontOfSize:20]];
     [bankLabel setBackgroundColor:[UIColor clearColor]];
     [bankLabel setTextColor:[UIColor colorWithRed:75/255 green:85/255 blue:95/255 alpha:1.0f]];
@@ -118,10 +138,10 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    tickitInfo = [self.businessArr objectAtIndex:indexPath.row];
-    NSLog(@"出票--%@",[self.businessArr objectAtIndex:indexPath.row]);
+    Business *bus = [self.businessArr objectAtIndex:indexPath.row];
+    NSLog(@"出票--%@",bus.serviceName);
     
-    [self getTicketClick:nil];
+    [self getTicketClick:bus];
 
 }
 
