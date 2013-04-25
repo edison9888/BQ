@@ -24,6 +24,7 @@
 @property(nonatomic,assign) double lat;
 @property(nonatomic,assign) double lon;
 @property(nonatomic,strong) NSString *phoneStr;
+@property(nonatomic,strong) NSString *bankTypeName;//银行名称
 
 //根据当前经纬度获取附近银行
 + (void)getBanksInfo:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block;

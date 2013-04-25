@@ -38,6 +38,7 @@
 		C80CF838171536F700889D03 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CF834171536F700889D03 /* line@2x.png */; };
 		C816353F170C0E800097672D /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = C816353E170C0E800097672D /* Helper.m */; };
 		C8163549170C1E600097672D /* ToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C8163548170C1E600097672D /* ToolBar.m */; };
+		C81637B41728FE5D00B18388 /* logo@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C81637B31728FE5D00B18388 /* logo@2x.png */; };
 		C8177A7D171FD440003C2BB1 /* myTicketBg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8177A7C171FD440003C2BB1 /* myTicketBg@2x.png */; };
 		C8177A7F171FD479003C2BB1 /* ticket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8177A7E171FD478003C2BB1 /* ticket@2x.png */; };
 		C8177A81171FD9E7003C2BB1 /* refreshButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8177A80171FD9E7003C2BB1 /* refreshButton@2x.png */; };
@@ -185,6 +186,7 @@
 		C816353E170C0E800097672D /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		C8163547170C1E600097672D /* ToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBar.h; sourceTree = "<group>"; };
 		C8163548170C1E600097672D /* ToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolBar.m; sourceTree = "<group>"; };
+		C81637B31728FE5D00B18388 /* logo@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "logo@2x.png"; sourceTree = "<group>"; };
 		C8177A7C171FD440003C2BB1 /* myTicketBg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "myTicketBg@2x.png"; sourceTree = "<group>"; };
 		C8177A7E171FD478003C2BB1 /* ticket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "ticket@2x.png"; sourceTree = "<group>"; };
 		C8177A80171FD9E7003C2BB1 /* refreshButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "refreshButton@2x.png"; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 		C80CF833171536D200889D03 /* GetTicketImage */ = {
 			isa = PBXGroup;
 			children = (
+				C81637B31728FE5D00B18388 /* logo@2x.png */,
 				C84FF45417263125000D5BE9 /* buttonSelected@2x.png */,
 				C8177A7E171FD478003C2BB1 /* ticket@2x.png */,
 				C80CF834171536F700889D03 /* line@2x.png */,
@@ -890,6 +893,7 @@
 				C84FF45117262D63000D5BE9 /* notePin@2x.png in Resources */,
 				C84FF45317262DB9000D5BE9 /* alertWindow@2x.png in Resources */,
 				C84FF45517263125000D5BE9 /* buttonSelected@2x.png in Resources */,
+				C81637B41728FE5D00B18388 /* logo@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

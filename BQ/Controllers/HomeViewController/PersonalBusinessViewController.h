@@ -25,6 +25,8 @@ typedef enum {
 
 @interface PersonalBusinessViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
 {
+    @private
+    UIImageView *bgImageView;
     UITableView *_tableView;
     BOOL isSelect;
     NSString *tickitInfo;

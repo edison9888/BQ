@@ -33,7 +33,7 @@
     isSelect=YES;
     
     
-    UIImageView *bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"alertWindow"]];
+    bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"alertWindow"]];
     bgImageView.userInteractionEnabled=YES;
     [bgImageView setBackgroundColor:[UIColor clearColor]];
     [bgImageView setFrame:CGRectMake(50, 160,  220, 170)];
@@ -46,9 +46,8 @@
     _tableView.dataSource=self;
     [bgImageView addSubview:_tableView];
     
-    //调接口获取子业务
-    [self getChildServiceFromData];
-//    UIButton *getTicketBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        
+   //    UIButton *getTicketBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [getTicketBtn setBackgroundImage:[UIImage imageNamed:@"numberButton"] forState:UIControlStateNormal];
 //    [getTicketBtn setFrame:CGRectMake(75, 180, 105, 42)];
 //    [getTicketBtn addTarget:self action:@selector(getTicketClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -61,15 +60,26 @@
     
     [Business getChildService:dic WithBlock:^(NSArray *arr) {
         
-        self.businessArr=arr;
-        [_tableView reloadData];
-        
+        if (arr.count==0) {
+            [self getTicketClick:_busniess];
+            
+        }else{
+            self.businessArr=arr;
+            [_tableView reloadData];
+        }
     }];
 }
 
--(void)viewWillAppear:(BOOL)animated{
+- (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    //调接口获取子业务
+//    if (_businessType==EnterPriseType) {
+//        bgImageView.hidden=YES;
+//        return;
+//    }
+    [self getChildServiceFromData];
+
 }
 
 -(void)getTicketClick:(Business *)bus{

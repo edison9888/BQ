@@ -20,6 +20,7 @@ typedef enum {
 @interface Number : NSObject
 
 
+@property(nonatomic,strong) NSString *numId;
 @property(nonatomic,strong) NSString *beforeCount;//等待人数
 @property(nonatomic,strong) NSString *myNum;//我的号码
 @property(nonatomic,strong) NSString *presentNumber;//目前叫号
@@ -33,10 +34,14 @@ typedef enum {
 @property(nonatomic,strong) NSString *serviceId;//业务id
 @property(nonatomic,strong) NSString *serviceName;//业务类型
 @property(nonatomic,strong) NSString *serParentId;//父类业务id
+@property(nonatomic,strong) NSString *bankTypeName;//银行名称
 
 //领取票号==生成我的号码
 + (void)getBankNumberInfo:(NSDictionary *)parameters WithBlock:(void (^)(Number*num))block;
 
 //刷新我的排号
 + (void)refreshBankNumbers:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block;
+
++ (NSArray *)selectNumbersInfoFromDatabase:(NSInteger)proId;
+
 @end

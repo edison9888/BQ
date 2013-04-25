@@ -25,7 +25,8 @@
         _distance=[dic objectForKey:@"distince"];
         _lat=[[dic objectForKey:@"latitude"] doubleValue];
         _lon=[[dic objectForKey:@"longitude"] doubleValue];
-        _phoneStr=[dic objectForKey:@"phone"];        
+        _phoneStr=[dic objectForKey:@"phone"];
+        _bankTypeName=[dic objectForKey:@"bankTypeName"];
     }
     return self;
 }

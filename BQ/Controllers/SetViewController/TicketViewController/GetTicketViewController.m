@@ -35,14 +35,6 @@
     
     self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
     
-//    Number *number  = [[Number alloc] init];
-//    number.bankName = @"中国建设银行";
-//    number.bankNumber = @"B009";
-//    number.business = @"贷款";
-//    number.presentNumber = @"B007";
-//    number.peopleNumber = 10;
-//    number.time = @"2013/4/10  17:32";
-    
     self.title = @"领取号码";
     self.view.backgroundColor = [UIColor clearColor];
 
@@ -50,25 +42,18 @@
     [ticketBg setFrame:CGRectMake(0, 0, self.view.bounds.size.width, 60)];
     [self.view insertSubview:ticketBg atIndex:3];
     
-        
+    
     ticketBg1 = [[UIImageView alloc] initWithFrame:CGRectMake(0, ticketBg.frame.origin.y+ticketBg.frame.size.height, self.view.bounds.size.width, self.view.bounds.size.height-NavigationHeight-ticketBg.frame.size.height)];
     if (iPhone5)
         [ticketBg1 setImage:[UIImage imageNamed:@"flashTicketIphone5"]];
     else
         [ticketBg1 setImage:[UIImage imageNamed:@"flashTicket1"]];
     
-    [self.view insertSubview:ticketBg1 atIndex:-10];
-    
-}
-
-- (void)viewWillAppear:(BOOL)animated{
-    [super viewWillAppear:animated];
     
     //领票
     [self getTicketFromNet];
-
+    
 }
-
 
 - (void)getTicketFromNet{
     
@@ -80,11 +65,12 @@
         //动画
         [self animateGetTicket:ticketView];
 
-        [self.view insertSubview:ticketBg1 atIndex:-10];
+        [self.view insertSubview:ticketBg1 belowSubview:ticketView];
 
     }];
-    
 }
+
+
 
 - (MyTicketView *)createMyTicket:(Number *)num{
 

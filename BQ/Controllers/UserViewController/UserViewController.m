@@ -41,39 +41,8 @@
         myhomeBG.userInteractionEnabled =YES;
         [self.view addSubview:myhomeBG];
     }
-        
-    Number *number  = [[Number alloc] init];
-    number.bankName = @"中国建设银行";
-    number.myNum = @"B009";
-    number.serviceName = @"贷款";
-    number.presentNumber = @"B007";
-    number.beforeCount = @"19";
-    number.numDate = @"2013/4/10  17:32";
-    number.numStatus=1;
-    
-    Number *number1  = [[Number alloc] init];
-    number1.bankName = @"中国工商银行";
-    number1.myNum = @"A009";
-    number1.serviceName = @"贷款";
-    number1.presentNumber = @"A007";
-    number1.beforeCount = @"11";
-    number1.numDate = @"2013/4/10  17:32";
-    number1.numStatus=2;
-    
-    Number *number2  = [[Number alloc] init];
-    number2.bankName = @"中信银行";
-    number2.myNum = @"A009";
-    number2.serviceName = @"贷款";
-    number2.presentNumber = @"A007";
-    number2.beforeCount = @"11";
-    number2.numDate = @"2013/4/10  17:32";
-    number2.numStatus=0;
-    
-    //此处调用接口获取数据
-    self.numberArr = [NSMutableArray arrayWithObjects:number,number1,number2,nil];
-    
 
-    scrollView =[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.bounds.size.height-57+NavigationHeight)];
+    scrollView =[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.bounds.size.height-57)];
     scrollView.bounces=YES;
     scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width, scrollView.frame.size.height);
     [scrollView setBackgroundColor:[UIColor clearColor]];
@@ -105,31 +74,57 @@
         }
     }
     if (isFisrt) {
-        MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16, 45, 290, 342) index:111 type:myTicket];
-        myTicketView.delegate=self;
-        [scrollView addSubview:myTicketView];
+        
+        [self nullTicketView];
         
         isFisrt=NO;
         
     }else{
-        for (int i=0; i<self.numberArr.count; i++) {
-            [self createMyTicket:CGRectMake(16, 45+i*(342+20), 310, 342) index:i];
-        }
-        
-        scrollView.contentSize = CGSizeMake(self.view.bounds.size.width,45+(self.view.bounds.size.height-102)*self.numberArr.count);
         
         [self changeBgImageView];
+
+        //获取我的号码
+        [self getMyNumbersFromNet];
+
     }
+    
+}
+
+//无票时显示
+- (void)nullTicketView{
+
+    MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16, 45, 290, 342) index:111 type:myTicket];
+    myTicketView.delegate=self;
+    [scrollView addSubview:myTicketView];
+
 }
 
 //获取我的所有号码
 -(void)getMyNumbersFromNet{
-
-    NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:@"",@"",@"",@"", nil];
+    
+    NSArray *idsArr = [Number selectNumbersInfoFromDatabase:0];
+    if (idsArr.count==0) {
+        [self nullTicketView];
+        return;
+    }
+    
+    NSString *idsStr = [idsArr componentsJoinedByString:@","];
+    
+    NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:idsStr,@"ids", nil];
+    
     [Number refreshBankNumbers:dic WithBlock:^(NSArray *arr) {
         
+        if (arr.count!=0) {
+            self.numberArr=(NSMutableArray *)arr;
+            
+            for (int i=0; i<self.numberArr.count; i++) {
+                [self createMyTicket:CGRectMake(16, 45+i*(342+20), 310, 342) index:i];
+            }
+            
+            scrollView.contentSize = CGSizeMake(self.view.bounds.size.width,45+362*self.numberArr.count);
+        }
     }];
-
+    
 }
 
 
@@ -144,11 +139,19 @@
         [netStatusLabel setBackgroundColor:[UIColor clearColor]];
         [netStatusLabel setText:@"网络异常"];
         [netStatusLabel setTextColor:[UIColor colorWithRed:42/255.0f green:180/255.0f blue:173/255.0f alpha:1.0f]];
+        netStatusLabel.tag=12;
         [scrollView addSubview:netStatusLabel];
         
         UIImageView *statusImageView = [[UIImageView alloc] initWithFrame:CGRectMake((self.view.frame.size.width-202.5)/2,25 , 202.5, 20)];
         [statusImageView setImage:[UIImage imageNamed:@"noNetwork"]];
+        statusImageView.tag=13;
         [scrollView addSubview:statusImageView];
+    }else{//有网络时不显示
+        UILabel *label =(UILabel *)[scrollView viewWithTag:12];
+        [label removeFromSuperview];
+        
+        UIImageView *imageView =(UIImageView *)[scrollView viewWithTag:13];
+        [imageView removeFromSuperview];
     }
 }
 
@@ -177,8 +180,8 @@
 
 }
 
+//生成多个ticket
 -(void)createMyTicket:(CGRect)rect index:(NSInteger)i{
-    
     
     MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:rect index:i type:myTicket];
     myTicketView.number=[self.numberArr objectAtIndex:i];
@@ -192,36 +195,34 @@
 #pragma mark--选择银行
 -(void)buttonPress{
     self.navigationController.navigationBar.hidden = NO;
-    
-//    isLocation = YES;
-    
+        
     SelectBankViewController  *selectBankVC = [[SelectBankViewController alloc]init];
 //    selectBankVC.delegate=self;
     [self.navigationController pushViewController:selectBankVC animated:YES];
     
 }
 
-
-
-
 #pragma mark--
 #pragma mark--MyTicketRefreshDelegate
 //刷新票数据----刷新单张还是多张
 - (void)refreshTicketsDelegate:(Number *)number btnIndex:(NSInteger)index{
-    //number.numberId 票据id  网络请求
     
-    //模拟数据
-    Number *_number  = [[Number alloc] init];
-    _number.bankName = @"光大银行";
-    _number.myNum = @"H009";
-    _number.serviceName = @"贷款";
-    _number.presentNumber = @"B007";
-    _number.beforeCount = @"18";
-    _number.numDate = @"2013/4/10  17:32";
-    _number.numStatus=1;
+    [self reloadOneTicket:number btnIndex:index];
 
-    MyTicketView *myTicketView = (MyTicketView *)[scrollView viewWithTag: index+10];
-    myTicketView.number = _number;
+}
+
+//刷新单张数据
+- (void)reloadOneTicket:(Number *)number btnIndex:(NSInteger)index{
+    
+    NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:number.numId,@"ids", nil];
+
+    [Number refreshBankNumbers:dic WithBlock:^(NSArray *arr) {
+        if (arr.count!=0) {
+            MyTicketView *myTicketView = (MyTicketView *)[scrollView viewWithTag: index+10];
+            myTicketView.number = number;
+        }else
+            return;               
+    }];
     
 }
 

@@ -88,20 +88,25 @@ static HomeViewController *instance = nil;
     
     //背景图
     [self bankbackGroundImageView];
-    _bankNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(35,82, 239, 35)];
+    
+    UIImageView *logoImageView =[[UIImageView alloc] initWithFrame:CGRectMake(45, 80, 46, 43)];
+    [logoImageView setImage:[UIImage imageNamed:@"logo"]];
+    [self.view addSubview:logoImageView];    
+    
+    _bankNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(logoImageView.frame.size.width+logoImageView.frame.origin.x+2,82, 185, 35)];
     if (_bank.bankName!=nil) {
-        _bankNameLabel.text=_bank.bankName;
+        _bankNameLabel.text=_bank.bankTypeName;
     }else{
         _bankNameLabel.text=@"中国工商银行";
     }
     _bankNameLabel.backgroundColor=[UIColor clearColor];
     _bankNameLabel.font = [UIFont systemFontOfSize:28];
     _bankNameLabel.textColor = [UIColor colorWithRed:232/255.f green:232/255.f blue:232/255.f alpha:1.0];
-    [_bankNameLabel setTextAlignment:NSTextAlignmentCenter];
+//    [_bankNameLabel setTextAlignment:NSTextAlignmentCenter];
     [_bankNameLabel sizeThatFits:CGSizeMake(239, 35)];
     [self.view addSubview:_bankNameLabel];
     
-    UIImageView *bankButtonBg = [[UIImageView alloc]initWithFrame:CGRectMake(_bankNameLabel.frame.origin.x,_bankNameLabel.frame.origin.y+_bankNameLabel.frame.size.height+5, 239, 7.5)];
+    UIImageView *bankButtonBg = [[UIImageView alloc]initWithFrame:CGRectMake(logoImageView.frame.origin.x,_bankNameLabel.frame.origin.y+_bankNameLabel.frame.size.height+5, 239, 7.5)];
     bankButtonBg.image=[UIImage imageNamed:@"light"];
     bankButtonBg.userInteractionEnabled=YES;
     [self.view addSubview:bankButtonBg];
@@ -250,12 +255,14 @@ static HomeViewController *instance = nil;
 
 //企业业务
 - (void)enterpriseBusinessClick:(id)sender{
-    [self initPersonalVC];
-    
-    personalVC.busniess=[_fatherBusinessArr objectAtIndex:1];
-    personalVC.businessType=EnterPriseType;
-    [self.view addSubview:personalVC.view];
-    personalVC.view.frame=self.view.frame;
+//    [self initPersonalVC];
+//    
+//    personalVC.busniess=[_fatherBusinessArr objectAtIndex:1];
+//    personalVC.businessType=EnterPriseType;
+//    [self.view addSubview:personalVC.view];
+//    personalVC.view.frame=self.view.frame;
+    Business *business = [_fatherBusinessArr objectAtIndex:1];
+    [self pushToGetTicketVC:business];
 }
 
 

@@ -28,10 +28,10 @@
         [self addSubview:bgView];
         
         //过期戳
-        stampImageView = [[UIImageView alloc] initWithFrame:CGRectMake(217,10,75,73)];
+        stampImageView = [[UIImageView alloc] initWithFrame:CGRectMake(140,10,157,157)];
         [stampImageView setImage:[UIImage imageNamed:@"stamp"]];
         stampImageView.hidden=YES;
-       // [self addSubview:stampImageView];
+        [self addSubview:stampImageView];
         
         bankNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(48, 9, 194, 30)];
         bankNameLabel.text = @"您还未选择银行";
@@ -41,12 +41,13 @@
         [bankNameLabel setTextAlignment:NSTextAlignmentCenter];
         [bgView addSubview:bankNameLabel];
         
-        timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(103,40, 80, 12)];
+        timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(104,40, 80, 12)];
         timeLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
         timeLabel.font=[UIFont fontWithName:@"Helvetica" size:10];
         timeLabel.text = @"2013/3/13  13:14";
         timeLabel.backgroundColor = [UIColor clearColor];
         [timeLabel setTextAlignment:NSTextAlignmentCenter];
+        [timeLabel setLineBreakMode:NSLineBreakByClipping];
         [bgView addSubview:timeLabel];
         
 //        UIImageView *imageView  = [[UIImageView alloc] initWithFrame:CGRectMake(15, timeLabel.frame.size.height+timeLabel.frame.origin.y, 280, 7)];
@@ -74,10 +75,10 @@
         pointLabel.backgroundColor = [UIColor clearColor];
         [bgView addSubview:pointLabel];
         
-        businessLabel = [[UILabel alloc] initWithFrame:CGRectMake(pointLabel.frame.origin.x+pointLabel.frame.size.width,pointLabel.frame.origin.y-3 , 70, 16)];
+        businessLabel = [[UILabel alloc] initWithFrame:CGRectMake(pointLabel.frame.origin.x+pointLabel.frame.size.width,pointLabel.frame.origin.y-3 , 200, 19)];
         businessLabel.textColor = [UIColor colorWithRed:65.0f/255 green:75.0f/255 blue:85.0f/255 alpha:1.0f];
         businessLabel.text=@"";
-        businessLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:15];
+        businessLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:18];
         businessLabel.backgroundColor = [UIColor clearColor];
         [bgView addSubview:businessLabel];
 
@@ -89,16 +90,16 @@
         preNumberLabel.backgroundColor = [UIColor clearColor];
         [bgView addSubview:preNumberLabel];
         
-        presentNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(preNumberLabel.frame.origin.x+preNumberLabel.frame.size.width, preNumberLabel.frame.origin.y-3, 70, 16)];
-        presentNumberLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:18];
+        presentNumberLabel = [[UILabel alloc] initWithFrame:CGRectMake(preNumberLabel.frame.origin.x+preNumberLabel.frame.size.width, preNumberLabel.frame.origin.y-3, 200, 18)];
+        presentNumberLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:19];
         presentNumberLabel.text=@"";
         presentNumberLabel.backgroundColor = [UIColor clearColor];
         presentNumberLabel.textColor = [UIColor colorWithRed:65.0f/255 green:75.0f/255 blue:85.0f/255 alpha:1.0f];
         [bgView addSubview:presentNumberLabel];
 
-        UILabel *numLabel = [[UILabel alloc] initWithFrame:CGRectMake(asideLabel.frame.origin.x, preNumberLabel.frame.origin.y+preNumberLabel.frame.size.height+BetweenHeight, 160, 18)];
+        numLabel = [[UILabel alloc] initWithFrame:CGRectMake(asideLabel.frame.origin.x, preNumberLabel.frame.origin.y+preNumberLabel.frame.size.height+BetweenHeight, 155, 18)];
         numLabel.text = @"您所在的排列前还有";
-        numLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:17];
+        numLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:16];
         numLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
         numLabel.backgroundColor = [UIColor clearColor];
         [bgView addSubview:numLabel];
@@ -111,9 +112,10 @@
         [remindLabel sizeToFit];
         [bgView addSubview:remindLabel];
         
+
         appendLabel = [[UILabel alloc] initWithFrame:CGRectMake(remindLabel.frame.origin.x+remindLabel.frame.size.width, numLabel.frame.origin.y, 50, 18)];
         appendLabel.text = @"个人";
-        appendLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:17];
+        appendLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:16];
         appendLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
         appendLabel.backgroundColor = [UIColor clearColor];
         [bgView addSubview:appendLabel];
@@ -155,7 +157,7 @@
 - (void)setNumber:(Number *)number{
     _number=number;
     
-    bankNameLabel.text = number.bankName;
+    bankNameLabel.text = number.bankTypeName;
     
     numberLabel.text = number.myNum;
     businessLabel.text = [NSString stringWithFormat:@"%@",number.serviceName];
@@ -166,12 +168,12 @@
         remindLabel.text = number.beforeCount;
         [remindLabel sizeToFit];
         [remindLabel setTextColor:[UIColor colorWithRed:233/255.0f green:100/255.0f blue:163/255.0f alpha:1.0f]];
-        appendLabel.frame = CGRectMake(remindLabel.frame.origin.x+remindLabel.frame.size.width+5,114,appendLabel.frame.size.width, appendLabel.frame.origin.y);
+        appendLabel.frame = CGRectMake(remindLabel.frame.origin.x+remindLabel.frame.size.width+5,numLabel.frame.origin.y,appendLabel.frame.size.width, appendLabel.frame.size.height);
         
     }
     timeLabel.text = number.numDate;
     
-    if (number.numStatus)
+    if (number.numStatus==1)
         stampImageView.hidden=NO;
     
     [asideLabel setTextColor:[UIColor whiteColor]];

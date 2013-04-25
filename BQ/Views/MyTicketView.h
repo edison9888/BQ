@@ -32,7 +32,7 @@ typedef enum {
         UILabel *remindLabel;//提示文字
         UILabel *appendLabel;//字符串拼接
         UILabel *timeLabel;//时间
-    
+        UILabel *numLabel;
         UIImageView *stampImageView;//是否过期
     
 }
