@@ -39,9 +39,9 @@
 + (void)getBankNumberInfo:(NSDictionary *)parameters WithBlock:(void (^)(Number *num))block{
     [[BQNetClient sharedClient] getPath:@"number/getNum" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        NSDictionary *dic = [BQNetClient nsdataTurnToNSDictionary:responseObject];
-        
-        NSDictionary *numDic = [dic objectForKey:@"NumberInfo"];
+        NSDictionary *dic = responseObject;
+
+        NSDictionary *numDic = [dic objectForKey:@"numberInfo"];
         NSLog(@"response%@",numDic);
 
         Number *num;
@@ -65,20 +65,23 @@
     [[BQNetClient sharedClient]getPath:@"number/getAllNum" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSMutableArray *numArr =[NSMutableArray array];
-        NSDictionary *dic = [BQNetClient nsdataTurnToNSDictionary:responseObject];
+        NSDictionary *dic = responseObject;
+
+        NSArray *jsonArr = [dic objectForKey:@"numberInfo"];
         
-        NSArray *jsonArr = [dic objectForKey:@"NumberInfo"];
         NSLog(@"response%@",dic);
         
         if ([jsonArr isKindOfClass:[NSDictionary class]]) {
             Number *num = [[Number alloc] initWithItem:(NSDictionary *)jsonArr];
             [numArr addObject:num];
-        }else{
+        }else if([jsonArr isKindOfClass:[NSArray class]]){
             for ( int i=0; i<jsonArr.count; i++) {
                 
                 NSDictionary *bankDic = [jsonArr objectAtIndex:i];
                 Number *num = [[Number alloc] initWithItem:bankDic];
-                [numArr addObject:num];
+                if (![num.numId isEqualToString:@"0"]) {
+                    [numArr addObject:num];
+                }
             }
         }
         if (block)
@@ -119,15 +122,15 @@
 }
 
 
-//通过proId字段检索二级市区
-+ (NSArray *)selectNumbersInfoFromDatabase:(NSInteger)proId{
+//通过获取今天的票
++ (NSArray *)selectNumbersInfoFromDatabase{
 
     NSMutableArray *mutableArr = [NSMutableArray array];
     
     static Statement *statement = nil;
     
     if (statement==nil) {
-        statement = [DBConnection statementWithQuery:"SELECT * FROM Numbers"];
+        statement = [DBConnection statementWithQuery:"SELECT * FROM Numbers where num_date >= date('NOW')"];
     }
 //    [statement bindInt32:proId forIndex:1];
     
@@ -146,11 +149,43 @@
 //        num.serParentId=[statement getString:10];
         [mutableArr addObject:numId];
     }
-    NSLog(@"nums==%@",mutableArr);
     
     [statement reset];
     return mutableArr;
 }
 
+//不是今天的票，状态改为1：作废
++ (NSArray *)updateNumbersStatusBeforeTodayFromDatabase{
+    
+    NSMutableArray *mutableArr = [NSMutableArray array];
+    
+    static Statement *statement = nil;
+    
+    if (statement==nil) { 
 
+        statement = [DBConnection statementWithQuery:"UPDATE Numbers SET num_status= 1 where num_date < date('NOW')"];
+    }
+    
+    while ([statement step] == SQLITE_ROW) {
+        NSLog(@"成功修改状态");
+    }
+    
+    [statement reset];
+    return mutableArr;
+}
+
++ (void)deleteNumbersFromSqlite{
+
+    static Statement *statement = nil;
+    
+    if (statement==nil) {
+        statement = [DBConnection statementWithQuery:"DELETE FROM Numbers"];
+    }
+    
+    int step = [statement step];
+    if (step != SQLITE_DONE) {
+		NSLog(@"insert error errorcode =%d ",step);
+    }
+    [statement reset];
+}
 @end

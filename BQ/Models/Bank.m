@@ -36,14 +36,15 @@
     [[BQNetClient sharedClient] getPath:@"bankInfo/getList" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSMutableArray *bankArr = [NSMutableArray array];
         
-            NSDictionary *dic = [BQNetClient nsdataTurnToNSDictionary:responseObject];
-            NSArray *jsonArr = [dic objectForKey:@"BankInfo"];
+            NSDictionary *dic = responseObject;
+
+            NSArray *jsonArr = [dic objectForKey:@"bankInfo"];
         
         if ([jsonArr isKindOfClass:[NSDictionary class]]) {
             Bank *bank = [[Bank alloc] initWithItem:(NSDictionary *)jsonArr];
             [bankArr addObject:bank];
             
-        }else{
+        }else if([jsonArr isKindOfClass:[NSArray class]]){
             for ( int i=0; i<jsonArr.count; i++) {
                 
                 NSDictionary *bankDic = [jsonArr objectAtIndex:i];
@@ -51,7 +52,7 @@
                 [bankArr addObject:bank];
             }
         }
-            NSLog(@"response%@",dic);
+//            NSLog(@"response%@",dic);
         if (block)
             block(bankArr);        
         
@@ -65,14 +66,15 @@
     [[BQNetClient sharedClient] getPath:@"bankInfo/getByArea" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSMutableArray *bankArr =[NSMutableArray array];
-        NSDictionary *dic = [BQNetClient nsdataTurnToNSDictionary:responseObject];
-        
-        NSArray *jsonArr = [dic objectForKey:@"BankInfo"];
+
+        NSDictionary *dic = responseObject;
+
+        NSArray *jsonArr = [dic objectForKey:@"bankInfo"];
         
         if ([jsonArr isKindOfClass:[NSDictionary class]]) {
             Bank *bank = [[Bank alloc] initWithItem:(NSDictionary *)jsonArr];
             [bankArr addObject:bank];
-        }else{
+        }else if([jsonArr isKindOfClass:[NSArray class]]){
             for ( int i=0; i<jsonArr.count; i++) {
                 
                 NSDictionary *bankDic = [jsonArr objectAtIndex:i];
@@ -80,7 +82,7 @@
                 [bankArr addObject:bank];
             }
         }
-        NSLog(@"response%@",bankArr);
+
         if (block)
             block(bankArr);
         

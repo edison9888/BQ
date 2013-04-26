@@ -7,6 +7,7 @@
 //
 
 #import "MapShowViewController.h"
+#define SpanDelta 0.1
 
 @interface MapShowViewController ()
 
@@ -51,8 +52,8 @@
 //annotaion坐标
 - (void)getAnnotationLocation:(Bank*)bank{
     MKCoordinateSpan span ;
-    span.latitudeDelta=0.5;
-    span.longitudeDelta=0.5;
+    span.latitudeDelta=SpanDelta;
+    span.longitudeDelta=SpanDelta;
     
     if((bank.lat >= -90) && (bank.lat <= 90) && (bank.lon >= -180) && (bank.lon <= 180)){
         CLLocation *location = [[CLLocation alloc] initWithLatitude:bank.lat longitude:bank.lon];
@@ -202,40 +203,12 @@
 }
 
 -(void)didSelectAnnotationViewDelegate:(CalloutMapAnnotation *)callAnn{
-
-//    NSLog(@"calloutAnn--- %@",callAnn.title);
     
     HomeViewController *homeVC = [[HomeViewController alloc] init];
     homeVC.bank =callAnn.bank;
     [self.navigationController pushViewController:homeVC animated:YES];
 
-    
 }
-
-
-
-//- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view {
-//    
-//	if ([view.annotation isKindOfClass:[MyAnnotation class]]) {
-//
-//	}
-//    else{
-//        
-////        [_map deselectAnnotation:view.annotation animated:NO];
-//        NSLog(@"calloutannotion");
-//        CalloutMapAnnotation *ann = view.annotation;
-//        
-//        if (view.annotation != _map.userLocation ) {
-//            
-//            HomeViewController *homeVC = [[HomeViewController alloc] init];
-//            homeVC.bank =ann.bank;
-//            [self.navigationController pushViewController:homeVC animated:YES];    }
-//
-//        }
-//}
-
-
-
 
 - (void)didReceiveMemoryWarning
 {

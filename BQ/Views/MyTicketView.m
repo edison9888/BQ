@@ -28,7 +28,7 @@
         [self addSubview:bgView];
         
         //过期戳
-        stampImageView = [[UIImageView alloc] initWithFrame:CGRectMake(140,10,157,157)];
+        stampImageView = [[UIImageView alloc] initWithFrame:CGRectMake(120,10,157,157)];
         [stampImageView setImage:[UIImage imageNamed:@"stamp"]];
         stampImageView.hidden=YES;
         [self addSubview:stampImageView];
@@ -97,7 +97,7 @@
         presentNumberLabel.textColor = [UIColor colorWithRed:65.0f/255 green:75.0f/255 blue:85.0f/255 alpha:1.0f];
         [bgView addSubview:presentNumberLabel];
 
-        numLabel = [[UILabel alloc] initWithFrame:CGRectMake(asideLabel.frame.origin.x, preNumberLabel.frame.origin.y+preNumberLabel.frame.size.height+BetweenHeight, 155, 18)];
+        numLabel = [[UILabel alloc] initWithFrame:CGRectMake(asideLabel.frame.origin.x, preNumberLabel.frame.origin.y+preNumberLabel.frame.size.height+BetweenHeight, 150, 18)];
         numLabel.text = @"您所在的排列前还有";
         numLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:16];
         numLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
@@ -113,7 +113,7 @@
         [bgView addSubview:remindLabel];
         
 
-        appendLabel = [[UILabel alloc] initWithFrame:CGRectMake(remindLabel.frame.origin.x+remindLabel.frame.size.width, numLabel.frame.origin.y, 50, 18)];
+        appendLabel = [[UILabel alloc] initWithFrame:CGRectMake(remindLabel.frame.origin.x+remindLabel.frame.size.width+5, numLabel.frame.origin.y, 50, 18)];
         appendLabel.text = @"个人";
         appendLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:16];
         appendLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
@@ -173,8 +173,19 @@
     }
     timeLabel.text = number.numDate;
     
-    if (number.numStatus==1)
-        stampImageView.hidden=NO;
+//1:作废    2：未办理  3：正在办理 4：已办理
+    if (number.numStatus==2||number.numStatus==3){
+        stampImageView.hidden=YES;
+    }
+    
+    if (number.numStatus == 1) {
+        stampImageView.hidden = NO;
+        stampImageView.image = [UIImage imageNamed:@"stamp"];
+    }
+    else if(number.numStatus==4){
+        stampImageView.hidden = NO;
+        stampImageView.image = [UIImage imageNamed:@"stamp1"];
+    }
     
     [asideLabel setTextColor:[UIColor whiteColor]];
     [numberLabel setTextColor:[UIColor whiteColor]];

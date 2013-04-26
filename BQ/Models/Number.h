@@ -42,6 +42,13 @@ typedef enum {
 //刷新我的排号
 + (void)refreshBankNumbers:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block;
 
-+ (NSArray *)selectNumbersInfoFromDatabase:(NSInteger)proId;
+//选择数据库
++ (NSArray *)selectNumbersInfoFromDatabase;
+
+//删除数据库
++ (void)deleteNumbersFromSqlite;
+
+//不是今天的票，状态改为1：作废
++ (NSArray *)updateNumbersStatusBeforeTodayFromDatabase;
 
 @end

@@ -16,6 +16,7 @@
 @property(nonatomic,strong) NSMutableArray *pickerArrs;
 @property(nonatomic,strong) UIPickerView *pickerView;
 @property(nonatomic,strong) Country *county;
+@property(nonatomic,assign) BOOL isSelectPV;
 
 @property(nonatomic,weak) MapViewController *viewController;
 @end

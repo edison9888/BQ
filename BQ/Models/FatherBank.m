@@ -30,7 +30,7 @@
         
         NSMutableArray *fatherBanks = [NSMutableArray array];
 
-        NSDictionary *dic= [BQNetClient nsdataTurnToNSDictionary:responseObject];
+        NSDictionary *dic = responseObject;
         NSArray *jsonArr;
         
         if (![dic isKindOfClass:[NSString class]]) {

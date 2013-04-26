@@ -27,3 +27,6 @@
 
 #define MAIN_DATABASE_NAME @"BQDataBase.sqlite"
 
+//pickerView SelectComponent
+#define SelectComponent 0
+

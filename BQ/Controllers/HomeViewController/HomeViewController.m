@@ -85,7 +85,7 @@ static HomeViewController *instance = nil;
 {
     [super viewDidLoad];
     self.title = @"选择业务";
-    
+        
     //背景图
     [self bankbackGroundImageView];
     
@@ -134,8 +134,6 @@ static HomeViewController *instance = nil;
     [self.view addSubview:enterpriseBusinessBtn];
     
     self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
-
-
     
     //调用接口
     [self getBusinessFromNet:personalBusinessBtn :enterpriseBusinessBtn];
@@ -177,25 +175,11 @@ static HomeViewController *instance = nil;
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-#pragma mark--
-#pragma mark--MyTicketRefreshDelegate
-//刷新票数据----刷新单张还是多张
+//#pragma mark--
+//#pragma mark--MyTicketRefreshDelegate
+////刷新票数据----刷新单张还是多张
 - (void)refreshTicketsDelegate:(Number *)number btnIndex:(NSInteger)index{
-    //number.numberId 票据id  网络请求
-    
-    //模拟数据
-//    Number *_number  = [[Number alloc] init];
-//    _number.bankName = @"光大银行";
-//    _number.bankNumber = @"H009";
-//    _number.business = @"贷款";
-//    _number.presentNumber = @"B007";
-//    _number.peopleNumber = 18;
-//    _number.time = @"2013/4/10  17:32";
-//    _number.status=1;
-//    
-//    MyTicketView *myTicketView = (MyTicketView *)[self.view viewWithTag: index+10];
-//    myTicketView.number = _number;
-    
+//
 }
 
 -(void)bankbackGroundImageView{

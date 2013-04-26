@@ -16,6 +16,8 @@
 #import "AppDelegate.h"
 #import "Bank.h"
 
+#define SpanDelta 0.1
+
 @interface MapViewController ()
 
 @end
@@ -28,8 +30,7 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-       
-        
+        _locationArrs=[NSMutableArray array];
     }
     return self;
 }
@@ -82,26 +83,6 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
-    //获得数据
-    Bank *bank1 = [[Bank alloc] init];
-    bank1.lat = 32.00;
-    bank1.lon = 120.00;
-    bank1.bankName = @"招商银行（莘庄）";
-    bank1.address = @"莘松路985号";
-    
-    Bank *bank2 = [[Bank alloc] init];
-    bank2.lat = 32.90;
-    bank2.lon = 121.00;
-    bank2.bankName = @"招商银行(闵行支行)";
-    bank2.address = @"莘建路776号";
-    
-    Bank *bank3 = [[Bank alloc] init];
-    bank3.lat = 31.20;
-    bank3.lon = 120.00;
-    bank3.bankName = @"招商银行(沪闵路)";
-    bank3.address = @"沪闵路776号";
-    
-    self.locationArrs = [NSMutableArray arrayWithObjects:bank1,bank2,bank3, nil];
     
     //调用接口
 //    [self getDataFormApi];
@@ -125,6 +106,7 @@
     
     //获取附近银行信息
     [Bank getBanksInfo:dic WithBlock:^(NSArray *arr) {
+        
         self.locationArrs= [NSMutableArray arrayWithArray:arr];
         [self reloadData];
     }];
@@ -137,13 +119,6 @@
         [alertView show];
         return;
     }
-}
-
-#pragma mark--
-#pragma mark--LocationManagerDelegate
--(void)locationManagerRoloadDataAddtionToLatAndLogDelegage{
-    
-    [self getDataFormApi];
 }
 
 #pragma mark--
@@ -170,9 +145,12 @@
 }
 
 //跳转列表
+//此处应使用  把mapviewController和listviewController作为当前控制器的子控制器
+
 - (void)turnToListVC{
-    //此处应使用  把mapviewController和listviewController作为当前控制器的子控制器
-    
+    //隐藏pickerView
+    [self dismissWithNoAnimate];
+
     UIViewController *fromVC,*toVC;
     UIViewAnimationOptions options;
     
@@ -219,24 +197,32 @@
 
 //点击定位自己
 - (void)locationSelf{
-    //列表界面刷新界面数据，当前定位地区银行
-    //获取附近银行信息
-    [self getDataFormApi];
-    
+    //列表界面刷新界面数据，当前定位地区银行    
     if (viewTag==MapTag) {
         CLLocation *userLocation = [[CLLocation alloc] initWithLatitude:self.mapVC._map.userLocation.coordinate.latitude longitude:self.mapVC._map.userLocation.location.coordinate.longitude];
         
         MKCoordinateSpan span ;
-        span.latitudeDelta=0.5;
-        span.longitudeDelta=0.5;
+        span.latitudeDelta=SpanDelta;
+        span.longitudeDelta=SpanDelta;
         MKCoordinateRegion region = {userLocation.coordinate, span};
         [self.mapVC._map setRegion:region];
+        
+        
+        //刷新数据
+        [self getDataFormApi];
+        
     }else{
-        //重新定位获得列表地点
+        //重新定位获得列表地点  定位回调中调用接口
         [self.mapVC.locationManager startUpdate];
         self.mapVC.locationManager.delegate=self.mapListVC;
     }
-  
+}
+
+#pragma mark--
+#pragma mark--LocationManagerDelegate
+-(void)locationManagerRoloadDataAddtionToLatAndLogDelegage{
+    
+    [self getDataFormApi];
 }
 
 #pragma mark--
@@ -244,51 +230,37 @@
 //区域取消按钮
 - (void)dismissPickerView{
     [UIView animateWithDuration:0.3f animations:^{
-        [pickerViewController.view setFrame:CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 215+45)];
-        
-        [pickerViewController removeFromParentViewController];
-
+        [self dismissWithNoAnimate];
     }];
+}
+
+//无动画消失 pickerView
+- (void)dismissWithNoAnimate{
+
+    [pickerViewController.view setFrame:CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 215+45)];
+    [pickerViewController removeFromParentViewController];
 
 }
 
 //区域确定刷新按钮
 - (void)confirmPickerView{
-    NSLog(@"确定刷界面");
+//    NSLog(@"确定刷界面");
     [self dismissPickerView];
-        
-    //pickerViewController.cityId 传个接口获取当前银行信息
-    //===========刷新界面假数据================
-    Bank *bank1 = [[Bank alloc] init];
-    bank1.lat = 32.00;
-    bank1.lon = 120.00;
-    bank1.bankName = @"工商银行（莘庄）";
-    bank1.address = @"莘松路985号";
     
-    Bank *bank2 = [[Bank alloc] init];
-    bank2.lat = 32.90;
-    bank2.lon = 121.00;
-    bank2.bankName = @"工商银行(闵行支行)";
-    bank2.address = @"莘建路776号";
-    
-    Bank *bank3 = [[Bank alloc] init];
-    bank3.lat = 31.20;
-    bank3.lon = 120.00;
-    bank3.bankName = @"工商银行(沪闵路)";
-    bank3.address = @"沪闵路776号";
-    
-    self.locationArrs=[NSMutableArray arrayWithObjects:bank1,bank2,bank3, nil];    
-    
+    //pickview默认状态的county信息获取
+    if (!pickerViewController.isSelectPV) {
+        pickerViewController.county = [pickerViewController.pickerArrs objectAtIndex:SelectComponent];
+    }
+
     //选择了地区，更改list的地区
     [mapListVC.bankTitleLabel setText:pickerViewController.county.countryName];
     
     //调接口加载数据
     [self accordingToAreaGetData];
-
 }
 
+//调用接口===传pickerViewController.county.countyId 和selectViewController界面的银行id
 -(void)accordingToAreaGetData{
-    //调用接口===传pickerViewController.county.countyId 和selectViewController界面的银行id    
     
     NSString *areaIdStr = [NSString stringWithFormat:@"%d",pickerViewController.county.countyId];
     NSString *bankIdStr =_fatherBank.bankTypeId;

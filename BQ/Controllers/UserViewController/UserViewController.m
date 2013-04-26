@@ -26,9 +26,25 @@
     return self;
 }
 
+- (void)timer{
+
+    [NSTimer scheduledTimerWithTimeInterval:86400 target:self selector:@selector(updateSqliteDataWhichTicketIsInvalid) userInfo:nil repeats:YES];
+    
+}
+
+//一天修改一次状态
+-(void)updateSqliteDataWhichTicketIsInvalid{
+    
+    [Number updateNumbersStatusBeforeTodayFromDatabase];
+
+}
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+//    [Number deleteNumbersFromSqlite];
+    [self timer];
     
     if (isFisrt) {
         //背景图
@@ -102,12 +118,8 @@
 //获取我的所有号码
 -(void)getMyNumbersFromNet{
     
-    NSArray *idsArr = [Number selectNumbersInfoFromDatabase:0];
-    if (idsArr.count==0) {
-        [self nullTicketView];
-        return;
-    }
-    
+    NSArray *idsArr = [Number selectNumbersInfoFromDatabase];
+        
     NSString *idsStr = [idsArr componentsJoinedByString:@","];
     
     NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:idsStr,@"ids", nil];
@@ -115,14 +127,20 @@
     [Number refreshBankNumbers:dic WithBlock:^(NSArray *arr) {
         
         if (arr.count!=0) {
-            self.numberArr=(NSMutableArray *)arr;
+//            self.numberArr=(NSMutableArray *)arr;
+            NSArray* reversedArray = [[arr reverseObjectEnumerator] allObjects];
+            self.numberArr=(NSMutableArray *)reversedArray;
             
             for (int i=0; i<self.numberArr.count; i++) {
                 [self createMyTicket:CGRectMake(16, 45+i*(342+20), 310, 342) index:i];
             }
             
             scrollView.contentSize = CGSizeMake(self.view.bounds.size.width,45+362*self.numberArr.count);
+        }else{
+            [self nullTicketView];
+            return;
         }
+
     }];
     
 }

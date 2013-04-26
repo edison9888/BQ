@@ -15,6 +15,7 @@
 
     if (self=[super init]) {
         
+        
         _parentId = [dic objectForKey:@"parentId"];
         _serviceId = [dic objectForKey:@"serviceId"];
         _serviceName = [dic objectForKey:@"serviceName"];
@@ -32,14 +33,15 @@
 
         NSMutableArray *businessArr = [NSMutableArray array];
         
-        NSDictionary *dic = [BQNetClient nsdataTurnToNSDictionary:responseObject];
+        NSDictionary *dic = responseObject;
+
         NSArray *jsonArr = [dic objectForKey:@"serviceType"];
         NSLog(@"responseObject%@",dic);
 
         if ([jsonArr isKindOfClass:[NSDictionary class]]) {
             Business *business = [[Business alloc] initWithItem:(NSDictionary *)jsonArr];
             [businessArr addObject:business];
-        }else{
+        }else if([jsonArr isKindOfClass:[NSArray class]]){
         
             for ( int i=0; i<jsonArr.count; i++) {
                 NSDictionary *bankDic = [jsonArr objectAtIndex:i];
@@ -65,7 +67,8 @@
         
         NSMutableArray *businessArr = [NSMutableArray array];
         
-        NSDictionary *dic = [BQNetClient nsdataTurnToNSDictionary:responseObject];
+        NSDictionary *dic = responseObject;
+
         NSArray *jsonArr = [dic objectForKey:@"serviceType"];
         NSLog(@"responseObject%@",dic);
         

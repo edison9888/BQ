@@ -59,6 +59,7 @@
     //调用接口 获得banksArr 解析存放fatherBank类
 
     [FatherBank getAllBankInfo:nil WithBlock:^(NSArray *arr) {
+        
         self.banksArr = arr;
         [self.tableView reloadData];
     }];

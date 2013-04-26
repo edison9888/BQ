@@ -26,7 +26,7 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
-    
+    _isSelectPV=NO;
 //    self.pickerArrs = [NSMutableArray arrayWithObjects:@"松江",@"闵行",@"黄浦",@"普陀",@"宝山", nil];
     // 获取pickerViewArr
     self.pickerArrs = [DatabaseOperations selectCountryFromDatabase:ProId];
@@ -62,7 +62,7 @@
     _pickerView.delegate=self;
     _pickerView.dataSource=self;
     _pickerView.showsSelectionIndicator = YES; //显示选中框
-    [_pickerView selectRow:(NSInteger)3 inComponent:0 animated:YES];
+    [_pickerView selectRow:(NSInteger)SelectComponent inComponent:0 animated:YES];
 
     [bgView addSubview:_pickerView];
 }
@@ -82,7 +82,9 @@
 }
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component{
+    _isSelectPV=YES;
     _county = [self.pickerArrs objectAtIndex:row];
+    
     NSLog(@"_cityId%d===%@",_county.countyId,_county.countryName);
 
 }
