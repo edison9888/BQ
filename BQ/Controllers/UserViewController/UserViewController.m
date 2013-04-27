@@ -235,9 +235,10 @@
     NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:number.numId,@"ids", nil];
 
     [Number refreshBankNumbers:dic WithBlock:^(NSArray *arr) {
+        
         if (arr.count!=0) {
             MyTicketView *myTicketView = (MyTicketView *)[scrollView viewWithTag: index+10];
-            myTicketView.number = number;
+            myTicketView.number = [arr objectAtIndex:0];
         }else
             return;               
     }];

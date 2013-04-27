@@ -42,7 +42,7 @@
         NSDictionary *dic = responseObject;
 
         NSDictionary *numDic = [dic objectForKey:@"numberInfo"];
-        NSLog(@"response%@",numDic);
+//        NSLog(@"response%@",numDic);
 
         Number *num;
         if ([numDic isKindOfClass:[NSDictionary class]]) {
@@ -69,11 +69,12 @@
 
         NSArray *jsonArr = [dic objectForKey:@"numberInfo"];
         
-        NSLog(@"response%@",dic);
-        
+//        NSLog(@"response%@",dic);
         if ([jsonArr isKindOfClass:[NSDictionary class]]) {
             Number *num = [[Number alloc] initWithItem:(NSDictionary *)jsonArr];
-            [numArr addObject:num];
+            if (![num.numId isEqualToString:@"0"]) {
+                [numArr addObject:num];
+            }
         }else if([jsonArr isKindOfClass:[NSArray class]]){
             for ( int i=0; i<jsonArr.count; i++) {
                 
@@ -84,7 +85,8 @@
                 }
             }
         }
-        if (block)
+        
+        if (block)            
             block(numArr);        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
