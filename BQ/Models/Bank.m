@@ -22,7 +22,7 @@
         _bankName=[dic objectForKey:@"bankName"];
         _bankProvince=[dic objectForKey:@"bankProvince"];
         _bankTypeId=[dic objectForKey:@"bankTypeId"];
-        _distance=[dic objectForKey:@"distince"];
+        _distance=[[dic objectForKey:@"distince"] floatValue];
         _lat=[[dic objectForKey:@"latitude"] doubleValue];
         _lon=[[dic objectForKey:@"longitude"] doubleValue];
         _phoneStr=[dic objectForKey:@"phone"];

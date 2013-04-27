@@ -79,7 +79,7 @@
     [lineImageView setImage:[UIImage imageNamed:@"banktableViewCell"]];
     [cell addSubview:lineImageView];
     
-    UILabel *_bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-100,lineImageView.frame.size.height)];
+    UILabel *_bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-160,lineImageView.frame.size.height)];
     [_bankLabel setText:bank.bankName];
     [_bankLabel setFont:[UIFont systemFontOfSize:15]];
     [_bankLabel setBackgroundColor:[UIColor clearColor]];
@@ -88,14 +88,13 @@
     [cell addSubview:_bankLabel];
     
     //距离需要动态获取--协调
-    UILabel *distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(310-80, 22, 50,lineImageView.frame.size.height)];
-//    [distanceLabel setText:@"500m"];
-    [distanceLabel setText:[NSString stringWithFormat:@"%@km",bank.distance]];
+    UILabel *distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(310-85, 20, 50,lineImageView.frame.size.height)];
+    [distanceLabel setText:[NSString stringWithFormat:@"%0.2fkm",bank.distance]];
     [distanceLabel setFont:[UIFont systemFontOfSize:15]];
     [distanceLabel setBackgroundColor:[UIColor clearColor]];
     [distanceLabel setTextColor:[UIColor colorWithRed:65/255 green:75/255 blue:85/255 alpha:1.0f]];
     [distanceLabel setTextAlignment:NSTextAlignmentLeft];
-    [distanceLabel sizeToFit];
+    [distanceLabel sizeThatFits:CGSizeMake(50,lineImageView.frame.size.height)];
     [cell addSubview:distanceLabel];
 
     return cell;

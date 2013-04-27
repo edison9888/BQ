@@ -20,7 +20,7 @@
 @property(nonatomic,strong) NSString *bankName;
 @property(nonatomic,strong) NSString *bankProvince;
 @property(nonatomic,strong) NSString *bankTypeId;
-@property(nonatomic,strong) NSString *distance;
+@property(nonatomic,assign) float distance;
 @property(nonatomic,assign) double lat;
 @property(nonatomic,assign) double lon;
 @property(nonatomic,strong) NSString *phoneStr;
