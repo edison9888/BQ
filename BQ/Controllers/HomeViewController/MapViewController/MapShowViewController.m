@@ -22,6 +22,7 @@
     if (self) {
         annotionViews = [NSMutableArray array];
         calloutAnnotationViews = [NSMutableArray array];
+        locationArr =[NSMutableArray array];
     }
     return self;
 }
@@ -55,8 +56,9 @@
     span.latitudeDelta=SpanDelta;
     span.longitudeDelta=SpanDelta;
     
+    CLLocation *location;
     if((bank.lat >= -90) && (bank.lat <= 90) && (bank.lon >= -180) && (bank.lon <= 180)){
-        CLLocation *location = [[CLLocation alloc] initWithLatitude:bank.lat longitude:bank.lon];
+        location = [[CLLocation alloc] initWithLatitude:bank.lat longitude:bank.lon];
         MKCoordinateRegion region = {location.coordinate, span};
         [_map setRegion:region];
     }
@@ -64,6 +66,8 @@
         NSLog(@"invalid region");
         return;
     }
+    
+    [locationArr addObject:location];
 }
 
 - (void)showCallOutAnnotationOnMapView:(Bank *)bank{
@@ -84,7 +88,6 @@
 
 //显示annotationViews
 - (void)showAnnotaionViews{
-    
 //    for (UIView * view in [_map subviews]) {
 //        if ([view isKindOfClass:[MKAnnotationView class]] ){
 //            [view removeFromSuperview];
@@ -122,57 +125,45 @@
     }
     
     [_map addAnnotations:calloutAnnotationViews];
+    
+    //地图居中显示
+    [self center_map];
+}
+
+//地图居中显示
+-(void)center_map
+{    
+    MKCoordinateRegion region;
+    
+    CLLocationDegrees maxLat = -90;
+    CLLocationDegrees maxLon = -180;
+    CLLocationDegrees minLat = 90;
+    CLLocationDegrees minLon = 180;
+    for (int idx = 0; idx < locationArr.count; idx++) {
+        CLLocation* currentLocation = [locationArr objectAtIndex:idx];
+        if (currentLocation.coordinate.latitude > maxLat) {
+            maxLat = currentLocation.coordinate.latitude;
+        }
+        if (currentLocation.coordinate.latitude < minLat) {
+            minLat = currentLocation.coordinate.latitude;
+        }
+        if (currentLocation.coordinate.longitude > maxLon) {
+            maxLon = currentLocation.coordinate.longitude;
+        }
+        if (currentLocation.coordinate.longitude < minLon) {
+            minLon = currentLocation.coordinate.longitude;
+        }
+        region.center.latitude = (maxLat + minLat) / 2;
+        region.center.longitude = (maxLon + minLon) / 2;
+        region.span.latitudeDelta = maxLat - minLat;
+        region.span.longitudeDelta = maxLon - minLon;
+        
+        [_map setRegion:region animated:YES];
+    }
 }
 
 #pragma mark
 #pragma mark--MapViewDelegate
-/*
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation{
-    
-    CustomAnnotationView *pinView = nil;
-    if(annotation != mapView.userLocation)
-    {
-//        static NSString *defaultPinID = @"pin";
-//        pinView = (MKPinAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
-//        if ( pinView == nil )
-//            pinView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:defaultPinID];
-//        pinView.pinColor = MKPinAnnotationColorPurple;
-//        pinView.canShowCallout = YES;
-//        pinView.animatesDrop = YES;
-//        
-//        UIButton *accessoryView =[UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//        [accessoryView setFrame:CGRectMake(0, 0, 30,30)];
-//        pinView.rightCalloutAccessoryView=accessoryView;
-        
-        
-        static NSString *defaultPinID = @"pin";
-        pinView = (CustomAnnotationView *)[mapView dequeueReusableAnnotationViewWithIdentifier:defaultPinID];
-        if ( pinView == nil )
-            pinView = [[CustomAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:defaultPinID];
-        
-        pinView.delegate = self;
-        pinView.pinColor = MKPinAnnotationColorPurple;
-        pinView.canShowCallout = YES;
-        pinView.animatesDrop = YES;
-        
-        UIButton *annotationViewBg = [UIButton buttonWithType:UIButtonTypeCustom];
-        [annotationViewBg setBackgroundColor:[UIColor yellowColor]];
-        annotationViewBg.frame = CGRectMake(0, 0, 20, 20);
-        [annotationViewBg addTarget:self action:@selector(selectAnnotaionBtn:) forControlEvents:UIControlEventTouchUpInside];
-        [pinView.contentView addSubview:annotationViewBg];
-
-//        UIButton *accessoryView =[UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-//        [accessoryView setFrame:CGRectMake(0, 0, 30,30)];
-//        pinView.rightCalloutAccessoryView=accessoryView;
-        
-    }
-    else
-        [mapView.userLocation setTitle:@"I am here"];
-    
-    return pinView;
-    
-}*/
-
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
 	if ([annotation isKindOfClass:[CalloutMapAnnotation class]]) {
         

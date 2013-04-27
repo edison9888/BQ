@@ -75,9 +75,7 @@
     navHomeVc = [[UINavigationController alloc] initWithRootViewController:userVC];
     navHomeVc.navigationBarHidden=YES;
     [self.window setRootViewController:navHomeVc];
-
     [self.window makeKeyAndVisible];
-    
     
     userVC.isNetWork = [[self class] isNetworkReachable];
 

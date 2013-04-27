@@ -23,7 +23,7 @@
 @interface MapShowViewController : UIViewController<MKMapViewDelegate,UIGestureRecognizerDelegate,CustomAnnotationViewDelegate>
 {
     @private
-    NSMutableArray *annotionViews,*calloutAnnotationViews;
+    NSMutableArray *annotionViews,*calloutAnnotationViews,*locationArr;
     CalloutMapAnnotation *_calloutAnnotation;
      NSInteger index;
 
