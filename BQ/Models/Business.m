@@ -70,7 +70,7 @@
         NSDictionary *dic = responseObject;
 
         NSArray *jsonArr = [dic objectForKey:@"serviceType"];
-        NSLog(@"responseObject%@",jsonArr);
+//        NSLog(@"responseObject%@",jsonArr);
         
         if ([jsonArr isKindOfClass:[NSDictionary class]]) {
             Business *business = [[Business alloc] initWithItem:(NSDictionary *)jsonArr];
