@@ -71,6 +71,8 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     //    }
     
+    cell.autoresizesSubviews=YES;
+    
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     Bank *bank = [self.locationArrs objectAtIndex:indexPath.row];
@@ -80,7 +82,7 @@
     [cell addSubview:lineImageView];
     
     UILabel *_bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-120,lineImageView.frame.size.height)];
-    [_bankLabel setText:bank.bankName];
+    [_bankLabel setText:bank.address];
     [_bankLabel setFont:[UIFont systemFontOfSize:15]];
     [_bankLabel setBackgroundColor:[UIColor clearColor]];
     [_bankLabel setTextColor:[UIColor colorWithRed:65/255 green:75/255 blue:85/255 alpha:1.0f]];
@@ -94,6 +96,7 @@
     [distanceLabel setBackgroundColor:[UIColor clearColor]];
     [distanceLabel setTextColor:[UIColor colorWithRed:65/255 green:75/255 blue:85/255 alpha:1.0f]];
     [distanceLabel setTextAlignment:NSTextAlignmentLeft];
+    [distanceLabel setAutoresizingMask:UIViewAutoresizingFlexibleRightMargin];
     [distanceLabel sizeToFit];
     [cell addSubview:distanceLabel];
 
@@ -123,7 +126,6 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
 
 @end

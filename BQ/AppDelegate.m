@@ -70,7 +70,16 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    
+    //背景图
+    UIImageView *myhomeBG = [[UIImageView alloc]initWithFrame:self.window.bounds];
+    if (iPhone5) {
+        [myhomeBG setImage:[UIImage imageNamed:@"bigBack5"]];
+    }else{
+        [myhomeBG setImage:[UIImage imageNamed:@"bigBack4"]];
+    }
+    myhomeBG.userInteractionEnabled =YES;
+    [self.window addSubview:myhomeBG];
+
     userVC = [[UserViewController alloc]init];
     navHomeVc = [[UINavigationController alloc] initWithRootViewController:userVC];
     navHomeVc.navigationBarHidden=YES;

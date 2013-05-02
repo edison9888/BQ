@@ -36,20 +36,9 @@
     
     [[AppDelegate getAppdelegate] setNavigateBarHidden:NO];
     
-    //背景图
-    UIImageView *myhomeBG = [[UIImageView alloc]initWithFrame:self.view.bounds];
-    if (iPhone5) {
-        [myhomeBG setImage:[UIImage imageNamed:@"bigBack5"]];
-    }else{
-        [myhomeBG setImage:[UIImage imageNamed:@"bigBack4"]];
-    }
-    myhomeBG.userInteractionEnabled =YES;
-    [self.view addSubview:myhomeBG];
-
-    
     self.title =@"选择银行";
     
-    self.tableView.backgroundView=myhomeBG;
+    self.tableView.backgroundView=nil;
     self.tableView.backgroundColor = [UIColor clearColor];
     
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;

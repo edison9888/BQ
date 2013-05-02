@@ -46,17 +46,17 @@
 //    [Number deleteNumbersFromSqlite];
     [self timer];
     
-    if (isFisrt) {
-        //背景图
-        myhomeBG = [[UIImageView alloc]initWithFrame:self.view.bounds];
-        if (iPhone5) {
-            [myhomeBG setImage:[UIImage imageNamed:@"bigBack5"]];
-        }else{
-            [myhomeBG setImage:[UIImage imageNamed:@"bigBack4"]];
-        }
-        myhomeBG.userInteractionEnabled =YES;
-        [self.view addSubview:myhomeBG];
-    }
+//    if (isFisrt) {
+//        //背景图
+//        myhomeBG = [[UIImageView alloc]initWithFrame:self.view.bounds];
+//        if (iPhone5) {
+//            [myhomeBG setImage:[UIImage imageNamed:@"bigBack5"]];
+//        }else{
+//            [myhomeBG setImage:[UIImage imageNamed:@"bigBack4"]];
+//        }
+//        myhomeBG.userInteractionEnabled =YES;
+//        [self.view addSubview:myhomeBG];
+//    }
 
     scrollView =[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.bounds.size.height-57)];
     scrollView.bounces=YES;

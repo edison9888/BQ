@@ -44,7 +44,7 @@
     
     self.navigationItem.rightBarButtonItem = [Helper rightBarButtonItem:self];
     
-    self.title = @"附近银行";
+    self.title = _fatherBank.bankTypeName;
     
     locationManager = [[LocationManager alloc] init];
     locationManager.roloadDelegate=self;
