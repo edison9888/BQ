@@ -26,6 +26,9 @@
 
 - (void)viewDidLoad{
     [super viewDidLoad];
+    
+//    [self.view setFrame:CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 215+45)];
+
     _isSelectPV=NO;
 //    self.pickerArrs = [NSMutableArray arrayWithObjects:@"松江",@"闵行",@"黄浦",@"普陀",@"宝山", nil];
     // 获取pickerViewArr
@@ -62,9 +65,8 @@
     _pickerView.delegate=self;
     _pickerView.dataSource=self;
     _pickerView.showsSelectionIndicator = YES; //显示选中框
-    [_pickerView selectRow:(NSInteger)SelectComponent inComponent:0 animated:YES];
-
     [bgView addSubview:_pickerView];
+    
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(UIPickerView *)pickerView{

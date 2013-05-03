@@ -116,8 +116,18 @@
     [self animateGetTicket:_ticketView];
 }
 
-
-
+#pragma mark--
+#pragma mark--release memory
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+//    
+//    ticketBg=nil;
+//    ticketView=nil;
+//    ticketBg1=nil;
+//    
+//    _busniess=nil;
+    
+}
 
 - (void)didReceiveMemoryWarning
 {

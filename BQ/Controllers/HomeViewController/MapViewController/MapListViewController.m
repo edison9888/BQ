@@ -67,9 +67,12 @@
     static NSString *CellIdentifier = @"CustomCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    //    if (!cell) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    //    }
+    if (cell)
+        return cell;
+
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     cell.autoresizesSubviews=YES;
     
@@ -121,6 +124,13 @@
     if (SubLocalityName!=NULL) {
         [_bankTitleLabel setText:[NSString stringWithFormat:@"%@",SubLocalityName]];
     }
+}
+
+#pragma mark--
+#pragma mark--release memory
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+
 }
 
 - (void)didReceiveMemoryWarning

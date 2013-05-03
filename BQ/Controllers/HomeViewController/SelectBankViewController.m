@@ -88,11 +88,15 @@
     static NSString *CellIdentifier = @"CustomCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-//    if (!cell) {
+    
+    if (cell)
+        return cell;
+    
+    if (!cell) {
     
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-        
-//    }
+    }
+    
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
         
@@ -121,17 +125,20 @@
     FatherBank *fatherBank = [self.banksArr objectAtIndex:indexPath.row];
 
     MapViewController *mapVC = [[MapViewController alloc] init];
-    mapVC.homeVC=(HomeViewController *)self.delegate;
+    mapVC.homeVC=(HomeViewController *)_delegate;
     mapVC.fatherBank=fatherBank;
-//    mapVC.hidesBottomBarWhenPushed=YES;
-//    if([_delegate respondsToSelector:@selector(hidenTabbar:)])
-//    {
-//        [_delegate hidenTabbar:YES];
-//    }
     [self.navigationController pushViewController:mapVC animated:YES];
     
 }
 
+#pragma mark--
+#pragma mark--release memory
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+//    _banksArr=nil;
+    
+}
 
 - (void)didReceiveMemoryWarning
 {

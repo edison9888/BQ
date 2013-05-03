@@ -155,7 +155,7 @@ static HomeViewController *instance = nil;
     [Business getfatherService:nil WithBlock:^(NSArray *arr) {
         
         _fatherBusinessArr=arr;
-        
+
         Business *business;
         for (int i=0; i<_fatherBusinessArr.count; i++) {
             business=[_fatherBusinessArr objectAtIndex:i];
@@ -219,7 +219,6 @@ static HomeViewController *instance = nil;
     [super viewWillAppear:animated];
 
    // [self hidenTabbar:NO];
-    
 }
 
 
@@ -232,9 +231,11 @@ static HomeViewController *instance = nil;
     [self initPersonalVC];
     
     personalVC.busniess=[_fatherBusinessArr objectAtIndex:0];
+    
+    NSLog(@"_fatherBusinessArr %@,service==%@==%@==%@",_fatherBusinessArr,personalVC.busniess,personalVC.busniess.serviceId,personalVC.busniess.serviceName);
     personalVC.businessType=PersonalType;
     [self.view addSubview:personalVC.view];
-//    personalVC.view.frame=self.view.frame;
+//  personalVC.view.frame=self.view.frame;
 }
 
 //企业业务
@@ -290,6 +291,13 @@ static HomeViewController *instance = nil;
 //    //企业业务
 //    [enterpriseVC removeFromParentViewController];
 //    [enterpriseVC.view removeFromSuperview];
+}
+
+#pragma mark--
+#pragma mark--release memory
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
 }
 
 - (void)didReceiveMemoryWarning

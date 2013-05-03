@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 #import "PersonalBusinessViewController.h"
-//#import "EnterpriseBusinessViewController.h"
 
 #import "MainViewController.h"
 #import "SelectBankViewController.h"
@@ -20,7 +19,6 @@
 {
     BOOL isLocation;
     PersonalBusinessViewController *personalVC;
-//    EnterpriseBusinessViewController *enterpriseVC;
     UILabel *_bankNameLabel;
 }
 

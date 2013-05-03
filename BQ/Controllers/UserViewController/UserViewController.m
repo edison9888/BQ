@@ -28,8 +28,11 @@
 
 - (void)timer{
 
-    [NSTimer scheduledTimerWithTimeInterval:86400 target:self selector:@selector(updateSqliteDataWhichTicketIsInvalid) userInfo:nil repeats:YES];
-    
+    NSString *dateStr = [NSString stringWithFormat:@"%@",[NSDate date]];
+    NSRange range = NSMakeRange(11, 2);
+    [self performSelector:@selector(updateSqliteDataWhichTicketIsInvalid) withObject:self afterDelay:1.0f];
+    NSLog(@"str===%@",[dateStr substringWithRange:range]);
+
 }
 
 //一天修改一次状态
@@ -43,33 +46,30 @@
 {
     [super viewDidLoad];
     
-//    [Number deleteNumbersFromSqlite];
+    [Number deleteNumbersFromSqlite];
+    
+       
     [self timer];
     
-//    if (isFisrt) {
-//        //背景图
-//        myhomeBG = [[UIImageView alloc]initWithFrame:self.view.bounds];
-//        if (iPhone5) {
-//            [myhomeBG setImage:[UIImage imageNamed:@"bigBack5"]];
-//        }else{
-//            [myhomeBG setImage:[UIImage imageNamed:@"bigBack4"]];
-//        }
-//        myhomeBG.userInteractionEnabled =YES;
-//        [self.view addSubview:myhomeBG];
-//    }
-
+    myhomeBG = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-57)];
+    [self.view addSubview:myhomeBG];
+    
     scrollView =[[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.bounds.size.height-57)];
     scrollView.bounces=YES;
+    scrollView.delegate=self;
     scrollView.contentSize = CGSizeMake(scrollView.bounds.size.width, scrollView.frame.size.height);
     [scrollView setBackgroundColor:[UIColor clearColor]];
     [self.view addSubview:scrollView];
     
+    refreshTableView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0,-scrollView.bounds.size.height, scrollView.frame.size.width,scrollView.frame.size.height)];
+    refreshTableView.delegate=self;
+    [scrollView addSubview:refreshTableView];
+    
     selectBankButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [selectBankButton addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
-    [selectBankButton setImage:[UIImage imageNamed:@"mapBtn@2x"] forState:UIControlStateNormal];
+    [selectBankButton setImage:[UIImage imageNamed:@"mapBtn"] forState:UIControlStateNormal];
     [selectBankButton setFrame:CGRectMake(self.view.bounds.size.width/2-102/2,self.view.bounds.size.height-50, 102, 50)];
     [self.view addSubview:selectBankButton];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated{
@@ -82,37 +82,42 @@
     [scrollView setContentOffset:CGPointMake(0, 0)];
     
     [[AppDelegate getAppdelegate] setNavigateBarHidden:YES];
+   
+    //移除原来的票
+    [self removePastNumbers];
     
-    for (UIView *view in  [scrollView subviews]) {
-        if ([view isKindOfClass:[MyTicketView class]]) {
-            [view removeFromSuperview];
-            
-        }
-    }
     if (isFisrt) {
         
-        [self nullTicketView];
-        
         isFisrt=NO;
-        
-    }else{
-        
-        [self changeBgImageView];
+        [self nullTicketView:0];
 
+    }else{
         //获取我的号码
         [self getMyNumbersFromNet];
-
     }
     
 }
 
+- (void)removePastNumbers{    
+    for (UIView *view in  [scrollView subviews]) {
+        if ([view isKindOfClass:[MyTicketView class]]) {
+            [view removeFromSuperview];
+        }
+    }
+}
+
 //无票时显示
-- (void)nullTicketView{
+- (void)nullTicketView:(NSInteger) count{
 
-    MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16, 45, 290, 342) index:111 type:myTicket];
-    myTicketView.delegate=self;
-    [scrollView addSubview:myTicketView];
-
+    if (count==0) {
+        MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16, 45, 290, 342) index:111 type:myTicket];
+        myTicketView.delegate=self;
+        [scrollView addSubview:myTicketView];
+    }else{
+        MyTicketView *myTicket =(MyTicketView *)[scrollView viewWithTag:111];
+        [myTicket removeFromSuperview];
+    }
+   
 }
 
 //获取我的所有号码
@@ -126,19 +131,18 @@
     
     [Number refreshBankNumbers:dic WithBlock:^(NSArray *arr) {
         
+        [self changeBgImageView];
+        [self nullTicketView:arr.count];
+
         if (arr.count!=0) {
-//            self.numberArr=(NSMutableArray *)arr;
             NSArray* reversedArray = [[arr reverseObjectEnumerator] allObjects];
-            self.numberArr=(NSMutableArray *)reversedArray;
-            
-            for (int i=0; i<self.numberArr.count; i++) {
+            _numberArr=(NSMutableArray *)reversedArray;
+//            NSLog(@"_numberArr%@",_numberArr);
+            for (int i=0; i<_numberArr.count; i++) {
                 [self createMyTicket:CGRectMake(16, 45+i*(342+20), 310, 342) index:i];
             }
             
             scrollView.contentSize = CGSizeMake(self.view.bounds.size.width,45+362*self.numberArr.count);
-        }else{
-            [self nullTicketView];
-            return;
         }
 
     }];
@@ -184,18 +188,15 @@
 - (void)changeBgImageView{
     //背景图
     UIImageView *downTicketImage =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"downTicket"]];
-    [downTicketImage setFrame:CGRectMake(0,self.view.frame.size.height+NavigationHeight-57, self.view.frame.size.width, 57)];
-    [self.view insertSubview:downTicketImage atIndex:100];
+    [downTicketImage setFrame:CGRectMake(0,self.view.frame.size.height-57, self.view.frame.size.width, 57)];
+    [self.view addSubview:downTicketImage];
     
-    [myhomeBG setFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height+NavigationHeight-downTicketImage.frame.size.height)];
     if (iPhone5) {
-        [myhomeBG setImage:[UIImage imageNamed:@"homeTicket5@2x"]];
+        [myhomeBG setImage:[UIImage imageNamed:@"homeTicket5"]];
     }else{
-        [myhomeBG setImage:[UIImage imageNamed:@"homeTicket4@2x"]];
+        [myhomeBG setImage:[UIImage imageNamed:@"homeTicket4"]];
     }
-    
-    [self.view bringSubviewToFront:selectBankButton];
-
+    [self.view addSubview:selectBankButton];
 }
 
 //生成多个ticket
@@ -240,9 +241,71 @@
             MyTicketView *myTicketView = (MyTicketView *)[scrollView viewWithTag: index+10];
             myTicketView.number = [arr objectAtIndex:0];
         }else
-            return;               
+            return;
     }];
     
+}
+
+
+#pragma mark--
+#pragma egoRefreshDelegate
+- (void)reloadTableViewDataSource{    
+    //移除原来的票
+    [self removePastNumbers];
+
+    [self getMyNumbersFromNet];
+    
+    //刷新评论
+    isReload = YES;
+}
+
+- (void)doneLoadingTableViewData{
+    isReload = NO;
+    
+	[refreshTableView egoRefreshScrollViewDataSourceDidFinishedLoading:scrollView];
+    
+}
+
+- (void)egoRefreshTableHeaderDidTriggerRefresh:(EGORefreshTableHeaderView*)view{
+    [self reloadTableViewDataSource];
+    [self performSelector:@selector(doneLoadingTableViewData) withObject:nil afterDelay:1.0f];
+}
+
+- (BOOL)egoRefreshTableHeaderDataSourceIsLoading:(EGORefreshTableHeaderView*)view{
+    
+    return isReload;
+}
+
+- (NSDate*)egoRefreshTableHeaderDataSourceLastUpdated:(EGORefreshTableHeaderView*)view{
+    
+    return [NSDate date];
+}
+
+#pragma mark--
+#pragma ScrollDelegete
+
+- (void)scrollViewDidScroll:(UIScrollView *)_scrollView{
+	
+	[refreshTableView egoRefreshScrollViewDidScroll:_scrollView];
+    
+}
+
+- (void)scrollViewDidEndDragging:(UIScrollView *)_scrollView willDecelerate:(BOOL)decelerate{
+    
+    if(_scrollView.contentOffset.y >= -160)	{
+        
+        [refreshTableView egoRefreshScrollViewDidEndDragging:scrollView];
+        
+    }
+}
+
+
+#pragma mark--
+#pragma mark--release memory
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    _numberArr=nil;
 }
 
 

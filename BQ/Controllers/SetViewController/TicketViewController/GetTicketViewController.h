@@ -16,7 +16,7 @@
 {
     @private
     UIImageView *ticketBg;
-    Number *number;
+//    Number *number;
     MyTicketView *ticketView;
     UIImageView *ticketBg1;
 }

@@ -56,6 +56,7 @@
 
 -(void)getChildServiceFromData{
     
+    NSLog(@"getChildServiceFromData%@",_busniess.serviceId);
     NSDictionary *dic =[NSDictionary dictionaryWithObject:_busniess.serviceId forKey:@"id"];
     
     [Business getChildService:dic WithBlock:^(NSArray *arr) {
@@ -108,9 +109,12 @@
     static NSString *CellIdentifier = @"CustomCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    //    if (!cell) {
-    cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    //    }
+    if (cell)
+        return cell;
+
+    if (!cell) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
     
     if (self.businessArr.count==0){
         return nil;
@@ -160,6 +164,13 @@
     if ([self.delegate respondsToSelector:@selector(dismissPresentVC)]) {
         [self.delegate performSelector:@selector(dismissPresentVC)];
     }
+}
+
+#pragma mark--
+#pragma mark--release memory
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+
 }
 
 - (void)didReceiveMemoryWarning

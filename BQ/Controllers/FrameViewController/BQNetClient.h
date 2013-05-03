@@ -14,7 +14,6 @@
 + (BQNetClient *)sharedClient;
 
 - (id)initWithBaseURL:(NSURL *)url;
-
 //+(NSDictionary *)nsdataTurnToNSDictionary:(id)responseObject;
 
 @end

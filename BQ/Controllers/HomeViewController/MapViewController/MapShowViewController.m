@@ -40,13 +40,6 @@
     [locationManager startUpdate];
 }
 
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    
-    [locationManager stopUpdate];
-    
-}
-
 
 #pragma mark--
 #pragma mark--位置信息
@@ -199,6 +192,20 @@
     homeVC.bank =callAnn.bank;
     [self.navigationController pushViewController:homeVC animated:YES];
 
+}
+
+#pragma mark--
+#pragma mark--release memory
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    [locationManager stopUpdate];
+
+//    annotionViews=nil;
+//    calloutAnnotationViews=nil;
+//    locationArr=nil;
+//    _locationArrs=nil;//地图
+    
 }
 
 - (void)didReceiveMemoryWarning

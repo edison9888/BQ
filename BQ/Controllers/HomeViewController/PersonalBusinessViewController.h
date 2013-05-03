@@ -29,7 +29,7 @@ typedef enum {
     UIImageView *bgImageView;
     UITableView *_tableView;
     BOOL isSelect;
-    NSString *tickitInfo;
+//    NSString *tickitInfo;
 }
 
 @property(nonatomic,strong) NSArray *businessArr;

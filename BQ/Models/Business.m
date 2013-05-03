@@ -36,7 +36,7 @@
         NSDictionary *dic = responseObject;
 
         NSArray *jsonArr = [dic objectForKey:@"serviceType"];
-//        NSLog(@"responseObject%@",dic);
+        NSLog(@"father===responseObject%@",dic);
 
         if ([jsonArr isKindOfClass:[NSDictionary class]]) {
             Business *business = [[Business alloc] initWithItem:(NSDictionary *)jsonArr];
@@ -50,14 +50,15 @@
             }        
         }
         
-        if (block)
+        if (block){
+            NSLog(@"fatherArr%@",businessArr);
             block(businessArr);
-        
+        }
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
         NSLog(@"%@",error.userInfo);
     }];
-    
 }
 
 //根据父类类型获取子类业务
@@ -70,7 +71,7 @@
         NSDictionary *dic = responseObject;
 
         NSArray *jsonArr = [dic objectForKey:@"serviceType"];
-//        NSLog(@"responseObject%@",jsonArr);
+//        NSLog(@"getChildServiceFromDataresponseObject%@",jsonArr);
         
         if ([jsonArr isKindOfClass:[NSDictionary class]]) {
             Business *business = [[Business alloc] initWithItem:(NSDictionary *)jsonArr];

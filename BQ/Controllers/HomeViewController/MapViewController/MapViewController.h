@@ -31,10 +31,7 @@ typedef enum {
     @private
     PickerView *pickerViewController;
     ViewTag viewTag;
-    
-    MapListViewController *mapListVC;//列表显示
-    MapShowViewController *mapShowVC;//地图显示
-    
+        
     LocationManager *locationManager;
 }
 

@@ -74,7 +74,8 @@
     [self addChildViewController:pickerViewController];
     [pickerViewController.view setFrame:CGRectMake(0, self.view.bounds.size.height, self.view.bounds.size.width, 215+45)];
     //    pickerViewController.pickerArrs=xxx;获取pickerArr刷新数据
-    [[self.view superview] addSubview:pickerViewController.view];
+    [self.view addSubview:pickerViewController.view];
+    [self.view bringSubviewToFront:pickerViewController.view];
 
     //判断是否联网
     //[self isNetWork];
@@ -96,8 +97,8 @@
     NSString *logStr = [NSString stringWithFormat:@"%f",Log];
     
     if ([[NSString stringWithFormat:@"%f",Lat] isEqualToString:@"0.000000"] && [[NSString stringWithFormat:@"%f",Log] isEqualToString:@"0.000000"]) {
-        latStr=@"31.230000";
-        logStr=@"121.000000";
+//        latStr=@"31.230000";
+//        logStr=@"121.000000";
         NSLog(@"没定位");
         return;
     }
@@ -273,6 +274,12 @@
         self.locationArrs=(NSMutableArray *)arr;
         [self reloadData];
     }];
+}
+
+- (void)viewDidDisappear:(BOOL)animated{
+    [super viewDidDisappear:animated];
+    
+    
 }
 
 

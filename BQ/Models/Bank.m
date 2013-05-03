@@ -57,6 +57,7 @@
             block(bankArr);        
         
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
             NSLog(@"%@",error.userInfo);
     }];
 }

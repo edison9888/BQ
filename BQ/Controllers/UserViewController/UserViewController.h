@@ -10,14 +10,16 @@
 #import "Number.h"
 #import "MyTicketView.h"
 #import "SelectBankViewController.h"
+#import "EGORefreshTableHeaderView.h"
 
-@interface UserViewController : UIViewController<MyTicketViewDelegate>
+@interface UserViewController : UIViewController<MyTicketViewDelegate,EGORefreshTableHeaderDelegate,UIScrollViewDelegate>
 {
     @private
     UIScrollView *scrollView;
-    BOOL isFisrt;
+    BOOL isFisrt,isReload;
     UIImageView *myhomeBG;
     UIButton *selectBankButton;
+    EGORefreshTableHeaderView *refreshTableView;
 }
 
 @property(nonatomic,strong) NSMutableArray *numberArr;

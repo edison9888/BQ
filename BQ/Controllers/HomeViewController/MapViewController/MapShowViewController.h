@@ -24,8 +24,6 @@
 {
     @private
     NSMutableArray *annotionViews,*calloutAnnotationViews,*locationArr;
-    CalloutMapAnnotation *_calloutAnnotation;
-     NSInteger index;
 
 }
 
