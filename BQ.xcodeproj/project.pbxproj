@@ -88,6 +88,7 @@
 		C84FF45517263125000D5BE9 /* buttonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C84FF45417263125000D5BE9 /* buttonSelected@2x.png */; };
 		C85314CE172A53D3008D17BC /* stamp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85314CD172A53D3008D17BC /* stamp@2x.png */; };
 		C85314D0172A53FC008D17BC /* stamp1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85314CF172A53FC008D17BC /* stamp1@2x.png */; };
+		C85B7D6117374F72004E02A0 /* NumbersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C85B7D6017374F72004E02A0 /* NumbersViewController.m */; };
 		C85CD6C31712AD4C007512C3 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CD6C21712AD4C007512C3 /* LocationManager.m */; };
 		C85CD6C61712B5DC007512C3 /* MapListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CD6C51712B5DC007512C3 /* MapListViewController.m */; };
 		C85CD6C81712C4B1007512C3 /* mapButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C85CD6C71712C4B1007512C3 /* mapButton@2x.png */; };
@@ -249,6 +250,8 @@
 		C84FF45417263125000D5BE9 /* buttonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "buttonSelected@2x.png"; sourceTree = "<group>"; };
 		C85314CD172A53D3008D17BC /* stamp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stamp@2x.png"; sourceTree = "<group>"; };
 		C85314CF172A53FC008D17BC /* stamp1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stamp1@2x.png"; sourceTree = "<group>"; };
+		C85B7D5F17374F72004E02A0 /* NumbersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumbersViewController.h; sourceTree = "<group>"; };
+		C85B7D6017374F72004E02A0 /* NumbersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumbersViewController.m; sourceTree = "<group>"; };
 		C85CD6C11712AD4C007512C3 /* LocationManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationManager.h; sourceTree = "<group>"; };
 		C85CD6C21712AD4C007512C3 /* LocationManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationManager.m; sourceTree = "<group>"; };
 		C85CD6C41712B5DC007512C3 /* MapListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MapListViewController.h; sourceTree = "<group>"; };
@@ -525,6 +528,8 @@
 			children = (
 				04A6ACF317014BC4009948B3 /* UserViewController.h */,
 				04A6ACF417014BC4009948B3 /* UserViewController.m */,
+				C85B7D5F17374F72004E02A0 /* NumbersViewController.h */,
+				C85B7D6017374F72004E02A0 /* NumbersViewController.m */,
 			);
 			path = UserViewController;
 			sourceTree = "<group>";
@@ -948,6 +953,7 @@
 				C8AE8EE3171D28FD00098213 /* SBJsonWriter.m in Sources */,
 				C8660FF5171E94C800F247B8 /* CustomAnnotationView.m in Sources */,
 				C8B6EBA617278CDA00AEC617 /* Business.m in Sources */,
+				C85B7D6117374F72004E02A0 /* NumbersViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

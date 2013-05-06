@@ -17,6 +17,7 @@ typedef enum {
 
 @protocol MyTicketViewDelegate <NSObject>
 
+@optional
 -(void)refreshTicketsDelegate:(Number *)number btnIndex:(NSInteger)index;//刷新我的票
 
 @end

@@ -27,12 +27,17 @@
 }
 
 - (void)timer{
+    
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setDateFormat:@"yyyy-MM-dd EEEE HH:mm:ss a"];
+    [formatter setDateFormat:@"HH"];
+    NSString *locationString=[formatter stringFromDate: [NSDate date]];
 
-    NSString *dateStr = [NSString stringWithFormat:@"%@",[NSDate date]];
-    NSRange range = NSMakeRange(11, 2);
-    [self performSelector:@selector(updateSqliteDataWhichTicketIsInvalid) withObject:self afterDelay:1.0f];
-    NSLog(@"str===%@",[dateStr substringWithRange:range]);
-
+    if ([locationString isEqualToString:@"24"]) {
+        [self performSelector:@selector(updateSqliteDataWhichTicketIsInvalid) withObject:self afterDelay:1.0f]; 
+    }
+    
+    NSLog(@"str===%@",locationString);
 }
 
 //一天修改一次状态
@@ -46,10 +51,8 @@
 {
     [super viewDidLoad];
     
-    [Number deleteNumbersFromSqlite];
-    
+//    [Number deleteNumbersFromSqlite];
        
-    [self timer];
     
     myhomeBG = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-57)];
     [self.view addSubview:myhomeBG];
@@ -75,6 +78,9 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    //判断是否到每日0点，更新票status
+    [self timer];
+
     //判读是否联网
     self.isNetWork = [AppDelegate isNetworkReachable];
     
@@ -87,7 +93,6 @@
     [self removePastNumbers];
     
     if (isFisrt) {
-        
         isFisrt=NO;
         [self nullTicketView:0];
 

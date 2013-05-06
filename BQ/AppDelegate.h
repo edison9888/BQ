@@ -8,13 +8,16 @@
 
 #import <UIKit/UIKit.h>
 #import "UserViewController.h"
+#import "NumbersViewController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 {
     @private
     UINavigationController *navHomeVc;
     UserViewController *userVC;
+    NumbersViewController *numberVC;
 }
+
 @property (strong, nonatomic) UIWindow *window;
 
 +(BOOL)isNetworkReachable;

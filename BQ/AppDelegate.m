@@ -10,8 +10,10 @@
 #import "MainViewController.h"
 #import "DBConnection.h"
 
+//检测网络
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <netinet/in.h>
+
 
 #define isNetingWork 0
 
@@ -80,14 +82,13 @@
     myhomeBG.userInteractionEnabled =YES;
     [self.window addSubview:myhomeBG];
 
-    userVC = [[UserViewController alloc]init];
-    navHomeVc = [[UINavigationController alloc] initWithRootViewController:userVC];
+    //userVC = [[UserViewController alloc]init];
+    numberVC = [[NumbersViewController alloc]init];
+    navHomeVc = [[UINavigationController alloc] initWithRootViewController:numberVC];
     navHomeVc.navigationBarHidden=YES;
     [self.window setRootViewController:navHomeVc];
     [self.window makeKeyAndVisible];
     
-    userVC.isNetWork = [[self class] isNetworkReachable];
-
     return YES;
 }
 
@@ -107,12 +108,14 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
-    userVC.isNetWork = [[self class] isNetworkReachable];
+    numberVC.isNetWork = [[self class] isNetworkReachable];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
+    
+//    [[numberVC class] timer];
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

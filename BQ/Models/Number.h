@@ -45,6 +45,9 @@ typedef enum {
 //选择数据库
 + (NSArray *)selectNumbersInfoFromDatabase;
 
+//无网络情况下，获取numbers(status!=1)
++ (NSArray *)getNumbersFromSqliteWithoutNet;
+
 //删除数据库
 + (void)deleteNumbersFromSqlite;
 

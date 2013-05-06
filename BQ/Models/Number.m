@@ -91,6 +91,9 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.userInfo);
+        
+        
+        
     }];
 
 }
@@ -124,7 +127,7 @@
 }
 
 
-//通过获取今天的票
+//通过获取今天的票id
 + (NSArray *)selectNumbersInfoFromDatabase{
 
     NSMutableArray *mutableArr = [NSMutableArray array];
@@ -132,24 +135,48 @@
     static Statement *statement = nil;
     
     if (statement==nil) {
-        statement = [DBConnection statementWithQuery:"SELECT * FROM Numbers where num_date >= date('NOW')"];
+//        statement = [DBConnection statementWithQuery:"SELECT * FROM Numbers where num_date >= date('NOW')"];
+        statement = [DBConnection statementWithQuery:"SELECT * FROM Numbers"];
     }
-//    [statement bindInt32:proId forIndex:1];
     
     while ([statement step] == SQLITE_ROW) {
-//        Number *num = [[Number alloc] init];
-        NSString *numId = [statement getString:1];
-//        num.myNum=[statement getString:1];
-//        num.numDate=[statement getString:2];
-//        num.numStatus=[statement getInt32:3];
-//        num.beforeCount=[statement getString:4];
-//        num.presentNumber =[statement getString:5];
-//        num.bankId =[statement getString:6];
-//        num.bankName=[statement getString:7];
-//        num.serviceId=[statement getString:8];
-//        num.serviceName=[statement getString:9];
-//        num.serParentId=[statement getString:10];
-        [mutableArr addObject:numId];
+        NSString *numId;
+        if ([statement getInt32:4]!=1) {
+            numId = [statement getString:1];
+            [mutableArr addObject:numId];
+        }
+    }
+    
+    [statement reset];
+    return mutableArr;
+}
+
+
+//无网络情况下，获取numbers(status!=1)
++ (NSArray *)getNumbersFromSqliteWithoutNet{
+    NSMutableArray *mutableArr = [NSMutableArray array];
+    static Statement *statement = nil;
+    if (statement==nil) {
+        statement = [DBConnection statementWithQuery:"SELECT * FROM Numbers"];
+    }
+    
+    while ([statement step] == SQLITE_ROW) {
+        if ([statement getInt32:4]!=1) {
+            Number *num = [[Number alloc] init];
+            num.numId = [statement getString:1];
+            num.myNum=[statement getString:2];
+            num.numDate=[statement getString:3];
+            num.numStatus=[statement getInt32:4];
+            num.beforeCount=[statement getString:5];
+            num.presentNumber =[statement getString:6];
+            num.bankId =[statement getString:7];
+            num.bankName=[statement getString:8];
+            num.serviceId=[statement getString:9];
+            num.serviceName=[statement getString:10];
+            num.serParentId=[statement getString:11];
+            num.bankTypeName=[statement getString:12];
+            [mutableArr addObject:num];
+        }
     }
     
     [statement reset];
@@ -165,7 +192,7 @@
     
     if (statement==nil) { 
 
-        statement = [DBConnection statementWithQuery:"UPDATE Numbers SET num_status= 1 where num_date < date('NOW')"];
+        statement = [DBConnection statementWithQuery:"UPDATE Numbers SET num_status= 1"];
     }
     
     while ([statement step] == SQLITE_ROW) {
