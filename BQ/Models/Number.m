@@ -192,7 +192,7 @@
     
     if (statement==nil) { 
 
-        statement = [DBConnection statementWithQuery:"UPDATE Numbers SET num_status= 1"];
+        statement = [DBConnection statementWithQuery:"UPDATE Numbers SET num_status= 1 where num_date < date('NOW')"];
     }
     
     while ([statement step] == SQLITE_ROW) {

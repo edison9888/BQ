@@ -9,6 +9,8 @@
 #import "NumbersViewController.h"
 #import "AppDelegate.h"
 
+#define DownHeight 98
+
 @interface NumbersViewController ()
 
 @end
@@ -24,19 +26,18 @@
     return self;
 }
 
-- (void)timer{
-    
-    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
-    //    [formatter setDateFormat:@"yyyy-MM-dd EEEE HH:mm:ss a"];
-    [formatter setDateFormat:@"HH"];
-    NSString *locationString=[formatter stringFromDate: [NSDate date]];
-    
-    if ([locationString isEqualToString:@"24"]) {
-        [self performSelector:@selector(updateSqliteDataWhichTicketIsInvalid) withObject:self afterDelay:1.0f];
-    }
-
-    NSLog(@"str===%@",locationString);
-}
+//- (void)timer{
+//    
+//    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    //    [formatter setDateFormat:@"yyyy-MM-dd EEEE HH:mm:ss a"];
+//    [formatter setDateFormat:@"HH"];
+//    NSString *locationString=[formatter stringFromDate: [NSDate date]];
+//    
+//    if ([locationString isEqualToString:@"24"]) {
+//        [self performSelector:@selector(updateSqliteDataWhichTicketIsInvalid) withObject:self afterDelay:1.0f];
+//    }
+////    NSLog(@"str===%@",locationString);
+//}
 
 //一天修改一次状态
 -(void)updateSqliteDataWhichTicketIsInvalid{
@@ -49,11 +50,16 @@
 {
     [super viewDidLoad];
     
+    myhomeBG = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-DownHeight)];
+    if (iPhone5) {
+        [myhomeBG setImage:[UIImage imageNamed:@"homeTicket5"]];
+    }else{
+        [myhomeBG setImage:[UIImage imageNamed:@"homeTicket4"]];
+    }
+    [self.view addSubview:selectBankButton];
     
-    myhomeBG = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-57)];
-    [self.view addSubview:myhomeBG];
     
-    numberTableView =[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.bounds.size.height-57)];
+    numberTableView =[[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width,self.view.bounds.size.height-DownHeight+16)];
     numberTableView.delegate=self;
     numberTableView.dataSource=self;
     numberTableView.backgroundView=nil;
@@ -65,31 +71,40 @@
     refreshTableView.delegate=self;
     [numberTableView addSubview:refreshTableView];
     
+    //背景图
+    UIImageView *downTicketImage =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"downTicket"]];
+    [downTicketImage setFrame:CGRectMake(0,self.view.bounds.size.height-DownHeight, self.view.frame.size.width, DownHeight)];
+    downTicketImage.userInteractionEnabled=YES;
+    [self.view addSubview:downTicketImage];
+    
     selectBankButton = [UIButton buttonWithType:UIButtonTypeCustom];
     [selectBankButton addTarget:self action:@selector(buttonPress) forControlEvents:UIControlEventTouchUpInside];
     [selectBankButton setImage:[UIImage imageNamed:@"mapBtn"] forState:UIControlStateNormal];
-    [selectBankButton setFrame:CGRectMake(self.view.bounds.size.width/2-102/2,self.view.bounds.size.height-50, 102, 50)];
-    [self.view addSubview:selectBankButton];
+    [selectBankButton setImage:[UIImage imageNamed:@"mapBtnSelected"] forState:UIControlStateSelected];
+    [selectBankButton setFrame:CGRectMake(self.view.bounds.size.width/2-75/2,25, 75, 73)];
+    [downTicketImage addSubview:selectBankButton];   
+
 }
 
 - (void)viewWillAppear:(BOOL)animated{
+    //更新票状态status=1
+    [self updateSqliteDataWhichTicketIsInvalid];
     
     [[AppDelegate getAppdelegate] setNavigateBarHidden:YES];
     
-    //判断是否到每日0点，更新票status
-    [self timer];
+//    //判断是否到每日0点，更新票status
+//    [self timer];
     
     //判读是否联网
     self.isNetWork = [AppDelegate isNetworkReachable];
-    
+        
     if (isFisrt) {
         isFisrt=NO;
-        [self nullTicketView:0];
+//        [self nullTicketView:0];
+        [numberTableView reloadData];
     }else{
-        [self changeBgImageView];
-        
         //获取我的号码
-        if (self.isNetWork) {
+        if (_isNetWork) {
             [self getMyNumbersFromNet];//有网
         }else{
             [self getNumbersFromSqliteWithoutNet];//无网络
@@ -114,13 +129,17 @@
 //获取我的所有号码
 -(void)getMyNumbersFromNet{
     
-    idsArr = [Number selectNumbersInfoFromDatabase];
-    
+    NSArray *idsArr = [Number selectNumbersInfoFromDatabase];
+
     if (idsArr.count==0) {
-        [self nullTicketView:idsArr.count];
+        [numberTableView reloadData];
         return;
     }
+//    else
+//        [self nullTicketView:idsArr.count];
     
+//    [self changeBgImageView];
+
     NSString *idsStr = [idsArr componentsJoinedByString:@","];
     
     NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:idsStr,@"ids", nil];
@@ -141,7 +160,11 @@
 - (void)getNumbersFromSqliteWithoutNet{
     NSArray *regionArr = [NSMutableArray arrayWithArray:[Number getNumbersFromSqliteWithoutNet]];
     
-    [self nullTicketView:regionArr.count];
+    if (regionArr.count==0) {
+//        [self changeBgImageView];
+//        [self nullTicketView:regionArr.count];
+        return;
+    }
     
     NSArray* reversedArray = [[regionArr reverseObjectEnumerator] allObjects];
     _numberArr=[NSMutableArray arrayWithArray:reversedArray];;
@@ -179,31 +202,46 @@
 #pragma mark--ChangeViews
 //改变背景图
 - (void)changeBgImageView{
+    if (myhomeBG.image !=nil) {
+        NSLog(@"有图");
+        return;
+    }
+    float height;
+    if (isReload) {
+        height=0;
+    }else
+        height=NavigationHeight;
+    
     //背景图
     UIImageView *downTicketImage =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"downTicket"]];
-    [downTicketImage setFrame:CGRectMake(0,self.view.frame.size.height+NavigationHeight-57, self.view.frame.size.width, 57)];
+    [downTicketImage setFrame:CGRectMake(0,self.view.frame.size.height+height-DownHeight, self.view.frame.size.width, DownHeight)];
     [self.view addSubview:downTicketImage];
-    if (iPhone5) {
-        [myhomeBG setImage:[UIImage imageNamed:@"homeTicket5"]];
-    }else{
-        [myhomeBG setImage:[UIImage imageNamed:@"homeTicket4"]];
-    }
-    [self.view addSubview:selectBankButton];
 }
 
+////无票时显示
+//- (void)nullTicketView:(NSInteger) count{
+//    if (count==0) {
+//        MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16, 45, 290, 342) index:120 type:myTicket];
+//        myTicketView.tag=120;
+//        myTicketView.delegate=self;
+//        [cell addSubview:myTicketView];
+//    }else{
+//        MyTicketView *myTicketView =(MyTicketView *)[self.view viewWithTag:120];
+//        [myTicketView removeFromSuperview];
+//    }
+//}
+
 //无票时显示
-- (void)nullTicketView:(NSInteger) count{
-    
+- (void)nullTicketView:(NSInteger) count :(UITableViewCell *)cell{
     if (count==0) {
-        myTicketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16, 45, 290, 342) index:120 type:myTicket];
+        MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16+10, 20, 290, 342) index:120 type:myTicket];
+        myTicketView.tag=120;
         myTicketView.delegate=self;
-        [self.view addSubview:myTicketView];
+        [cell addSubview:myTicketView];
     }else{
-//        MyTicketView *myTicket =(MyTicketView *)[self.view viewWithTag:120];
-//        myTicket.hidden=YES;
+        MyTicketView *myTicketView =(MyTicketView *)[self.view viewWithTag:120];
         [myTicketView removeFromSuperview];
     }
-    
 }
 
 
@@ -211,6 +249,7 @@
 #pragma mark--NetWork
 - (void)setIsNetWork:(BOOL)isNetWork{
     
+    _isNetWork=isNetWork;
     if (!isNetWork) {
         
         UILabel *netStatusLabel = [[UILabel alloc] initWithFrame:CGRectMake((self.view.frame.size.width-60)/2, 10,60, 15)];
@@ -238,11 +277,10 @@
 #pragma mark--
 #pragma mark-- egoRefreshDelegate
 - (void)reloadTableViewDataSource{
-    
-    [self getMyNumbersFromNet];
-    
     //刷新评论
     isReload = YES;
+    [self getMyNumbersFromNet];
+
 }
 
 - (void)doneLoadingTableViewData{
@@ -289,11 +327,11 @@
 #pragma mark--
 #pragma mark--TableViewDelegate
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    return 45;
+    return 20;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, numberTableView.frame.size.width, 45)];
+    UIView *headerView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, numberTableView.frame.size.width, 20)];
     headerView.backgroundColor=[UIColor clearColor];
     return headerView;
 }
@@ -303,7 +341,11 @@
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return self.numberArr.count;
+    if (_numberArr.count==0) {
+        return 2;
+    }
+    else
+        return self.numberArr.count+1;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -317,17 +359,43 @@
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     int i=indexPath.row;
-        
-    MyTicketView *ticketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16,0, 310, 342) index:i type:myTicket];
-    ticketView.number=[self.numberArr objectAtIndex:i];
-    ticketView.delegate=self;
-    ticketView.tag=i+10;
-    [cell addSubview:ticketView];
     
-    return cell;
+    UIButton *btn = (UIButton *)[cell viewWithTag:12];
+    [btn removeFromSuperview];
+
+    if (_numberArr.count==0) {
+        if (indexPath.row==0) {
+            [self nullTicketView:0 :cell];
+            return cell;
+            
+        }else if(indexPath.row==1){
+            UIButton *setBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [setBtn setBackgroundColor:[UIColor yellowColor]];
+            [setBtn setFrame:CGRectMake(0, 0, cell.frame.size.width, 362)];
+            setBtn.tag=12;
+            [cell addSubview:setBtn];
+            return cell;
+        }            
+    }else{
+        [self nullTicketView:_numberArr.count :nil];
+        if (indexPath.row!=_numberArr.count) {
+            MyTicketView *ticketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16+10,0, 310, 342) index:i type:myTicket];
+            ticketView.number=[self.numberArr objectAtIndex:i];
+            ticketView.delegate=self;
+            ticketView.tag=i+10;
+            [cell addSubview:ticketView];
+            return cell;
+        }else{
+            UIButton *setBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+            [setBtn setBackgroundColor:[UIColor yellowColor]];
+            [setBtn setFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
+            setBtn.tag=12;
+            [cell addSubview:setBtn];
+            return cell;        
+        }
+    }
+    return nil;
 }
-
-
 
 
 - (void)didReceiveMemoryWarning

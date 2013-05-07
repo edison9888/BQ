@@ -14,9 +14,6 @@
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <netinet/in.h>
 
-
-#define isNetingWork 0
-
 @implementation AppDelegate
 
 //自定以导航栏
@@ -89,6 +86,7 @@
     [self.window setRootViewController:navHomeVc];
     [self.window makeKeyAndVisible];
     
+        
     return YES;
 }
 
@@ -102,7 +100,15 @@
 {
     // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
     // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
+    
+//    [NSTimer scheduledTimerWithTimeInterval:10 target:self selector:@selector(makeNotificationRequest) userInfo:nil repeats:NO];
+
 }
+
+//- (void)makeNotificationRequest{
+//
+//    [numberVC timer];
+//}
 
 - (void)applicationWillEnterForeground:(UIApplication *)application
 {
@@ -115,7 +121,8 @@
 {
     // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
     
-//    [[numberVC class] timer];
+    
+    
 }
 
 - (void)applicationWillTerminate:(UIApplication *)application

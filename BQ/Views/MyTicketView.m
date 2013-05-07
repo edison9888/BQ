@@ -18,7 +18,7 @@
     if (self) {
         
         
-        UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 290, 342)];
+        UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 270, 326)];
         if (type==myTicket) {
             [bgView setImage:[UIImage imageNamed:@"myTicketBg"]];
         }else
@@ -33,7 +33,7 @@
         stampImageView.hidden=YES;
         [self addSubview:stampImageView];
         
-        bankNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(48, 9, 194, 30)];
+        bankNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(48-10, 20, 194, 30)];
         bankNameLabel.text = @"您还未选择银行";
         bankNameLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:22];
         bankNameLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
@@ -41,7 +41,7 @@
         [bankNameLabel setTextAlignment:NSTextAlignmentCenter];
         [bgView addSubview:bankNameLabel];
         
-        timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(104,40, 80, 12)];
+        timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(104-10,50, 80, 12)];
         timeLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
         timeLabel.font=[UIFont fontWithName:@"Helvetica" size:10];
         timeLabel.text = @"2013/3/13  13:14";
@@ -54,9 +54,9 @@
 //        imageView.image = [UIImage imageNamed:@"line"];
 //        [bgView addSubview:imageView];
 
-        asideLabel = [[UILabel alloc] initWithFrame:CGRectMake(23,98, 140, 18)];
+        asideLabel = [[UILabel alloc] initWithFrame:CGRectMake(25-10,86, 140, 18)];
         asideLabel.text = @"我的号码";
-        asideLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:20];
+        asideLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:21];
         asideLabel.textColor = [UIColor colorWithRed:25.0f/255 green:135.0f/255 blue:130.0f/255 alpha:1.0f];
         asideLabel.backgroundColor = [UIColor clearColor];
         [bgView addSubview:asideLabel];
@@ -130,11 +130,16 @@
         [bgView addSubview:alertLabel];
                 
         UIButton *refreshBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        refreshBtn.frame = CGRectMake(240,bankNameLabel.frame.origin.y+5, 54/2, 54/2);
+        refreshBtn.frame = CGRectMake(222,appendLabel.frame.origin.y-3, 30, 30);
         [refreshBtn setBackgroundImage:[UIImage imageNamed:@"refreshButton"] forState:UIControlStateNormal];
         [refreshBtn addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventTouchUpInside];
         refreshBtn.tag = index;
         [bgView addSubview:refreshBtn];
+        
+        UIImageView *refreshImageView =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"refreshImage"]];
+        refreshImageView.frame=CGRectMake(4, 4, 22, 22);
+        refreshImageView.userInteractionEnabled=YES;
+        [refreshBtn addSubview:refreshImageView];
         
 //        UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //        infoBtn.frame = CGRectMake(refreshBtn.frame.origin.x-5, alertLabel.frame.origin.y+alertLabel.frame.size.height+45, 108/2, 73/2);
@@ -152,6 +157,8 @@
     if ([self.delegate respondsToSelector:@selector(refreshTicketsDelegate:btnIndex:)]) {
         [self.delegate refreshTicketsDelegate:_number btnIndex:btn.tag];
     }
+    
+    //refresh按钮动画
 }
 
 - (void)setNumber:(Number *)number{

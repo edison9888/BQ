@@ -97,12 +97,13 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-        
-    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 310, 45)];
+//    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+
+    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 315, 45)];
     [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
     [cell addSubview:lineImageView];
+    
+    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableViewCellSelect"]];
     
     FatherBank *fatherBank = [self.banksArr objectAtIndex:indexPath.row];
     

@@ -87,7 +87,7 @@ static HomeViewController *instance = nil;
     self.title = @"选择业务";
         
     //背景图
-    [self bankbackGroundImageView];
+//    [self bankbackGroundImageView];
     
     UIImageView *logoImageView =[[UIImageView alloc] initWithFrame:CGRectMake(45, 80, 46, 43)];
     [logoImageView setImage:[UIImage imageNamed:@"logo"]];
@@ -182,18 +182,18 @@ static HomeViewController *instance = nil;
 //
 }
 
--(void)bankbackGroundImageView{
-    UIImage *image;
-    if (iPhone5)
-        image= [UIImage imageNamed:@"back4"];
-    else
-        image= [UIImage imageNamed:@"back5"];
-
-    UIImageView *homeBG = [[UIImageView alloc]initWithImage:image];
-    homeBG.userInteractionEnabled =YES;
-    homeBG.frame = self.view.bounds;
-    [self.view addSubview:homeBG];
-}
+//-(void)bankbackGroundImageView{
+//    UIImage *image;
+//    if (iPhone5)
+//        image= [UIImage imageNamed:@"back4"];
+//    else
+//        image= [UIImage imageNamed:@"back5"];
+//
+//    UIImageView *homeBG = [[UIImageView alloc]initWithImage:image];
+//    homeBG.userInteractionEnabled =YES;
+//    homeBG.frame = self.view.bounds;
+//    [self.view addSubview:homeBG];
+//}
 
 ////更改首页银行提示
 //- (void)setBank:(Bank *)bank{

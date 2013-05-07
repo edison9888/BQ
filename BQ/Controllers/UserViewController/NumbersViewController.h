@@ -20,12 +20,12 @@
         UIImageView *myhomeBG;
         UIButton *selectBankButton;
         EGORefreshTableHeaderView *refreshTableView;
-        NSArray *idsArr;
-        MyTicketView *myTicketView;
+//        NSArray *idsArr;
+//    NSArray *regionArr;
 }
 
 @property(nonatomic,strong) NSMutableArray *numberArr;
 @property(nonatomic,assign) BOOL isNetWork;
 //定时器
-- (void)timer;
+//- (void)timer;
 @end

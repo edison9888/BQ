@@ -48,6 +48,8 @@
     _tableView.delegate=self;
     _tableView.dataSource=self;
     _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    _tableView.backgroundColor=[UIColor clearColor];
+    _tableView.backgroundView=nil;
     [self.view addSubview:_tableView];
 }
 
@@ -76,19 +78,21 @@
     
     cell.autoresizesSubviews=YES;
     
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
+//    cell.selectionStyle=UITableViewCellSelectionStyleNone;
     
     Bank *bank = [self.locationArrs objectAtIndex:indexPath.row];
     
     UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 310, 45)];
-    [lineImageView setImage:[UIImage imageNamed:@"banktableViewCell"]];
+    [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
     [cell addSubview:lineImageView];
     
+    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableViewCellSelect"]];
+
     UILabel *_bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-120,lineImageView.frame.size.height)];
     [_bankLabel setText:bank.address];
     [_bankLabel setFont:[UIFont systemFontOfSize:15]];
     [_bankLabel setBackgroundColor:[UIColor clearColor]];
-    [_bankLabel setTextColor:[UIColor colorWithRed:65/255 green:75/255 blue:85/255 alpha:1.0f]];
+    [_bankLabel setTextColor:[UIColor whiteColor]];
     [_bankLabel setTextAlignment:NSTextAlignmentLeft];
     [cell addSubview:_bankLabel];
     
@@ -97,7 +101,7 @@
     [distanceLabel setText:[NSString stringWithFormat:@"%0.2fkm",bank.distance]];
     [distanceLabel setFont:[UIFont systemFontOfSize:15]];
     [distanceLabel setBackgroundColor:[UIColor clearColor]];
-    [distanceLabel setTextColor:[UIColor colorWithRed:65/255 green:75/255 blue:85/255 alpha:1.0f]];
+    [distanceLabel setTextColor:[UIColor whiteColor]];
     [distanceLabel setTextAlignment:NSTextAlignmentLeft];
     [distanceLabel setAutoresizingMask:UIViewAutoresizingFlexibleRightMargin];
     [distanceLabel sizeToFit];
