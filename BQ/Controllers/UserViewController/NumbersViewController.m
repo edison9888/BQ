@@ -17,9 +17,9 @@
 
 @implementation NumbersViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
         isFisrt=YES;
     }
@@ -139,7 +139,6 @@
 //        [self nullTicketView:idsArr.count];
     
 //    [self changeBgImageView];
-
     NSString *idsStr = [idsArr componentsJoinedByString:@","];
     
     NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:idsStr,@"ids", nil];
@@ -194,41 +193,26 @@
         }else
             return;
     }];
-    
 }
 
-
-#pragma mark--
-#pragma mark--ChangeViews
-//改变背景图
-- (void)changeBgImageView{
-    if (myhomeBG.image !=nil) {
-        NSLog(@"有图");
-        return;
-    }
-    float height;
-    if (isReload) {
-        height=0;
-    }else
-        height=NavigationHeight;
-    
-    //背景图
-    UIImageView *downTicketImage =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"downTicket"]];
-    [downTicketImage setFrame:CGRectMake(0,self.view.frame.size.height+height-DownHeight, self.view.frame.size.width, DownHeight)];
-    [self.view addSubview:downTicketImage];
-}
-
-////无票时显示
-//- (void)nullTicketView:(NSInteger) count{
-//    if (count==0) {
-//        MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16, 45, 290, 342) index:120 type:myTicket];
-//        myTicketView.tag=120;
-//        myTicketView.delegate=self;
-//        [cell addSubview:myTicketView];
-//    }else{
-//        MyTicketView *myTicketView =(MyTicketView *)[self.view viewWithTag:120];
-//        [myTicketView removeFromSuperview];
+//#pragma mark--
+//#pragma mark--ChangeViews
+////改变背景图
+//- (void)changeBgImageView{
+//    if (myhomeBG.image !=nil) {
+//        NSLog(@"有图");
+//        return;
 //    }
+//    float height;
+//    if (isReload) {
+//        height=0;
+//    }else
+//        height=NavigationHeight;
+//    
+//    //背景图
+//    UIImageView *downTicketImage =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"downTicket"]];
+//    [downTicketImage setFrame:CGRectMake(0,self.view.frame.size.height+height-DownHeight, self.view.frame.size.width, DownHeight)];
+//    [self.view addSubview:downTicketImage];
 //}
 
 //无票时显示

@@ -35,7 +35,7 @@ typedef enum {
         UILabel *timeLabel;//时间
         UILabel *numLabel;
         UIImageView *stampImageView;//是否过期
-    
+        UIImageView *refreshImageView;
 }
 
 @property(nonatomic,strong) Number *number;

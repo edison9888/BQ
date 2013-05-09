@@ -25,9 +25,9 @@
 @implementation MapViewController
 @synthesize mapVC,mapListVC;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
         
         _locationArrs=[NSMutableArray array];
@@ -56,7 +56,7 @@
     
     //地图
     self.mapVC = [[MapShowViewController alloc] init];
-    self.mapVC.view.frame=CGRectMake(0, 0,self.view.bounds.size.width, self.view.bounds.size.height-TabBarHeight-TabBarHeight);
+    mapVC.view.frame=CGRectMake(0, 0,self.view.bounds.size.width, self.view.bounds.size.height-TabBarHeight-TabBarHeight);
     self.mapVC.homeVC=self.homeVC;
     self.mapVC.locationManager=locationManager;
 //    [self.view addSubview:self.mapVC.view];
@@ -276,10 +276,20 @@
     }];
 }
 
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
+#pragma mark--
+#pragma mark--release memory
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
     
+    pickerViewController=nil;    
+    locationManager=nil;
     
+    mapListVC=nil;
+    mapVC=nil;
+    _homeVC=nil;
+    _locationArrs=nil;//地图显示数
+    _fatherBank=nil;
 }
 
 

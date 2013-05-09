@@ -8,7 +8,7 @@
 
 #import "PersonalBusinessViewController.h"
 #import "Business.h"
-#define CellHeight 56
+#define CellHeight 60
 
 @interface PersonalBusinessViewController ()
 
@@ -32,21 +32,19 @@
 	// Do any additional setup after loading the view.
     isSelect=YES;
     
-    
     bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"alertWindow"]];
     bgImageView.userInteractionEnabled=YES;
     [bgImageView setBackgroundColor:[UIColor clearColor]];
-    [bgImageView setFrame:CGRectMake(50, 160,  220, 170)];
+    [bgImageView setFrame:CGRectMake(34, 143,  256, 215)];
     [self.view addSubview:bgImageView];
     
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, bgImageView.frame.size.width-2, bgImageView.frame.size.height) style:UITableViewStylePlain];
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(17,18,222,178) style:UITableViewStylePlain];
     _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     _tableView.backgroundColor = [UIColor clearColor];
     _tableView.delegate=self;
     _tableView.dataSource=self;
     [bgImageView addSubview:_tableView];
     
-        
    //    UIButton *getTicketBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [getTicketBtn setBackgroundImage:[UIImage imageNamed:@"numberButton"] forState:UIControlStateNormal];
 //    [getTicketBtn setFrame:CGRectMake(75, 180, 105, 42)];
@@ -55,8 +53,10 @@
 }
 
 -(void)getChildServiceFromData{
-    
     NSLog(@"getChildServiceFromData%@",_busniess.serviceId);
+    if (_busniess.serviceId==nil) {
+        return;
+    }
     NSDictionary *dic =[NSDictionary dictionaryWithObject:_busniess.serviceId forKey:@"id"];
     
     [Business getChildService:dic WithBlock:^(NSArray *arr) {
@@ -126,16 +126,16 @@
     [bankLabel setText:[NSString stringWithFormat:@"%@",bus.serviceName]];
     [bankLabel setFont:[UIFont systemFontOfSize:20]];
     [bankLabel setBackgroundColor:[UIColor clearColor]];
-    [bankLabel setTextColor:[UIColor colorWithRed:75/255 green:85/255 blue:95/255 alpha:1.0f]];
+    [bankLabel setTextColor:[UIColor whiteColor]];
     [bankLabel setTextAlignment:NSTextAlignmentCenter];
     [cell addSubview:bankLabel];
     
-    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, cell.frame.size.width, CellHeight)];
+    UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(-1,-3.5,227, CellHeight+7)];
    [imageView setImage:[UIImage imageNamed:@"buttonSelected"]];
     cell.selectedBackgroundView = imageView;
     
     if (indexPath.row!=self.businessArr.count-1) {
-        UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,CellHeight-4, cell.frame.size.width, 4)];
+        UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(8,CellHeight-2,202, 2)];
         [lineImageView setImage:[UIImage imageNamed:@"fenGeXxian"]];
         [cell addSubview:lineImageView];
     }
@@ -168,8 +168,16 @@
 
 #pragma mark--
 #pragma mark--release memory
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    
+    bgImageView=nil;
+    _tableView=nil;
+    
+    _businessArr=nil;
+    _homeVC=nil;
+    _busniess=nil;
 
 }
 

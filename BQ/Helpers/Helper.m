@@ -15,6 +15,7 @@
 
     UIButton *_button = [UIButton buttonWithType:UIButtonTypeCustom];
     [_button setBackgroundImage:[UIImage imageNamed:@"backArrows"] forState:UIControlStateNormal];
+    [_button setBackgroundImage:[UIImage imageNamed:@"backArrowsSelect"] forState:UIControlStateSelected];
     [_button setFrame:CGRectMake(0, 0, 54, 35)];
     [_button addTarget:sender action:@selector(backToLastVC) forControlEvents:UIControlEventTouchUpInside];
     
@@ -26,6 +27,7 @@
 + (UIBarButtonItem *)rightBarButtonItem:(id)sender{
     UIButton *_button = [UIButton buttonWithType:UIButtonTypeCustom];
     [_button setBackgroundImage:[UIImage imageNamed:@"mapButton"] forState:UIControlStateNormal];
+    [_button setBackgroundImage:[UIImage imageNamed:@"mapButtonSelected"] forState:UIControlStateSelected];
     [_button setFrame:CGRectMake(0, 0, 54, 35)];
     [_button addTarget:sender action:@selector(turnToListVC) forControlEvents:UIControlEventTouchUpInside];
     
@@ -37,6 +39,7 @@
 + (UIBarButtonItem *)rightBarButtonItemListIcon:(id)sender{
     UIButton *_button = [UIButton buttonWithType:UIButtonTypeCustom];
     [_button setBackgroundImage:[UIImage imageNamed:@"mapListButton"] forState:UIControlStateNormal];
+    [_button setBackgroundImage:[UIImage imageNamed:@"maplistButtonSelected"] forState:UIControlStateSelected];
     [_button setFrame:CGRectMake(0, 0, 54,35)];
     [_button addTarget:sender action:@selector(turnToListVC) forControlEvents:UIControlEventTouchUpInside];
     

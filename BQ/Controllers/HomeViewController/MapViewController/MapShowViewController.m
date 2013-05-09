@@ -16,9 +16,9 @@
 @implementation MapShowViewController
 @synthesize _map,locationManager;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
         annotionViews = [NSMutableArray array];
         calloutAnnotationViews = [NSMutableArray array];
@@ -40,6 +40,10 @@
     [locationManager startUpdate];
 }
 
+-(void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+
+}
 
 #pragma mark--
 #pragma mark--位置信息
@@ -200,13 +204,26 @@
     [super viewDidDisappear:animated];
     
     [locationManager stopUpdate];
-
-//    annotionViews=nil;
-//    calloutAnnotationViews=nil;
+    
+//    _map=nil;
 //    locationArr=nil;
 //    _locationArrs=nil;//地图
     
 }
+
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    
+    annotionViews=nil;
+    calloutAnnotationViews=nil;
+    locationArr=nil;
+
+    _homeVC=nil;
+    _map=nil;
+    locationManager=nil;
+}
+
 
 - (void)didReceiveMemoryWarning
 {

@@ -15,9 +15,9 @@
 
 @implementation MapListViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
         // Custom initialization
     }
@@ -29,7 +29,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    UIImageView *titleImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, 27)];
+    __autoreleasing UIImageView *titleImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, 27)];
     [titleImgView setImage:[UIImage imageNamed:@"districtAlert"]];
     [self.view addSubview:titleImgView];
     
@@ -68,9 +68,6 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"CustomCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    if (cell)
-        return cell;
 
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -82,13 +79,19 @@
     
     Bank *bank = [self.locationArrs objectAtIndex:indexPath.row];
     
-    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 310, 45)];
+    __autoreleasing UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 310, 45)];
     [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
     [cell addSubview:lineImageView];
     
-    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableViewCellSelect"]];
+    UIImageView *selectImageView =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableViewCellSelect"]];
+    [selectImageView setFrame:CGRectMake(5, 8, 310, 45)];
+    
+    UIImageView*bgSelectImageView =[[UIImageView alloc] initWithFrame:cell.frame];
+    [bgSelectImageView addSubview:selectImageView];
+    
+    cell.selectedBackgroundView = bgSelectImageView;
 
-    UILabel *_bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-120,lineImageView.frame.size.height)];
+    UILabel *_bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-130,lineImageView.frame.size.height)];
     [_bankLabel setText:bank.address];
     [_bankLabel setFont:[UIFont systemFontOfSize:15]];
     [_bankLabel setBackgroundColor:[UIColor clearColor]];
@@ -97,7 +100,7 @@
     [cell addSubview:_bankLabel];
     
     //距离需要动态获取--协调
-    UILabel *distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(310-90, 20, 50,lineImageView.frame.size.height)];
+    UILabel *distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(310-100, 20, 50,lineImageView.frame.size.height)];
     [distanceLabel setText:[NSString stringWithFormat:@"%0.2fkm",bank.distance]];
     [distanceLabel setFont:[UIFont systemFontOfSize:15]];
     [distanceLabel setBackgroundColor:[UIColor clearColor]];
@@ -116,7 +119,7 @@
     Bank *bank;
     bank = [self.locationArrs objectAtIndex:indexPath.row];
     
-    HomeViewController *homeVC = [[HomeViewController alloc] init];
+    __autoreleasing HomeViewController *homeVC = [[HomeViewController alloc] init];
     homeVC.bank = bank;
     [self.navigationController pushViewController:homeVC animated:YES];
     
@@ -132,8 +135,15 @@
 
 #pragma mark--
 #pragma mark--release memory
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    
+    _homeVC=nil;
+    _locationArrs=nil;
+    _bank=nil;
+    _tableView=nil;
+    _bankTitleLabel=nil;
 
 }
 

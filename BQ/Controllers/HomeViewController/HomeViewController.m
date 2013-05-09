@@ -15,6 +15,8 @@
 
 #import "Helper.h"
 #import "Business.h"
+#import "UIImage+UIImageName.h"
+
 
 @interface HomeViewController ()
 
@@ -89,11 +91,11 @@ static HomeViewController *instance = nil;
     //背景图
 //    [self bankbackGroundImageView];
     
-    UIImageView *logoImageView =[[UIImageView alloc] initWithFrame:CGRectMake(45, 80, 46, 43)];
+    __autoreleasing UIImageView *logoImageView =[[UIImageView alloc] initWithFrame:CGRectMake(52,73, 37, 38)];
     [logoImageView setImage:[UIImage imageNamed:@"logo"]];
     [self.view addSubview:logoImageView];    
     
-    _bankNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(logoImageView.frame.size.width+logoImageView.frame.origin.x+2,82, 185, 35)];
+    _bankNameLabel = [[UILabel alloc]initWithFrame:CGRectMake(logoImageView.frame.size.width+logoImageView.frame.origin.x+7,77, 185, 35)];
     if (_bank.bankName!=nil) {
         _bankNameLabel.text=_bank.bankTypeName;
     }else{
@@ -101,36 +103,47 @@ static HomeViewController *instance = nil;
     }
     _bankNameLabel.backgroundColor=[UIColor clearColor];
     _bankNameLabel.font = [UIFont systemFontOfSize:28];
-    _bankNameLabel.textColor = [UIColor colorWithRed:232/255.f green:232/255.f blue:232/255.f alpha:1.0];
+    _bankNameLabel.textColor = [UIColor colorWithRed:255/255.f green:255/255.f blue:255/255.f alpha:1.0];
 //    [_bankNameLabel setTextAlignment:NSTextAlignmentCenter];
     [_bankNameLabel sizeThatFits:CGSizeMake(239, 35)];
     [self.view addSubview:_bankNameLabel];
     
-    UIImageView *bankButtonBg = [[UIImageView alloc]initWithFrame:CGRectMake(logoImageView.frame.origin.x,_bankNameLabel.frame.origin.y+_bankNameLabel.frame.size.height+5, 239, 7.5)];
-    bankButtonBg.image=[UIImage imageNamed:@"light"];
-    bankButtonBg.userInteractionEnabled=YES;
-    [self.view addSubview:bankButtonBg];
+    UILabel *detailBankAddress = [[UILabel alloc] initWithFrame:CGRectMake(55,_bankNameLabel.frame.size.height+_bankNameLabel.frame.origin.y+10,210,15)];
+    [detailBankAddress setBackgroundColor:[UIColor clearColor]];
+    [detailBankAddress setTextAlignment:NSTextAlignmentCenter];
+    detailBankAddress.textColor = [UIColor colorWithRed:229/255.f green:229/255.f blue:229/255.f alpha:1.0];
+    [detailBankAddress setText:_bank.bankName];
+    [detailBankAddress setFont:[UIFont systemFontOfSize:14.0f]];
+    [detailBankAddress setNumberOfLines:0];
+    [self.view addSubview:detailBankAddress];
+    
+//    UIImageView *bankButtonBg = [[UIImageView alloc]initWithFrame:CGRectMake(logoImageView.frame.origin.x,_bankNameLabel.frame.origin.y+_bankNameLabel.frame.size.height+5, 239, 7.5)];
+//    bankButtonBg.image=[UIImage imageNamed:@"light"];
+//    bankButtonBg.userInteractionEnabled=YES;
+//    [self.view addSubview:bankButtonBg];
     
     UIButton *personalBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    personalBusinessBtn.enabled=NO;
-    [personalBusinessBtn setTitle:@"个人业务" forState:UIControlStateNormal];
+//    [personalBusinessBtn setTitle:@"个人业务" forState:UIControlStateNormal];
     [personalBusinessBtn.titleLabel setFont:[UIFont systemFontOfSize:22]];
-    [personalBusinessBtn setFrame:CGRectMake(48, 213, 222, 95/2)];
+    [personalBusinessBtn setFrame:CGRectMake(42, _bankNameLabel.frame.size.height+_bankNameLabel.frame.origin.y+100, 250, 63)];
     [personalBusinessBtn addTarget:self action:@selector(personalBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
-    [personalBusinessBtn setBackgroundImage:[UIImage imageNamed:@"busButton"] forState:UIControlStateNormal];
+    [personalBusinessBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"personalButton@2x"] forState:UIControlStateNormal];
+    [personalBusinessBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"personalButtonSelected@2x"] forState:UIControlStateSelected];
     personalBusinessBtn.tag=11;
-    personalBusinessBtn.titleLabel.textColor = [UIColor colorWithRed:232/255.f green:232/255.f blue:232/255.f alpha:1.0];
+//    personalBusinessBtn.titleLabel.textColor = [UIColor colorWithRed:232/255.f green:232/255.f blue:232/255.f alpha:1.0];
     [self.view addSubview:personalBusinessBtn];
     
     UIButton *enterpriseBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    enterpriseBusinessBtn.enabled=NO;
-    [enterpriseBusinessBtn setTitle:@"企业业务" forState:UIControlStateNormal];
+//    [enterpriseBusinessBtn setTitle:@"企业业务" forState:UIControlStateNormal];
     [enterpriseBusinessBtn.titleLabel setFont:[UIFont systemFontOfSize:22]];
-    [enterpriseBusinessBtn setFrame:CGRectMake(personalBusinessBtn.frame.origin.x, personalBusinessBtn.frame.size.height+personalBusinessBtn.frame.origin.y+10, 222, 95/2)];
+    [enterpriseBusinessBtn setFrame:CGRectMake(personalBusinessBtn.frame.origin.x, personalBusinessBtn.frame.size.height+personalBusinessBtn.frame.origin.y+10, personalBusinessBtn.frame.size.width, personalBusinessBtn.frame.size.height)];
     [enterpriseBusinessBtn addTarget:self action:@selector(enterpriseBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
-    [enterpriseBusinessBtn setBackgroundImage:[UIImage imageNamed:@"busButton"] forState:UIControlStateNormal];
+    [enterpriseBusinessBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"businessButton@2x"] forState:UIControlStateNormal];
+    [enterpriseBusinessBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"businessButtonSelected@2x"] forState:UIControlStateSelected];
     enterpriseBusinessBtn.tag=12;
-    enterpriseBusinessBtn.titleLabel.textColor = [UIColor colorWithRed:232/255.f green:232/255.f blue:232/255.f alpha:1.0];
+//    enterpriseBusinessBtn.titleLabel.textColor = [UIColor colorWithRed:232/255.f green:232/255.f blue:232/255.f alpha:1.0];
     [self.view addSubview:enterpriseBusinessBtn];
     
     self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
@@ -156,14 +169,14 @@ static HomeViewController *instance = nil;
         
         _fatherBusinessArr=arr;
 
-        Business *business;
-        for (int i=0; i<_fatherBusinessArr.count; i++) {
-            business=[_fatherBusinessArr objectAtIndex:i];
-            if (i==0) 
-                [personalBtn setTitle:business.serviceName forState:UIControlStateNormal];
-            else
-                [enterpriseBtn setTitle:business.serviceName forState:UIControlStateNormal];
-        }
+//        Business *business;
+//        for (int i=0; i<_fatherBusinessArr.count; i++) {
+//            business=[_fatherBusinessArr objectAtIndex:i];
+//            if (i==0) 
+//                [personalBtn setTitle:business.serviceName forState:UIControlStateNormal];
+//            else
+//                [enterpriseBtn setTitle:business.serviceName forState:UIControlStateNormal];
+//        }
         
     }];
 }
@@ -295,9 +308,16 @@ static HomeViewController *instance = nil;
 
 #pragma mark--
 #pragma mark--release memory
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
     
+    personalVC=nil;
+    _bankNameLabel=nil;
+
+    _viewController=nil;
+    _bank=nil;
+    _fatherBusinessArr=nil;
 }
 
 - (void)didReceiveMemoryWarning

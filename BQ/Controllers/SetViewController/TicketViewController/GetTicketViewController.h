@@ -15,10 +15,10 @@
 @interface GetTicketViewController : UIViewController
 {
     @private
-    UIImageView *ticketBg;
+   UIImageView *ticketBg;
 //    Number *number;
     MyTicketView *ticketView;
-    UIImageView *ticketBg1;
+   UIImageView *ticketBg1;
 }
 
 @property(nonatomic,strong) Business *busniess;

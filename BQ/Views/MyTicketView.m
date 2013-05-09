@@ -7,6 +7,7 @@
 //
 
 #import "MyTicketView.h"
+#import <QuartzCore/QuartzCore.h>
 
 #define BetweenHeight 12
 
@@ -136,9 +137,8 @@
         refreshBtn.tag = index;
         [bgView addSubview:refreshBtn];
         
-        UIImageView *refreshImageView =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"refreshImage"]];
+        refreshImageView =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"refreshImage"]];
         refreshImageView.frame=CGRectMake(4, 4, 22, 22);
-        refreshImageView.userInteractionEnabled=YES;
         [refreshBtn addSubview:refreshImageView];
         
 //        UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -150,6 +150,27 @@
     return self;
 }
 
+- (void)rotateRefreshView:(UIImageView *)imageView{
+//    [UIView beginAnimations:nil context:nil];
+//    [UIView setAnimationCurve:UIViewAnimationCurveLinear];
+//    [UIView setAnimationDuration:1.0f];
+//    [UIView setAnimationRepeatCount:2];
+//    imageView.layer.anchorPoint = CGPointMake(0.5,0.5);
+//    imageView.transform = CGAffineTransformMakeRotation([self radians:90]);
+//    [UIView commitAnimations];
+    
+    CABasicAnimation* rotationAnimation =[CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];//"z"还可以是“x”“y”，表示沿z轴旋转
+    rotationAnimation.toValue = [NSNumber numberWithFloat:(2 * M_PI)];// 3 is the number of 360 degree rotations
+    rotationAnimation.duration = 1.0f;
+    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];//先慢后快
+    [imageView.layer addAnimation:rotationAnimation forKey:@"animation"];
+}
+
+//-(double)radians:(double)degrees
+//{
+//    return degrees * M_PI/180;
+//}
+
 //刷新
 - (void)refreshClick:(id)sender{
     UIButton *btn = (UIButton *)sender;
@@ -159,6 +180,7 @@
     }
     
     //refresh按钮动画
+    [self rotateRefreshView:refreshImageView];
 }
 
 - (void)setNumber:(Number *)number{

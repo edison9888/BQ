@@ -14,7 +14,7 @@
 {
     @private
     UINavigationController *navHomeVc;
-    UserViewController *userVC;
+//    UserViewController *userVC;
     NumbersViewController *numberVC;
 }
 

@@ -18,9 +18,9 @@
 
 @implementation SelectBankViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
         // Custom initialization
 //        self.banksArr = [NSArray arrayWithObjects:@"中国工商银行",@"中国农业银行",@"浦发银行",@"中信银行",@"交通银行",@"中国邮政储蓄银行", nil];
@@ -46,7 +46,6 @@
     self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
    
     //调用接口 获得banksArr 解析存放fatherBank类
-
     [FatherBank getAllBankInfo:nil WithBlock:^(NSArray *arr) {
         
         self.banksArr = arr;
@@ -88,10 +87,6 @@
     static NSString *CellIdentifier = @"CustomCellIdentifier";
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    
-    if (cell)
-        return cell;
-    
     if (!cell) {
     
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
@@ -103,7 +98,13 @@
     [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
     [cell addSubview:lineImageView];
     
-    cell.selectedBackgroundView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableViewCellSelect"]];
+    UIImageView *selectImageView =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableViewCellSelect"]];
+    [selectImageView setFrame:CGRectMake(5, 8, 310, 45)];
+    
+    UIImageView*bgSelectImageView =[[UIImageView alloc] initWithFrame:cell.frame];
+    [bgSelectImageView addSubview:selectImageView];
+    
+    cell.selectedBackgroundView = bgSelectImageView;
     
     FatherBank *fatherBank = [self.banksArr objectAtIndex:indexPath.row];
     
@@ -134,12 +135,13 @@
 
 #pragma mark--
 #pragma mark--release memory
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
     
-//    _banksArr=nil;
-    
+    _banksArr=nil;
 }
+
 
 - (void)didReceiveMemoryWarning
 {

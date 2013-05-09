@@ -31,7 +31,7 @@
 @property(nonatomic,weak) HomeViewController *homeVC;
 @property(nonatomic,strong)MKMapView *_map;
 
-@property(nonatomic,strong)LocationManager *locationManager;
+@property(nonatomic,weak)LocationManager *locationManager;
 
 - (void)showAnnotaionViews;
 - (void)showCalloutAnnotaionViews;
