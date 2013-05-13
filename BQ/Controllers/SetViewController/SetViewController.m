@@ -39,20 +39,22 @@
 //    homeBG.userInteractionEnabled =YES;
 //    [self.view addSubview:homeBG];
 
-    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height) style:UITableViewStyleGrouped];
+    UITableView *tableView = [[UITableView alloc] initWithFrame:CGRectMake(5, 5, self.view.bounds.size.width-10, self.view.bounds.size.height) style:UITableViewStylePlain];
     tableView.delegate=self;
     tableView.dataSource=self;
     tableView.backgroundView=nil;
+    tableView.backgroundColor=[UIColor clearColor];
+    tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:tableView];
     
     setArr = [NSMutableArray arrayWithObjects:@"关于我们",@"意见反馈",@"给我们评分", nil];
 }
 #pragma mark--
 #pragma mark--TableViewDelegate
-//- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-//    return 50;
-//    
-//}
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return 50;
+    
+}
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return setArr.count;
@@ -67,22 +69,30 @@
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
     }
-    
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
-    
+        
 //    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 310, 45)];
 //    [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
 //    [cell addSubview:lineImageView];
     
     //    FatherBank *fatherBank = [self.banksArr objectAtIndex:indexPath.row];
     
-    UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 0,self.view.bounds.size.width-20,cell.bounds.size.height)];
+    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 8, 310, 45)];
+    [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
+    [cell addSubview:lineImageView];
+    
+    UIImageView *selectImageView =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableViewCellSelect"]];
+    [selectImageView setFrame:CGRectMake(0, 8, 310, lineImageView.frame.size.height)];
+    UIImageView*bgSelectImageView =[[UIImageView alloc] initWithFrame:cell.frame];
+    [bgSelectImageView addSubview:selectImageView];
+    
+    cell.selectedBackgroundView = bgSelectImageView;
+
+    
+    UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(25, 8,self.view.bounds.size.width-20,selectImageView.bounds.size.height)];
     [bankLabel setText:[setArr objectAtIndex:indexPath.row]];
-    //    [bankLabel setText:fatherBank.fatherBankName];
     [bankLabel setFont:[UIFont systemFontOfSize:13]];
     [bankLabel setBackgroundColor:[UIColor clearColor]];
-    [bankLabel setTextColor:[UIColor colorWithRed:65/255 green:75/255 blue:85/255 alpha:1.0f]];
+    [bankLabel setTextColor:[UIColor whiteColor]];
     [bankLabel setTextAlignment:NSTextAlignmentLeft];
     [cell addSubview:bankLabel];
     
@@ -108,10 +118,12 @@
     }
 }
 
+
 #pragma mark--
 #pragma mark--release memory
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
     
     setArr=nil;
 

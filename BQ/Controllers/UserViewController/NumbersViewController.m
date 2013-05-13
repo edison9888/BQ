@@ -8,8 +8,10 @@
 
 #import "NumbersViewController.h"
 #import "AppDelegate.h"
+#import "NoTicketView.h"
 
 #define DownHeight 98
+#define NoTicketHeight 15
 
 @interface NumbersViewController ()
 
@@ -218,13 +220,17 @@
 //无票时显示
 - (void)nullTicketView:(NSInteger) count :(UITableViewCell *)cell{
     if (count==0) {
-        MyTicketView *myTicketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16+10, 20, 290, 342) index:120 type:myTicket];
-        myTicketView.tag=120;
-        myTicketView.delegate=self;
-        [cell addSubview:myTicketView];
+        if (iPhone5)
+            heightIphone5=HeightIphone5;
+        else
+            heightIphone5=0;
+
+        NoTicketView *noTicketView =[[NoTicketView alloc] initWithFrame:CGRectMake(5, NoTicketHeight,310,400+heightIphone5*2) heightIphone5:heightIphone5];
+        noTicketView.tag=120;
+        [cell addSubview:noTicketView];
     }else{
-        MyTicketView *myTicketView =(MyTicketView *)[self.view viewWithTag:120];
-        [myTicketView removeFromSuperview];
+        NoTicketView *noTicketView =(NoTicketView *)[self.view viewWithTag:120];
+        [noTicketView removeFromSuperview];
     }
 }
 
@@ -321,15 +327,23 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 362;
+    if (_numberArr.count==0) {
+        if (iPhone5)
+            heightIphone5=HeightIphone5;
+        else
+            heightIphone5=0;
+
+        return 400+heightIphone5*2+NoTicketHeight;
+    }else
+        return 362;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     if (_numberArr.count==0) {
-        return 2;
+        return 1;
     }
     else
-        return self.numberArr.count+1;
+        return self.numberArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -352,35 +366,50 @@
             [self nullTicketView:0 :cell];
             return cell;
             
-        }else if(indexPath.row==1){
-            UIButton *setBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [setBtn setBackgroundColor:[UIColor yellowColor]];
-            [setBtn setFrame:CGRectMake(0, 0, cell.frame.size.width, 362)];
-            setBtn.tag=12;
-            [cell addSubview:setBtn];
-            return cell;
-        }            
+        }
+//        else if(indexPath.row==1){
+//            UIButton *setBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//            [setBtn setBackgroundColor:[UIColor yellowColor]];
+//            [setBtn setFrame:CGRectMake(0, 0, cell.frame.size.width, 362)];
+//            setBtn.tag=12;
+//            [cell addSubview:setBtn];
+//            return cell;
+//        }            
     }else{
         [self nullTicketView:_numberArr.count :nil];
         if (indexPath.row!=_numberArr.count) {
-            MyTicketView *ticketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16+10,0, 310, 342) index:i type:myTicket];
+            MyTicketView *ticketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16+10,20, 310, 342) index:i type:myTicket];
             ticketView.number=[self.numberArr objectAtIndex:i];
             ticketView.delegate=self;
             ticketView.tag=i+10;
             [cell addSubview:ticketView];
             return cell;
-        }else{
-            UIButton *setBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-            [setBtn setBackgroundColor:[UIColor yellowColor]];
-            [setBtn setFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
-            setBtn.tag=12;
-            [cell addSubview:setBtn];
-            return cell;        
         }
+//        else{
+//            UIButton *setBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+//            [setBtn setBackgroundColor:[UIColor yellowColor]];
+//            [setBtn setFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
+//            setBtn.tag=12;
+//            [cell addSubview:setBtn];
+//            return cell;        
+//        }
     }
     return nil;
 }
 
+#pragma mark--
+#pragma mark--release memory
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+    
+    numberTableView=nil;
+    myhomeBG=nil;
+    selectBankButton=nil;
+    refreshTableView=nil;
+
+    _numberArr=nil;
+}
 
 - (void)didReceiveMemoryWarning
 {

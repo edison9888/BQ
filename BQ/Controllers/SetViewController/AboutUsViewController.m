@@ -46,6 +46,15 @@
 
 }
 
+
+#pragma mark--
+#pragma mark--release memory
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
+        
+}
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];

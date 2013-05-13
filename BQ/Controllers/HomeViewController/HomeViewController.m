@@ -17,6 +17,8 @@
 #import "Business.h"
 #import "UIImage+UIImageName.h"
 
+#import "FXButton.h"
+
 
 @interface HomeViewController ()
 
@@ -91,7 +93,7 @@ static HomeViewController *instance = nil;
     //背景图
 //    [self bankbackGroundImageView];
     
-    __autoreleasing UIImageView *logoImageView =[[UIImageView alloc] initWithFrame:CGRectMake(52,73, 37, 38)];
+    UIImageView *logoImageView =[[UIImageView alloc] initWithFrame:CGRectMake(52,73, 37, 38)];
     [logoImageView setImage:[UIImage imageNamed:@"logo"]];
     [self.view addSubview:logoImageView];    
     
@@ -112,7 +114,7 @@ static HomeViewController *instance = nil;
     [detailBankAddress setBackgroundColor:[UIColor clearColor]];
     [detailBankAddress setTextAlignment:NSTextAlignmentCenter];
     detailBankAddress.textColor = [UIColor colorWithRed:229/255.f green:229/255.f blue:229/255.f alpha:1.0];
-    [detailBankAddress setText:_bank.bankName];
+    [detailBankAddress setText:_bank.address];
     [detailBankAddress setFont:[UIFont systemFontOfSize:14.0f]];
     [detailBankAddress setNumberOfLines:0];
     [self.view addSubview:detailBankAddress];
@@ -122,31 +124,59 @@ static HomeViewController *instance = nil;
 //    bankButtonBg.userInteractionEnabled=YES;
 //    [self.view addSubview:bankButtonBg];
     
+    FXButton *fxBtn = [FXButton buttonWithType:UIButtonTypeCustom];
+    [fxBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:22]];
+    [fxBtn setFrame:CGRectMake(42, self.view.frame.size.height-206, 251, 65.5)];
+    [fxBtn setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
+    [fxBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"personalButton@2x"] forState:UIControlStateNormal];
+    [fxBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"personalButtonSelected@2x"] forState:UIControlStateSelected];
+    [fxBtn setTitle:@"个人业务" forState:UIControlStateNormal];
+    [fxBtn setTitleColor:[UIColor colorWithRed:119/255.0f green:68/255.0f blue:39/255.f alpha:1.0f] forState:UIControlStateNormal];
+    [fxBtn setDefaults];
+//    fxBtn.titleLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
+//    fxBtn.titleLabel.shadowOffset = CGSizeMake(1.0f, 2.0f);
+    fxBtn.shadowBlur = 1.0f;
+    fxBtn.innerShadowColor = [UIColor colorWithRed:82/255.0f green:180/255.0f blue:57/255.f alpha:1.0f];
+    fxBtn.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
+    [self.view addSubview:fxBtn];
+
+    
+    
     UIButton *personalBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    personalBusinessBtn.enabled=NO;
 //    [personalBusinessBtn setTitle:@"个人业务" forState:UIControlStateNormal];
-    [personalBusinessBtn.titleLabel setFont:[UIFont systemFontOfSize:22]];
-    [personalBusinessBtn setFrame:CGRectMake(42, _bankNameLabel.frame.size.height+_bankNameLabel.frame.origin.y+100, 250, 63)];
+    [personalBusinessBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:22]];
+    [personalBusinessBtn setFrame:CGRectMake(42, self.view.frame.size.height-206, 251, 65.5)];
+    [personalBusinessBtn setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
     [personalBusinessBtn addTarget:self action:@selector(personalBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
     [personalBusinessBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"personalButton@2x"] forState:UIControlStateNormal];
     [personalBusinessBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"personalButtonSelected@2x"] forState:UIControlStateSelected];
+    [personalBusinessBtn setTitleColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1.0f] forState:UIControlStateNormal];
+    [personalBusinessBtn setTitleColor:[UIColor colorWithRed:119/255.0f green:68/255.0f blue:39/255.f alpha:1.0f] forState:UIControlStateHighlighted];
+//    [personalBusinessBtn setTitleShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5f] forState:UIControlStateHighlighted];
+    [personalBusinessBtn setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f] forState:UIControlStateHighlighted];
+    [personalBusinessBtn.titleLabel setShadowOffset:CGSizeMake(0.3f,0.1f)];
     personalBusinessBtn.tag=11;
-//    personalBusinessBtn.titleLabel.textColor = [UIColor colorWithRed:232/255.f green:232/255.f blue:232/255.f alpha:1.0];
-    [self.view addSubview:personalBusinessBtn];
+//    [self.view addSubview:personalBusinessBtn];
     
     UIButton *enterpriseBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    enterpriseBusinessBtn.enabled=NO;
 //    [enterpriseBusinessBtn setTitle:@"企业业务" forState:UIControlStateNormal];
-    [enterpriseBusinessBtn.titleLabel setFont:[UIFont systemFontOfSize:22]];
-    [enterpriseBusinessBtn setFrame:CGRectMake(personalBusinessBtn.frame.origin.x, personalBusinessBtn.frame.size.height+personalBusinessBtn.frame.origin.y+10, personalBusinessBtn.frame.size.width, personalBusinessBtn.frame.size.height)];
+    [enterpriseBusinessBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:22]];
+    [enterpriseBusinessBtn setFrame:CGRectMake(personalBusinessBtn.frame.origin.x,self.view.frame.size.height-128, personalBusinessBtn.frame.size.width, personalBusinessBtn.frame.size.height)];
+    [enterpriseBusinessBtn setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
     [enterpriseBusinessBtn addTarget:self action:@selector(enterpriseBusinessClick:) forControlEvents:UIControlEventTouchUpInside];
     [enterpriseBusinessBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"businessButton@2x"] forState:UIControlStateNormal];
     [enterpriseBusinessBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"businessButtonSelected@2x"] forState:UIControlStateSelected];
+    [enterpriseBusinessBtn setTitleColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1.0f] forState:UIControlStateNormal];
+    [enterpriseBusinessBtn setTitleColor:[UIColor colorWithRed:119/255.0f green:68/255.0f blue:39/255.f alpha:1.0f] forState:UIControlStateHighlighted];
+    [enterpriseBusinessBtn setTitleShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5f] forState:UIControlStateHighlighted];
+    [enterpriseBusinessBtn setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f] forState:UIControlStateHighlighted];
+    [enterpriseBusinessBtn.titleLabel setShadowOffset:CGSizeMake(0.5f, 0)];
     enterpriseBusinessBtn.tag=12;
-//    enterpriseBusinessBtn.titleLabel.textColor = [UIColor colorWithRed:232/255.f green:232/255.f blue:232/255.f alpha:1.0];
     [self.view addSubview:enterpriseBusinessBtn];
     
-    self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
+//    self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
     
     //调用接口
     [self getBusinessFromNet:personalBusinessBtn :enterpriseBusinessBtn];
@@ -169,14 +199,14 @@ static HomeViewController *instance = nil;
         
         _fatherBusinessArr=arr;
 
-//        Business *business;
-//        for (int i=0; i<_fatherBusinessArr.count; i++) {
-//            business=[_fatherBusinessArr objectAtIndex:i];
-//            if (i==0) 
-//                [personalBtn setTitle:business.serviceName forState:UIControlStateNormal];
-//            else
-//                [enterpriseBtn setTitle:business.serviceName forState:UIControlStateNormal];
-//        }
+        Business *business;
+        for (int i=0; i<_fatherBusinessArr.count; i++) {
+            business=[_fatherBusinessArr objectAtIndex:i];
+            if (i==0) 
+                [personalBtn setTitle:business.serviceName forState:UIControlStateNormal];
+            else
+                [enterpriseBtn setTitle:business.serviceName forState:UIControlStateNormal];
+        }
         
     }];
 }
@@ -240,6 +270,17 @@ static HomeViewController *instance = nil;
 #pragma mark--业务按钮事件
 //个人业务
 - (void)personalBusinessClick:(id)sender{
+//    UIButton *btn =(UIButton *)sender;
+//    btn.selected=!btn.selected;
+//    
+//    if (btn.selected) {
+//        [btn setTitleColor:[UIColor colorWithRed:119/255.0f green:68/255.0f blue:39/255.f alpha:1.0f] forState:UIControlStateNormal];
+//        [btn setTitleShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5f] forState:UIControlStateNormal];
+////        [btn setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f] forState:UIControlStateSelected];
+//        [btn.titleLabel setShadowOffset:CGSizeMake(0.5f, 0)];
+//        btn.selected=NO;
+//    }
+    
     //初始化子业务控制器
     [self initPersonalVC];
     
@@ -248,13 +289,22 @@ static HomeViewController *instance = nil;
     NSLog(@"_fatherBusinessArr %@,service==%@==%@==%@",_fatherBusinessArr,personalVC.busniess,personalVC.busniess.serviceId,personalVC.busniess.serviceName);
     personalVC.businessType=PersonalType;
     [self.view addSubview:personalVC.view];
-//  personalVC.view.frame=self.view.frame;
 }
 
 //企业业务
 - (void)enterpriseBusinessClick:(id)sender{
-//    [self initPersonalVC];
+//    UIButton *btn =(UIButton *)sender;
+//    btn.selected=!btn.selected;
 //    
+//    if (btn.selected) {
+//        [btn setTitleColor:[UIColor colorWithRed:119/255.0f green:68/255.0f blue:39/255.f alpha:1.0f] forState:UIControlStateNormal];
+//        [btn setTitleShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5f] forState:UIControlStateNormal];
+//        [btn.titleLabel setShadowOffset:CGSizeMake(0.5f, 0)];
+//        
+//        btn.selected=NO;
+//    }
+////    [self initPersonalVC];
+//
 //    personalVC.busniess=[_fatherBusinessArr objectAtIndex:1];
 //    personalVC.businessType=EnterPriseType;
 //    [self.view addSubview:personalVC.view];

@@ -12,6 +12,7 @@
 #import "HomeViewController.h"
 
 #import "LocationManager.h"
+
 @interface MapListViewController : UIViewController<UITableViewDataSource,UITableViewDelegate,LocationManagerDelegate>
 {
     

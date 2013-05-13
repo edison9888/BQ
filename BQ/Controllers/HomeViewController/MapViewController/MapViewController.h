@@ -20,13 +20,14 @@
 #import "MapShowViewController.h"
 #import "FatherBank.h"
 #import "LocationManager.h"
+#import "RootViewController.h"
 
 typedef enum {
     TableViewTag,
     MapTag,
 } ViewTag;
 
-@interface MapViewController : UIViewController<LocationManagerRoloadDataAddtionToLatAndLogDelegage>
+@interface MapViewController : RootViewController<LocationManagerRoloadDataAddtionToLatAndLogDelegage>
 {
     @private
     PickerView *pickerViewController;

@@ -7,13 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AFNetworking.h"
+#import "AFHTTPClient.h"
 
 @interface BQNetClient : AFHTTPClient
 
 + (BQNetClient *)sharedClient;
 
-- (id)initWithBaseURL:(NSURL *)url;
++(BQNetClient*) sharedThreadClient;
+
++(NSString*)sharedBaseURL;
 //+(NSDictionary *)nsdataTurnToNSDictionary:(id)responseObject;
 
 @end

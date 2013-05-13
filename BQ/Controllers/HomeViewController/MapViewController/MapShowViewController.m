@@ -14,7 +14,9 @@
 @end
 
 @implementation MapShowViewController
-@synthesize _map,locationManager;
+@synthesize locationManager;
+@synthesize _map;
+
 
 - (id)init
 {
@@ -38,6 +40,10 @@
 
     //    locationManager.delegate=self;
     [locationManager startUpdate];
+}
+
+- (void)setViewFrame{
+    self.view.frame=CGRectMake(0, 0,self.view.bounds.size.width, self.view.bounds.size.height-TabBarHeight-TabBarHeight);
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -200,17 +206,6 @@
 
 #pragma mark--
 #pragma mark--release memory
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-    
-    [locationManager stopUpdate];
-    
-//    _map=nil;
-//    locationArr=nil;
-//    _locationArrs=nil;//地图
-    
-}
-
 - (void)viewDidUnload
 {
     [super viewDidUnload];
@@ -229,6 +224,8 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+    
+    
 }
 
 @end

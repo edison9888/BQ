@@ -40,7 +40,7 @@
     
     [super viewDidLoad];
     
-    self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
+//    self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
     
     self.navigationItem.rightBarButtonItem = [Helper rightBarButtonItem:self];
     
@@ -137,13 +137,13 @@
     }
 }
 
-#pragma mark--
-#pragma mark--Navigation-Method
-//返回上一层
-- (void)backToLastVC{
-    [self.navigationController popViewControllerAnimated:YES];
-    
-}
+//#pragma mark--
+//#pragma mark--Navigation-Method
+////返回上一层
+//- (void)backToLastVC{
+//    [self.navigationController popViewControllerAnimated:YES];
+//    
+//}
 
 //跳转列表
 //此处应使用  把mapviewController和listviewController作为当前控制器的子控制器

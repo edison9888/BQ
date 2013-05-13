@@ -34,8 +34,9 @@
     
     bgImageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"alertWindow"]];
     bgImageView.userInteractionEnabled=YES;
+    [bgImageView setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
     [bgImageView setBackgroundColor:[UIColor clearColor]];
-    [bgImageView setFrame:CGRectMake(34, 143,  256, 215)];
+    [bgImageView setFrame:CGRectMake(36, self.view.frame.size.height-320,  256, 215)];
     [self.view addSubview:bgImageView];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(17,18,222,178) style:UITableViewStylePlain];

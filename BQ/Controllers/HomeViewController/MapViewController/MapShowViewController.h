@@ -35,4 +35,5 @@
 
 - (void)showAnnotaionViews;
 - (void)showCalloutAnnotaionViews;
+- (void)setViewFrame;
 @end

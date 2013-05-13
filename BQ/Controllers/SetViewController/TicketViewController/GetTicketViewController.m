@@ -118,15 +118,15 @@
 
 #pragma mark--
 #pragma mark--release memory
-- (void)viewDidDisappear:(BOOL)animated{
-    [super viewDidDisappear:animated];
-//    
-//    ticketBg=nil;
-//    ticketView=nil;
-//    ticketBg1=nil;
-//    
-//    _busniess=nil;
+- (void)viewDidUnload
+{
+  [super viewDidUnload];
     
+    ticketBg=nil;
+    ticketView=nil;
+    ticketBg1=nil;
+    _bank=nil;
+    _busniess=nil;
 }
 
 - (void)didReceiveMemoryWarning

@@ -11,6 +11,7 @@
 #import "Helper.h"
 #import "FatherBank.h"
 #import "AppDelegate.h"
+#import "SetViewController.h"
 
 @interface SelectBankViewController ()
 
@@ -44,7 +45,8 @@
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
 	
     self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
-   
+    self.navigationItem.rightBarButtonItem = [Helper rightBarButtonItemWithSetButton:self];
+    
     //调用接口 获得banksArr 解析存放fatherBank类
     [FatherBank getAllBankInfo:nil WithBlock:^(NSArray *arr) {
         
@@ -70,7 +72,13 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
+//跳转设置界面
+-(void)turnToSetViewController{
+    
+    SetViewController *setVC = [[SetViewController alloc]init];
+    [self.navigationController pushViewController:setVC animated:YES];
 
+}
 
 #pragma mark--
 #pragma mark--TableViewDelegate

@@ -29,7 +29,7 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
-    __autoreleasing UIImageView *titleImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, 27)];
+    UIImageView *titleImgView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0, self.view.bounds.size.width, 27)];
     [titleImgView setImage:[UIImage imageNamed:@"districtAlert"]];
     [self.view addSubview:titleImgView];
     

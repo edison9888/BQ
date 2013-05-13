@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootViewController.h"
 
-@interface FeedBackViewController : UIViewController<UITextViewDelegate>
+@interface FeedBackViewController : RootViewController<UITextViewDelegate>
 
 @end

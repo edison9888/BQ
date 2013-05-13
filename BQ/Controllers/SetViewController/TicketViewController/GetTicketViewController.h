@@ -11,8 +11,9 @@
 #import "Bank.h"
 #import "Number.h"
 #import "MyTicketView.h"
+#import "RootViewController.h"
 
-@interface GetTicketViewController : UIViewController
+@interface GetTicketViewController : RootViewController
 {
     @private
    UIImageView *ticketBg;

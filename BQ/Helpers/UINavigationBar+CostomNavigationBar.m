@@ -25,7 +25,6 @@
         [self setBackgroundImage:[self barBackground] forBarMetrics:UIBarMetricsDefault];
     }
     
-    
 
 //    UIButton *_button = [UIButton buttonWithType:UIButtonTypeCustom];
 //    [_button setBackgroundImage:[UIImage imageNamed:@"backArrows"] forState:UIControlStateNormal];

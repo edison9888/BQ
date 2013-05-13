@@ -51,9 +51,19 @@
     
 }
 
+#pragma mark--
+#pragma mark--Delegate
 - (void)textViewDidEndEditing:(UITextView *)textView{
     
     NSLog(@"textView===%@",textView.text);
+    
+}
+
+#pragma mark--
+#pragma mark--release memory
+- (void)viewDidUnload
+{
+    [super viewDidUnload];
     
 }
 

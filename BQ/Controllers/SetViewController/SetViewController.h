@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "RootViewController.h"
 
-@interface SetViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface SetViewController : RootViewController<UITableViewDataSource,UITableViewDelegate>
 {
     NSMutableArray *setArr;
 }

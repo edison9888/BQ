@@ -12,10 +12,10 @@
 #import "MainViewController.h"
 #import "SelectBankViewController.h"
 #import "MyTicketView.h"
-
+#import "RootViewController.h"
 
 @class Bank;
-@interface HomeViewController : UIViewController<PersonalBusinessViewControllerDelegate,MyTicketViewDelegate>
+@interface HomeViewController : RootViewController<PersonalBusinessViewControllerDelegate,MyTicketViewDelegate>
 {
     BOOL isLocation;
     PersonalBusinessViewController *personalVC;

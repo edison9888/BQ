@@ -7,46 +7,89 @@
 //
 
 #import "BQNetClient.h"
+#import "AFJSONRequestOperation.h"
+#import "SVProgressHUD.h"
 
-#define BaseUrlString @"http://192.168.1.38:8080/bank/ver1/"
+#define BaseUrlString @"http://192.168.0.200:8080/bank/ver1/"
 
 @implementation BQNetClient
 
-+ (BQNetClient *)sharedClient{
-
++(BQNetClient *)sharedClient{
+    // [SVProgressHUD show];
     static BQNetClient *_shareClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _shareClient = [[BQNetClient alloc] initWithBaseURL:[NSURL URLWithString:BaseUrlString]];
-        [_shareClient registerHTTPOperationClass:[AFJSONRequestOperation class]];
-        [_shareClient setDefaultHeader:@"Accept" value:@"application/json"];
+        _shareClient = [[BQNetClient alloc]initWithBaseURL:[NSURL URLWithString:BaseUrlString]];
     });
-    
     return _shareClient;
 }
 
-- (id)initWithBaseURL:(NSURL *)url {
++(BQNetClient *)sharedThreadClient{
+    static BQNetClient *_shareClient = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _shareClient = [[BQNetClient alloc]initWithBaseURL:[NSURL URLWithString:BaseUrlString]];
+    });
+
+    return _shareClient;
+}
+
+
+
+
+-(id)initWithBaseURL:(NSURL *)url{
     self = [super initWithBaseURL:url];
-    if (!self) {
+    if(!self){
         return nil;
     }
+    
+    
+    [self registerHTTPOperationClass:[AFJSONRequestOperation class]];
+    // Accept HTTP Header; see http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.1
+    [self setDefaultHeader:@"Accept" value:@"application/json"];
+
     return self;
 }
 
-//+(NSDictionary *)nsdataTurnToNSDictionary:(id)responseObject{
-//
-//    NSError *error;
-//    NSDictionary *dic;
-////    NSString *str = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-////    NSLog(@"%@",str);
-//    if (responseObject !=nil) {
-//        
-//        dic = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
-//    }
-//    NSLog(@"jsonObjects===%@,error===%@",dic,error);
-//
-//    return dic;
-//
-//}
+
+
+- (void)setAuthorizationHeaderWithToken:(NSString *)token {
+    [self setDefaultHeader:@"Authorization" value:[NSString stringWithFormat:@"Bearer %@", token]];
+}
+
+
+
+
+-(void)getPath:(NSString *)path parameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
+    
+    NSMutableDictionary     *result = [NSMutableDictionary dictionaryWithCapacity:0];
+    NSString                 *key;
+    
+    for ( key in parameters ) {
+        [result setObject:[parameters objectForKey:key] forKey:[key lowercaseString]];
+    }
+    
+    NSURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:result];
+    AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
+    [self enqueueHTTPRequestOperation:operation];
+}
+
+
+
+-(void) deletePath:(NSString *)path parameters:(NSDictionary *)parameters success:(void (^)(AFHTTPRequestOperation *, id))success failure:(void (^)(AFHTTPRequestOperation *, NSError *))failure{
+    
+    NSMutableDictionary     *result = [NSMutableDictionary dictionaryWithCapacity:0];
+    NSString                 *key;
+    
+    for ( key in parameters ) {
+        [result setObject:[parameters objectForKey:key] forKey:[key lowercaseString]];
+    }
+    
+    NSURLRequest *request = [self requestWithMethod:@"DELETE" path:path parameters:result];
+    AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];
+    [self enqueueHTTPRequestOperation:operation];
+    
+}
+
 
 @end

@@ -20,6 +20,8 @@
         UIImageView *myhomeBG;
         UIButton *selectBankButton;
         EGORefreshTableHeaderView *refreshTableView;
+        NSInteger heightIphone5;
+
 //        NSArray *idsArr;
 //    NSArray *regionArr;
 }
