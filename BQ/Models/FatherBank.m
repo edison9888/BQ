@@ -50,7 +50,7 @@
         if(block)
             block(fatherBanks);
 
-        NSLog(@"%@",error.userInfo);
+        NSLog(@"%@",error.localizedRecoverySuggestion);
     }];
 
 }

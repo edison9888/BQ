@@ -17,22 +17,28 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        
-        
-        UIImageView *bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 270, 326)];
+        bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 270, 326)];
         if (type==myTicket) {
             [bgView setImage:[UIImage imageNamed:@"myTicketBg"]];
-        }else
+        }else if(type==getTicket)
             [bgView setImage:[UIImage imageNamed:@"ticket@2x"]];
+        else
+            [bgView setImage:[UIImage imageNamed:@"abandonTicket@2x"]];
 
         bgView.userInteractionEnabled=YES;
         [self addSubview:bgView];
         
+        if (type==abandonTicket) {
+            UIImageView *breakPaperImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"breakPaper@2x"]];
+            [breakPaperImg setFrame:CGRectMake(0, 62,bgView.frame.size.width,66)];
+            [bgView addSubview:breakPaperImg];
+        }
+               
         //过期戳
-        stampImageView = [[UIImageView alloc] initWithFrame:CGRectMake(120,10,157,157)];
+        stampImageView = [[UIImageView alloc] initWithFrame:CGRectMake(47,65,188,58)];
         [stampImageView setImage:[UIImage imageNamed:@"stamp"]];
         stampImageView.hidden=YES;
-        [self addSubview:stampImageView];
+        [bgView addSubview:stampImageView];
         
         bankNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(48-10, 20, 194, 30)];
         bankNameLabel.text = @"您还未选择银行";
@@ -130,7 +136,7 @@
         alertLabel.numberOfLines=0;
         [bgView addSubview:alertLabel];
                 
-        UIButton *refreshBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        refreshBtn = [UIButton buttonWithType:UIButtonTypeCustom];
         refreshBtn.frame = CGRectMake(222,appendLabel.frame.origin.y-3, 30, 30);
         [refreshBtn setBackgroundImage:[UIImage imageNamed:@"refreshButton"] forState:UIControlStateNormal];
         [refreshBtn addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventTouchUpInside];
@@ -205,6 +211,7 @@
 //1:作废    2：未办理  3：正在办理 4：已办理
     if (number.numStatus==2||number.numStatus==3){
         stampImageView.hidden=YES;
+        
     }
     
     if (number.numStatus == 1) {
@@ -214,6 +221,18 @@
     else if(number.numStatus==4){
         stampImageView.hidden = NO;
         stampImageView.image = [UIImage imageNamed:@"stamp1"];
+    }
+    if (number.numStatus==1||number.numStatus==4) {
+        asideLabel.hidden=YES;
+        numberLabel.hidden=YES;
+        refreshBtn.hidden=YES;
+        
+        for (UIView *view in [bgView subviews]) {
+            if ([view isKindOfClass:[UILabel class]]) {
+                UILabel *label =(UILabel *)view;
+                label.textColor=[UIColor colorWithRed:179/255.f green:179/255.f blue:179/255.f alpha:1.0f];
+            }
+        }
     }
     
     [asideLabel setTextColor:[UIColor whiteColor]];

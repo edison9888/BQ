@@ -57,7 +57,7 @@
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
-        NSLog(@"%@",error.userInfo);
+        NSLog(@"%@",error.localizedRecoverySuggestion);
     }];
 }
 
@@ -90,7 +90,7 @@
             block(businessArr);
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error.userInfo);
+        NSLog(@"%@",error.localizedRecoverySuggestion);
     }];
 }
 

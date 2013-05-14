@@ -79,7 +79,7 @@
     
     Bank *bank = [self.locationArrs objectAtIndex:indexPath.row];
     
-    __autoreleasing UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 310, 45)];
+    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 310, 45)];
     [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
     [cell addSubview:lineImageView];
     

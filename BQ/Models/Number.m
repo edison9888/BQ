@@ -55,7 +55,7 @@
 
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error.userInfo);
+        NSLog(@"%@",error.localizedRecoverySuggestion);
     }];
 }
 
@@ -90,9 +90,7 @@
             block(numArr);        
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error.userInfo);
-        
-        
+        NSLog(@"%@",error.localizedRecoverySuggestion);
         
     }];
 
@@ -141,7 +139,7 @@
     
     while ([statement step] == SQLITE_ROW) {
         NSString *numId;
-        if ([statement getInt32:4]!=1) {
+        if ([statement getInt32:4]!=0) {
             numId = [statement getString:1];
             [mutableArr addObject:numId];
         }
@@ -152,7 +150,7 @@
 }
 
 
-//无网络情况下，获取numbers(status!=1)
+//无网络情况下，获取numbers(status!=0)
 + (NSArray *)getNumbersFromSqliteWithoutNet{
     NSMutableArray *mutableArr = [NSMutableArray array];
     static Statement *statement = nil;
@@ -161,7 +159,7 @@
     }
     
     while ([statement step] == SQLITE_ROW) {
-        if ([statement getInt32:4]!=1) {
+        if ([statement getInt32:4]!=0) {
             Number *num = [[Number alloc] init];
             num.numId = [statement getString:1];
             num.myNum=[statement getString:2];
@@ -183,7 +181,7 @@
     return mutableArr;
 }
 
-//不是今天的票，状态改为1：作废
+//不是今天的票，状态改为0：过期
 + (NSArray *)updateNumbersStatusBeforeTodayFromDatabase{
     
     NSMutableArray *mutableArr = [NSMutableArray array];
@@ -192,7 +190,7 @@
     
     if (statement==nil) { 
 
-        statement = [DBConnection statementWithQuery:"UPDATE Numbers SET num_status= 1 where num_date < date('NOW')"];
+        statement = [DBConnection statementWithQuery:"UPDATE Numbers SET num_status= 0 where num_date < date('NOW')"];
     }
     
     while ([statement step] == SQLITE_ROW) {

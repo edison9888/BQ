@@ -193,7 +193,6 @@
     [self.view bringSubviewToFront:pickerViewController.view];
     [pickerViewController.view setFrame:CGRectMake(0, self.view.frame.size.height-215, self.view.bounds.size.width, 215)];
     [UIView commitAnimations];
-    
 }
 
 //点击定位自己

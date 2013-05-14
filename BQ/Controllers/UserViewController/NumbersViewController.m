@@ -94,11 +94,8 @@
     
     [[AppDelegate getAppdelegate] setNavigateBarHidden:YES];
     
-//    //判断是否到每日0点，更新票status
-//    [self timer];
-    
     //判读是否联网
-    self.isNetWork = [AppDelegate isNetworkReachable];
+    _isNetWork = [AppDelegate isNetworkReachable];
         
     if (isFisrt) {
         isFisrt=NO;
@@ -140,7 +137,6 @@
 //    else
 //        [self nullTicketView:idsArr.count];
     
-//    [self changeBgImageView];
     NSString *idsStr = [idsArr componentsJoinedByString:@","];
     
     NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:idsStr,@"ids", nil];
@@ -156,6 +152,37 @@
     
 }
 
+//测试
+- (void)tempNumberArr{
+    Number *number1 = [[Number alloc] init];
+    number1.bankTypeName=@"中国建设银行";
+    number1.myNum = @"A002";
+    number1.numDate = @"2013 05-14 15:33";
+    number1.numStatus = 2;
+    number1.presentNumber = @"A001";
+    number1.serviceName=@"理财";
+    
+    Number *number2 = [[Number alloc] init];
+    number2.bankTypeName=@"中国招商银行";
+    number2.myNum = @"B002";
+    number2.numDate = @"2013 05-14 16:33";
+    number2.numStatus = 1;
+    number2.presentNumber = @"A001";
+    number2.serviceName=@"理财";
+
+    Number *number3 = [[Number alloc] init];
+    number3.bankTypeName=@"中国农业银行";
+    number3.myNum = @"C002";
+    number3.numDate = @"2013 05-14 16:33";
+    number3.numStatus = 4;
+    number3.presentNumber = @"C001";
+    number3.serviceName=@"理财";
+
+    _numberArr=[NSMutableArray arrayWithObjects:number1,number2,number3, nil];
+
+    [numberTableView reloadData];
+}
+
 
 //无网络情况下，获得数据
 - (void)getNumbersFromSqliteWithoutNet{
@@ -164,11 +191,13 @@
     if (regionArr.count==0) {
 //        [self changeBgImageView];
 //        [self nullTicketView:regionArr.count];
+        //测试
+        [self tempNumberArr];
         return;
     }
     
     NSArray* reversedArray = [[regionArr reverseObjectEnumerator] allObjects];
-    _numberArr=[NSMutableArray arrayWithArray:reversedArray];;
+    _numberArr=[NSMutableArray arrayWithArray:reversedArray];
     NSLog(@"withoutnet%@",_numberArr);
     [numberTableView reloadData];
 }
@@ -196,26 +225,6 @@
             return;
     }];
 }
-
-//#pragma mark--
-//#pragma mark--ChangeViews
-////改变背景图
-//- (void)changeBgImageView{
-//    if (myhomeBG.image !=nil) {
-//        NSLog(@"有图");
-//        return;
-//    }
-//    float height;
-//    if (isReload) {
-//        height=0;
-//    }else
-//        height=NavigationHeight;
-//    
-//    //背景图
-//    UIImageView *downTicketImage =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"downTicket"]];
-//    [downTicketImage setFrame:CGRectMake(0,self.view.frame.size.height+height-DownHeight, self.view.frame.size.width, DownHeight)];
-//    [self.view addSubview:downTicketImage];
-//}
 
 //无票时显示
 - (void)nullTicketView:(NSInteger) count :(UITableViewCell *)cell{
@@ -361,6 +370,7 @@
     UIButton *btn = (UIButton *)[cell viewWithTag:12];
     [btn removeFromSuperview];
 
+    
     if (_numberArr.count==0) {
         if (indexPath.row==0) {
             [self nullTicketView:0 :cell];
@@ -377,9 +387,16 @@
 //        }            
     }else{
         [self nullTicketView:_numberArr.count :nil];
+        
+        TicketType type = myTicket;
+        Number *number=[self.numberArr objectAtIndex:i];
+        if (number.numStatus==1 || number.numStatus==4) {
+            type=abandonTicket;
+        }
+        
         if (indexPath.row!=_numberArr.count) {
-            MyTicketView *ticketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16+10,20, 310, 342) index:i type:myTicket];
-            ticketView.number=[self.numberArr objectAtIndex:i];
+            MyTicketView *ticketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16+10,20, 310, 342) index:i type:type];
+            ticketView.number=number;
             ticketView.delegate=self;
             ticketView.tag=i+10;
             [cell addSubview:ticketView];

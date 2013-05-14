@@ -21,6 +21,7 @@
 // THE SOFTWARE.
 
 #import "AFJSONRequestOperation.h"
+#import "SVProgressHUD.h"
 
 static dispatch_queue_t af_json_request_operation_processing_queue;
 static dispatch_queue_t json_request_operation_processing_queue() {
@@ -107,6 +108,8 @@ static dispatch_queue_t json_request_operation_processing_queue() {
             if (failure) {
                 dispatch_async(self.failureCallbackQueue ?: dispatch_get_main_queue(), ^{
                     failure(self, self.error);
+                    
+                    [SVProgressHUD dismissWithError:@"网络异常" afterDelay:0.4f];
                 });
             }
         } else {

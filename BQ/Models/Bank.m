@@ -58,7 +58,7 @@
         
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
-            NSLog(@"%@",error.userInfo);
+            NSLog(@"%@",error.localizedRecoverySuggestion);
     }];
 }
 
@@ -88,7 +88,8 @@
             block(bankArr);
         
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        NSLog(@"%@",error.userInfo);
+            
+        NSLog(@"%@",error.localizedRecoverySuggestion);
     }];
 }
 

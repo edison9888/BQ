@@ -14,6 +14,8 @@
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <netinet/in.h>
 
+#include <arpa/inet.h>
+
 @implementation AppDelegate
 
 //自定以导航栏
@@ -25,17 +27,26 @@
 //    
 //}
 
+
 //判断是否连网
 +(BOOL)isNetworkReachable{
     // Create zero addy
-    struct sockaddr_in zeroAddress;
-    bzero(&zeroAddress, sizeof(zeroAddress));
-    zeroAddress.sin_len = sizeof(zeroAddress);
-    zeroAddress.sin_family = AF_INET;
+//    struct sockaddr_in zeroAddress;
+//    bzero(&zeroAddress, sizeof(zeroAddress));
+//    zeroAddress.sin_len = sizeof(zeroAddress);
+//    zeroAddress.sin_family = AF_INET;
+    
+    unsigned int addr_test = inet_addr("192.168.1.200");
+    struct sockaddr_in serverAddress;
+    serverAddress.sin_family = AF_INET;
+    serverAddress.sin_port=htons(8080);
+    serverAddress.sin_addr.s_addr=addr_test;
+    serverAddress.sin_len=sizeof(serverAddress);
+//    bzero(&serverAddress, sizeof(serverAddress));
     
     // Recover reachability flags
-//    SCNetworkReachabilityRef defaultRouteReachability = SCNetworkReachabilityCreateWithAddress(NULL, (struct sockaddr *)&zeroAddress);
-    SCNetworkReachabilityRef defaultRouteReachability = SCNetworkReachabilityCreateWithName(CFAllocatorGetDefault(), [@"http://192.168.0.200:8080/" UTF8String]);
+    SCNetworkReachabilityRef defaultRouteReachability = SCNetworkReachabilityCreateWithAddress(kCFAllocatorDefault,(struct sockaddr *)&serverAddress);
+
     SCNetworkReachabilityFlags flags;
     
     BOOL didRetrieveFlags = SCNetworkReachabilityGetFlags(defaultRouteReachability, &flags);
@@ -68,8 +79,6 @@
     
     
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    
     //背景图
     UIImageView *myhomeBG = [[UIImageView alloc]initWithFrame:self.window.bounds];
     if (iPhone5) {
@@ -115,7 +124,7 @@
 {
     // Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
     
-    numberVC.isNetWork = [[self class] isNetworkReachable];
+//    numberVC.isNetWork = [[self class] isNetworkReachable];
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application

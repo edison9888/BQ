@@ -12,7 +12,8 @@
 
 typedef enum {
    myTicket,
-   getTicket
+   getTicket,
+   abandonTicket
 } TicketType;
 
 @protocol MyTicketViewDelegate <NSObject>
@@ -25,6 +26,7 @@ typedef enum {
 @interface MyTicketView : UIView
 {
     @private
+        UIImageView *bgView;//背景
         UILabel *bankNameLabel;//银行名称
         UILabel *asideLabel;
         UILabel *numberLabel;//排队号
@@ -36,6 +38,7 @@ typedef enum {
         UILabel *numLabel;
         UIImageView *stampImageView;//是否过期
         UIImageView *refreshImageView;
+        UIButton *refreshBtn;
 }
 
 @property(nonatomic,strong) Number *number;
