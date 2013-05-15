@@ -10,8 +10,11 @@
 #import <QuartzCore/QuartzCore.h>
 
 #define BetweenHeight 12
+#define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
+
 
 @implementation MyTicketView
+@synthesize refreshImageView;
 
 - (id)initWithFrame:(CGRect)frame index:(NSInteger)index type:(TicketType)type
 {
@@ -24,15 +27,13 @@
             [bgView setImage:[UIImage imageNamed:@"ticket@2x"]];
         else
             [bgView setImage:[UIImage imageNamed:@"abandonTicket@2x"]];
-
         bgView.userInteractionEnabled=YES;
         [self addSubview:bgView];
         
-        if (type==abandonTicket) {
-            UIImageView *breakPaperImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"breakPaper@2x"]];
-            [breakPaperImg setFrame:CGRectMake(0, 62,bgView.frame.size.width,66)];
-            [bgView addSubview:breakPaperImg];
-        }
+        breakPaperImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"breakPaper@2x"]];
+        breakPaperImg.hidden=YES;
+        [breakPaperImg setFrame:CGRectMake(0, 62,bgView.frame.size.width,66)];
+        [bgView addSubview:breakPaperImg];
                
         //过期戳
         stampImageView = [[UIImageView alloc] initWithFrame:CGRectMake(47,65,188,58)];
@@ -68,7 +69,7 @@
         asideLabel.backgroundColor = [UIColor clearColor];
         [bgView addSubview:asideLabel];
         
-        numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(asideLabel.frame.size.width+asideLabel.frame.origin.x, asideLabel.frame.origin.y-5, 130, 25)];
+        numberLabel = [[UILabel alloc] initWithFrame:CGRectMake(asideLabel.frame.size.width+asideLabel.frame.origin.x, asideLabel.frame.origin.y-4, 130, 25)];
         numberLabel.textColor = [UIColor colorWithRed:25.0f/255 green:135.0f/255 blue:130.0f/255 alpha:1.0f];
         numberLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:30];
         numberLabel.text=@"A000";
@@ -137,21 +138,15 @@
         [bgView addSubview:alertLabel];
                 
         refreshBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-        refreshBtn.frame = CGRectMake(222,appendLabel.frame.origin.y-3, 30, 30);
+        refreshBtn.frame = CGRectMake(222-5,appendLabel.frame.origin.y-8, 40, 40);
         [refreshBtn setBackgroundImage:[UIImage imageNamed:@"refreshButton"] forState:UIControlStateNormal];
         [refreshBtn addTarget:self action:@selector(refreshClick:) forControlEvents:UIControlEventTouchUpInside];
         refreshBtn.tag = index;
         [bgView addSubview:refreshBtn];
         
         refreshImageView =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"refreshImage"]];
-        refreshImageView.frame=CGRectMake(4, 4, 22, 22);
+        refreshImageView.frame=CGRectMake(9, 9, 22, 22);
         [refreshBtn addSubview:refreshImageView];
-        
-//        UIButton *infoBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//        infoBtn.frame = CGRectMake(refreshBtn.frame.origin.x-5, alertLabel.frame.origin.y+alertLabel.frame.size.height+45, 108/2, 73/2);
-//        [infoBtn setBackgroundImage:[UIImage imageNamed:@"morebutton"] forState:UIControlStateNormal];
-//        //[infoBtn addTarget:self action:@selector(infoClick:) forControlEvents:UIControlEventTouchUpInside];
-//        [bgView addSubview:infoBtn];
     }
     return self;
 }
@@ -164,12 +159,20 @@
 //    imageView.layer.anchorPoint = CGPointMake(0.5,0.5);
 //    imageView.transform = CGAffineTransformMakeRotation([self radians:90]);
 //    [UIView commitAnimations];
-    
+
     CABasicAnimation* rotationAnimation =[CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];//"z"还可以是“x”“y”，表示沿z轴旋转
-    rotationAnimation.toValue = [NSNumber numberWithFloat:(2 * M_PI)];// 3 is the number of 360 degree rotations
-    rotationAnimation.duration = 1.0f;
+    rotationAnimation.toValue = [NSNumber numberWithFloat:(4 * M_PI)];// 3 is the number of 360 degree rotations
+    rotationAnimation.duration = 0.5f;
     rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];//先慢后快
     [imageView.layer addAnimation:rotationAnimation forKey:@"animation"];
+    
+//    CABasicAnimation* rotationAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+//    //角度转弧度
+//    rotationAnimation.toValue = [NSNumber numberWithFloat:(DEGREES_TO_RADIANS(180))];
+//    rotationAnimation.duration = 1.0f;
+//    //动画开始结束的快慢，设置为加速
+//    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    [imageView.layer addAnimation:rotationAnimation forKey:@"revItUpAnimation"];
 }
 
 //-(double)radians:(double)degrees
@@ -181,19 +184,20 @@
 - (void)refreshClick:(id)sender{
     UIButton *btn = (UIButton *)sender;
     
+    //refresh按钮动画
+//    [self rotateRefreshView:refreshImageView];
+    
     if ([self.delegate respondsToSelector:@selector(refreshTicketsDelegate:btnIndex:)]) {
         [self.delegate refreshTicketsDelegate:_number btnIndex:btn.tag];
     }
     
-    //refresh按钮动画
-    [self rotateRefreshView:refreshImageView];
+   
 }
 
 - (void)setNumber:(Number *)number{
     _number=number;
     
     bankNameLabel.text = number.bankTypeName;
-    
     numberLabel.text = number.myNum;
     businessLabel.text = [NSString stringWithFormat:@"%@",number.serviceName];
     presentNumberLabel.text = [NSString stringWithFormat:@"%@",number.presentNumber];
@@ -208,21 +212,19 @@
     }
     timeLabel.text = number.numDate;
     
-//1:作废    2：未办理  3：正在办理 4：已办理
+    //1:作废    2：未办理  3：正在办理 4：已办理
     if (number.numStatus==2||number.numStatus==3){
         stampImageView.hidden=YES;
-        
+        breakPaperImg.hidden=YES;
     }
     
-    if (number.numStatus == 1) {
-        stampImageView.hidden = NO;
-        stampImageView.image = [UIImage imageNamed:@"stamp"];
-    }
-    else if(number.numStatus==4){
-        stampImageView.hidden = NO;
-        stampImageView.image = [UIImage imageNamed:@"stamp1"];
-    }
     if (number.numStatus==1||number.numStatus==4) {
+        
+        stampImageView.hidden = NO;
+        breakPaperImg.hidden=NO;
+
+        bgView.image = [UIImage imageNamed:@"abandonTicket"];
+        
         asideLabel.hidden=YES;
         numberLabel.hidden=YES;
         refreshBtn.hidden=YES;
@@ -234,9 +236,17 @@
             }
         }
     }
+    else{
+        [asideLabel setTextColor:[UIColor whiteColor]];
+        [numberLabel setTextColor:[UIColor whiteColor]];
+    }
     
-    [asideLabel setTextColor:[UIColor whiteColor]];
-    [numberLabel setTextColor:[UIColor whiteColor]];
+    if (number.numStatus == 1) {
+        stampImageView.image = [UIImage imageNamed:@"stamp"];
+    }
+    else if(number.numStatus==4){
+        stampImageView.image = [UIImage imageNamed:@"stamp1"];
+    }
 }
 
 

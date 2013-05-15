@@ -9,6 +9,8 @@
 #import "GetTicketViewController.h"
 #import "Helper.h"
 
+#import <AVFoundation/AVFoundation.h>
+
 @interface GetTicketViewController ()
 
 @end
@@ -21,6 +23,14 @@
     if (self) {
     }
     return self;
+}
+
+-(void)getMusic{
+    
+    NSString *soundPath=[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"caf"];
+    NSURL *soundUrl=[[NSURL alloc] initFileURLWithPath:soundPath];
+    AVAudioPlayer *player=[[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:nil];
+    [player play];
 }
 
 
@@ -70,11 +80,9 @@
     }];
 }
 
-
-
 - (MyTicketView *)createMyTicket:(Number *)num{
 
-    MyTicketView *_ticketView = [[MyTicketView alloc] initWithFrame:CGRectMake(16,-182, 290,342) index:0 type:getTicket];
+    MyTicketView *_ticketView = [[MyTicketView alloc] initWithFrame:CGRectMake(26,-182, 290,342) index:0 type:getTicket];
     _ticketView.ticketType=getTicket;
     _ticketView.number = num;
     [self.view insertSubview:_ticketView atIndex:2];
@@ -86,7 +94,7 @@
 #pragma mark--AnimateTicket
 //出票动画
 -(void)animateGetTicket:(MyTicketView *)_ticketView{
-
+//    NSLog(@"NSDate%@",[NSDate date]);
     double __block originY;
     
     originY=_ticketView.frame.origin.y;
@@ -106,6 +114,7 @@
                     [_ticketView setFrame:CGRectMake(_ticketView.frame.origin.x, 57, _ticketView.frame.size.width,_ticketView.frame.size.height)];
                     return ;
                 } completion:^(BOOL finished) {
+//                    NSLog(@"NSDate%@",[NSDate date]);
                     [self backToLastVC];
                 }];
             }

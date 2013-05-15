@@ -37,13 +37,15 @@ typedef enum {
         UILabel *timeLabel;//时间
         UILabel *numLabel;
         UIImageView *stampImageView;//是否过期
-        UIImageView *refreshImageView;
+        UIImageView *breakPaperImg;
         UIButton *refreshBtn;
 }
 
 @property(nonatomic,strong) Number *number;
 @property(nonatomic,weak) id<MyTicketViewDelegate> delegate;
 @property(nonatomic,assign) TicketType ticketType;
+@property(nonatomic,strong) UIImageView *refreshImageView;
+
 - (id)initWithFrame:(CGRect)frame index:(NSInteger)index type:(TicketType)type;
 
 @end

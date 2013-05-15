@@ -119,27 +119,21 @@ static HomeViewController *instance = nil;
     [detailBankAddress setNumberOfLines:0];
     [self.view addSubview:detailBankAddress];
     
-//    UIImageView *bankButtonBg = [[UIImageView alloc]initWithFrame:CGRectMake(logoImageView.frame.origin.x,_bankNameLabel.frame.origin.y+_bankNameLabel.frame.size.height+5, 239, 7.5)];
-//    bankButtonBg.image=[UIImage imageNamed:@"light"];
-//    bankButtonBg.userInteractionEnabled=YES;
-//    [self.view addSubview:bankButtonBg];
-    
-    FXButton *fxBtn = [FXButton buttonWithType:UIButtonTypeCustom];
-    [fxBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:22]];
-    [fxBtn setFrame:CGRectMake(42, self.view.frame.size.height-206, 251, 65.5)];
-    [fxBtn setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
-    [fxBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"personalButton@2x"] forState:UIControlStateNormal];
-    [fxBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"personalButtonSelected@2x"] forState:UIControlStateSelected];
-    [fxBtn setTitle:@"个人业务" forState:UIControlStateNormal];
-    [fxBtn setTitleColor:[UIColor colorWithRed:119/255.0f green:68/255.0f blue:39/255.f alpha:1.0f] forState:UIControlStateNormal];
-    [fxBtn setDefaults];
-//    fxBtn.titleLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
-//    fxBtn.titleLabel.shadowOffset = CGSizeMake(1.0f, 2.0f);
-    fxBtn.shadowBlur = 1.0f;
-    fxBtn.innerShadowColor = [UIColor colorWithRed:82/255.0f green:180/255.0f blue:57/255.f alpha:1.0f];
-    fxBtn.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
-    [self.view addSubview:fxBtn];
-
+//    FXButton *fxBtn = [FXButton buttonWithType:UIButtonTypeCustom];
+//    [fxBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:22]];
+//    [fxBtn setFrame:CGRectMake(42, self.view.frame.size.height-206, 251, 65.5)];
+//    [fxBtn setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
+//    [fxBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"personalButton@2x"] forState:UIControlStateNormal];
+//    [fxBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"personalButtonSelected@2x"] forState:UIControlStateSelected];
+//    [fxBtn setTitle:@"个人业务" forState:UIControlStateNormal];
+//    [fxBtn setTitleColor:[UIColor colorWithRed:119/255.0f green:68/255.0f blue:39/255.f alpha:1.0f] forState:UIControlStateNormal];
+//    [fxBtn setDefaults];
+////    fxBtn.titleLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
+////    fxBtn.titleLabel.shadowOffset = CGSizeMake(1.0f, 2.0f);
+//    fxBtn.shadowBlur = 1.0f;
+//    fxBtn.innerShadowColor = [UIColor colorWithRed:82/255.0f green:180/255.0f blue:57/255.f alpha:1.0f];
+//    fxBtn.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
+//    [self.view addSubview:fxBtn];
     
     
     UIButton *personalBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
@@ -157,7 +151,7 @@ static HomeViewController *instance = nil;
     [personalBusinessBtn setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f] forState:UIControlStateHighlighted];
     [personalBusinessBtn.titleLabel setShadowOffset:CGSizeMake(0.3f,0.1f)];
     personalBusinessBtn.tag=11;
-//    [self.view addSubview:personalBusinessBtn];
+    [self.view addSubview:personalBusinessBtn];
     
     UIButton *enterpriseBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    enterpriseBusinessBtn.enabled=NO;
@@ -172,7 +166,7 @@ static HomeViewController *instance = nil;
     [enterpriseBusinessBtn setTitleColor:[UIColor colorWithRed:119/255.0f green:68/255.0f blue:39/255.f alpha:1.0f] forState:UIControlStateHighlighted];
     [enterpriseBusinessBtn setTitleShadowColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0.5f] forState:UIControlStateHighlighted];
     [enterpriseBusinessBtn setTitleShadowColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.5f] forState:UIControlStateHighlighted];
-    [enterpriseBusinessBtn.titleLabel setShadowOffset:CGSizeMake(0.5f, 0)];
+    [enterpriseBusinessBtn.titleLabel setShadowOffset:CGSizeMake(0.3f,0.1f)];
     enterpriseBusinessBtn.tag=12;
     [self.view addSubview:enterpriseBusinessBtn];
     

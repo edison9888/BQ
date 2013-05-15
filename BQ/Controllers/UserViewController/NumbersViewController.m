@@ -96,18 +96,12 @@
     
     //判读是否联网
     _isNetWork = [AppDelegate isNetworkReachable];
-        
-    if (isFisrt) {
-        isFisrt=NO;
-//        [self nullTicketView:0];
-        [numberTableView reloadData];
+    
+    //获取我的号码
+    if (_isNetWork) {
+        [self getMyNumbersFromNet];//有网
     }else{
-        //获取我的号码
-        if (_isNetWork) {
-            [self getMyNumbersFromNet];//有网
-        }else{
-            [self getNumbersFromSqliteWithoutNet];//无网络
-        }
+        [self getNumbersFromSqliteWithoutNet];//无网络
     }
 }
 
@@ -134,16 +128,15 @@
         [numberTableView reloadData];
         return;
     }
-//    else
-//        [self nullTicketView:idsArr.count];
-    
+
     NSString *idsStr = [idsArr componentsJoinedByString:@","];
     
     NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:idsStr,@"ids", nil];
     
     [Number refreshBankNumbers:dic WithBlock:^(NSArray *arr) {
         
-        if (arr.count!=0) {
+        if (arr.count!=0) {        
+            
             NSArray* reversedArray = [[arr reverseObjectEnumerator] allObjects];
             _numberArr=[NSMutableArray arrayWithArray:reversedArray];
             [numberTableView reloadData];
@@ -219,8 +212,11 @@
     [Number refreshBankNumbers:dic WithBlock:^(NSArray *arr) {
         
         if (arr.count!=0) {
-            MyTicketView *_ticketView = (MyTicketView *)[numberTableView viewWithTag: index+10];
-            _ticketView.number = [arr objectAtIndex:0];
+//            MyTicketView *_ticketView = (MyTicketView *)[numberTableView viewWithTag:index+10];
+//            _ticketView.number = [arr objectAtIndex:0];
+            reloadOneTicketIndex=index+10;
+            reloadOneTicketArr=arr;
+            [numberTableView reloadData];
         }else
             return;
     }];
@@ -228,6 +224,16 @@
 
 //无票时显示
 - (void)nullTicketView:(NSInteger) count :(UITableViewCell *)cell{
+    NoTicketView *noTicketView =(NoTicketView *)[cell viewWithTag:120];
+
+//    if (noTicketView==nil) {
+//        if (!isFisrt) {
+//            NSLog(@"没有无票啦");
+//            
+//            return;
+//        }
+//        isFisrt=NO;
+//    }
     if (count==0) {
         if (iPhone5)
             heightIphone5=HeightIphone5;
@@ -238,7 +244,6 @@
         noTicketView.tag=120;
         [cell addSubview:noTicketView];
     }else{
-        NoTicketView *noTicketView =(NoTicketView *)[self.view viewWithTag:120];
         [noTicketView removeFromSuperview];
     }
 }
@@ -364,54 +369,61 @@
     }
     
     cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    
-    int i=indexPath.row;
-    
+        
     UIButton *btn = (UIButton *)[cell viewWithTag:12];
     [btn removeFromSuperview];
-
     
     if (_numberArr.count==0) {
         if (indexPath.row==0) {
             [self nullTicketView:0 :cell];
             return cell;
             
-        }
-//        else if(indexPath.row==1){
-//            UIButton *setBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//            [setBtn setBackgroundColor:[UIColor yellowColor]];
-//            [setBtn setFrame:CGRectMake(0, 0, cell.frame.size.width, 362)];
-//            setBtn.tag=12;
-//            [cell addSubview:setBtn];
-//            return cell;
-//        }            
+        }            
     }else{
-        [self nullTicketView:_numberArr.count :nil];
+        [self nullTicketView:_numberArr.count :cell];
         
         TicketType type = myTicket;
-        Number *number=[self.numberArr objectAtIndex:i];
+        Number *number=[self.numberArr objectAtIndex:indexPath.row];
         if (number.numStatus==1 || number.numStatus==4) {
             type=abandonTicket;
         }
         
-        if (indexPath.row!=_numberArr.count) {
-            MyTicketView *ticketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16+10,20, 310, 342) index:i type:type];
-            ticketView.number=number;
-            ticketView.delegate=self;
-            ticketView.tag=i+10;
-            [cell addSubview:ticketView];
+        if (reloadOneTicketIndex==0) {
+            if (indexPath.row!=_numberArr.count) {
+                MyTicketView *ticketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16+10,20, 310, 342) index:indexPath.row type:type];
+                ticketView.number=number;
+                ticketView.delegate=self;
+                ticketView.tag=indexPath.row+10;
+                [cell addSubview:ticketView];
+                return cell;
+            }
+        }
+        else{
+            if (indexPath.row==reloadOneTicketIndex-10) {
+                MyTicketView *ticketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16+10,20, 310, 342) index:reloadOneTicketIndex-10 type:type];
+                ticketView.number=[reloadOneTicketArr objectAtIndex:0];
+                ticketView.delegate=self;
+                ticketView.tag=indexPath.row+10;
+                [cell addSubview:ticketView];
+
+                [self rotateRefreshView:ticketView.refreshImageView];
+                
+                reloadOneTicketIndex=0;
+            }
+
             return cell;
         }
-//        else{
-//            UIButton *setBtn = [UIButton buttonWithType:UIButtonTypeCustom];
-//            [setBtn setBackgroundColor:[UIColor yellowColor]];
-//            [setBtn setFrame:CGRectMake(0, 0, cell.frame.size.width, cell.frame.size.height)];
-//            setBtn.tag=12;
-//            [cell addSubview:setBtn];
-//            return cell;        
-//        }
     }
     return nil;
+}
+
+//动画
+- (void)rotateRefreshView:(UIImageView *)imageView{
+    CABasicAnimation* rotationAnimation =[CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];//"z"还可以是“x”“y”，表示沿z轴旋转
+    rotationAnimation.toValue = [NSNumber numberWithFloat:(3 * M_PI)];// 3 is the number of 360 degree rotations
+    rotationAnimation.duration = 0.7f;
+    rotationAnimation.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseIn];//先慢后快
+    [imageView.layer addAnimation:rotationAnimation forKey:@"animation"];
 }
 
 #pragma mark--

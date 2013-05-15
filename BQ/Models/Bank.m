@@ -64,6 +64,7 @@
 
 //根据区域或定位筛选银行
 + (void)selectAreaGetBanksInfo:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block{
+    
     [[BQNetClient sharedClient] getPath:@"bankInfo/getByArea" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSMutableArray *bankArr =[NSMutableArray array];
@@ -89,7 +90,7 @@
         
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
-        NSLog(@"%@",error.localizedRecoverySuggestion);
+            NSLog(@"%@",error.localizedRecoverySuggestion);
     }];
 }
 
