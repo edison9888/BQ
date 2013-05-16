@@ -10,6 +10,8 @@
 #import "MainViewController.h"
 #import "DBConnection.h"
 
+
+
 //检测网络
 #import <SystemConfiguration/SCNetworkReachability.h>
 #import <netinet/in.h>
@@ -73,6 +75,7 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+ 
     
     [DBConnection createEditableCopyOfDatabaseIfNeeded:NO];
     [DBConnection getSharedDatabase];

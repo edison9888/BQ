@@ -8,6 +8,7 @@
 
 #import "GetTicketViewController.h"
 #import "Helper.h"
+#import "TicketSoundEffect.h"
 
 #import <AVFoundation/AVFoundation.h>
 
@@ -25,8 +26,7 @@
     return self;
 }
 
--(void)getMusic{
-    
+-(void)getMusic{    
     NSString *soundPath=[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"caf"];
     NSURL *soundUrl=[[NSURL alloc] initFileURLWithPath:soundPath];
     AVAudioPlayer *player=[[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:nil];
@@ -74,7 +74,9 @@
         ticketView= [self createMyTicket:num];
         //动画
         [self animateGetTicket:ticketView];
-
+        //声音
+        [TicketSoundEffect playTicketSound];
+        
         [self.view insertSubview:ticketBg1 belowSubview:ticketView];
 
     }];
@@ -102,6 +104,7 @@
     [UIView animateWithDuration:0.2f animations:^{
         [_ticketView setFrame:CGRectMake(_ticketView.frame.origin.x, originY+20, _ticketView.frame.size.width,_ticketView.frame.size.height)];
         [self.view insertSubview:ticketBg aboveSubview:_ticketView];
+       
         
         } completion:^(BOOL finished) {
             

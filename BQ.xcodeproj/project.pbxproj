@@ -29,10 +29,12 @@
 		04D2C1F616FFF74F00E11E82 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D2C1F516FFF74F00E11E82 /* main.m */; };
 		04D2C1FA16FFF74F00E11E82 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D2C1F916FFF74F00E11E82 /* AppDelegate.m */; };
 		04D2C20016FFF74F00E11E82 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D2C1FF16FFF74F00E11E82 /* Default-568h@2x.png */; };
-		04D2C21017003ED100E11E82 /* Icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D2C20E17003ED100E11E82 /* Icon.png */; };
-		04D2C21117003ED100E11E82 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D2C20F17003ED100E11E82 /* Icon@2x.png */; };
+		04D94E4E1743714C00194AC4 /* Icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 04D94E4D1743714C00194AC4 /* Icon@2x.png */; };
+		04D94E501743716000194AC4 /* TicketSound.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 04D94E4F1743716000194AC4 /* TicketSound.mp3 */; };
+		04D94E531744821100194AC4 /* TicketSoundEffect.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D94E521744821100194AC4 /* TicketSoundEffect.m */; };
+		04D94E551744824E00194AC4 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D94E541744824E00194AC4 /* MapKit.framework */; };
+		04D94E571744853400194AC4 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 04D94E561744853400194AC4 /* AudioToolbox.framework */; };
 		C80CF82C1715197500889D03 /* Number.m in Sources */ = {isa = PBXBuildFile; fileRef = C80CF82B1715197500889D03 /* Number.m */; };
-		C80CF82E171519AC00889D03 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CF82D171519AC00889D03 /* Default.png */; };
 		C80CF832171535AA00889D03 /* GetTicketViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C80CF831171535AA00889D03 /* GetTicketViewController.m */; };
 		C80CF838171536F700889D03 /* line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C80CF834171536F700889D03 /* line@2x.png */; };
 		C80DE2F91739F15C002FE26F /* backArrows@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C80DE2F81739F15C002FE26F /* backArrows@2x.png */; };
@@ -129,7 +131,6 @@
 		C883E5881713B6580029B6B5 /* MapShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C883E5871713B6580029B6B5 /* MapShowViewController.m */; };
 		C883E59E171414A20029B6B5 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C883E59D171414A20029B6B5 /* Default@2x.png */; };
 		C891491B1711218800958605 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C891491A1711218800958605 /* MyAnnotation.m */; };
-		C8A97FC517324CCE00553BE8 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C8A97FC317324CBE00553BE8 /* MapKit.framework */; };
 		C8AE8ECC171D1C7B00098213 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8ECB171D1C7B00098213 /* AboutUsViewController.m */; };
 		C8AE8ECF171D1D0C00098213 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8ECE171D1D0C00098213 /* FeedBackViewController.m */; };
 		C8AE8EDE171D28FD00098213 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8ED3171D28FD00098213 /* NSObject+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -188,11 +189,14 @@
 		04D2C1F816FFF74F00E11E82 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		04D2C1F916FFF74F00E11E82 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		04D2C1FF16FFF74F00E11E82 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		04D2C20E17003ED100E11E82 /* Icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon.png; sourceTree = "<group>"; };
-		04D2C20F17003ED100E11E82 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		04D94E4D1743714C00194AC4 /* Icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Icon@2x.png"; sourceTree = "<group>"; };
+		04D94E4F1743716000194AC4 /* TicketSound.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = TicketSound.mp3; sourceTree = "<group>"; };
+		04D94E511744821100194AC4 /* TicketSoundEffect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TicketSoundEffect.h; sourceTree = "<group>"; };
+		04D94E521744821100194AC4 /* TicketSoundEffect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TicketSoundEffect.m; sourceTree = "<group>"; };
+		04D94E541744824E00194AC4 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		04D94E561744853400194AC4 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
 		C80CF82A1715197500889D03 /* Number.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Number.h; sourceTree = "<group>"; };
 		C80CF82B1715197500889D03 /* Number.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Number.m; sourceTree = "<group>"; };
-		C80CF82D171519AC00889D03 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		C80CF830171535AA00889D03 /* GetTicketViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetTicketViewController.h; sourceTree = "<group>"; };
 		C80CF831171535AA00889D03 /* GetTicketViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetTicketViewController.m; sourceTree = "<group>"; };
 		C80CF834171536F700889D03 /* line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "line@2x.png"; sourceTree = "<group>"; };
@@ -326,7 +330,6 @@
 		C883E59D171414A20029B6B5 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		C89149191711218800958605 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		C891491A1711218800958605 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
-		C8A97FC317324CBE00553BE8 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		C8AE8ECA171D1C7B00098213 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		C8AE8ECB171D1C7B00098213 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		C8AE8ECD171D1D0C00098213 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
@@ -364,8 +367,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				04D94E571744853400194AC4 /* AudioToolbox.framework in Frameworks */,
+				04D94E551744824E00194AC4 /* MapKit.framework in Frameworks */,
 				C814F7A317436D5100D9C708 /* AVFoundation.framework in Frameworks */,
-				C8A97FC517324CCE00553BE8 /* MapKit.framework in Frameworks */,
 				C86068E2171BF87E00534197 /* SystemConfiguration.framework in Frameworks */,
 				C86068DD171BDB6600534197 /* libsqlite3.0.dylib in Frameworks */,
 				C85CD6CA1712CA3C007512C3 /* QuartzCore.framework in Frameworks */,
@@ -430,6 +434,8 @@
 				C8660FF7171EA3F300F247B8 /* CalloutMapAnnotation.m */,
 				C81CF152173B982D00452128 /* UIImage+UIImageName.h */,
 				C81CF153173B982D00452128 /* UIImage+UIImageName.m */,
+				04D94E511744821100194AC4 /* TicketSoundEffect.h */,
+				04D94E521744821100194AC4 /* TicketSoundEffect.m */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -463,7 +469,6 @@
 		04D2C1DD16FFF74E00E11E82 = {
 			isa = PBXGroup;
 			children = (
-				C814F7A217436D5000D9C708 /* AVFoundation.framework */,
 				04D2C1EF16FFF74E00E11E82 /* BQ */,
 				04D2C1E816FFF74E00E11E82 /* Frameworks */,
 				04D2C1E716FFF74E00E11E82 /* Products */,
@@ -481,7 +486,9 @@
 		04D2C1E816FFF74E00E11E82 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				C8A97FC317324CBE00553BE8 /* MapKit.framework */,
+				C814F7A217436D5000D9C708 /* AVFoundation.framework */,
+				04D94E541744824E00194AC4 /* MapKit.framework */,
+				04D94E561744853400194AC4 /* AudioToolbox.framework */,
 				C86068E1171BF87D00534197 /* SystemConfiguration.framework */,
 				C86068DC171BDB6500534197 /* libsqlite3.0.dylib */,
 				C85CD6C91712CA3C007512C3 /* QuartzCore.framework */,
@@ -513,10 +520,9 @@
 			isa = PBXGroup;
 			children = (
 				C82CD92917168C6F0084E732 /* DB */,
-				C80CF82D171519AC00889D03 /* Default.png */,
+				04D94E4F1743716000194AC4 /* TicketSound.mp3 */,
 				C883E59D171414A20029B6B5 /* Default@2x.png */,
-				04D2C20E17003ED100E11E82 /* Icon.png */,
-				04D2C20F17003ED100E11E82 /* Icon@2x.png */,
+				04D94E4D1743714C00194AC4 /* Icon@2x.png */,
 				04D2C20A16FFF79C00E11E82 /* Images */,
 				04D2C1F116FFF74F00E11E82 /* BQ-Info.plist */,
 				04D2C1F216FFF74F00E11E82 /* InfoPlist.strings */,
@@ -894,8 +900,6 @@
 			files = (
 				04D2C1F416FFF74F00E11E82 /* InfoPlist.strings in Resources */,
 				04D2C20016FFF74F00E11E82 /* Default-568h@2x.png in Resources */,
-				04D2C21017003ED100E11E82 /* Icon.png in Resources */,
-				04D2C21117003ED100E11E82 /* Icon@2x.png in Resources */,
 				04A6AD1E17053A9F009948B3 /* 07@2x.png in Resources */,
 				0420576017054252006683E1 /* homeIcon@2x.png in Resources */,
 				042057621705425D006683E1 /* setIcon@2x.png in Resources */,
@@ -903,7 +907,6 @@
 				C8385495171275E5007B969A /* pickerToolBar@2x.png in Resources */,
 				C8385497171275F1007B969A /* okButton@2x.png in Resources */,
 				C883E59E171414A20029B6B5 /* Default@2x.png in Resources */,
-				C80CF82E171519AC00889D03 /* Default.png in Resources */,
 				C80CF838171536F700889D03 /* line@2x.png in Resources */,
 				C82CD92C17168CCC0084E732 /* BQDataBase.sqlite in Resources */,
 				C82CD994171691D70084E732 /* blackArrow.png in Resources */,
@@ -965,6 +968,8 @@
 				C8171AC517423A1F001BB394 /* flashTicketIphone5@2x.png in Resources */,
 				C814F79F17432BD500D9C708 /* ticket@2x.png in Resources */,
 				C814F7A11743698800D9C708 /* refreshButton@2x.png in Resources */,
+				04D94E4E1743714C00194AC4 /* Icon@2x.png in Resources */,
+				04D94E501743716000194AC4 /* TicketSound.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1034,6 +1039,7 @@
 				C87472201740F2D000429F77 /* AFXMLRequestOperation.m in Sources */,
 				C87472211740F2D000429F77 /* UIImageView+AFNetworking.m in Sources */,
 				C87472271740F2F700429F77 /* SVProgressHUD.m in Sources */,
+				04D94E531744821100194AC4 /* TicketSoundEffect.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

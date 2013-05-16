@@ -20,6 +20,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
         bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 270, 326)];
         if (type==myTicket) {
             [bgView setImage:[UIImage imageNamed:@"myTicketBg"]];
