@@ -71,12 +71,7 @@
 
     if (!cell) {
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    cell.autoresizesSubviews=YES;
-    
-//    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-    
+            
     Bank *bank = [self.locationArrs objectAtIndex:indexPath.row];
     
     UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 310, 45)];
@@ -110,6 +105,11 @@
     [distanceLabel sizeToFit];
     [cell addSubview:distanceLabel];
 
+    if (cell.isSelected) {
+        _bankLabel.textColor=[UIColor colorWithRed:93/255 green:93/255 blue:93/255 alpha:1.0f];
+        distanceLabel.textColor=[UIColor colorWithRed:93/255 green:93/255 blue:93/255 alpha:1.0f];
+    }
+    }
     return cell;
 }
 

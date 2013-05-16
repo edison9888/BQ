@@ -69,7 +69,7 @@
     numberTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:numberTableView];
     
-    refreshTableView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0,-numberTableView.bounds.size.height, numberTableView.frame.size.width,numberTableView.frame.size.height)];
+    refreshTableView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0,-numberTableView.bounds.size.height, numberTableView.frame.size.width,numberTableView.frame.size.height) arrowImageName:@"blueArrow.png" textColor:[UIColor colorWithRed:131/255.0f green:131/255.0f blue:131/255.0f alpha:1.0f]];
     refreshTableView.delegate=self;
     [numberTableView addSubview:refreshTableView];
     

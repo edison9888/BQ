@@ -67,8 +67,6 @@
     if (!cell) {
     
     cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    
-    }
         
 //    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 310, 45)];
 //    [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
@@ -96,7 +94,10 @@
     [bankLabel setTextAlignment:NSTextAlignmentLeft];
     [cell addSubview:bankLabel];
     
-    
+    if (cell.isSelected) {
+        bankLabel.textColor=[UIColor colorWithRed:93/255 green:93/255 blue:93/255 alpha:1.0f];
+    }
+    }
     return cell;
 }
 

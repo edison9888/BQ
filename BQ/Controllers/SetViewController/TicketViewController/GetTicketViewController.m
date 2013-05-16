@@ -27,9 +27,10 @@
 
 -(void)getMusic{
     
-    NSString *soundPath=[[NSBundle mainBundle] pathForResource:@"intro" ofType:@"caf"];
+    NSString *soundPath=[[NSBundle mainBundle] pathForResource:@"ticket" ofType:@"mp3"];
     NSURL *soundUrl=[[NSURL alloc] initFileURLWithPath:soundPath];
     AVAudioPlayer *player=[[AVAudioPlayer alloc] initWithContentsOfURL:soundUrl error:nil];
+    [player prepareToPlay];
     [player play];
 }
 
@@ -70,8 +71,10 @@
     NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:_bank.bankId,@"bankId",_busniess.serviceId,@"serviceId", nil];
     
     [Number getBankNumberInfo:dic WithBlock:^(Number *num) {
+        
         //生成票号
         ticketView= [self createMyTicket:num];
+        [self getMusic];
         //动画
         [self animateGetTicket:ticketView];
 
@@ -115,7 +118,8 @@
                     return ;
                 } completion:^(BOOL finished) {
 //                    NSLog(@"NSDate%@",[NSDate date]);
-                    [self backToLastVC];
+                    //0.5f 返回首页
+                    [self performSelector:@selector(backToLastVC) withObject:ticketView afterDelay:0.5f];
                 }];
             }
     }];

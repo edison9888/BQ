@@ -121,8 +121,8 @@
         [bgView addSubview:remindLabel];
         
 
-        appendLabel = [[UILabel alloc] initWithFrame:CGRectMake(remindLabel.frame.origin.x+remindLabel.frame.size.width+5, numLabel.frame.origin.y, 50, 18)];
-        appendLabel.text = @"个人";
+        appendLabel = [[UILabel alloc] initWithFrame:CGRectMake(remindLabel.frame.origin.x+remindLabel.frame.size.width+5, numLabel.frame.origin.y, 25, 18)];
+        appendLabel.text = @"人";
         appendLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:16];
         appendLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
         appendLabel.backgroundColor = [UIColor clearColor];

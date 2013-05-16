@@ -98,34 +98,34 @@
     if (!cell) {
     
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    
+        UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 315, 45)];
+        [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
+        [cell addSubview:lineImageView];
+        
+        UIImageView *selectImageView =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableViewCellSelect"]];
+        [selectImageView setFrame:CGRectMake(5, 8, 310, 45)];
+        
+        UIImageView*bgSelectImageView =[[UIImageView alloc] initWithFrame:cell.frame];
+        [bgSelectImageView addSubview:selectImageView];
+        
+        cell.selectedBackgroundView = bgSelectImageView;
+        
+        FatherBank *fatherBank = [self.banksArr objectAtIndex:indexPath.row];
+        
+        UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-30,lineImageView.frame.size.height)];
+        [bankLabel setText:fatherBank.bankTypeName];
+    //    [bankLabel setText:fatherBank.fatherBankName];
+        [bankLabel setFont:[UIFont systemFontOfSize:15]];
+        [bankLabel setBackgroundColor:[UIColor clearColor]];
+        [bankLabel setTextColor:[UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1.0f]];
+        [bankLabel setTextAlignment:NSTextAlignmentLeft];
+        [cell addSubview:bankLabel];    
+    
+        if (cell.isSelected) {
+            bankLabel.textColor=[UIColor colorWithRed:93/255 green:93/255 blue:93/255 alpha:1.0f];
+        }
     }
-    
-//    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-
-    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 315, 45)];
-    [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
-    [cell addSubview:lineImageView];
-    
-    UIImageView *selectImageView =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableViewCellSelect"]];
-    [selectImageView setFrame:CGRectMake(5, 8, 310, 45)];
-    
-    UIImageView*bgSelectImageView =[[UIImageView alloc] initWithFrame:cell.frame];
-    [bgSelectImageView addSubview:selectImageView];
-    
-    cell.selectedBackgroundView = bgSelectImageView;
-    
-    FatherBank *fatherBank = [self.banksArr objectAtIndex:indexPath.row];
-    
-    UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-30,lineImageView.frame.size.height)];
-    [bankLabel setText:fatherBank.bankTypeName];
-//    [bankLabel setText:fatherBank.fatherBankName];
-    [bankLabel setFont:[UIFont systemFontOfSize:15]];
-    [bankLabel setBackgroundColor:[UIColor clearColor]];
-    [bankLabel setTextColor:[UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1.0f]];
-    [bankLabel setTextAlignment:NSTextAlignmentLeft];
-    [cell addSubview:bankLabel];    
-    
-    
     return cell;
 }
 
