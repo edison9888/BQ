@@ -120,6 +120,8 @@ static dispatch_queue_t json_request_operation_processing_queue() {
                     if (failure) {
                         dispatch_async(self.failureCallbackQueue ?: dispatch_get_main_queue(), ^{
                             failure(self, self.error);
+                            [SVProgressHUD dismiss];
+
                         });
                     }
                 } else {

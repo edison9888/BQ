@@ -109,6 +109,7 @@
     [Bank getBanksInfo:dic WithBlock:^(NSArray *arr) {
         
         self.locationArrs= [NSMutableArray arrayWithArray:arr];
+        self.mapListVC.bankTitleLabel.text = SubLocality;
         [self reloadData];
     }];
 }
@@ -206,16 +207,16 @@
         span.longitudeDelta=SpanDelta;
         MKCoordinateRegion region = {userLocation.coordinate, span};
         [self.mapVC._map setRegion:region];
-        
-        
-        //刷新数据
-        [self getDataFormApi];
+       
         
     }else{
         //重新定位获得列表地点  定位回调中调用接口
         [self.mapVC.locationManager startUpdate];
         self.mapVC.locationManager.delegate=self.mapListVC;
     }
+    
+    //刷新数据
+    [self getDataFormApi];
 }
 
 #pragma mark--

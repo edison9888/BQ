@@ -110,7 +110,7 @@
     Bank *bank;
     bank = [self.locationArrs objectAtIndex:indexPath.row];
     
-    __autoreleasing HomeViewController *homeVC = [[HomeViewController alloc] init];
+    HomeViewController *homeVC = [[HomeViewController alloc] init];
     homeVC.bank = bank;
     [self.navigationController pushViewController:homeVC animated:YES];
     

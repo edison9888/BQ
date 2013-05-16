@@ -612,9 +612,9 @@ static void AFNetworkReachabilityReleaseCallback(const void *info) {}
         success:(void (^)(AFHTTPRequestOperation *operation, id responseObject))success
         failure:(void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
 {
-    if (SVP_debug) {
-        [SVProgressHUD show];
-    }
+//    if (SVP_debug) {
+//        [SVProgressHUD show];
+//    }
     
 	NSURLRequest *request = [self requestWithMethod:@"GET" path:path parameters:parameters];
     AFHTTPRequestOperation *operation = [self HTTPRequestOperationWithRequest:request success:success failure:failure];

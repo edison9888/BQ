@@ -10,6 +10,7 @@
 #import "BQNetClient.h"
 #import "DBConnection.h"
 
+#import "SVProgressHUD.h"
 @implementation Number
 
 - (id)initWithItem:(NSDictionary *)dic{
@@ -37,6 +38,8 @@
 
 //领取票号==生成我的号码
 + (void)getBankNumberInfo:(NSDictionary *)parameters WithBlock:(void (^)(Number *num))block{
+    [SVProgressHUD show];
+
     [[BQNetClient sharedClient] getPath:@"number/getNum" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *dic = responseObject;
@@ -53,7 +56,8 @@
         if (block)
             block(num);
 
-        
+        [SVProgressHUD dismiss];
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedRecoverySuggestion);
     }];
@@ -88,7 +92,7 @@
         
         if (block)            
             block(numArr);        
-        
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedRecoverySuggestion);
         

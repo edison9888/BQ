@@ -10,6 +10,7 @@
 #import "AppDelegate.h"
 #import "NoTicketView.h"
 #import "MyTicketTableViewCell.h"
+#import "SVProgressHUD.h"
 
 #define DownHeight 98
 #define NoTicketHeight 15
@@ -101,11 +102,16 @@
     _isNetWork = [AppDelegate isNetworkReachable];
     
     //获取我的号码
-    if (_isNetWork) {
-        [self getMyNumbersFromNet];//有网
-    }else{
-        [self getNumbersFromSqliteWithoutNet];//无网络
-    }
+//    if (_isNetWork) {
+//        [self getMyNumbersFromNet];//有网
+//    }else{
+//        [self getNumbersFromSqliteWithoutNet];//无网络
+//    }
+    
+    [self getNumbersFromSqliteWithoutNet];//无网络
+
+    [self getMyNumbersFromNet];//有网
+
 }
 
 #pragma mark--
@@ -136,6 +142,8 @@
     
     NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:idsStr,@"ids", nil];
     
+    [SVProgressHUD show];
+
     [Number refreshBankNumbers:dic WithBlock:^(NSArray *arr) {
         
         if (arr.count!=0) {        
@@ -144,6 +152,7 @@
             _numberArr=[NSMutableArray arrayWithArray:reversedArray];
             [numberTableView reloadData];
         }
+        [SVProgressHUD dismiss];
     }];
     
 }
@@ -227,17 +236,9 @@
 }
 
 //无票时显示
-- (void)nullTicketView:(NSInteger) count :(UITableViewCell *)cell{
+- (void)nullTicketView:(NSInteger)count :(UITableViewCell *)cell{
     NoTicketView *noTicketView =(NoTicketView *)[cell viewWithTag:120];
 
-//    if (noTicketView==nil) {
-//        if (!isFisrt) {
-//            NSLog(@"没有无票啦");
-//            
-//            return;
-//        }
-//        isFisrt=NO;
-//    }
     if (count==0) {
         if (iPhone5)
             heightIphone5=HeightIphone5;

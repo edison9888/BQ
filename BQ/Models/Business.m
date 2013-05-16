@@ -8,6 +8,7 @@
 
 #import "Business.h"
 #import "BQNetClient.h"
+#import "SVProgressHUD.h"
 
 @implementation Business
 
@@ -28,7 +29,8 @@
 
 //获取父类业务
 + (void)getfatherService:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block{
-    
+    [SVProgressHUD show];
+
     [[BQNetClient sharedClient] getPath:@"service/getList" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
 
         NSMutableArray *businessArr = [NSMutableArray array];
@@ -55,6 +57,8 @@
             block(businessArr);
         }
         
+        [SVProgressHUD dismiss];
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         
         NSLog(@"%@",error.localizedRecoverySuggestion);
@@ -63,6 +67,7 @@
 
 //根据父类类型获取子类业务
 + (void)getChildService:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block{
+    [SVProgressHUD show];
 
     [[BQNetClient sharedClient] getPath:@"service/getChildList" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -89,6 +94,8 @@
         if (block)
             block(businessArr);
         
+        [SVProgressHUD show];
+
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedRecoverySuggestion);
     }];

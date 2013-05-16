@@ -25,10 +25,12 @@
 
 +(void)getAllBankInfo:(NSDictionary *)parameters WithBlock:(void (^)(NSArray *))block{
     NSMutableArray *fatherBanks = [NSMutableArray array];
+    [SVProgressHUD show];
 
     BQNetClient *client = [BQNetClient sharedClient];
     [client getPath:@"bankType/getAllType" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+
 
         NSDictionary *dic = responseObject;
         NSArray *jsonArr;
@@ -45,6 +47,7 @@
         if(block)
             block(fatherBanks);
      
+        [SVProgressHUD dismiss];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
 //        [SVProgressHUD dismissWithError:@"网络异常" afterDelay:0.4f];
         if(block)

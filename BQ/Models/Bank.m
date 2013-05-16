@@ -9,6 +9,7 @@
 #import "Bank.h"
 #import "BQNetClient.h"
 
+#import "SVProgressHUD.h"
 @implementation Bank
 
 - (id)initWithItem:(NSDictionary *)dic{
@@ -33,6 +34,8 @@
 
 + (void)getBanksInfo:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block{
     
+    [SVProgressHUD show];
+
     [[BQNetClient sharedClient] getPath:@"bankInfo/getList" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSMutableArray *bankArr = [NSMutableArray array];
         
@@ -56,6 +59,8 @@
         if (block)
             block(bankArr);        
         
+        [SVProgressHUD dismiss];
+
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
             NSLog(@"%@",error.localizedRecoverySuggestion);
@@ -64,30 +69,33 @@
 
 //根据区域或定位筛选银行
 + (void)selectAreaGetBanksInfo:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block{
-    
-    [[BQNetClient sharedClient] getPath:@"bankInfo/getByArea" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
-        
-        NSMutableArray *bankArr =[NSMutableArray array];
+    [SVProgressHUD show];
 
-        NSDictionary *dic = responseObject;
-
-        NSArray *jsonArr = [dic objectForKey:@"bankInfo"];
+    [[BQNetClient sharedClient] getPath:@"bankInfo/getByArea" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        if ([jsonArr isKindOfClass:[NSDictionary class]]) {
-            Bank *bank = [[Bank alloc] initWithItem:(NSDictionary *)jsonArr];
-            [bankArr addObject:bank];
-        }else if([jsonArr isKindOfClass:[NSArray class]]){
-            for ( int i=0; i<jsonArr.count; i++) {
-                
-                NSDictionary *bankDic = [jsonArr objectAtIndex:i];
-                Bank *bank = [[Bank alloc] initWithItem:bankDic];
+            NSMutableArray *bankArr =[NSMutableArray array];
+
+            NSDictionary *dic = responseObject;
+
+            NSArray *jsonArr = [dic objectForKey:@"bankInfo"];
+            
+            if ([jsonArr isKindOfClass:[NSDictionary class]]) {
+                Bank *bank = [[Bank alloc] initWithItem:(NSDictionary *)jsonArr];
                 [bankArr addObject:bank];
+            }else if([jsonArr isKindOfClass:[NSArray class]]){
+                for ( int i=0; i<jsonArr.count; i++) {
+                    
+                    NSDictionary *bankDic = [jsonArr objectAtIndex:i];
+                    Bank *bank = [[Bank alloc] initWithItem:bankDic];
+                    [bankArr addObject:bank];
+                }
             }
-        }
 
-        if (block)
-            block(bankArr);
+            if (block)
+                block(bankArr);
         
+            [SVProgressHUD dismiss];
+
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
             NSLog(@"%@",error.localizedRecoverySuggestion);
