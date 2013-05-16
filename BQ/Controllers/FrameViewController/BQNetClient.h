@@ -15,7 +15,6 @@
 
 +(BQNetClient*) sharedThreadClient;
 
-+(NSString*)sharedBaseURL;
 //+(NSDictionary *)nsdataTurnToNSDictionary:(id)responseObject;
 
 @end

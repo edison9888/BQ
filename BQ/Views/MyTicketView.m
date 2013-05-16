@@ -20,6 +20,7 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        
         bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 270, 326)];
         if (type==myTicket) {
             [bgView setImage:[UIImage imageNamed:@"myTicketBg"]];
@@ -185,13 +186,9 @@
     UIButton *btn = (UIButton *)sender;
     
     //refresh按钮动画
-//    [self rotateRefreshView:refreshImageView];
-    
     if ([self.delegate respondsToSelector:@selector(refreshTicketsDelegate:btnIndex:)]) {
         [self.delegate refreshTicketsDelegate:_number btnIndex:btn.tag];
     }
-    
-   
 }
 
 - (void)setNumber:(Number *)number{

@@ -8,6 +8,7 @@
 
 #import "MapListViewController.h"
 #import "HomeViewController.h"
+#import "NearBankCell.h"
 
 @interface MapListViewController ()
 
@@ -70,46 +71,36 @@
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
 
     if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-            
+        cell = [[NearBankCell alloc] initWithStyle:UITableViewCellStyleValue2 reuseIdentifier:CellIdentifier];
+    }
     Bank *bank = [self.locationArrs objectAtIndex:indexPath.row];
-    
-    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 310, 45)];
+
+    UIImageView *bgImageView =[[UIImageView alloc] initWithFrame:cell.frame];
+    UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 310, 45)];
     [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
-    [cell addSubview:lineImageView];
+    [bgImageView addSubview:lineImageView];
     
     UIImageView *selectImageView =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableViewCellSelect"]];
-    [selectImageView setFrame:CGRectMake(5, 8, 310, 45)];
-    
+    [selectImageView setFrame:CGRectMake(5, 5, 310, 45)];
     UIImageView*bgSelectImageView =[[UIImageView alloc] initWithFrame:cell.frame];
     [bgSelectImageView addSubview:selectImageView];
     
+    cell.backgroundView=bgImageView;
     cell.selectedBackgroundView = bgSelectImageView;
-
-    UILabel *_bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-130,lineImageView.frame.size.height)];
-    [_bankLabel setText:bank.address];
-    [_bankLabel setFont:[UIFont systemFontOfSize:15]];
-    [_bankLabel setBackgroundColor:[UIColor clearColor]];
-    [_bankLabel setTextColor:[UIColor whiteColor]];
-    [_bankLabel setTextAlignment:NSTextAlignmentLeft];
-    [cell addSubview:_bankLabel];
     
-    //距离需要动态获取--协调
-    UILabel *distanceLabel = [[UILabel alloc] initWithFrame:CGRectMake(310-100, 20, 50,lineImageView.frame.size.height)];
-    [distanceLabel setText:[NSString stringWithFormat:@"%0.2fkm",bank.distance]];
-    [distanceLabel setFont:[UIFont systemFontOfSize:15]];
-    [distanceLabel setBackgroundColor:[UIColor clearColor]];
-    [distanceLabel setTextColor:[UIColor whiteColor]];
-    [distanceLabel setTextAlignment:NSTextAlignmentLeft];
-    [distanceLabel setAutoresizingMask:UIViewAutoresizingFlexibleRightMargin];
-    [distanceLabel sizeToFit];
-    [cell addSubview:distanceLabel];
+    cell.textLabel.text = [NSString stringWithFormat:@"%@", bank.address];
+    cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
+    cell.textLabel.textColor = [UIColor whiteColor];
+    cell.textLabel.highlightedTextColor = [UIColor colorWithRed:93/255 green:93/255 blue:93/255 alpha:1.0f];
+    
 
-    if (cell.isSelected) {
-        _bankLabel.textColor=[UIColor colorWithRed:93/255 green:93/255 blue:93/255 alpha:1.0f];
-        distanceLabel.textColor=[UIColor colorWithRed:93/255 green:93/255 blue:93/255 alpha:1.0f];
-    }
-    }
+    cell.detailTextLabel.text = [NSString stringWithFormat:@"%0.2fkm",bank.distance];
+    cell.detailTextLabel.font = [UIFont systemFontOfSize:15.0f];
+    cell.detailTextLabel.textColor = [UIColor whiteColor];
+    cell.detailTextLabel.highlightedTextColor = [UIColor colorWithRed:93/255 green:93/255 blue:93/255 alpha:1.0f];
+    [cell.detailTextLabel sizeToFit];
+    
+    
     return cell;
 }
 

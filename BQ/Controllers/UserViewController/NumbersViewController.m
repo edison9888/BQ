@@ -9,6 +9,7 @@
 #import "NumbersViewController.h"
 #import "AppDelegate.h"
 #import "NoTicketView.h"
+#import "MyTicketTableViewCell.h"
 
 #define DownHeight 98
 #define NoTicketHeight 15
@@ -51,6 +52,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    reloadOneTicketIndex=0;
     
     myhomeBG = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-DownHeight)];
     if (iPhone5) {
@@ -214,7 +217,8 @@
         if (arr.count!=0) {
 //            MyTicketView *_ticketView = (MyTicketView *)[numberTableView viewWithTag:index+10];
 //            _ticketView.number = [arr objectAtIndex:0];
-            reloadOneTicketIndex=index+10;
+            reloadOneTicketIndex=index;
+            NSLog(@"refresh %d",reloadOneTicketIndex);
             reloadOneTicketArr=arr;
             [numberTableView reloadData];
         }else
@@ -362,51 +366,48 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"CustomCellIdentifier";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    MyTicketTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    if (!cell) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
-    }
-    
-    cell.selectionStyle=UITableViewCellSelectionStyleNone;
-        
     UIButton *btn = (UIButton *)[cell viewWithTag:12];
     [btn removeFromSuperview];
     
+    TicketType type = myTicket;
+    Number *number=[self.numberArr objectAtIndex:indexPath.row];
+    if (number.numStatus==1 || number.numStatus==4) {
+        type=abandonTicket;
+    }
+
+    if (!cell) {
+        
+        cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
+        cell.myTicketView.number=number;
+        cell.selectionStyle =UITableViewCellSelectionStyleNone;
+    }
+
     if (_numberArr.count==0) {
         if (indexPath.row==0) {
             [self nullTicketView:0 :cell];
             return cell;
-            
         }            
     }else{
         [self nullTicketView:_numberArr.count :cell];
-        
-        TicketType type = myTicket;
-        Number *number=[self.numberArr objectAtIndex:indexPath.row];
-        if (number.numStatus==1 || number.numStatus==4) {
-            type=abandonTicket;
-        }
-        
+                       
         if (reloadOneTicketIndex==0) {
             if (indexPath.row!=_numberArr.count) {
-                MyTicketView *ticketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16+10,20, 310, 342) index:indexPath.row type:type];
-                ticketView.number=number;
-                ticketView.delegate=self;
-                ticketView.tag=indexPath.row+10;
-                [cell addSubview:ticketView];
+    
+                cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
+                cell.myTicketView.number=number;
+                cell.selectionStyle =UITableViewCellSelectionStyleNone;
                 return cell;
             }
         }
         else{
             if (indexPath.row==reloadOneTicketIndex-10) {
-                MyTicketView *ticketView =[[MyTicketView alloc] initWithFrame:CGRectMake(16+10,20, 310, 342) index:reloadOneTicketIndex-10 type:type];
-                ticketView.number=[reloadOneTicketArr objectAtIndex:0];
-                ticketView.delegate=self;
-                ticketView.tag=indexPath.row+10;
-                [cell addSubview:ticketView];
+                cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
+                cell.myTicketView.number=[reloadOneTicketArr objectAtIndex:0];
+                cell.selectionStyle =UITableViewCellSelectionStyleNone;
 
-                [self rotateRefreshView:ticketView.refreshImageView];
+                [self rotateRefreshView:cell.myTicketView.refreshImageView];
                 
                 reloadOneTicketIndex=0;
             }

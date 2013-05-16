@@ -126,6 +126,9 @@ static dispatch_queue_t json_request_operation_processing_queue() {
                     if (success) {
                         dispatch_async(self.successCallbackQueue ?: dispatch_get_main_queue(), ^{
                             success(self, JSON);
+                            if (SVP_debug) {
+                                [SVProgressHUD dismiss];
+                            }
                         });
                     }                    
                 }

@@ -31,3 +31,5 @@
 #define SelectComponent 0
 
 #define HeightIphone5 88
+
+#define SVP_debug 1

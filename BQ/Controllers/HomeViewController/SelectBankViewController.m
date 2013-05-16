@@ -99,38 +99,32 @@
     
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     
-        UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 8, 315, 45)];
+        UIImageView *bgImageView =[[UIImageView alloc] initWithFrame:cell.frame];
+        UIImageView *lineImageView = [[UIImageView alloc] initWithFrame:CGRectMake(5, 5, 310, 45)];
         [lineImageView setImage:[UIImage imageNamed:@"tableViewCell"]];
-        [cell addSubview:lineImageView];
+        [bgImageView addSubview:lineImageView];
         
         UIImageView *selectImageView =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"tableViewCellSelect"]];
-        [selectImageView setFrame:CGRectMake(5, 8, 310, 45)];
-        
+        [selectImageView setFrame:CGRectMake(5, 5, 310, 45)];
         UIImageView*bgSelectImageView =[[UIImageView alloc] initWithFrame:cell.frame];
         [bgSelectImageView addSubview:selectImageView];
         
+        cell.backgroundView=bgImageView;
         cell.selectedBackgroundView = bgSelectImageView;
         
         FatherBank *fatherBank = [self.banksArr objectAtIndex:indexPath.row];
-        
-        UILabel *bankLabel = [[UILabel alloc] initWithFrame:CGRectMake(15, 7, lineImageView.frame.size.width-30,lineImageView.frame.size.height)];
-        [bankLabel setText:fatherBank.bankTypeName];
-    //    [bankLabel setText:fatherBank.fatherBankName];
-        [bankLabel setFont:[UIFont systemFontOfSize:15]];
-        [bankLabel setBackgroundColor:[UIColor clearColor]];
-        [bankLabel setTextColor:[UIColor colorWithRed:255/255 green:255/255 blue:255/255 alpha:1.0f]];
-        [bankLabel setTextAlignment:NSTextAlignmentLeft];
-        [cell addSubview:bankLabel];    
-    
-        if (cell.isSelected) {
-            bankLabel.textColor=[UIColor colorWithRed:93/255 green:93/255 blue:93/255 alpha:1.0f];
-        }
+
+        cell.textLabel.text = [NSString stringWithFormat:@" %@", fatherBank.bankTypeName];
+        cell.textLabel.font = [UIFont systemFontOfSize:15.0f];
+        cell.textLabel.textColor = [UIColor whiteColor];
+        cell.textLabel.highlightedTextColor = [UIColor colorWithRed:93/255 green:93/255 blue:93/255 alpha:1.0f];
     }
     return cell;
 }
 
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     
     FatherBank *fatherBank = [self.banksArr objectAtIndex:indexPath.row];
 
