@@ -56,6 +56,7 @@
     
     reloadOneTicketIndex=0;
     
+    
     myhomeBG = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-DownHeight)];
     if (iPhone5) {
         [myhomeBG setImage:[UIImage imageNamed:@"homeTicket5"]];
@@ -73,7 +74,7 @@
     numberTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:numberTableView];
     
-    refreshTableView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0,-numberTableView.bounds.size.height, numberTableView.frame.size.width,numberTableView.frame.size.height) arrowImageName:@"blueArrow.png" textColor:[UIColor colorWithRed:131/255.0f green:131/255.0f blue:131/255.0f alpha:1.0f]];
+    refreshTableView = [[EGORefreshTableHeaderView alloc] initWithFrame:CGRectMake(0,-numberTableView.bounds.size.height, numberTableView.frame.size.width,numberTableView.frame.size.height) arrowImageName:@"lightGrayArrow" textColor:[UIColor colorWithRed:131/255.0f green:131/255.0f blue:131/255.0f alpha:1.0f]];
     refreshTableView.delegate=self;
     [numberTableView addSubview:refreshTableView];
     
@@ -102,15 +103,15 @@
     _isNetWork = [AppDelegate isNetworkReachable];
     
     //获取我的号码
-//    if (_isNetWork) {
-//        [self getMyNumbersFromNet];//有网
-//    }else{
-//        [self getNumbersFromSqliteWithoutNet];//无网络
-//    }
+    if (_isNetWork) {
+        [self getMyNumbersFromNet];//有网
+    }else{
+        [self getNumbersFromSqliteWithoutNet];//无网络
+    }
     
-    [self getNumbersFromSqliteWithoutNet];//无网络
-
-    [self getMyNumbersFromNet];//有网
+//    [self getNumbersFromSqliteWithoutNet];//无网络
+//
+//    [self getMyNumbersFromNet];//有网
 
 }
 
@@ -134,6 +135,7 @@
     NSArray *idsArr = [Number selectNumbersInfoFromDatabase];
 
     if (idsArr.count==0) {
+        _numberArr=[NSMutableArray array];
         [numberTableView reloadData];
         return;
     }
@@ -197,7 +199,7 @@
 //        [self changeBgImageView];
 //        [self nullTicketView:regionArr.count];
         //测试
-        [self tempNumberArr];
+//        [self tempNumberArr];
         return;
     }
     
@@ -230,8 +232,9 @@
             NSLog(@"refresh %d",reloadOneTicketIndex);
             reloadOneTicketArr=arr;
             [numberTableView reloadData];
-        }else
+        }else{
             return;
+        }
     }];
 }
 
@@ -373,7 +376,11 @@
     [btn removeFromSuperview];
     
     TicketType type = myTicket;
-    Number *number=[self.numberArr objectAtIndex:indexPath.row];
+
+    Number *number;
+    if (_numberArr.count!=0) {
+        number=[_numberArr objectAtIndex:indexPath.row];
+    }
     if (number.numStatus==1 || number.numStatus==4) {
         type=abandonTicket;
     }

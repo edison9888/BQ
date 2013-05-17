@@ -65,10 +65,13 @@
 		C814F7A317436D5100D9C708 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C814F7A217436D5000D9C708 /* AVFoundation.framework */; };
 		C816353F170C0E800097672D /* Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = C816353E170C0E800097672D /* Helper.m */; };
 		C8163549170C1E600097672D /* ToolBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C8163548170C1E600097672D /* ToolBar.m */; };
+		C81709491745CD9600811C24 /* aboutIphone4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C81709471745CD9600811C24 /* aboutIphone4@2x.png */; };
+		C817094A1745CD9600811C24 /* aboutIp5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C81709481745CD9600811C24 /* aboutIp5@2x.png */; };
+		C817094C1745D0DB00811C24 /* abandonTicket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C817094B1745D0DB00811C24 /* abandonTicket@2x.png */; };
+		C817094E1745D4D800811C24 /* lightGrayArrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C817094D1745D4D700811C24 /* lightGrayArrow@2x.png */; };
 		C8171AB417420F9F001BB394 /* breakPaper@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8171AB017420F9F001BB394 /* breakPaper@2x.png */; };
 		C8171AB517420F9F001BB394 /* stamp1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8171AB117420F9F001BB394 /* stamp1@2x.png */; };
 		C8171AB617420F9F001BB394 /* stamp@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8171AB217420F9F001BB394 /* stamp@2x.png */; };
-		C8171AB717420F9F001BB394 /* abandonTicket@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8171AB317420F9F001BB394 /* abandonTicket@2x.png */; };
 		C8171AB917422E96001BB394 /* personalButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8171AB817422E96001BB394 /* personalButton@2x.png */; };
 		C8171ABB17422EA6001BB394 /* personalButtonSelected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8171ABA17422EA6001BB394 /* personalButtonSelected@2x.png */; };
 		C8171ABD17422ECF001BB394 /* businessButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8171ABC17422ECF001BB394 /* businessButton@2x.png */; };
@@ -235,10 +238,13 @@
 		C816353E170C0E800097672D /* Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Helper.m; sourceTree = "<group>"; };
 		C8163547170C1E600097672D /* ToolBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ToolBar.h; sourceTree = "<group>"; };
 		C8163548170C1E600097672D /* ToolBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ToolBar.m; sourceTree = "<group>"; };
+		C81709471745CD9600811C24 /* aboutIphone4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aboutIphone4@2x.png"; sourceTree = "<group>"; };
+		C81709481745CD9600811C24 /* aboutIp5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aboutIp5@2x.png"; sourceTree = "<group>"; };
+		C817094B1745D0DB00811C24 /* abandonTicket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "abandonTicket@2x.png"; sourceTree = "<group>"; };
+		C817094D1745D4D700811C24 /* lightGrayArrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "lightGrayArrow@2x.png"; sourceTree = "<group>"; };
 		C8171AB017420F9F001BB394 /* breakPaper@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "breakPaper@2x.png"; sourceTree = "<group>"; };
 		C8171AB117420F9F001BB394 /* stamp1@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stamp1@2x.png"; sourceTree = "<group>"; };
 		C8171AB217420F9F001BB394 /* stamp@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "stamp@2x.png"; sourceTree = "<group>"; };
-		C8171AB317420F9F001BB394 /* abandonTicket@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "abandonTicket@2x.png"; sourceTree = "<group>"; };
 		C8171AB817422E96001BB394 /* personalButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "personalButton@2x.png"; sourceTree = "<group>"; };
 		C8171ABA17422EA6001BB394 /* personalButtonSelected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "personalButtonSelected@2x.png"; sourceTree = "<group>"; };
 		C8171ABC17422ECF001BB394 /* businessButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "businessButton@2x.png"; sourceTree = "<group>"; };
@@ -573,6 +579,7 @@
 		04D2C20A16FFF79C00E11E82 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C81709461745CD5F00811C24 /* AboutUs */,
 				C82CD91B17165D720084E732 /* MyTicketImage */,
 				C80CF833171536D200889D03 /* GetTicketImage */,
 				C8385493171275D7007B969A /* PickerViewImage */,
@@ -665,13 +672,22 @@
 			path = Map;
 			sourceTree = "<group>";
 		};
+		C81709461745CD5F00811C24 /* AboutUs */ = {
+			isa = PBXGroup;
+			children = (
+				C81709471745CD9600811C24 /* aboutIphone4@2x.png */,
+				C81709481745CD9600811C24 /* aboutIp5@2x.png */,
+			);
+			path = AboutUs;
+			sourceTree = "<group>";
+		};
 		C8171AAF17420F91001BB394 /* AbandonTicket */ = {
 			isa = PBXGroup;
 			children = (
 				C8171AB017420F9F001BB394 /* breakPaper@2x.png */,
 				C8171AB117420F9F001BB394 /* stamp1@2x.png */,
 				C8171AB217420F9F001BB394 /* stamp@2x.png */,
-				C8171AB317420F9F001BB394 /* abandonTicket@2x.png */,
+				C817094B1745D0DB00811C24 /* abandonTicket@2x.png */,
 			);
 			path = AbandonTicket;
 			sourceTree = "<group>";
@@ -746,6 +762,7 @@
 				C82CD981171691D70084E732 /* blueArrow@2x.png */,
 				C82CD982171691D70084E732 /* grayArrow.png */,
 				C82CD983171691D70084E732 /* grayArrow@2x.png */,
+				C817094D1745D4D700811C24 /* lightGrayArrow@2x.png */,
 				C82CD984171691D70084E732 /* whiteArrow.png */,
 				C82CD985171691D70084E732 /* whiteArrow@2x.png */,
 			);
@@ -964,7 +981,6 @@
 				C8171AB417420F9F001BB394 /* breakPaper@2x.png in Resources */,
 				C8171AB517420F9F001BB394 /* stamp1@2x.png in Resources */,
 				C8171AB617420F9F001BB394 /* stamp@2x.png in Resources */,
-				C8171AB717420F9F001BB394 /* abandonTicket@2x.png in Resources */,
 				C8171AB917422E96001BB394 /* personalButton@2x.png in Resources */,
 				C8171ABB17422EA6001BB394 /* personalButtonSelected@2x.png in Resources */,
 				C8171ABD17422ECF001BB394 /* businessButton@2x.png in Resources */,
@@ -976,6 +992,10 @@
 				C814F7A11743698800D9C708 /* refreshButton@2x.png in Resources */,
 				04D94E4E1743714C00194AC4 /* Icon@2x.png in Resources */,
 				04D94E501743716000194AC4 /* TicketSound.mp3 in Resources */,
+				C81709491745CD9600811C24 /* aboutIphone4@2x.png in Resources */,
+				C817094A1745CD9600811C24 /* aboutIp5@2x.png in Resources */,
+				C817094C1745D0DB00811C24 /* abandonTicket@2x.png in Resources */,
+				C817094E1745D4D800811C24 /* lightGrayArrow@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

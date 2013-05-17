@@ -37,12 +37,14 @@
 
     self.title = @"关于我们";
     
-//    //背景图
-//    UIImageView *homeBG = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"beiJing"]];
-//    homeBG.frame  = self.view.bounds;
-//    homeBG.userInteractionEnabled =YES;
-//    [self.view addSubview:homeBG];
-    
+    //背景图
+    UIImageView *homeBG = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height-NavigationHeight)];
+    homeBG.userInteractionEnabled =YES;
+    if (iPhone5) {
+        homeBG.image = [UIImage imageNamed:@"aboutIp5"];
+    }else
+        homeBG.image = [UIImage imageNamed:@"aboutIphone4@2x"];
+    [self.view addSubview:homeBG];
 
 }
 
