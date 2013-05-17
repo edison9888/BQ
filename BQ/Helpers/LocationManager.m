@@ -42,14 +42,14 @@
 -(void)locationManager:(CLLocationManager *)manager
    didUpdateToLocation:(CLLocation *)newLocation fromLocation: (CLLocation *)oldLocation
 {
-    NSTimeInterval howRecent = [newLocation.timestamp timeIntervalSinceNow];
-    if(howRecent < -10) return; //离上次更新的时间少于10秒
-        if(newLocation.horizontalAccuracy > 100) return; //精度> 100米
-    //经度和纬度
-    double lat = newLocation.coordinate.latitude;
-    double lon = newLocation.coordinate.longitude;
-    
-    NSLog(@"%f,%f",lat,lon);
+//    NSTimeInterval howRecent = [newLocation.timestamp timeIntervalSinceNow];
+//    if(howRecent < -10) return; //离上次更新的时间少于10秒
+//        if(newLocation.horizontalAccuracy > 100) return; //精度> 100米
+//    //经度和纬度
+//    double lat = newLocation.coordinate.latitude;
+//    double lon = newLocation.coordinate.longitude;
+//    
+//    NSLog(@"%f,%f",lat,lon);
     
 }
 

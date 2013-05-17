@@ -205,7 +205,10 @@
     
     NSArray* reversedArray = [[regionArr reverseObjectEnumerator] allObjects];
     _numberArr=[NSMutableArray arrayWithArray:reversedArray];
-    NSLog(@"withoutnet%@",_numberArr);
+    
+    if (debug) {
+        NSLog(@"withoutnet%@",_numberArr);
+    }
     [numberTableView reloadData];
 }
 
@@ -229,7 +232,9 @@
 //            MyTicketView *_ticketView = (MyTicketView *)[numberTableView viewWithTag:index+10];
 //            _ticketView.number = [arr objectAtIndex:0];
             reloadOneTicketIndex=index;
-            NSLog(@"refresh %d",reloadOneTicketIndex);
+            if (debug) {
+                NSLog(@"refresh %d",reloadOneTicketIndex);
+            }
             reloadOneTicketArr=arr;
             [numberTableView reloadData];
         }else{
@@ -385,29 +390,32 @@
         type=abandonTicket;
     }
 
-    if (!cell) {
-        
-        cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
-        cell.myTicketView.number=number;
-        cell.selectionStyle =UITableViewCellSelectionStyleNone;
-    }
-
     if (_numberArr.count==0) {
-        if (indexPath.row==0) {
+        if (!cell) {
+            
+            cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
+            cell.selectionStyle =UITableViewCellSelectionStyleNone;
             [self nullTicketView:0 :cell];
-            return cell;
-        }            
+        }
+
+        return cell;
+        
     }else{
         [self nullTicketView:_numberArr.count :cell];
                        
         if (reloadOneTicketIndex==0) {
-            if (indexPath.row!=_numberArr.count) {
-    
-                cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
-                cell.myTicketView.number=number;
-                cell.selectionStyle =UITableViewCellSelectionStyleNone;
-                return cell;
-            }
+            
+            cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
+            cell.myTicketView.number=number;
+            cell.selectionStyle =UITableViewCellSelectionStyleNone;
+
+//            if (indexPath.row!=_numberArr.count) {
+//    
+//                cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
+//                cell.myTicketView.number=number;
+//                cell.selectionStyle =UITableViewCellSelectionStyleNone;
+//            }
+            return cell;
         }
         else{
             if (indexPath.row==reloadOneTicketIndex-10) {

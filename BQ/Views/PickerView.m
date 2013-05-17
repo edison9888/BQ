@@ -87,8 +87,9 @@
     _isSelectPV=YES;
     _county = [self.pickerArrs objectAtIndex:row];
     
-    NSLog(@"_cityId%d===%@",_county.countyId,_county.countryName);
-
+    if (debug) {
+        NSLog(@"_cityId%d===%@",_county.countyId,_county.countryName);
+    }
 }
 
 @end

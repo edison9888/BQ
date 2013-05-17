@@ -54,7 +54,9 @@
 }
 
 -(void)getChildServiceFromData{
-    NSLog(@"getChildServiceFromData%@",_busniess.serviceId);
+    if (debug) {
+        NSLog(@"getChildServiceFromData%@",_busniess.serviceId);
+    }
     if (_busniess.serviceId==nil) {
         return;
     }
@@ -154,8 +156,9 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     Business *bus = [self.businessArr objectAtIndex:indexPath.row];
-    NSLog(@"出票--%@",bus.serviceName);
-    
+    if (debug) {
+        NSLog(@"出票--%@",bus.serviceName);
+    }
     [self getTicketClick:bus];
 
 }

@@ -37,7 +37,9 @@
         [self performSelector:@selector(updateSqliteDataWhichTicketIsInvalid) withObject:self afterDelay:1.0f]; 
     }
     
-    NSLog(@"str===%@",locationString);
+    if (debug) {
+        NSLog(@"str===%@",locationString);
+    }
 }
 
 //一天修改一次状态

@@ -53,7 +53,7 @@
         }
         
         if (block){
-            NSLog(@"fatherArr%@",businessArr);
+//            NSLog(@"fatherArr%@",businessArr);
             block(businessArr);
         }
         

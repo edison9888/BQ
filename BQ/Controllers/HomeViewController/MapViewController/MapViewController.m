@@ -97,9 +97,10 @@
     NSString *logStr = [NSString stringWithFormat:@"%f",Log];
     
     if ([[NSString stringWithFormat:@"%f",Lat] isEqualToString:@"0.000000"] && [[NSString stringWithFormat:@"%f",Log] isEqualToString:@"0.000000"]) {
-//        latStr=@"31.230000";
-//        logStr=@"121.000000";
-        NSLog(@"没定位");
+
+        if (debug) {
+            NSLog(@"没定位");
+        }
         return;
     }
 

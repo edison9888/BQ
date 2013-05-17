@@ -280,7 +280,10 @@ static HomeViewController *instance = nil;
     
     personalVC.busniess=[_fatherBusinessArr objectAtIndex:0];
     
-    NSLog(@"_fatherBusinessArr %@,service==%@==%@==%@",_fatherBusinessArr,personalVC.busniess,personalVC.busniess.serviceId,personalVC.busniess.serviceName);
+    if (debug) {
+        NSLog(@"_fatherBusinessArr %@,service==%@==%@==%@",_fatherBusinessArr,personalVC.busniess,personalVC.busniess.serviceId,personalVC.busniess.serviceName);
+    }
+   
     personalVC.businessType=PersonalType;
     [self.view addSubview:personalVC.view];
 }

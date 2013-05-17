@@ -71,9 +71,10 @@
 + (void)selectAreaGetBanksInfo:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block{
     [SVProgressHUD show];
 
+    NSMutableArray *bankArr =[NSMutableArray array];
+
     [[BQNetClient sharedClient] getPath:@"bankInfo/getByArea" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-            NSMutableArray *bankArr =[NSMutableArray array];
 
             NSDictionary *dic = responseObject;
 
@@ -98,6 +99,11 @@
 
         } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
             
+            if (error.localizedRecoverySuggestion==NULL) {
+                if (block)
+                    block(bankArr);
+            }
+
             NSLog(@"%@",error.localizedRecoverySuggestion);
     }];
 }

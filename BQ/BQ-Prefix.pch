@@ -33,3 +33,5 @@
 #define HeightIphone5 88
 
 #define SVP_debug 1
+
+#define debug 0
