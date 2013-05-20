@@ -312,14 +312,16 @@
 - (void)viewDidDisappear:(BOOL)animated{
     [super viewDidDisappear:animated];
     
-    _numberArr=nil;
 }
 
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    if ([self isViewLoaded] && self.view.window == nil) {
+        self.view = nil;
+    }
+
 }
 
 @end

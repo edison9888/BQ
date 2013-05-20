@@ -55,16 +55,16 @@
     [self.view addSubview:toolBar];
     
     //地图
-    self.mapVC = [[MapShowViewController alloc] init];
-    mapVC.view.frame=CGRectMake(0, 0,self.view.bounds.size.width, self.view.bounds.size.height-TabBarHeight-TabBarHeight);
-    self.mapVC.homeVC=self.homeVC;
-    self.mapVC.locationManager=locationManager;
+    mapVC = [[MapShowViewController alloc] init];
+    mapVC.view.frame=CGRectMake(0, 0,self.view.bounds.size.width, self.view.bounds.size.height-NavigationHeight-TabBarHeight);
+    mapVC.homeVC=self.homeVC;
+    mapVC.locationManager=locationManager;
 //    [self.view addSubview:self.mapVC.view];
     [self addChildViewController:self.mapVC];
     
     //列表
     self.mapListVC = [[MapListViewController alloc] init];
-    self.mapListVC.view.frame=self.mapVC.view.frame;
+    self.mapListVC.view.frame=CGRectMake(0, 0,self.mapVC.view.bounds.size.width,self.view.bounds.size.height-TabBarHeight);
     self.mapListVC.homeVC=self.homeVC;
     [self.view addSubview:self.mapListVC.view];
     [self addChildViewController:self.mapListVC];
@@ -297,7 +297,13 @@
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    if ([self isViewLoaded] && self.view.window == nil) {
+        self.view = nil;
+    }
+    
+    _locationArrs=nil;//地图显示数
+
 }
 
 @end

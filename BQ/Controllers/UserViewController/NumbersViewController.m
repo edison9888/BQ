@@ -377,9 +377,6 @@
     static NSString *CellIdentifier = @"CustomCellIdentifier";
     MyTicketTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
     
-    UIButton *btn = (UIButton *)[cell viewWithTag:12];
-    [btn removeFromSuperview];
-    
     TicketType type = myTicket;
 
     Number *number;
@@ -404,16 +401,10 @@
         [self nullTicketView:_numberArr.count :cell];
                        
         if (reloadOneTicketIndex==0) {
-            
-            cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
-            cell.myTicketView.number=number;
-            cell.selectionStyle =UITableViewCellSelectionStyleNone;
-
-//            if (indexPath.row!=_numberArr.count) {
-//    
-//                cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
-//                cell.myTicketView.number=number;
-//                cell.selectionStyle =UITableViewCellSelectionStyleNone;
+//            if (!cell) {
+                cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
+                cell.myTicketView.number=number;
+                cell.selectionStyle =UITableViewCellSelectionStyleNone;
 //            }
             return cell;
         }
@@ -431,7 +422,7 @@
             return cell;
         }
     }
-    return nil;
+    return cell;
 }
 
 //动画
@@ -457,10 +448,16 @@
     _numberArr=nil;
 }
 
+
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+    
+    if ([self isViewLoaded] && self.view.window == nil) {
+        self.view = nil;
+    }
+    _numberArr=nil;
+
 }
 
 @end

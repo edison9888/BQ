@@ -370,7 +370,12 @@ static HomeViewController *instance = nil;
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+
+    if ([self isViewLoaded] && self.view.window == nil) {
+        self.view = nil;
+    }
+    _fatherBusinessArr=nil;
+
 }
 
 @end
