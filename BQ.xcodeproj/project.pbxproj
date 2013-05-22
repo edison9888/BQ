@@ -80,6 +80,18 @@
 		C8171AC317423A02001BB394 /* flashTicket1@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8171AC217423A02001BB394 /* flashTicket1@2x.png */; };
 		C8171AC517423A1F001BB394 /* flashTicketIphone5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8171AC417423A1F001BB394 /* flashTicketIphone5@2x.png */; };
 		C81CF154173B982D00452128 /* UIImage+UIImageName.m in Sources */ = {isa = PBXBuildFile; fileRef = C81CF153173B982D00452128 /* UIImage+UIImageName.m */; };
+		C81EA97C174C9829007CB250 /* Form.m in Sources */ = {isa = PBXBuildFile; fileRef = C81EA97B174C9829007CB250 /* Form.m */; };
+		C81EA980174C9AE9007CB250 /* FormViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C81EA97F174C9AE9007CB250 /* FormViewController.m */; };
+		C81EA985174CA092007CB250 /* GTMBase64.m in Sources */ = {isa = PBXBuildFile; fileRef = C81EA983174CA092007CB250 /* GTMBase64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C81EA99B174CC908007CB250 /* bitstream.c in Sources */ = {isa = PBXBuildFile; fileRef = C81EA98B174CC908007CB250 /* bitstream.c */; };
+		C81EA99C174CC908007CB250 /* mask.c in Sources */ = {isa = PBXBuildFile; fileRef = C81EA98D174CC908007CB250 /* mask.c */; };
+		C81EA99D174CC908007CB250 /* QRCodeGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = C81EA990174CC908007CB250 /* QRCodeGenerator.m */; };
+		C81EA99E174CC908007CB250 /* qrencode.c in Sources */ = {isa = PBXBuildFile; fileRef = C81EA991174CC908007CB250 /* qrencode.c */; };
+		C81EA99F174CC908007CB250 /* qrinput.c in Sources */ = {isa = PBXBuildFile; fileRef = C81EA993174CC908007CB250 /* qrinput.c */; };
+		C81EA9A0174CC908007CB250 /* qrspec.c in Sources */ = {isa = PBXBuildFile; fileRef = C81EA995174CC908007CB250 /* qrspec.c */; };
+		C81EA9A1174CC908007CB250 /* rscode.c in Sources */ = {isa = PBXBuildFile; fileRef = C81EA997174CC908007CB250 /* rscode.c */; };
+		C81EA9A2174CC908007CB250 /* split.c in Sources */ = {isa = PBXBuildFile; fileRef = C81EA999174CC908007CB250 /* split.c */; };
+		C81EA9A5174CC980007CB250 /* CodeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C81EA9A4174CC980007CB250 /* CodeViewController.m */; };
 		C82CD91A17165C690084E732 /* MyTicketView.m in Sources */ = {isa = PBXBuildFile; fileRef = C82CD91917165C690084E732 /* MyTicketView.m */; };
 		C82CD9241716825A0084E732 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C82CD923171662580084E732 /* MainViewController.m */; };
 		C82CD92C17168CCC0084E732 /* BQDataBase.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = C82CD92B17168CCC0084E732 /* BQDataBase.sqlite */; };
@@ -254,6 +266,31 @@
 		C8171AC417423A1F001BB394 /* flashTicketIphone5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "flashTicketIphone5@2x.png"; sourceTree = "<group>"; };
 		C81CF152173B982D00452128 /* UIImage+UIImageName.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+UIImageName.h"; sourceTree = "<group>"; };
 		C81CF153173B982D00452128 /* UIImage+UIImageName.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+UIImageName.m"; sourceTree = "<group>"; };
+		C81EA97A174C9829007CB250 /* Form.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Form.h; sourceTree = "<group>"; };
+		C81EA97B174C9829007CB250 /* Form.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Form.m; sourceTree = "<group>"; };
+		C81EA97E174C9AE9007CB250 /* FormViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FormViewController.h; sourceTree = "<group>"; };
+		C81EA97F174C9AE9007CB250 /* FormViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FormViewController.m; sourceTree = "<group>"; };
+		C81EA982174CA092007CB250 /* GTMBase64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMBase64.h; sourceTree = "<group>"; };
+		C81EA983174CA092007CB250 /* GTMBase64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GTMBase64.m; sourceTree = "<group>"; };
+		C81EA984174CA092007CB250 /* GTMDefines.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GTMDefines.h; sourceTree = "<group>"; };
+		C81EA98B174CC908007CB250 /* bitstream.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = bitstream.c; sourceTree = "<group>"; };
+		C81EA98C174CC908007CB250 /* bitstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = bitstream.h; sourceTree = "<group>"; };
+		C81EA98D174CC908007CB250 /* mask.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = mask.c; sourceTree = "<group>"; };
+		C81EA98E174CC908007CB250 /* mask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = mask.h; sourceTree = "<group>"; };
+		C81EA98F174CC908007CB250 /* QRCodeGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = QRCodeGenerator.h; sourceTree = "<group>"; };
+		C81EA990174CC908007CB250 /* QRCodeGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = QRCodeGenerator.m; sourceTree = "<group>"; };
+		C81EA991174CC908007CB250 /* qrencode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrencode.c; sourceTree = "<group>"; };
+		C81EA992174CC908007CB250 /* qrencode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrencode.h; sourceTree = "<group>"; };
+		C81EA993174CC908007CB250 /* qrinput.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrinput.c; sourceTree = "<group>"; };
+		C81EA994174CC908007CB250 /* qrinput.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrinput.h; sourceTree = "<group>"; };
+		C81EA995174CC908007CB250 /* qrspec.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = qrspec.c; sourceTree = "<group>"; };
+		C81EA996174CC908007CB250 /* qrspec.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = qrspec.h; sourceTree = "<group>"; };
+		C81EA997174CC908007CB250 /* rscode.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = rscode.c; sourceTree = "<group>"; };
+		C81EA998174CC908007CB250 /* rscode.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = rscode.h; sourceTree = "<group>"; };
+		C81EA999174CC908007CB250 /* split.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = split.c; sourceTree = "<group>"; };
+		C81EA99A174CC908007CB250 /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
+		C81EA9A3174CC980007CB250 /* CodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeViewController.h; sourceTree = "<group>"; };
+		C81EA9A4174CC980007CB250 /* CodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeViewController.m; sourceTree = "<group>"; };
 		C82CD91817165C690084E732 /* MyTicketView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTicketView.h; sourceTree = "<group>"; };
 		C82CD91917165C690084E732 /* MyTicketView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTicketView.m; sourceTree = "<group>"; };
 		C82CD922171662580084E732 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = BQ/Controllers/MainViewController.h; sourceTree = SOURCE_ROOT; };
@@ -572,6 +609,7 @@
 				04D2C2141701430F00E11E82 /* HomeViewController */,
 				04D2C2131701425A00E11E82 /* SetViewController */,
 				04D2C2121701424700E11E82 /* UserViewController */,
+				C81EA97D174C9AB7007CB250 /* FormViewController */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -692,6 +730,51 @@
 			path = AbandonTicket;
 			sourceTree = "<group>";
 		};
+		C81EA97D174C9AB7007CB250 /* FormViewController */ = {
+			isa = PBXGroup;
+			children = (
+				C81EA97E174C9AE9007CB250 /* FormViewController.h */,
+				C81EA97F174C9AE9007CB250 /* FormViewController.m */,
+				C81EA9A3174CC980007CB250 /* CodeViewController.h */,
+				C81EA9A4174CC980007CB250 /* CodeViewController.m */,
+			);
+			name = FormViewController;
+			path = UserViewController/FormViewController;
+			sourceTree = "<group>";
+		};
+		C81EA981174CA092007CB250 /* CTMBase64 */ = {
+			isa = PBXGroup;
+			children = (
+				C81EA982174CA092007CB250 /* GTMBase64.h */,
+				C81EA983174CA092007CB250 /* GTMBase64.m */,
+				C81EA984174CA092007CB250 /* GTMDefines.h */,
+			);
+			path = CTMBase64;
+			sourceTree = "<group>";
+		};
+		C81EA98A174CC908007CB250 /* libqrencode */ = {
+			isa = PBXGroup;
+			children = (
+				C81EA98B174CC908007CB250 /* bitstream.c */,
+				C81EA98C174CC908007CB250 /* bitstream.h */,
+				C81EA98D174CC908007CB250 /* mask.c */,
+				C81EA98E174CC908007CB250 /* mask.h */,
+				C81EA98F174CC908007CB250 /* QRCodeGenerator.h */,
+				C81EA990174CC908007CB250 /* QRCodeGenerator.m */,
+				C81EA991174CC908007CB250 /* qrencode.c */,
+				C81EA992174CC908007CB250 /* qrencode.h */,
+				C81EA993174CC908007CB250 /* qrinput.c */,
+				C81EA994174CC908007CB250 /* qrinput.h */,
+				C81EA995174CC908007CB250 /* qrspec.c */,
+				C81EA996174CC908007CB250 /* qrspec.h */,
+				C81EA997174CC908007CB250 /* rscode.c */,
+				C81EA998174CC908007CB250 /* rscode.h */,
+				C81EA999174CC908007CB250 /* split.c */,
+				C81EA99A174CC908007CB250 /* split.h */,
+			);
+			path = libqrencode;
+			sourceTree = "<group>";
+		};
 		C82CD91B17165D720084E732 /* MyTicketImage */ = {
 			isa = PBXGroup;
 			children = (
@@ -734,6 +817,8 @@
 		C82CD965171691BE0084E732 /* ThirdFrameWork */ = {
 			isa = PBXGroup;
 			children = (
+				C81EA98A174CC908007CB250 /* libqrencode */,
+				C81EA981174CA092007CB250 /* CTMBase64 */,
 				C87472221740F2F700429F77 /* SVProgressHUD */,
 				C87472051740F2D000429F77 /* AFNetworking */,
 				C8AE8ED0171D28FD00098213 /* SBJSON */,
@@ -791,6 +876,8 @@
 				C8B6EBA517278CDA00AEC617 /* Business.m */,
 				C86068DE171BE1B000534197 /* Country.h */,
 				C86068DF171BE1B000534197 /* Country.m */,
+				C81EA97A174C9829007CB250 /* Form.h */,
+				C81EA97B174C9829007CB250 /* Form.m */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1068,6 +1155,18 @@
 				04D94E531744821100194AC4 /* TicketSoundEffect.m in Sources */,
 				C80AD9A61744A892003642BB /* NearBankCell.m in Sources */,
 				C80AD9A91744B293003642BB /* MyTicketTableViewCell.m in Sources */,
+				C81EA97C174C9829007CB250 /* Form.m in Sources */,
+				C81EA980174C9AE9007CB250 /* FormViewController.m in Sources */,
+				C81EA985174CA092007CB250 /* GTMBase64.m in Sources */,
+				C81EA99B174CC908007CB250 /* bitstream.c in Sources */,
+				C81EA99C174CC908007CB250 /* mask.c in Sources */,
+				C81EA99D174CC908007CB250 /* QRCodeGenerator.m in Sources */,
+				C81EA99E174CC908007CB250 /* qrencode.c in Sources */,
+				C81EA99F174CC908007CB250 /* qrinput.c in Sources */,
+				C81EA9A0174CC908007CB250 /* qrspec.c in Sources */,
+				C81EA9A1174CC908007CB250 /* rscode.c in Sources */,
+				C81EA9A2174CC908007CB250 /* split.c in Sources */,
+				C81EA9A5174CC980007CB250 /* CodeViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

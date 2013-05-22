@@ -10,7 +10,7 @@
 #import "AFJSONRequestOperation.h"
 #import "SVProgressHUD.h"
 
-#define BaseUrlString @"http://192.168.1.200:8080/bank/ver1/"
+#define BaseUrlString @"http://192.168.1.200:8080/bank/ver3/"
 
 @implementation BQNetClient
 
@@ -34,7 +34,14 @@
     return _shareClient;
 }
 
-
++(NSURLRequest *)getHtmlUrl{
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@bankInfo/getform",BaseUrlString]];
+    
+    NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
+    
+    return request;
+}
 
 
 -(id)initWithBaseURL:(NSURL *)url{

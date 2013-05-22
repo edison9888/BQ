@@ -15,6 +15,7 @@
 
 +(BQNetClient*) sharedThreadClient;
 
++(NSURLRequest *)getHtmlUrl;
 //+(NSDictionary *)nsdataTurnToNSDictionary:(id)responseObject;
 
 @end

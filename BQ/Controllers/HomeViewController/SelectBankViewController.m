@@ -13,6 +13,8 @@
 #import "AppDelegate.h"
 #import "SetViewController.h"
 
+#import "FormViewController.h"
+#import "CodeViewController.h"
 @interface SelectBankViewController ()
 
 @end
@@ -75,9 +77,14 @@
 //跳转设置界面
 -(void)turnToSetViewController{
     
-    SetViewController *setVC = [[SetViewController alloc]init];
-    [self.navigationController pushViewController:setVC animated:YES];
-
+//    SetViewController *setVC = [[SetViewController alloc]init];
+//    [self.navigationController pushViewController:setVC animated:YES];
+//
+//    FormViewController *formVC = [[FormViewController alloc] init];
+//    [self.navigationController pushViewController:formVC animated:YES];
+    
+    CodeViewController *codeVC = [[CodeViewController alloc] init];
+    [self.navigationController pushViewController:codeVC animated:YES];
 }
 
 #pragma mark--
