@@ -80,11 +80,11 @@
 //    SetViewController *setVC = [[SetViewController alloc]init];
 //    [self.navigationController pushViewController:setVC animated:YES];
 //
-//    FormViewController *formVC = [[FormViewController alloc] init];
-//    [self.navigationController pushViewController:formVC animated:YES];
+    FormViewController *formVC = [[FormViewController alloc] init];
+    [self.navigationController pushViewController:formVC animated:YES];
     
-    CodeViewController *codeVC = [[CodeViewController alloc] init];
-    [self.navigationController pushViewController:codeVC animated:YES];
+//    CodeViewController *codeVC = [[CodeViewController alloc] init];
+//    [self.navigationController pushViewController:codeVC animated:YES];
 }
 
 #pragma mark--

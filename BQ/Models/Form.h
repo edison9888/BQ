@@ -10,7 +10,7 @@
 
 @interface Form : NSObject
 
-@property(nonatomic,strong) NSString *htmlStr;
+@property(nonatomic,strong) NSString *htmlId;
 
 +(void)sendPersonalInfo:(NSDictionary *)parameters  WithBlock:(void (^)())block;
 

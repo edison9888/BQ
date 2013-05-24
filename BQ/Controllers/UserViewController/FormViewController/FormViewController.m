@@ -44,7 +44,7 @@
 }
 
 //获取信息并加密
-- (void)getHtmlInfomationWithEncode{
+- (NSString *)getHtmlInfomationWithEncode{
     
     NSString *str = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('text').value"];
     
@@ -56,18 +56,20 @@
     
     NSString* encoded = [[NSString alloc] initWithData:[GTMBase64 encodeData:data] encoding:NSUTF8StringEncoding];
     NSLog(@"encoded:%@", encoded);
-    NSString* decoded = [[NSString alloc] initWithData:[GTMBase64 decodeString:encoded] encoding:NSUTF8StringEncoding];
-    NSLog(@"decoded:%@", decoded);
-    
+//    NSString* decoded = [[NSString alloc] initWithData:[GTMBase64 decodeString:encoded] encoding:NSUTF8StringEncoding];
+//    NSLog(@"decoded:%@", decoded);
+    return encoded;
 }
 
 
 - (void)setPersonalInfo:(id)sender{
         
-    [self getHtmlInfomationWithEncode];
+    NSString *encoded = [self getHtmlInfomationWithEncode];
     
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"ewogICAgbmFtZSA9ICJcVTkwYjlcVTk3MzIiOwp9",@"formcon", nil];
     
-    [Form sendPersonalInfo:nil WithBlock:^{
+    [Form sendPersonalInfo:dic WithBlock:^{
+        
         
     }];
    

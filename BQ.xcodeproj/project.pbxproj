@@ -291,6 +291,8 @@
 		C81EA99A174CC908007CB250 /* split.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = split.h; sourceTree = "<group>"; };
 		C81EA9A3174CC980007CB250 /* CodeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeViewController.h; sourceTree = "<group>"; };
 		C81EA9A4174CC980007CB250 /* CodeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeViewController.m; sourceTree = "<group>"; };
+		C8222E7E174DF6E50060FF53 /* UIImage+ImageExt.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageExt.h"; sourceTree = "<group>"; };
+		C8222E7F174DF6E50060FF53 /* UIImage+ImageExt.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageExt.m"; sourceTree = "<group>"; };
 		C82CD91817165C690084E732 /* MyTicketView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyTicketView.h; sourceTree = "<group>"; };
 		C82CD91917165C690084E732 /* MyTicketView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyTicketView.m; sourceTree = "<group>"; };
 		C82CD922171662580084E732 /* MainViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = MainViewController.h; path = BQ/Controllers/MainViewController.h; sourceTree = SOURCE_ROOT; };
@@ -457,6 +459,8 @@
 		04A6ACFC1701795E009948B3 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				C8222E7E174DF6E50060FF53 /* UIImage+ImageExt.h */,
+				C8222E7F174DF6E50060FF53 /* UIImage+ImageExt.m */,
 				04A6ACFD17017978009948B3 /* FastCell.h */,
 				04A6ACFE17017978009948B3 /* FastCell.m */,
 				04A6AD0017017BB1009948B3 /* NSDictionary+helper.h */,

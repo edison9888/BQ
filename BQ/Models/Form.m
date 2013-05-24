@@ -16,6 +16,7 @@
     
     if (self=[super init]) {
     
+        _htmlId = [dic objectForKey:@""];
     }
     return self;
 }
@@ -25,9 +26,14 @@
     [SVProgressHUD show];
         
     BQNetClient *client = [BQNetClient sharedClient];
-    [client getPath:@"bankInfo/getform" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [client getPath:@"bankInfo/sendformdata" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *dic =(NSDictionary *)responseObject;
+        
+        if (![dic isKindOfClass:[NSString class]]) {
+            Form *from = [[Form alloc] initWithItem:dic];
+            NSLog(@"from.htmlId%@",from.htmlId);
+        }
         
         NSLog(@"send%@",dic);
        
@@ -39,7 +45,6 @@
         //        [SVProgressHUD dismissWithError:@"网络异常" afterDelay:0.4f];
 //        if(block)
 //            block(_html);
-        
         NSLog(@"%@",error.localizedRecoverySuggestion);
     }];
     
