@@ -14,4 +14,7 @@
     UIImageView *imageView;
 
 }
+
+@property(nonatomic,strong) NSString *encodeStr;
+
 @end

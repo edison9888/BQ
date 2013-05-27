@@ -10,7 +10,12 @@
 
 @interface Form : NSObject
 
-@property(nonatomic,strong) NSString *htmlId;
+@property(nonatomic,strong) NSString *nameStr;
+@property(nonatomic,strong) NSString *html;//表单html
+@property(nonatomic,strong) NSString *htmlId;//表单id
+
+
++(void)getPersonalForm:(NSDictionary *)parameters  WithBlock:(void (^)(NSData *data))block;
 
 +(void)sendPersonalInfo:(NSDictionary *)parameters  WithBlock:(void (^)())block;
 

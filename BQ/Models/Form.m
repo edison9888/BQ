@@ -15,12 +15,38 @@
 - (id)initWithItem:(NSDictionary *)dic{
     
     if (self=[super init]) {
-    
-        _htmlId = [dic objectForKey:@""];
+        
+        _nameStr = [dic objectForKey:@""];
+        
+        _html = [dic objectForKey:@"result"];
+        
+        _htmlId = [dic objectForKey:@"filled_id"];
     }
     return self;
 }
 
+
++(void)getPersonalForm:(NSDictionary *)parameters  WithBlock:(void (^)(NSData *data))block{
+
+    [[BQNetClient sharedClient] getPath:@"bankInfo/getform" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        Form *form = [[Form alloc] initWithItem:responseObject];
+        NSData* data = [form.html dataUsingEncoding:NSUTF8StringEncoding];
+        
+        if (block) {
+            block(data);
+        }
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"%@",error.localizedRecoverySuggestion);
+        NSData* data = [error.localizedRecoverySuggestion dataUsingEncoding:NSUTF8StringEncoding];
+
+        if (block) {
+            block(data);
+        }
+
+    }];
+}
 
 +(void)sendPersonalInfo:(NSDictionary *)parameters  WithBlock:(void (^)())block{
     [SVProgressHUD show];

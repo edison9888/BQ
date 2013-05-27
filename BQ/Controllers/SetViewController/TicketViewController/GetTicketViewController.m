@@ -9,7 +9,7 @@
 #import "GetTicketViewController.h"
 #import "Helper.h"
 #import "TicketSoundEffect.h"
-
+#import "FormViewController.h"
 #import <AVFoundation/AVFoundation.h>
 
 @interface GetTicketViewController ()
@@ -63,6 +63,7 @@
     
     [Number getBankNumberInfo:dic WithBlock:^(Number *num) {
         
+        _number=num;
         //生成票号
         ticketView= [self createMyTicket:num];
         //动画
@@ -112,7 +113,9 @@
                 } completion:^(BOOL finished) {
 //                    NSLog(@"NSDate%@",[NSDate date]);
                     //0.5f 返回首页
-                    [self performSelector:@selector(backToLastVC) withObject:ticketView afterDelay:0.5f];
+//                    [self performSelector:@selector(backToLastVC) withObject:ticketView afterDelay:0.5f];
+                    //是否有预填单
+                    [self isAlertViewToFormViewController];
                 }];
             }
     }];
@@ -120,6 +123,24 @@
 
 - (void)callBack:(MyTicketView *)_ticketView{
     [self animateGetTicket:_ticketView];
+}
+
+#pragma mark--
+#pragma mark--AlertViewAndForm
+- (void)isAlertViewToFormViewController{
+    if (_number.isNeedForm==1) {
+        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"填写预填单吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
+        [alertView show];
+    }
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==1) {
+        FormViewController *formVC = [[FormViewController alloc] init];
+        formVC.number=_number;
+        [self.navigationController pushViewController:formVC animated:YES];
+
+    }
 }
 
 #pragma mark--

@@ -128,6 +128,10 @@
 		C86068E5171C056C00534197 /* FatherBank.m in Sources */ = {isa = PBXBuildFile; fileRef = C86068E4171C056C00534197 /* FatherBank.m */; };
 		C8660FF5171E94C800F247B8 /* CustomAnnotationView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8660FF4171E94C800F247B8 /* CustomAnnotationView.m */; };
 		C8660FF8171EA49300F247B8 /* CalloutMapAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C8660FF7171EA3F300F247B8 /* CalloutMapAnnotation.m */; };
+		C868559B17534EC1007AA698 /* SignViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C868559A17534EC0007AA698 /* SignViewController.m */; };
+		C868559C17535B9C007AA698 /* PenView.m in Sources */ = {isa = PBXBuildFile; fileRef = C868559817534DFC007AA698 /* PenView.m */; };
+		C868559D17535B9D007AA698 /* PenTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C868559617534DFC007AA698 /* PenTool.m */; };
+		C868559E17535C73007AA698 /* UIImage+ImageExt.m in Sources */ = {isa = PBXBuildFile; fileRef = C8222E7F174DF6E50060FF53 /* UIImage+ImageExt.m */; };
 		C86E9BF5170993C3000C60F2 /* PersonalBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C86E9BF4170993C2000C60F2 /* PersonalBusinessViewController.m */; };
 		C86E9BFB170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C86E9BFA170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m */; };
 		C87471FE17409B2A00429F77 /* FXButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C87471FD17409B2A00429F77 /* FXButton.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -344,6 +348,12 @@
 		C8660FF4171E94C800F247B8 /* CustomAnnotationView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomAnnotationView.m; sourceTree = "<group>"; };
 		C8660FF6171EA3F200F247B8 /* CalloutMapAnnotation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CalloutMapAnnotation.h; sourceTree = "<group>"; };
 		C8660FF7171EA3F300F247B8 /* CalloutMapAnnotation.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CalloutMapAnnotation.m; sourceTree = "<group>"; };
+		C868559517534DFC007AA698 /* PenTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PenTool.h; sourceTree = "<group>"; };
+		C868559617534DFC007AA698 /* PenTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PenTool.m; sourceTree = "<group>"; };
+		C868559717534DFC007AA698 /* PenView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PenView.h; sourceTree = "<group>"; };
+		C868559817534DFC007AA698 /* PenView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PenView.m; sourceTree = "<group>"; };
+		C868559917534EC0007AA698 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignViewController.h; sourceTree = "<group>"; };
+		C868559A17534EC0007AA698 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignViewController.m; sourceTree = "<group>"; };
 		C86E9BF3170993C2000C60F2 /* PersonalBusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalBusinessViewController.h; sourceTree = "<group>"; };
 		C86E9BF4170993C2000C60F2 /* PersonalBusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalBusinessViewController.m; sourceTree = "<group>"; };
 		C86E9BF9170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CostomNavigationBar.h"; sourceTree = "<group>"; };
@@ -741,6 +751,9 @@
 				C81EA97F174C9AE9007CB250 /* FormViewController.m */,
 				C81EA9A3174CC980007CB250 /* CodeViewController.h */,
 				C81EA9A4174CC980007CB250 /* CodeViewController.m */,
+				C868559917534EC0007AA698 /* SignViewController.h */,
+				C868559A17534EC0007AA698 /* SignViewController.m */,
+				C868559417534DC1007AA698 /* ElectronicSignature */,
 			);
 			name = FormViewController;
 			path = UserViewController/FormViewController;
@@ -895,6 +908,17 @@
 				C86068D9171BDA5A00534197 /* Statement.m */,
 			);
 			path = DataBase;
+			sourceTree = "<group>";
+		};
+		C868559417534DC1007AA698 /* ElectronicSignature */ = {
+			isa = PBXGroup;
+			children = (
+				C868559517534DFC007AA698 /* PenTool.h */,
+				C868559617534DFC007AA698 /* PenTool.m */,
+				C868559717534DFC007AA698 /* PenView.h */,
+				C868559817534DFC007AA698 /* PenView.m */,
+			);
+			path = ElectronicSignature;
 			sourceTree = "<group>";
 		};
 		C87472051740F2D000429F77 /* AFNetworking */ = {
@@ -1099,6 +1123,7 @@
 			files = (
 				04D2C1F616FFF74F00E11E82 /* main.m in Sources */,
 				04D2C1FA16FFF74F00E11E82 /* AppDelegate.m in Sources */,
+				C868559E17535C73007AA698 /* UIImage+ImageExt.m in Sources */,
 				C8660FF8171EA49300F247B8 /* CalloutMapAnnotation.m in Sources */,
 				04A6ACF217014BBC009948B3 /* SetViewController.m in Sources */,
 				04A6ACF517014BC4009948B3 /* UserViewController.m in Sources */,
@@ -1117,7 +1142,9 @@
 				C891491B1711218800958605 /* MyAnnotation.m in Sources */,
 				C8DB413017117D070055341F /* PickerView.m in Sources */,
 				C85CD6C31712AD4C007512C3 /* LocationManager.m in Sources */,
+				C868559D17535B9D007AA698 /* PenTool.m in Sources */,
 				C85CD6C61712B5DC007512C3 /* MapListViewController.m in Sources */,
+				C868559C17535B9C007AA698 /* PenView.m in Sources */,
 				C883E5881713B6580029B6B5 /* MapShowViewController.m in Sources */,
 				C80CF82C1715197500889D03 /* Number.m in Sources */,
 				C80CF832171535AA00889D03 /* GetTicketViewController.m in Sources */,
@@ -1171,6 +1198,7 @@
 				C81EA9A1174CC908007CB250 /* rscode.c in Sources */,
 				C81EA9A2174CC908007CB250 /* split.c in Sources */,
 				C81EA9A5174CC980007CB250 /* CodeViewController.m in Sources */,
+				C868559B17534EC1007AA698 /* SignViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

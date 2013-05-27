@@ -117,24 +117,7 @@ static HomeViewController *instance = nil;
     [detailBankAddress setText:_bank.address];
     [detailBankAddress setFont:[UIFont systemFontOfSize:14.0f]];
     [detailBankAddress setNumberOfLines:0];
-    [self.view addSubview:detailBankAddress];
-    
-//    FXButton *fxBtn = [FXButton buttonWithType:UIButtonTypeCustom];
-//    [fxBtn.titleLabel setFont:[UIFont fontWithName:@"Helvetica-Bold" size:22]];
-//    [fxBtn setFrame:CGRectMake(42, self.view.frame.size.height-206, 251, 65.5)];
-//    [fxBtn setAutoresizingMask:UIViewAutoresizingFlexibleTopMargin];
-//    [fxBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"personalButton@2x"] forState:UIControlStateNormal];
-//    [fxBtn setBackgroundImage:[UIImage imageFromMainBundleFile:@"personalButtonSelected@2x"] forState:UIControlStateSelected];
-//    [fxBtn setTitle:@"个人业务" forState:UIControlStateNormal];
-//    [fxBtn setTitleColor:[UIColor colorWithRed:119/255.0f green:68/255.0f blue:39/255.f alpha:1.0f] forState:UIControlStateNormal];
-//    [fxBtn setDefaults];
-////    fxBtn.titleLabel.shadowColor = [UIColor colorWithWhite:1.0f alpha:0.8f];
-////    fxBtn.titleLabel.shadowOffset = CGSizeMake(1.0f, 2.0f);
-//    fxBtn.shadowBlur = 1.0f;
-//    fxBtn.innerShadowColor = [UIColor colorWithRed:82/255.0f green:180/255.0f blue:57/255.f alpha:1.0f];
-//    fxBtn.innerShadowOffset = CGSizeMake(1.0f, 2.0f);
-//    [self.view addSubview:fxBtn];
-    
+    [self.view addSubview:detailBankAddress];    
     
     UIButton *personalBusinessBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 //    personalBusinessBtn.enabled=NO;

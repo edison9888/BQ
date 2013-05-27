@@ -11,6 +11,9 @@
 #import "Form.h"
 #import "GTMBase64.h"
 
+#import "SignViewController.h"
+#import "CodeViewController.h"
+
 @interface FormViewController ()
 
 @end
@@ -32,15 +35,34 @@
     [super viewDidLoad];
 //    NSString *bundle = [[NSBundle mainBundle] pathForResource:@"1.txt" ofType:nil];
 //    NSData *data = [[NSData alloc]initWithContentsOfFile:bundle];
-    NSURLRequest *request = [BQNetClient getHtmlUrl];
-    
+
+    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btn setFrame:CGRectMake(100, 0, 100, 30)];
+    [btn setBackgroundColor:[UIColor yellowColor]];
+    [btn addTarget:self action:@selector(signClick) forControlEvents:UIControlEventTouchUpInside];
+    [self.navigationController.navigationBar  addSubview:btn];
+      
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(setPersonalInfo:)];
 
     webView =[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     webView.delegate=self;
-    [webView loadRequest:request];
+//    [webView loadRequest:request];
     [self.view addSubview:webView];
     
+    //加载html界面
+    [self getHtmlData];
+    
+}
+
+- (void)getHtmlData{
+
+    NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys: _number.numId,@"numid", nil];
+    
+    [Form getPersonalForm:dic WithBlock:^(NSData *data) {
+        
+        [webView loadData:data MIMEType:nil textEncodingName:nil baseURL:nil];
+    }];
+
 }
 
 //获取信息并加密
@@ -61,12 +83,12 @@
     return encoded;
 }
 
-
+//个人信息
 - (void)setPersonalInfo:(id)sender{
         
     NSString *encoded = [self getHtmlInfomationWithEncode];
     
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:@"ewogICAgbmFtZSA9ICJcVTkwYjlcVTk3MzIiOwp9",@"formcon", nil];
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:encoded,@"formcon",_number.numId,@"numid", nil];
     
     [Form sendPersonalInfo:dic WithBlock:^{
         
@@ -75,6 +97,18 @@
    
 }
 
+//签名
+-(void)signClick{
+    SignViewController *signVC = [[SignViewController alloc] init];
+    [self.navigationController pushViewController:signVC animated:YES];
+    
+//    CodeViewController *signVC = [[CodeViewController alloc] init];
+//    [self.navigationController pushViewController:signVC animated:YES];
+    
+}
+
+#pragma mark--
+#pragma mark--WebViewDelegate
 - (BOOL)webView:(UIWebView *)_webView shouldStartLoadWithRequest:(NSURLRequest *)request navigationType:(UIWebViewNavigationType)navigationType{
     
     
@@ -97,7 +131,6 @@
 //    //添加数据
 //    NSString *str1 = [_webView stringByEvaluatingJavaScriptFromString:@"var field = document.getElementById('field_2');"
 //                      "field.value='通过OC代码写入';"];
-//    
 //    NSLog(@"str1%@",str1);
 }
 

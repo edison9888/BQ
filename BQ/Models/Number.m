@@ -32,6 +32,7 @@
         _serParentId=[dic objectForKey:@"serParentId"];
         
         _bankTypeName=[dic objectForKey:@"bankTypeName"];
+        _isNeedForm =[[dic objectForKey:@"isneedForm"] intValue];
     }
     return self;
 }

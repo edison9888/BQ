@@ -24,5 +24,6 @@
 
 @property(nonatomic,strong) Business *busniess;
 @property(nonatomic,strong) Bank *bank;
+@property(nonatomic,strong) Number *number;
 
 @end

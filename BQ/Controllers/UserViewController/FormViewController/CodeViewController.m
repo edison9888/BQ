@@ -37,10 +37,11 @@
 
 - (void)qrCodeClick:(id)sender{
     NSString *infoStr = @"今天星期3";
+    _encodeStr = infoStr;
     
     imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,50, 200, 200)];
     imageView.backgroundColor = [UIColor yellowColor];
-    imageView.image = [QRCodeGenerator qrImageForString:infoStr imageSize:imageView.bounds.size.width];
+    imageView.image = [QRCodeGenerator qrImageForString:_encodeStr imageSize:imageView.bounds.size.width];
     [self.view addSubview:imageView];
 }
 
