@@ -38,7 +38,14 @@
 - (void)imageSavedToAlum{
     
     UIImage *image = [UIImage imageFromView:self.view];
-    UIImageWriteToSavedPhotosAlbum( image, self, @selector(image:didFinishSavingWithError:contextInfo:) , nil ) ;
+    //保存到沙盒中
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"sms.png"]];   // 保存文件的名称
+    BOOL result = [UIImagePNGRepresentation(image)writeToFile:filePath atomically:YES];
+    NSLog(@"保存沙盒成功===%d",result);
+    
+    //保存相册
+    //UIImageWriteToSavedPhotosAlbum( image, self, @selector(image:didFinishSavingWithError:contextInfo:) , nil ) ;
 }
 
 -(void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo

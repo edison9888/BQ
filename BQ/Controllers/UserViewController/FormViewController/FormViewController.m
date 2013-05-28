@@ -10,9 +10,13 @@
 #import "BQNetClient.h"
 #import "Form.h"
 #import "GTMBase64.h"
+//#import "NSData+Encryption.h"
+#import "FBEncryptorAES.h"//加密
 
 #import "SignViewController.h"
 #import "CodeViewController.h"
+
+#define AES_BASE64_KEY @"abcdefghijklmnop"
 
 @interface FormViewController ()
 
@@ -20,9 +24,9 @@
 
 @implementation FormViewController
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
         
         // Custom initialization
@@ -33,6 +37,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
 //    NSString *bundle = [[NSBundle mainBundle] pathForResource:@"1.txt" ofType:nil];
 //    NSData *data = [[NSData alloc]initWithContentsOfFile:bundle];
 
@@ -65,6 +70,29 @@
 
 }
 
+//获取信息并加密aes
+- (NSString *)getEncode{
+    
+    NSString *str = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('text').value"];
+
+    NSString *encoded = [FBEncryptorAES encryptBase64String:str
+                                                    keyString:AES_BASE64_KEY
+                                                separateLines:NO];
+    NSLog(@"encrypted: %@", encoded);
+    
+    NSString* msg = [FBEncryptorAES decryptBase64String:encoded
+                                              keyString:AES_BASE64_KEY];
+    
+    if (msg) {
+        NSLog(@"decrypted: %@", msg);
+    } else {
+        NSLog(@"failed to decrypt");
+    }
+
+    
+    return encoded;
+}
+
 //获取信息并加密
 - (NSString *)getHtmlInfomationWithEncode{
     
@@ -76,18 +104,21 @@
     
     NSData *data = [dicStr dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
     
+    
     NSString* encoded = [[NSString alloc] initWithData:[GTMBase64 encodeData:data] encoding:NSUTF8StringEncoding];
     NSLog(@"encoded:%@", encoded);
-//    NSString* decoded = [[NSString alloc] initWithData:[GTMBase64 decodeString:encoded] encoding:NSUTF8StringEncoding];
-//    NSLog(@"decoded:%@", decoded);
+    
+    NSString* decoded = [[NSString alloc] initWithData:[GTMBase64 decodeString:encoded] encoding:NSUTF8StringEncoding];
+    NSLog(@"decoded:%@", decoded);
     return encoded;
 }
 
 //个人信息
 - (void)setPersonalInfo:(id)sender{
         
-    NSString *encoded = [self getHtmlInfomationWithEncode];
-    
+//    NSString *encoded = [self getHtmlInfomationWithEncode];
+    NSString *encoded = [self getEncode];
+
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:encoded,@"formcon",_number.numId,@"numid", nil];
     
     [Form sendPersonalInfo:dic WithBlock:^{

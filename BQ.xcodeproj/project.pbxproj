@@ -151,6 +151,9 @@
 		C87472271740F2F700429F77 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C87472251740F2F700429F77 /* SVProgressHUD.m */; };
 		C883E5881713B6580029B6B5 /* MapShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C883E5871713B6580029B6B5 /* MapShowViewController.m */; };
 		C891491B1711218800958605 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C891491A1711218800958605 /* MyAnnotation.m */; };
+		C89FCD9D17548D19000B2A1B /* NSData+Encryption.m in Sources */ = {isa = PBXBuildFile; fileRef = C89FCD9C17548D19000B2A1B /* NSData+Encryption.m */; };
+		C89FCDA3175499FD000B2A1B /* FBEncryptorAES.m in Sources */ = {isa = PBXBuildFile; fileRef = C89FCDA2175498AF000B2A1B /* FBEncryptorAES.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		C89FCDA417549A73000B2A1B /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = C89FCDA01754986E000B2A1B /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C8AE8ECC171D1C7B00098213 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8ECB171D1C7B00098213 /* AboutUsViewController.m */; };
 		C8AE8ECF171D1D0C00098213 /* FeedBackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8ECE171D1D0C00098213 /* FeedBackViewController.m */; };
 		C8AE8EDE171D28FD00098213 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8ED3171D28FD00098213 /* NSObject+SBJSON.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -389,6 +392,12 @@
 		C883E5871713B6580029B6B5 /* MapShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapShowViewController.m; sourceTree = "<group>"; };
 		C89149191711218800958605 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		C891491A1711218800958605 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
+		C89FCD9B17548D19000B2A1B /* NSData+Encryption.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Encryption.h"; sourceTree = "<group>"; };
+		C89FCD9C17548D19000B2A1B /* NSData+Encryption.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Encryption.m"; sourceTree = "<group>"; };
+		C89FCD9F1754986E000B2A1B /* NSData+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		C89FCDA01754986E000B2A1B /* NSData+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		C89FCDA1175498AF000B2A1B /* FBEncryptorAES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBEncryptorAES.h; sourceTree = "<group>"; };
+		C89FCDA2175498AF000B2A1B /* FBEncryptorAES.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FBEncryptorAES.m; sourceTree = "<group>"; };
 		C8AE8ECA171D1C7B00098213 /* AboutUsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutUsViewController.h; sourceTree = "<group>"; };
 		C8AE8ECB171D1C7B00098213 /* AboutUsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutUsViewController.m; sourceTree = "<group>"; };
 		C8AE8ECD171D1D0C00098213 /* FeedBackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedBackViewController.h; sourceTree = "<group>"; };
@@ -834,6 +843,8 @@
 		C82CD965171691BE0084E732 /* ThirdFrameWork */ = {
 			isa = PBXGroup;
 			children = (
+				C89FCD9E17549852000B2A1B /* FBEncrypt */,
+				C89FCD9A17548CC6000B2A1B /* Aes256 */,
 				C81EA98A174CC908007CB250 /* libqrencode */,
 				C81EA981174CA092007CB250 /* CTMBase64 */,
 				C87472221740F2F700429F77 /* SVProgressHUD */,
@@ -964,6 +975,26 @@
 			);
 			name = SelectBusiness;
 			path = Homes/SelectBusiness;
+			sourceTree = "<group>";
+		};
+		C89FCD9A17548CC6000B2A1B /* Aes256 */ = {
+			isa = PBXGroup;
+			children = (
+				C89FCD9B17548D19000B2A1B /* NSData+Encryption.h */,
+				C89FCD9C17548D19000B2A1B /* NSData+Encryption.m */,
+			);
+			path = Aes256;
+			sourceTree = "<group>";
+		};
+		C89FCD9E17549852000B2A1B /* FBEncrypt */ = {
+			isa = PBXGroup;
+			children = (
+				C89FCD9F1754986E000B2A1B /* NSData+Base64.h */,
+				C89FCDA01754986E000B2A1B /* NSData+Base64.m */,
+				C89FCDA1175498AF000B2A1B /* FBEncryptorAES.h */,
+				C89FCDA2175498AF000B2A1B /* FBEncryptorAES.m */,
+			);
+			path = FBEncrypt;
 			sourceTree = "<group>";
 		};
 		C8AE8ED0171D28FD00098213 /* SBJSON */ = {
@@ -1124,9 +1155,11 @@
 				04D2C1F616FFF74F00E11E82 /* main.m in Sources */,
 				04D2C1FA16FFF74F00E11E82 /* AppDelegate.m in Sources */,
 				C868559E17535C73007AA698 /* UIImage+ImageExt.m in Sources */,
+				C89FCDA3175499FD000B2A1B /* FBEncryptorAES.m in Sources */,
 				C8660FF8171EA49300F247B8 /* CalloutMapAnnotation.m in Sources */,
 				04A6ACF217014BBC009948B3 /* SetViewController.m in Sources */,
 				04A6ACF517014BC4009948B3 /* UserViewController.m in Sources */,
+				C89FCDA417549A73000B2A1B /* NSData+Base64.m in Sources */,
 				04A6ACF917017589009948B3 /* MapViewController.m in Sources */,
 				04A6ACFF17017978009948B3 /* FastCell.m in Sources */,
 				04A6AD0217017BB1009948B3 /* NSDictionary+helper.m in Sources */,
@@ -1199,6 +1232,7 @@
 				C81EA9A2174CC908007CB250 /* split.c in Sources */,
 				C81EA9A5174CC980007CB250 /* CodeViewController.m in Sources */,
 				C868559B17534EC1007AA698 /* SignViewController.m in Sources */,
+				C89FCD9D17548D19000B2A1B /* NSData+Encryption.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
