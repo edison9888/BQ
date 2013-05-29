@@ -12,11 +12,14 @@
 #import "GTMBase64.h"
 //#import "NSData+Encryption.h"
 #import "FBEncryptorAES.h"//加密
+#import "NSData+AES256.h"
+#import "NSString+DES.h"
 
 #import "SignViewController.h"
 #import "CodeViewController.h"
 
-#define AES_BASE64_KEY @"abcdefghijklmnop"
+#define AES_BASE64_KEY @"20120401"
+
 
 @interface FormViewController ()
 
@@ -55,7 +58,7 @@
     [self.view addSubview:webView];
     
     //加载html界面
-    [self getHtmlData];
+  //  [self getHtmlData];
     
 }
 
@@ -75,22 +78,16 @@
     
     NSString *str = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('text').value"];
 
-    NSString *encoded = [FBEncryptorAES encryptBase64String:str
-                                                    keyString:AES_BASE64_KEY
-                                                separateLines:NO];
-    NSLog(@"encrypted: %@", encoded);
+    str = @"abcd";
     
-    NSString* msg = [FBEncryptorAES decryptBase64String:encoded
-                                              keyString:AES_BASE64_KEY];
-    
-    if (msg) {
-        NSLog(@"decrypted: %@", msg);
-    } else {
-        NSLog(@"failed to decrypt");
-    }
+    NSString *data64 = [NSString encryptUseDES:str key:AES_BASE64_KEY];
+    NSLog(@"text: %@", data64);
 
     
-    return encoded;
+    NSString *decode = [NSString decryptUseDES:data64 key:AES_BASE64_KEY];
+    NSLog(@"textDecod: %@", decode);    
+    
+    return data64;
 }
 
 //获取信息并加密
