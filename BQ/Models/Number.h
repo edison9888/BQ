@@ -36,7 +36,7 @@ typedef enum {
 @property(nonatomic,strong) NSString *serParentId;//父类业务id
 @property(nonatomic,strong) NSString *bankTypeName;//银行名称
 @property(nonatomic,assign) NSInteger isNeedForm;//是否有预填单 1：yes 2：NO
- 
+@property(nonatomic,strong) UIImage *image;
 
 //领取票号==生成我的号码
 + (void)getBankNumberInfo:(NSDictionary *)parameters WithBlock:(void (^)(Number*num))block;

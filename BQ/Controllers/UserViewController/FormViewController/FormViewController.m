@@ -11,12 +11,14 @@
 #import "Form.h"
 #import "GTMBase64.h"
 //#import "NSData+Encryption.h"
-#import "FBEncryptorAES.h"//加密
-#import "NSData+AES256.h"
+//#import "FBEncryptorAES.h"//加密
+//#import "NSData+AES256.h"
 #import "NSString+DES.h"
 
 #import "SignViewController.h"
 #import "CodeViewController.h"
+#import "QRCodeGenerator.h"
+
 
 #define AES_BASE64_KEY @"20120401"
 
@@ -44,12 +46,12 @@
 //    NSString *bundle = [[NSBundle mainBundle] pathForResource:@"1.txt" ofType:nil];
 //    NSData *data = [[NSData alloc]initWithContentsOfFile:bundle];
 
-    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-    [btn setFrame:CGRectMake(100, 0, 100, 30)];
-    [btn setBackgroundColor:[UIColor yellowColor]];
-    [btn addTarget:self action:@selector(signClick) forControlEvents:UIControlEventTouchUpInside];
-    [self.navigationController.navigationBar  addSubview:btn];
-      
+//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
+//    [btn setFrame:CGRectMake(100, 0, 100, 30)];
+//    [btn setBackgroundColor:[UIColor yellowColor]];
+//    [btn addTarget:self action:@selector(signClick) forControlEvents:UIControlEventTouchUpInside];
+//    [self.navigationController.navigationBar  addSubview:btn];
+    
     self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(setPersonalInfo:)];
 
     webView =[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
@@ -58,7 +60,7 @@
     [self.view addSubview:webView];
     
     //加载html界面
-  //  [self getHtmlData];
+    [self getHtmlData];
     
 }
 
@@ -73,48 +75,57 @@
 
 }
 
-//获取信息并加密aes
-- (NSString *)getEncode{
+- (UIImage *)createQrCode:(NSString *)formStr{
     
-    NSString *str = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('text').value"];
-
-    str = @"abcd";
+    UIImage *image = [QRCodeGenerator qrImageForString:formStr imageSize:QR_WIDTH];
     
-    NSString *data64 = [NSString encryptUseDES:str key:AES_BASE64_KEY];
-    NSLog(@"text: %@", data64);
-
+    [self imageSavedToDocument:image];
     
-    NSString *decode = [NSString decryptUseDES:data64 key:AES_BASE64_KEY];
-    NSLog(@"textDecod: %@", decode);    
-    
-    return data64;
+    return image;
 }
 
-//获取信息并加密
-- (NSString *)getHtmlInfomationWithEncode{
+- (void)imageSavedToDocument:(UIImage *)image{
+    //保存到沙盒中
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",_number.numId]];   // 保存文件的名称
+    BOOL result = [UIImagePNGRepresentation(image)writeToFile:filePath atomically:YES];
+    NSLog(@"保存沙盒成功===%d",result);
     
-    NSString *str = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('text').value"];
+    //保存相册
+    //UIImageWriteToSavedPhotosAlbum( image, self, @selector(image:didFinishSavingWithError:contextInfo:) , nil ) ;
+}
+
+//获取信息并加密des+base64
+- (NSString *)getEncode{
     
-    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:str,@"name",nil];
+    NSString *formStr = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('text').value"];
+
+//    formStr = [NSString stringWithFormat:@"{name:邹露,age:24,sex:女}"];
     
-    NSString *dicStr =[NSString stringWithFormat:@"%@", dic];
-    
-    NSData *data = [dicStr dataUsingEncoding:NSUTF8StringEncoding allowLossyConversion:YES];
-    
-    
-    NSString* encoded = [[NSString alloc] initWithData:[GTMBase64 encodeData:data] encoding:NSUTF8StringEncoding];
-    NSLog(@"encoded:%@", encoded);
-    
-    NSString* decoded = [[NSString alloc] initWithData:[GTMBase64 decodeString:encoded] encoding:NSUTF8StringEncoding];
-    NSLog(@"decoded:%@", decoded);
-    return encoded;
+    if (formStr.length==0) {
+        NSLog(@"填写信息不能为空");
+        return 0;
+    }else{
+        
+        _number.image = [self createQrCode:formStr];
+        
+        NSString *data64 = [NSString encryptUseDES:formStr key:AES_BASE64_KEY];
+        NSLog(@"textEncode: %@", data64);
+        
+        NSString *decode = [NSString decryptUseDES:data64 key:AES_BASE64_KEY];
+        NSLog(@"textDecode: %@", decode);    
+        
+        return data64;
+    }
 }
 
 //个人信息
 - (void)setPersonalInfo:(id)sender{
-        
-//    NSString *encoded = [self getHtmlInfomationWithEncode];
+    //获得加密信息
     NSString *encoded = [self getEncode];
+    if (encoded==0) {
+        return;
+    }
 
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:encoded,@"formcon",_number.numId,@"numid", nil];
     
@@ -122,7 +133,6 @@
         
         
     }];
-   
 }
 
 //签名

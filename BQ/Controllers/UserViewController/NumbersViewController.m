@@ -199,7 +199,7 @@
 //        [self changeBgImageView];
 //        [self nullTicketView:regionArr.count];
         //测试
-//        [self tempNumberArr];
+        [self tempNumberArr];
         return;
     }
     

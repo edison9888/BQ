@@ -23,10 +23,10 @@ typedef enum {
 
 @end
 
-@interface MyTicketView : UIView
+@interface MyTicketView : UIView<UIGestureRecognizerDelegate>
 {
     @private
-        UIImageView *bgView;//背景
+        UIImageView *bgView,*qrImageView;//背景
         UILabel *bankNameLabel;//银行名称
         UILabel *asideLabel;
         UILabel *numberLabel;//排队号
@@ -39,6 +39,8 @@ typedef enum {
         UIImageView *stampImageView;//是否过期
         UIImageView *breakPaperImg;
         UIButton *refreshBtn;
+    
+        NSInteger coverInt;
 }
 
 @property(nonatomic,strong) Number *number;

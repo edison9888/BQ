@@ -28,7 +28,7 @@
 
 +(void)getPersonalForm:(NSDictionary *)parameters  WithBlock:(void (^)(NSData *data))block{
 
-    [[BQNetClient sharedClient] getPath:@"bankInfo/getform" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [[BQNetClient sharedClient] getPath:@"filledform/getform" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         Form *form = [[Form alloc] initWithItem:responseObject];
         NSData* data = [form.html dataUsingEncoding:NSUTF8StringEncoding];
@@ -52,7 +52,7 @@
     [SVProgressHUD show];
         
     BQNetClient *client = [BQNetClient sharedClient];
-    [client getPath:@"bankInfo/sendformdata" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
+    [client postPath:@"filledform/sendformdata" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
         NSDictionary *dic =(NSDictionary *)responseObject;
         
@@ -73,7 +73,6 @@
 //            block(_html);
         NSLog(@"%@",error.localizedRecoverySuggestion);
     }];
-    
 }
 
 @end

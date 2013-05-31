@@ -48,20 +48,20 @@
     //UIImageWriteToSavedPhotosAlbum( image, self, @selector(image:didFinishSavingWithError:contextInfo:) , nil ) ;
 }
 
--(void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
-{
-    // Was there an error?
-    if (error != NULL)
-    {
-        NSLog(@"error%@",error);
-    }
-    else  // No errors
-    {
-        NSLog(@"seccess");
-        UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:nil message:@"保存成功" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
-        [alerView show];
-    }
-}
+//-(void)image:(UIImage *)image didFinishSavingWithError:(NSError *)error contextInfo:(void *)contextInfo
+//{
+//    // Was there an error?
+//    if (error != NULL)
+//    {
+//        NSLog(@"error%@",error);
+//    }
+//    else  // No errors
+//    {
+//        NSLog(@"seccess");
+//        UIAlertView *alerView = [[UIAlertView alloc] initWithTitle:nil message:@"保存成功" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:nil];
+//        [alerView show];
+//    }
+//}
 
 - (void)didReceiveMemoryWarning
 {

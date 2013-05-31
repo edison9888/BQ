@@ -20,6 +20,14 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 270, 326)];
+//        view.backgroundColor = [UIColor blueColor];
+        [self addSubview:view];
+        
+        qrImageView =[[UIImageView alloc] initWithFrame:CGRectMake((view.frame.size.width-QR_WIDTH)/2, 100, QR_WIDTH, QR_WIDTH)];
+        qrImageView.backgroundColor = [UIColor blueColor];
+        qrImageView.userInteractionEnabled=YES;
+        [view addSubview:qrImageView];
         
         bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 270, 326)];
         if (type==myTicket) {
@@ -148,6 +156,14 @@
         refreshImageView =[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"refreshImage"]];
         refreshImageView.frame=CGRectMake(9, 9, 22, 22);
         [refreshBtn addSubview:refreshImageView];
+        
+        //添加手势
+        UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+        [doubleTap setNumberOfTapsRequired:2];
+        [self addGestureRecognizer:doubleTap];
+        doubleTap.delegate = self;
+        doubleTap.cancelsTouchesInView  =NO;
+
     }
     return self;
 }
@@ -244,7 +260,50 @@
     else if(number.numStatus==4){
         stampImageView.image = [UIImage imageNamed:@"stamp1"];
     }
+    
+    qrImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",number.numId]];
 }
 
+#pragma mark ---UIGestureRecognizerDelegate
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer{
+    
+    return YES;
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch{
+    
+    
+    return YES;
+}
+
+-(void)handleSingleTap:(id)sender{
+    
+    if (_number.isNeedForm==2) {
+        return;
+    }
+    
+    if (coverInt) {
+        coverInt=0;
+        bgView.hidden=NO;
+        [self turnBack:kCATransitionFromLeft];
+
+    }else{
+        coverInt=1;
+        bgView.hidden=YES;
+        [self turnBack:kCATransitionFromRight];
+    }
+    
+}
+
+- (void)turnBack:(NSString * const)leftOrRight{
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5f;
+    transition.type = @"oglFlip";
+    transition.subtype = kCATransitionFromRight;
+    transition.delegate = self;
+    [self.layer  addAnimation:transition forKey:@"revert"];
+
+}
 
 @end

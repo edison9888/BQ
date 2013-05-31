@@ -35,3 +35,5 @@
 #define SVP_debug 1
 
 #define debug 0
+
+#define QR_WIDTH 170
