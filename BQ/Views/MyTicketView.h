@@ -26,6 +26,7 @@ typedef enum {
 @interface MyTicketView : UIView<UIGestureRecognizerDelegate>
 {
     @private
+        UIView *qrView;
         UIImageView *bgView,*qrImageView;//背景
         UILabel *bankNameLabel;//银行名称
         UILabel *asideLabel;

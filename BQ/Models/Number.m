@@ -155,6 +155,30 @@
     return mutableArr;
 }
 
+//获取过去的票id,清除缓存图片
++ (NSArray *)getExpiredNumbersIdsFromDatabase{
+    
+    NSMutableArray *mutableArr = [NSMutableArray array];
+    
+    static Statement *statement = nil;
+    
+    if (statement==nil) {
+        //        statement = [DBConnection statementWithQuery:"SELECT * FROM Numbers where num_date >= date('NOW')"];
+        statement = [DBConnection statementWithQuery:"SELECT * FROM Numbers"];
+    }
+    
+    while ([statement step] == SQLITE_ROW) {
+        NSString *numId;
+        if ([statement getInt32:4]==0) {
+            numId = [statement getString:1];
+            [mutableArr addObject:numId];
+        }
+    }
+    
+    [statement reset];
+    return mutableArr;
+}
+
 
 //无网络情况下，获取numbers(status!=0)
 + (NSArray *)getNumbersFromSqliteWithoutNet{

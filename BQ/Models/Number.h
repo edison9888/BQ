@@ -56,4 +56,7 @@ typedef enum {
 //不是今天的票，状态改为1：作废
 + (NSArray *)updateNumbersStatusBeforeTodayFromDatabase;
 
+//获取过去的票id,清除缓存图片
++ (NSArray *)getExpiredNumbersIdsFromDatabase;
+
 @end

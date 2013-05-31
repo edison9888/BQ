@@ -18,7 +18,7 @@
 #import "SignViewController.h"
 #import "CodeViewController.h"
 #import "QRCodeGenerator.h"
-
+#import "Bundle.h"
 
 #define AES_BASE64_KEY @"20120401"
 
@@ -76,9 +76,7 @@
 }
 
 - (UIImage *)createQrCode:(NSString *)formStr{
-    
-    formStr =@"formStr";
-    
+        
     UIImage *image = [QRCodeGenerator qrImageForString:formStr imageSize:QR_WIDTH];
     
     [self imageSavedToDocument:image];
@@ -88,8 +86,9 @@
 
 - (void)imageSavedToDocument:(UIImage *)image{
     //保存到沙盒中
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",_number.numId]];   // 保存文件的名称
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+//    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",_number.numId]];   // 保存文件的名称
+    NSString *filePath = [[Bundle docoumentRootPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",_number.numId]];
     BOOL result = [UIImagePNGRepresentation(image)writeToFile:filePath atomically:YES];
     NSLog(@"保存沙盒成功===%d",result);
     
@@ -101,10 +100,9 @@
 - (NSString *)getEncode{
     
     NSString *formStr = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('text').value"];
-
 //    formStr = [NSString stringWithFormat:@"{name:邹露,age:24,sex:女}"];
     
-    if (formStr.length) {
+    if (formStr.length==0) {
         NSLog(@"填写信息不能为空");
         return 0;
     }else{

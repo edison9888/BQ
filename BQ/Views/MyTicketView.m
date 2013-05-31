@@ -8,6 +8,7 @@
 
 #import "MyTicketView.h"
 #import <QuartzCore/QuartzCore.h>
+#import "Bundle.h"
 
 #define BetweenHeight 12
 #define DEGREES_TO_RADIANS(angle) ((angle) / 180.0 * M_PI)
@@ -20,14 +21,16 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
-        UIView *view = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 270, 326)];
-//        view.backgroundColor = [UIColor blueColor];
-        [self addSubview:view];
+        qrView = [[UIView alloc] initWithFrame:CGRectMake(0, 0, 270, 326)];
+        qrView.hidden=YES;
+        qrView.layer.masksToBounds = YES;
+        qrView.layer.cornerRadius = 6;
+        qrView.backgroundColor = [UIColor whiteColor];
+        [self addSubview:qrView];
         
-        qrImageView =[[UIImageView alloc] initWithFrame:CGRectMake((view.frame.size.width-QR_WIDTH)/2, 100, QR_WIDTH, QR_WIDTH)];
-        qrImageView.backgroundColor = [UIColor blueColor];
+        qrImageView =[[UIImageView alloc] initWithFrame:CGRectMake((qrView.frame.size.width-QR_WIDTH)/2, 70, QR_WIDTH, QR_WIDTH)];
         qrImageView.userInteractionEnabled=YES;
-        [view addSubview:qrImageView];
+        [qrView addSubview:qrImageView];
         
         bgView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, 270, 326)];
         if (type==myTicket) {
@@ -261,8 +264,20 @@
         stampImageView.image = [UIImage imageNamed:@"stamp1"];
     }
     
-    NSString *imageFileStr =[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",number.numId] ofType:@"png"];
-    qrImageView.image = [UIImage imageNamed:imageFileStr];
+    if (_number.isNeedForm==1) {
+        NSString *imageFileStr = [self getPath];
+        qrImageView.image = [UIImage imageWithContentsOfFile:imageFileStr];
+    }
+}
+
+- (NSString *)getPath{
+
+    NSString *filePath = [[Bundle docoumentRootPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",_number.numId]];
+
+//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
+//    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",_number.numId]];
+//    NSLog(@"%@",filePath);
+    return filePath;
 }
 
 #pragma mark ---UIGestureRecognizerDelegate
@@ -287,10 +302,12 @@
     if (coverInt) {
         coverInt=0;
         bgView.hidden=NO;
+        qrView.hidden=YES;
         [self turnBack:kCATransitionFromLeft];
 
     }else{
         coverInt=1;
+        qrView.hidden=NO;
         bgView.hidden=YES;
         [self turnBack:kCATransitionFromRight];
     }

@@ -12,6 +12,7 @@
 #import "MyTicketTableViewCell.h"
 #import "SVProgressHUD.h"
 
+#import "Bundle.h"
 #define DownHeight 98
 #define NoTicketHeight 15
 
@@ -43,13 +44,35 @@
 ////    NSLog(@"str===%@",locationString);
 //}
 
+#pragma mark--
+#pragma mark--清理过期数据库中的状态--伪删除
 //一天修改一次状态
 -(void)updateSqliteDataWhichTicketIsInvalid{
     
     [Number updateNumbersStatusBeforeTodayFromDatabase];
     
+    [self removeQrImageInDocument];
+       
 }
 
+#pragma mark--
+#pragma mark--清理沙盒中的过期二维码image
+- (void)removeQrImageInDocument{
+    NSArray *nmbIdsArr = [Number getExpiredNumbersIdsFromDatabase];
+    
+    NSFileManager* fm = [NSFileManager defaultManager];
+    NSError *error;
+    for (int i=0;i<nmbIdsArr.count;i++) {
+        NSString *path = [[Bundle docoumentRootPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",[nmbIdsArr objectAtIndex:i]]];
+        
+        if ([fm fileExistsAtPath:path]) {
+            BOOL succeeded =[fm removeItemAtPath:path error:&error];
+            
+            NSLog(@"succeeded--%d,%@",succeeded,error);
+        }
+    }
+}
+  
 - (void)viewDidLoad
 {
     [super viewDidLoad];
