@@ -261,7 +261,8 @@
         stampImageView.image = [UIImage imageNamed:@"stamp1"];
     }
     
-    qrImageView.image = [UIImage imageNamed:[NSString stringWithFormat:@"%@.png",number.numId]];
+    NSString *imageFileStr =[[NSBundle mainBundle] pathForResource:[NSString stringWithFormat:@"%@",number.numId] ofType:@"png"];
+    qrImageView.image = [UIImage imageNamed:imageFileStr];
 }
 
 #pragma mark ---UIGestureRecognizerDelegate

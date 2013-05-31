@@ -77,6 +77,8 @@
 
 - (UIImage *)createQrCode:(NSString *)formStr{
     
+    formStr =@"formStr";
+    
     UIImage *image = [QRCodeGenerator qrImageForString:formStr imageSize:QR_WIDTH];
     
     [self imageSavedToDocument:image];
@@ -102,7 +104,7 @@
 
 //    formStr = [NSString stringWithFormat:@"{name:邹露,age:24,sex:女}"];
     
-    if (formStr.length==0) {
+    if (formStr.length) {
         NSLog(@"填写信息不能为空");
         return 0;
     }else{
