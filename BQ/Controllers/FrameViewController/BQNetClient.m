@@ -10,7 +10,7 @@
 #import "AFJSONRequestOperation.h"
 #import "SVProgressHUD.h"
 
-#define BaseUrlString @"http://192.168.1.200:8080/bank/ver3/"
+#define BaseUrlString @"http://192.168.0.200:8080/bank/ver3/"
 
 @implementation BQNetClient
 

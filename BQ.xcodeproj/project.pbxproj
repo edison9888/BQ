@@ -136,6 +136,7 @@
 		C868559C17535B9C007AA698 /* PenView.m in Sources */ = {isa = PBXBuildFile; fileRef = C868559817534DFC007AA698 /* PenView.m */; };
 		C868559D17535B9D007AA698 /* PenTool.m in Sources */ = {isa = PBXBuildFile; fileRef = C868559617534DFC007AA698 /* PenTool.m */; };
 		C868559E17535C73007AA698 /* UIImage+ImageExt.m in Sources */ = {isa = PBXBuildFile; fileRef = C8222E7F174DF6E50060FF53 /* UIImage+ImageExt.m */; };
+		C86906E81758AEBA00BF0194 /* 12345.txt in Resources */ = {isa = PBXBuildFile; fileRef = C86906E71758AEBA00BF0194 /* 12345.txt */; };
 		C86E9BF5170993C3000C60F2 /* PersonalBusinessViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C86E9BF4170993C2000C60F2 /* PersonalBusinessViewController.m */; };
 		C86E9BFB170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = C86E9BFA170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.m */; };
 		C87471FE17409B2A00429F77 /* FXButton.m in Sources */ = {isa = PBXBuildFile; fileRef = C87471FD17409B2A00429F77 /* FXButton.m */; settings = {COMPILER_FLAGS = "-fobjc-arc"; }; };
@@ -368,6 +369,7 @@
 		C868559817534DFC007AA698 /* PenView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PenView.m; sourceTree = "<group>"; };
 		C868559917534EC0007AA698 /* SignViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignViewController.h; sourceTree = "<group>"; };
 		C868559A17534EC0007AA698 /* SignViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignViewController.m; sourceTree = "<group>"; };
+		C86906E71758AEBA00BF0194 /* 12345.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = 12345.txt; path = ../12345.txt; sourceTree = "<group>"; };
 		C86E9BF3170993C2000C60F2 /* PersonalBusinessViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonalBusinessViewController.h; sourceTree = "<group>"; };
 		C86E9BF4170993C2000C60F2 /* PersonalBusinessViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonalBusinessViewController.m; sourceTree = "<group>"; };
 		C86E9BF9170994C7000C60F2 /* UINavigationBar+CostomNavigationBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+CostomNavigationBar.h"; sourceTree = "<group>"; };
@@ -602,6 +604,7 @@
 		04D2C1F016FFF74F00E11E82 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				C86906E71758AEBA00BF0194 /* 12345.txt */,
 				C82CD92917168C6F0084E732 /* DB */,
 				04D94E4F1743716000194AC4 /* TicketSound.mp3 */,
 				04D94E4D1743714C00194AC4 /* Icon@2x.png */,
@@ -1161,6 +1164,7 @@
 				C817094A1745CD9600811C24 /* aboutIp5@2x.png in Resources */,
 				C817094C1745D0DB00811C24 /* abandonTicket@2x.png in Resources */,
 				C817094E1745D4D800811C24 /* lightGrayArrow@2x.png in Resources */,
+				C86906E81758AEBA00BF0194 /* 12345.txt in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

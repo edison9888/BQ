@@ -57,6 +57,13 @@
     webView =[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     webView.delegate=self;
 //    [webView loadRequest:request];
+//    
+//    NSString *path = [[NSBundle mainBundle] pathForResource:@"12345.txt" ofType:nil];
+//    NSString *str  = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+//    
+//    NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
+//    [webView loadData:data MIMEType:nil textEncodingName:nil baseURL:nil];
+
     [self.view addSubview:webView];
     
     //加载html界面
@@ -90,7 +97,9 @@
 //    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",_number.numId]];   // 保存文件的名称
     NSString *filePath = [[Bundle docoumentRootPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",_number.numId]];
     BOOL result = [UIImagePNGRepresentation(image)writeToFile:filePath atomically:YES];
-    NSLog(@"保存沙盒成功===%d",result);
+    if (debug) {
+        NSLog(@"保存沙盒成功===%d",result);
+    }
     
     //保存相册
     //UIImageWriteToSavedPhotosAlbum( image, self, @selector(image:didFinishSavingWithError:contextInfo:) , nil ) ;
@@ -99,13 +108,20 @@
 //获取信息并加密des+base64
 - (NSString *)getEncode{
     
-    NSString *formStr = [webView stringByEvaluatingJavaScriptFromString:@"document.getElementById('text').value"];
-//    formStr = [NSString stringWithFormat:@"{name:邹露,age:24,sex:女}"];
+    NSString *formStr = [webView stringByEvaluatingJavaScriptFromString:@"formrecevice();"];
     
-    if (formStr.length==0) {
+    NSInteger formCheck = [[webView stringByEvaluatingJavaScriptFromString:@"formCheck();"] intValue];
+
+//    NSLog(@"formStr%@",formStr);
+//    NSLog(@"formCheckStr%ld",(long)formCheck);
+    
+    if(formCheck ==0){
+        return 0;
+    }
+    else if (formStr.length==0) {
         NSLog(@"填写信息不能为空");
         return 0;
-    }else{
+    }else if(![formStr isEqualToString:@""] && formCheck !=0){
         
         _number.image = [self createQrCode:formStr];
         
@@ -117,6 +133,7 @@
         
         return data64;
     }
+    return 0;
 }
 
 //个人信息

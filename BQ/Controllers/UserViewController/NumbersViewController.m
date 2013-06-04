@@ -68,7 +68,9 @@
         if ([fm fileExistsAtPath:path]) {
             BOOL succeeded =[fm removeItemAtPath:path error:&error];
             
-            NSLog(@"succeeded--%d,%@",succeeded,error);
+            if (debug) {
+                NSLog(@"succeeded--%d,%@",succeeded,error);
+            }
         }
     }
 }
