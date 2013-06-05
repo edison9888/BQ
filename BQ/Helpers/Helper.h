@@ -18,4 +18,6 @@
 
 + (UIBarButtonItem *)rightBarButtonItemWithSetButton:(id)sender;
 
++ (UIBarButtonItem *)rightBarButtonItemWithSendButton:(id)sender;
+
 @end

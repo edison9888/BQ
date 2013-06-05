@@ -58,7 +58,6 @@ static HomeViewController *instance = nil;
     [UIView setAnimationDuration:0];
     [UIView setAnimationDuration:0.3f];
     
-//    NSLog(@"%@",self.tabBarController.view.subviews);
     for(UIView *view in self.tabBarController.view.subviews)
     {
         if([view isKindOfClass:[UITabBar class]])

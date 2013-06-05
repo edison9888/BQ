@@ -19,6 +19,7 @@
 #import "CodeViewController.h"
 #import "QRCodeGenerator.h"
 #import "Bundle.h"
+#import "Helper.h"
 
 #define AES_BASE64_KEY @"20120401"
 
@@ -51,9 +52,10 @@
 //    [btn setBackgroundColor:[UIColor yellowColor]];
 //    [btn addTarget:self action:@selector(signClick) forControlEvents:UIControlEventTouchUpInside];
 //    [self.navigationController.navigationBar  addSubview:btn];
+    self.title = @"预填单";
     
-    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"提交" style:UIBarButtonItemStylePlain target:self action:@selector(setPersonalInfo:)];
-
+    self.navigationItem.rightBarButtonItem = [Helper rightBarButtonItemWithSendButton:self];
+    
     webView =[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, self.view.frame.size.width, self.view.frame.size.height)];
     webView.delegate=self;
 //    [webView loadRequest:request];
@@ -79,7 +81,6 @@
         
         [webView loadData:data MIMEType:nil textEncodingName:nil baseURL:nil];
     }];
-
 }
 
 - (UIImage *)createQrCode:(NSString *)formStr{
@@ -126,10 +127,11 @@
         _number.image = [self createQrCode:formStr];
         
         NSString *data64 = [NSString encryptUseDES:formStr key:AES_BASE64_KEY];
-        NSLog(@"textEncode: %@", data64);
         
-        NSString *decode = [NSString decryptUseDES:data64 key:AES_BASE64_KEY];
-        NSLog(@"textDecode: %@", decode);    
+//        NSLog(@"textEncode: %@", data64);
+ 
+///*解码*/  NSString *decode = [NSString decryptUseDES:data64 key:AES_BASE64_KEY];
+//        NSLog(@"textDecode: %@", decode);    
         
         return data64;
     }
@@ -137,7 +139,7 @@
 }
 
 //个人信息
-- (void)setPersonalInfo:(id)sender{
+- (void)sendPersonalInfo:(id)sender{
     //获得加密信息
     NSString *encoded = [self getEncode];
     if (encoded==0) {
@@ -147,8 +149,8 @@
     NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:encoded,@"formcon",_number.numId,@"numid", nil];
     
     [Form sendPersonalInfo:dic WithBlock:^{
-        
-        
+        //回调首页
+        [self.navigationController popToRootViewControllerAnimated:YES];
     }];
 }
 

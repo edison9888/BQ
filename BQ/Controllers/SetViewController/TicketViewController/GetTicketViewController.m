@@ -112,8 +112,6 @@
                     return ;
                 } completion:^(BOOL finished) {
 //                    NSLog(@"NSDate%@",[NSDate date]);
-                    //0.5f 返回首页
-//                    [self performSelector:@selector(backToLastVC) withObject:ticketView afterDelay:0.5f];
                     //是否有预填单
                     [self isAlertViewToFormViewController];
                 }];
@@ -131,6 +129,9 @@
     if (_number.isNeedForm==1) {
         UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"提醒" message:@"填写预填单吗?" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定", nil];
         [alertView show];
+    }else{
+        //0.5f 返回首页
+        [self performSelector:@selector(backToLastVC) withObject:ticketView afterDelay:0.5f];
     }
 }
 

@@ -54,6 +54,8 @@
     BQNetClient *client = [BQNetClient sharedClient];
     [client postPath:@"filledform/sendformdata" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
+        [SVProgressHUD dismissWithSuccess:@"提交成功" afterDelay:1.0f];
+
         NSDictionary *dic =(NSDictionary *)responseObject;
         
         if (![dic isKindOfClass:[NSString class]]) {
@@ -61,12 +63,14 @@
             NSLog(@"from.htmlId%@",from.htmlId);
         }
         
-        NSLog(@"send%@",dic);
+        if (debug) {
+            NSLog(@"send%@",dic);
+        }
+        
        
         if(block)
             block();
         
-        [SVProgressHUD dismissWithSuccess:@"提交成功" afterDelay:0.4f];
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         //        [SVProgressHUD dismissWithError:@"网络异常" afterDelay:0.4f];
 //        if(block)

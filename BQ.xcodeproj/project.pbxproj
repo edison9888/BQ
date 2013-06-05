@@ -156,6 +156,8 @@
 		C87472271740F2F700429F77 /* SVProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = C87472251740F2F700429F77 /* SVProgressHUD.m */; };
 		C883E5881713B6580029B6B5 /* MapShowViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C883E5871713B6580029B6B5 /* MapShowViewController.m */; };
 		C891491B1711218800958605 /* MyAnnotation.m in Sources */ = {isa = PBXBuildFile; fileRef = C891491A1711218800958605 /* MyAnnotation.m */; };
+		C8943309175ED61E0084EC9D /* referButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8943308175ED61E0084EC9D /* referButton@2x.png */; };
+		C894330B175ED62C0084EC9D /* referSelectedButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C894330A175ED62C0084EC9D /* referSelectedButton@2x.png */; };
 		C89FCDA3175499FD000B2A1B /* FBEncryptorAES.m in Sources */ = {isa = PBXBuildFile; fileRef = C89FCDA2175498AF000B2A1B /* FBEncryptorAES.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C89FCDA417549A73000B2A1B /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = C89FCDA01754986E000B2A1B /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C8AE8ECC171D1C7B00098213 /* AboutUsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8ECB171D1C7B00098213 /* AboutUsViewController.m */; };
@@ -405,6 +407,8 @@
 		C883E5871713B6580029B6B5 /* MapShowViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MapShowViewController.m; sourceTree = "<group>"; };
 		C89149191711218800958605 /* MyAnnotation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyAnnotation.h; sourceTree = "<group>"; };
 		C891491A1711218800958605 /* MyAnnotation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyAnnotation.m; sourceTree = "<group>"; };
+		C8943308175ED61E0084EC9D /* referButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "referButton@2x.png"; sourceTree = "<group>"; };
+		C894330A175ED62C0084EC9D /* referSelectedButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "referSelectedButton@2x.png"; sourceTree = "<group>"; };
 		C89FCD9F1754986E000B2A1B /* NSData+Base64.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
 		C89FCDA01754986E000B2A1B /* NSData+Base64.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
 		C89FCDA1175498AF000B2A1B /* FBEncryptorAES.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FBEncryptorAES.h; sourceTree = "<group>"; };
@@ -656,6 +660,8 @@
 		04D2C20A16FFF79C00E11E82 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				C8943308175ED61E0084EC9D /* referButton@2x.png */,
+				C894330A175ED62C0084EC9D /* referSelectedButton@2x.png */,
 				C81709461745CD5F00811C24 /* AboutUs */,
 				C82CD91B17165D720084E732 /* MyTicketImage */,
 				C80CF833171536D200889D03 /* GetTicketImage */,
@@ -1165,6 +1171,8 @@
 				C817094C1745D0DB00811C24 /* abandonTicket@2x.png in Resources */,
 				C817094E1745D4D800811C24 /* lightGrayArrow@2x.png in Resources */,
 				C86906E81758AEBA00BF0194 /* 12345.txt in Resources */,
+				C8943309175ED61E0084EC9D /* referButton@2x.png in Resources */,
+				C894330B175ED62C0084EC9D /* referSelectedButton@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

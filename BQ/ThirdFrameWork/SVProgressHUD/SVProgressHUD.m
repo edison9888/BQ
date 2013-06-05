@@ -407,9 +407,6 @@
                              [overlayWindow removeFromSuperview];
                              overlayWindow = nil;
                              
-                             // uncomment to make sure UIWindow is gone from app.windows
-                             //NSLog(@"%@", [UIApplication sharedApplication].windows);
-                             //NSLog(@"keyWindow = %@", [UIApplication sharedApplication].keyWindow);
                          }
                      }];
 }

@@ -42,6 +42,7 @@ typedef enum {
         UIButton *refreshBtn;
     
         NSInteger coverInt;
+        NSString *imageFileStr;
 }
 
 @property(nonatomic,strong) Number *number;

@@ -38,7 +38,9 @@
         NSDictionary *dic = responseObject;
 
         NSArray *jsonArr = [dic objectForKey:@"serviceType"];
-        NSLog(@"father===responseObject%@",dic);
+        if (debug) {
+            NSLog(@"father===responseObject%@",dic);
+        }
 
         if ([jsonArr isKindOfClass:[NSDictionary class]]) {
             Business *business = [[Business alloc] initWithItem:(NSDictionary *)jsonArr];

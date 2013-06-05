@@ -60,5 +60,15 @@
     return barItem;
 }
 
-
++ (UIBarButtonItem *)rightBarButtonItemWithSendButton:(id)sender{
+    UIButton *_button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [_button setBackgroundImage:[UIImage imageNamed:@"referButton@2x"] forState:UIControlStateNormal];
+    [_button setBackgroundImage:[UIImage imageNamed:@"referSelectedButton@2x"] forState:UIControlStateSelected];
+    [_button setFrame:CGRectMake(0, 0, 54,35)];
+    [_button addTarget:sender action:@selector(sendPersonalInfo:) forControlEvents:UIControlEventTouchUpInside];
+    
+    UIBarButtonItem *barItem = [[UIBarButtonItem alloc]initWithCustomView:_button];
+    
+    return barItem;
+}
 @end

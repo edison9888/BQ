@@ -265,19 +265,21 @@
     }
     
     if (_number.isNeedForm==1) {
-        NSString *imageFileStr = [self getPath];
+        imageFileStr = [self getPath];
         qrImageView.image = [UIImage imageWithContentsOfFile:imageFileStr];
     }
 }
 
 - (NSString *)getPath{
+    NSFileManager *fileManager = [[NSFileManager alloc] init];
+    
+     NSString *filePath = [[Bundle docoumentRootPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",_number.numId]];
+    
+    if ([fileManager fileExistsAtPath:filePath]) {
+        return filePath;
+    }else
+        return nil;
 
-    NSString *filePath = [[Bundle docoumentRootPath] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",_number.numId]];
-
-//    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory,NSUserDomainMask, YES);
-//    NSString *filePath = [[paths objectAtIndex:0] stringByAppendingPathComponent:[NSString stringWithFormat:@"%@.png",_number.numId]];
-//    NSLog(@"%@",filePath);
-    return filePath;
 }
 
 #pragma mark ---UIGestureRecognizerDelegate
@@ -295,7 +297,7 @@
 
 -(void)handleSingleTap:(id)sender{
     
-    if (_number.isNeedForm==2) {
+    if (_number.isNeedForm==2 || imageFileStr ==nil) {
         return;
     }
     
