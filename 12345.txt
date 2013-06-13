@@ -48,6 +48,7 @@
             function formrecevice() {
                 var str = '{';
                 for (var i = 0; i < newArray.length; i++) {
+                alert(newArray[i]);
                     if (i == (newArray.length) - 1) {
                         str += newArray[i] + ':' + $('#' + newArray[i]).val();
                     } else {
@@ -83,7 +84,7 @@
             <input type="hidden"  name="backmoney" id="backmoney" value="0" />
             <div style=" text-align: left;">
                 <label for="card">收款人卡号:</label>
-                <input type="text" name="bankcard" id="bankcard" value=""  onfocus="inputfocus(this)"  style=""/>
+                <input type="text" name="bankcard" id="bankcard" value=""  onfocus="inputfocus(this)"  onkeyup="value=value.replace(/[\W]/g,'') "  style=""/>
             </div>
             <div style=" text-align: left;">
                 <label for="name">收款人姓名:</label>
@@ -91,9 +92,8 @@
             </div>
             <div data-role="fieldcontain" style=" text-align: left; ">
 　           <label for="seleccost" class="select">金额:</label>
-                <select  style=" " data-native-menu="false" name="seleccost"   onclick="selectempty()" onfocus="inputfocus(this)" id="seleccost" onchange="$('#seleccost-button').css('box-shadow', '0 1px 4px rgba(0, 0, 0, 0.2) inset');
-                $('#bankcost').val('')">
-                    <option value="0" selected="selected">请选择金额</option>
+                <select  style=" " data-native-menu="false" name="seleccost"   onclick="selectempty()" onfocus="inputfocus(this)" id="seleccost" onchange="$('#seleccost-button').css('box-shadow', '0 1px 4px rgba(0, 0, 0, 0.2) inset');$('#bankcost').val('');">
+                    <option value="0">请选择金额</option>
                     <option value="100">100</option>
                     <option value="300">300</option>
                     <option value="800">800</option>
@@ -106,6 +106,10 @@
             <div  style=" text-align: left;  ">
 　          <label for="bankcost">如金额下拉框没有,请输入框填写</label>
                 <input  onfocus="inputfocus(this)"   type="text" name="bankcost" id="bankcost" value=""  onkeyup="checkNum(this);$('#seleccost-button').css('box-shadow', '0 1px 4px rgba(0, 0, 0, 0.2) inset');$('#seleccost option[value=0]').attr('selected', 'selected'); $('#seleccost').selectmenu('refresh');" />
+            </div>
+             <div  style=" text-align: left;  ">
+　          <label for="bankbutton">提交</label>
+                <input   type="button" name="bankbutton" id="bankbutton" value=""  onclick="formCheck()" />
             </div>
         </div>
     </body>

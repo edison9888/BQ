@@ -65,8 +65,8 @@
 //    
 //    NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
 //    [webView loadData:data MIMEType:nil textEncodingName:nil baseURL:nil];
-
-    [self.view addSubview:webView];
+//
+//    [self.view addSubview:webView];
     
     //加载html界面
     [self getHtmlData];
@@ -109,9 +109,10 @@
 //获取信息并加密des+base64
 - (NSString *)getEncode{
     
+    NSInteger formCheck = [[webView stringByEvaluatingJavaScriptFromString:@"formCheck()"] intValue];
+    
     NSString *formStr = [webView stringByEvaluatingJavaScriptFromString:@"formrecevice()"];
     
-    NSInteger formCheck = [[webView stringByEvaluatingJavaScriptFromString:@"formCheck()"] intValue];
 
     NSLog(@"formStr%@",formStr);
 //    NSLog(@"formCheckStr%ld",(long)formCheck);

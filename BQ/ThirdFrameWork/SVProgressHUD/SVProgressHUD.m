@@ -341,7 +341,7 @@
 - (void)showWithStatus:(NSString*)string maskType:(SVProgressHUDMaskType)hudMaskType networkIndicator:(BOOL)show {
     if(!self.superview)
         [self.overlayWindow addSubview:self];
-    
+
     self.fadeOutTimer = nil;
     self.imageView.hidden = YES;
     self.maskType = hudMaskType;
