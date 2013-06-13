@@ -4,63 +4,63 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.css" rel="stylesheet" />
-        <script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"> </script>
+        <script src="http://code.jquery.com/jquery-1.7.1.min.js" type="text/javascript"></script>
         <script src="http://code.jquery.com/mobile/1.1.1/jquery.mobile-1.1.1.min.js" type="text/javascript"></script>
         <title></title>
         <script type="text/javascript">
-            var newArray = new Array('bankcard','receviename','backmoney');
-            function formCheck(){
-                var inputfield = new Array('bankcard','receviename');
-                var inputcostfield = new Array('bankcost','seleccost');
+            var newArray = new Array('bankcard', 'receviename', 'backmoney');
+            function formCheck() {
+                var inputfield = new Array('bankcard', 'receviename');
+                var inputcostfield = new Array('bankcost', 'seleccost');
                 var num = 0;
                 var costcolor = '';
-                //验证表单元素 是否都有填写 如没有 则添加红色阴影
-                for(var i = 0;i<inputfield.length;i++){
-                    if($('#'+inputfield[i]).val() == ''){
-                        $('#'+inputfield[i]).css('box-shadow','0 0 12px red');
-                    } else{
+                for (var i = 0; i < inputfield.length; i++) {
+                    if ($('#' + inputfield[i]).val() == '') {
+                        $('#' + inputfield[i]).css('box-shadow', '0 0 4px red');
+                    } else {
                         num++;
+                        $('#' + inputfield[i]).css('box-shadow', '0 1px 4px rgba(0, 0, 0, 0.2) inset');
                     }
                 }
-                //验证金额下拉框和金额输入框 其中只需要填写一个即可 如2个都没有填写
-                for(var i = 0 ;i<inputcostfield.length;i++){
-                    if($('#'+inputcostfield[i]).val() == '' ||  $('#'+inputcostfield[i]).val() == 0){
+                for (var i = 0; i < inputcostfield.length; i++) {
+                    if ($('#' + inputcostfield[i]).val() == '' || $('#' + inputcostfield[i]).val() == 0) {
                         costcolor = 1;
-                    } else{
-                        $('#backmoney').val($('#'+inputcostfield[i]).val());
+                    } else {
+                        $('#backmoney').val($('#' + inputcostfield[i]).val());
                         costcolor = 0;
                         break;
                     }
                 }
-                if(costcolor == 1){
-                    $('#seleccost-button').css('box-shadow','0 0 12px red');
+                if (costcolor == 1) {
+                    $('#seleccost-button').css('box-shadow', '0 0 4px red');
                     $('#seleccost').selectmenu('refresh');
-                } else{
+                } else {
                     num++;
+                    $('#seleccost-button').css('box-shadow', '0 1px 4px rgba(0, 0, 0, 0.2) inset');
+                    $('#seleccost').selectmenu('refresh');
                 }
-                if(num == 3){
+                if (num == 3) {
                     return 1;
-                } else{
+                } else {
                     return 0;
                 }
             }
-            function formrecevice(){
-                //组装字符串
+            function formrecevice() {
                 var str = '{';
-                for(var i = 0;i<newArray.length;i++){
-                    if(i == (newArray.length) -1){
-                        str+= newArray[i]+ ':'+$('#'+newArray[i]).val();
-                    } else{
-                        str+= newArray[i]+ ':'+$('#'+newArray[i]).val()+',';
+                for (var i = 0; i < newArray.length; i++) {
+                    if (i == (newArray.length) - 1) {
+                        str += newArray[i] + ':' + $('#' + newArray[i]).val();
+                    } else {
+                        str += newArray[i] + ':' + $('#' + newArray[i]).val() + ',';
                     }
                 }
-                str+='}';
+                str += '}';
                 return str;
             }
             function getInteger(val)
             {
-                val = val+"";
-                var ret = val.replace(/\D/g,'');
+                val = val + "";
+                var ret = val.replace(/\D/g, '');
                 return ret;
             }
             function checkNum(obj)
@@ -68,11 +68,11 @@
                 var val = getInteger($(obj).val());
                 $(obj).val(val);
             }
-            function inputfocus(obj){
-//                $(obj).css('box-shadow','0 1px 4px rgba(0, 0, 0, 0.2) inset');
+            function inputfocus(obj) {
+                $(obj).css('box-shadow', '0 0px 4px #387BBE');
             }
-            function selectempty(){
-                $('#seleccost-button').css('box-shadow','0 1px 4px rgba(0, 0, 0, 0.2) inset');
+            function selectempty() {
+                $('#seleccost-button').css('box-shadow', '0 1px 4px rgba(0, 0, 0, 0.2) inset');
                 $('#seleccost').selectmenu('refresh');
             }
         </script>
@@ -91,7 +91,8 @@
             </div>
             <div data-role="fieldcontain" style=" text-align: left; ">
 　           <label for="seleccost" class="select">金额:</label>
-                <select  style=" " data-native-menu="false" name="seleccost"   onclick="selectempty()" onfocus="inputfocus(this)" id="seleccost" onchange="$('#seleccost-button').css('box-shadow','0 1px 4px rgba(0, 0, 0, 0.2) inset');$('#bankcost').val('')">
+                <select  style=" " data-native-menu="false" name="seleccost"   onclick="selectempty()" onfocus="inputfocus(this)" id="seleccost" onchange="$('#seleccost-button').css('box-shadow', '0 1px 4px rgba(0, 0, 0, 0.2) inset');
+                $('#bankcost').val('')">
                     <option value="0" selected="selected">请选择金额</option>
                     <option value="100">100</option>
                     <option value="300">300</option>
@@ -104,11 +105,8 @@
             </div>
             <div  style=" text-align: left;  ">
 　          <label for="bankcost">如金额下拉框没有,请输入框填写</label>
-                <input  onfocus="inputfocus(this)"   type="text" name="bankcost" id="bankcost" value=""  onkeyup="checkNum(this);$('#seleccost-button').css('box-shadow','0 1px 4px rgba(0, 0, 0, 0.2) inset');$('#seleccost option[value=0]').attr('selected','selected');$('#seleccost').selectmenu('refresh');" />
+                <input  onfocus="inputfocus(this)"   type="text" name="bankcost" id="bankcost" value=""  onkeyup="checkNum(this);$('#seleccost-button').css('box-shadow', '0 1px 4px rgba(0, 0, 0, 0.2) inset');$('#seleccost option[value=0]').attr('selected', 'selected'); $('#seleccost').selectmenu('refresh');" />
             </div>
         </div>
-        <!--        <div data-role="button" onclick="formCheck()"  style=" text-align: left; width: 320px; ">
-                    123123
-                </div>-->
     </body>
 </html>

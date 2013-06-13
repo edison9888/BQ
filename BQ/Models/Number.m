@@ -96,6 +96,7 @@
             block(numArr);        
 
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        
         NSLog(@"%@",error.localizedRecoverySuggestion);
         
     }];

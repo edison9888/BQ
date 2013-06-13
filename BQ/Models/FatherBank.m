@@ -31,7 +31,6 @@
     [client getPath:@"bankType/getAllType" parameters:nil success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
 
-
         NSDictionary *dic = responseObject;
         NSArray *jsonArr;
         

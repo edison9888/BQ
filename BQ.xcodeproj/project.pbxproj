@@ -113,8 +113,6 @@
 		C8385497171275F1007B969A /* okButton@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8385496171275F1007B969A /* okButton@2x.png */; };
 		C83CD6331724E4F400835F70 /* homeTicket5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD6321724E4F400835F70 /* homeTicket5@2x.png */; };
 		C83CD6371724E54F00835F70 /* homeTicket4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD6361724E54F00835F70 /* homeTicket4@2x.png */; };
-		C83CD641172522A300835F70 /* light@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD640172522A300835F70 /* light@2x.png */; };
-		C83CD643172522AF00835F70 /* noNetwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C83CD642172522AF00835F70 /* noNetwork@2x.png */; };
 		C84FF45117262D63000D5BE9 /* notePin@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C84FF45017262D63000D5BE9 /* notePin@2x.png */; };
 		C85B7D6117374F72004E02A0 /* NumbersViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = C85B7D6017374F72004E02A0 /* NumbersViewController.m */; };
 		C85CD6C31712AD4C007512C3 /* LocationManager.m in Sources */ = {isa = PBXBuildFile; fileRef = C85CD6C21712AD4C007512C3 /* LocationManager.m */; };
@@ -334,8 +332,6 @@
 		C8385496171275F1007B969A /* okButton@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "okButton@2x.png"; sourceTree = "<group>"; };
 		C83CD6321724E4F400835F70 /* homeTicket5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeTicket5@2x.png"; sourceTree = "<group>"; };
 		C83CD6361724E54F00835F70 /* homeTicket4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "homeTicket4@2x.png"; sourceTree = "<group>"; };
-		C83CD640172522A300835F70 /* light@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "light@2x.png"; sourceTree = "<group>"; };
-		C83CD642172522AF00835F70 /* noNetwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "noNetwork@2x.png"; sourceTree = "<group>"; };
 		C84FF45017262D63000D5BE9 /* notePin@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "notePin@2x.png"; sourceTree = "<group>"; };
 		C85B7D5F17374F72004E02A0 /* NumbersViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NumbersViewController.h; sourceTree = "<group>"; };
 		C85B7D6017374F72004E02A0 /* NumbersViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NumbersViewController.m; sourceTree = "<group>"; };
@@ -829,8 +825,6 @@
 				C8171AAF17420F91001BB394 /* AbandonTicket */,
 				C87472011740C18B00429F77 /* finger@2x.png */,
 				C87471FF1740BCB900429F77 /* paper@2x.png */,
-				C83CD642172522AF00835F70 /* noNetwork@2x.png */,
-				C83CD640172522A300835F70 /* light@2x.png */,
 				C8F789911738F675001A621D /* myTicketBg@2x.png */,
 				C83CD6361724E54F00835F70 /* homeTicket4@2x.png */,
 				C83CD6321724E4F400835F70 /* homeTicket5@2x.png */,
@@ -1118,8 +1112,6 @@
 				C86068D1171BD36100534197 /* beiJing@2x.png in Resources */,
 				C83CD6331724E4F400835F70 /* homeTicket5@2x.png in Resources */,
 				C83CD6371724E54F00835F70 /* homeTicket4@2x.png in Resources */,
-				C83CD641172522A300835F70 /* light@2x.png in Resources */,
-				C83CD643172522AF00835F70 /* noNetwork@2x.png in Resources */,
 				C84FF45117262D63000D5BE9 /* notePin@2x.png in Resources */,
 				C8F7898A1738F38C001A621D /* bigBack4@2x.png in Resources */,
 				C8F7898C1738F3A5001A621D /* bigBack5@2x.png in Resources */,

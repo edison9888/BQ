@@ -15,7 +15,7 @@
 
 #import "AppDelegate.h"
 #import "Bank.h"
-
+#import "SVProgressHUD.h"
 #define SpanDelta 0.1
 
 @interface MapViewController ()
@@ -25,12 +25,25 @@
 @implementation MapViewController
 @synthesize mapVC,mapListVC;
 
+static MapViewController *instance = nil;
+
++ (MapViewController *)instance  {    
+    
+    if(!instance) {
+        instance = [[MapViewController alloc] init];
+    }
+    
+    return instance;
+}
+
 - (id)init
 {
     self = [super init];
     if (self) {
         
         _locationArrs=[NSMutableArray array];
+        instance=self;
+
     }
     return self;
 }
@@ -48,7 +61,6 @@
     
     locationManager = [[LocationManager alloc] init];
     locationManager.roloadDelegate=self;
-    [locationManager startUpdate];
     
     //工具条
     ToolBar *toolBar = [[ToolBar alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height-TabBarHeight-NavigationHeight, self.view.frame.size.width, TabBarHeight) viewController:self];
@@ -84,7 +96,14 @@
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
-    
+    //清理之前数据
+    [_locationArrs removeAllObjects];
+    [self reloadData];
+
+    //定位
+    [locationManager startUpdate];
+    [SVProgressHUD show];
+
     //调用接口
 //    [self getDataFormApi];
    

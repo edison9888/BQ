@@ -46,5 +46,6 @@ typedef enum {
 
 @property(nonatomic,strong) FatherBank *fatherBank;
 
++ (MapViewController *)instance;
 - (void)getDataFormApi;
 @end

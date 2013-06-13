@@ -74,10 +74,10 @@
         //区
         [[NSUserDefaults standardUserDefaults] setValue:[placemark.addressDictionary objectForKey:@"SubLocality"] forKey:@"SubLocality"];
         //经纬度
-        [[NSUserDefaults standardUserDefaults] setDouble:placemark.location.coordinate.latitude forKey:@"Lat"];
-        [[NSUserDefaults standardUserDefaults] setDouble:placemark.location.coordinate.longitude forKey:@"Log"];
+        [[NSUserDefaults standardUserDefaults] setDouble:placemark.region.center.latitude forKey:@"Lat"];
+        [[NSUserDefaults standardUserDefaults] setDouble:placemark.region.center.longitude forKey:@"Log"];
         
-        if ([self.roloadDelegate respondsToSelector:@selector(locationManagerRoloadDataAddtionToLatAndLogDelegage)]) {
+        if ([self.roloadDelegate respondsToSelector:@selector(locationManagerRoloadDataAddtionToLatAndLogDelegage)]){
             [self.roloadDelegate locationManagerRoloadDataAddtionToLatAndLogDelegage];
         }
         

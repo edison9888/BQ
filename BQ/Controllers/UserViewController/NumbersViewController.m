@@ -159,11 +159,16 @@
     
     NSArray *idsArr = [Number selectNumbersInfoFromDatabase];
 
+    [self nullTicketView:idsArr.count];
+
     if (idsArr.count==0) {
-        _numberArr=[NSMutableArray array];
-        [numberTableView reloadData];
+//        _numberArr=[NSMutableArray array];
+//        [numberTableView reloadData];
+        //无票提醒
+
         return;
     }
+
 
     NSString *idsStr = [idsArr componentsJoinedByString:@","];
     
@@ -173,7 +178,8 @@
 
     [Number refreshBankNumbers:dic WithBlock:^(NSArray *arr) {
         
-        if (arr.count!=0) {        
+        if (arr.count!=0) {
+            //消失
             
             NSArray* reversedArray = [[arr reverseObjectEnumerator] allObjects];
             _numberArr=[NSMutableArray arrayWithArray:reversedArray];
@@ -220,11 +226,14 @@
 - (void)getNumbersFromSqliteWithoutNet{
     NSArray *regionArr = [NSMutableArray arrayWithArray:[Number getNumbersFromSqliteWithoutNet]];
     
+    [self nullTicketView:regionArr.count];
+
     if (regionArr.count==0) {
-//        [self changeBgImageView];
-//        [self nullTicketView:regionArr.count];
-        //测试
-        [self tempNumberArr];
+        //假数据测试
+        if (debug) {
+            [self tempNumberArr];
+            [self nullTicketView:_numberArr.count];
+        }
         return;
     }
     
@@ -269,22 +278,22 @@
 }
 
 //无票时显示
-- (void)nullTicketView:(NSInteger)count :(UITableViewCell *)cell{
-    NoTicketView *noTicketView =(NoTicketView *)[cell viewWithTag:120];
-
-    if (count==0) {
-        if (iPhone5)
-            heightIphone5=HeightIphone5;
-        else
-            heightIphone5=0;
-
-        NoTicketView *noTicketView =[[NoTicketView alloc] initWithFrame:CGRectMake(5, NoTicketHeight,310,400+heightIphone5*2) heightIphone5:heightIphone5];
-        noTicketView.tag=120;
-        [cell addSubview:noTicketView];
-    }else{
-        [noTicketView removeFromSuperview];
-    }
-}
+//- (void)nullTicketView:(NSInteger)count :(UITableViewCell *)cell{
+//    NoTicketView *noTicketView =(NoTicketView *)[cell viewWithTag:120];
+//
+//    if (count==0) {
+//        if (iPhone5)
+//            heightIphone5=HeightIphone5;
+//        else
+//            heightIphone5=0;
+//
+//        NoTicketView *noTicketView =[[NoTicketView alloc] initWithFrame:CGRectMake(5, NoTicketHeight,310,400+heightIphone5*2) heightIphone5:heightIphone5];
+//        noTicketView.tag=120;
+//        [cell addSubview:noTicketView];
+//    }else{
+//        [noTicketView removeFromSuperview];
+//    }
+//}
 
 
 #pragma mark--
@@ -313,6 +322,31 @@
         UIImageView *imageView =(UIImageView *)[self.view viewWithTag:13];
         [imageView removeFromSuperview];
     }
+}
+
+//无票时显示
+- (void)nullTicketView:(NSInteger)count{
+
+      NoTicketView *noTicketView =(NoTicketView *)[numberTableView viewWithTag:120];
+    
+      if (count==0) {
+          if (iPhone5)
+              heightIphone5=HeightIphone5;
+          else
+              heightIphone5=0;
+    
+          NoTicketView *noTicketView =[[NoTicketView alloc] initWithFrame:CGRectMake(5, NoTicketHeight,310,400+heightIphone5*2) heightIphone5:heightIphone5];
+          noTicketView.tag=120;
+          [numberTableView addSubview:noTicketView];
+          
+          //draw tableView contentSize
+          [numberTableView layoutSubviews];
+          numberTableView.contentSize= CGSizeMake(self.view.frame.size.width, 400+heightIphone5*2+15);
+          
+        }else{
+          
+          [noTicketView removeFromSuperview];
+      }
 }
 
 
@@ -379,23 +413,13 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    if (_numberArr.count==0) {
-        if (iPhone5)
-            heightIphone5=HeightIphone5;
-        else
-            heightIphone5=0;
 
-        return 400+heightIphone5*2+NoTicketHeight;
-    }else
         return 362;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if (_numberArr.count==0) {
-        return 1;
-    }
-    else
-        return self.numberArr.count;
+
+    return self.numberArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -411,39 +435,32 @@
     if (number.numStatus==1 || number.numStatus==4) {
         type=abandonTicket;
     }
-
-    if (_numberArr.count==0) {
-        if (!cell) {
-            
-            cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
-            cell.selectionStyle =UITableViewCellSelectionStyleNone;
-            [self nullTicketView:0 :cell];
-        }
-
-        return cell;
-        
-    }else{
-        [self nullTicketView:_numberArr.count :cell];
-                       
+    
+    if (_numberArr.count!=0) {
         if (reloadOneTicketIndex==0) {
-//            if (!cell) {
-                cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
-                cell.myTicketView.number=number;
-                cell.selectionStyle =UITableViewCellSelectionStyleNone;
-//            }
+            //            if (!cell) {
+            cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
+            cell.myTicketView.number=number;
+            cell.selectionStyle =UITableViewCellSelectionStyleNone;
+            //            }
             return cell;
         }
         else{
             if (indexPath.row==reloadOneTicketIndex-10) {
+                
+                Number *number = [reloadOneTicketArr objectAtIndex:0];
+                
+                [_numberArr replaceObjectAtIndex:indexPath.row withObject:number];
+                
                 cell = [[MyTicketTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier delegate:self index:indexPath.row+10 type:type];
-                cell.myTicketView.number=[reloadOneTicketArr objectAtIndex:0];
+                cell.myTicketView.number=number;
                 cell.selectionStyle =UITableViewCellSelectionStyleNone;
-
+                
                 [self rotateRefreshView:cell.myTicketView.refreshImageView];
                 
                 reloadOneTicketIndex=0;
             }
-
+            
             return cell;
         }
     }

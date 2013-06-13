@@ -109,21 +109,17 @@
 //获取信息并加密des+base64
 - (NSString *)getEncode{
     
-    NSString *formStr = [webView stringByEvaluatingJavaScriptFromString:@"formrecevice();"];
+    NSString *formStr = [webView stringByEvaluatingJavaScriptFromString:@"formrecevice()"];
     
-    NSInteger formCheck = [[webView stringByEvaluatingJavaScriptFromString:@"formCheck();"] intValue];
+    NSInteger formCheck = [[webView stringByEvaluatingJavaScriptFromString:@"formCheck()"] intValue];
 
-//    NSLog(@"formStr%@",formStr);
+    NSLog(@"formStr%@",formStr);
 //    NSLog(@"formCheckStr%ld",(long)formCheck);
     
     if(formCheck ==0){
-        return 0;
-    }
-    else if (formStr.length==0) {
         NSLog(@"填写信息不能为空");
         return 0;
-    }else if(![formStr isEqualToString:@""] && formCheck !=0){
-        
+    }else{
         _number.image = [self createQrCode:formStr];
         
         NSString *data64 = [NSString encryptUseDES:formStr key:AES_BASE64_KEY];

@@ -96,7 +96,8 @@
     numberVC = [[NumbersViewController alloc]init];
     navHomeVc = [[UINavigationController alloc] initWithRootViewController:numberVC];
     navHomeVc.navigationBarHidden=YES;
-    [self.window setRootViewController:navHomeVc];
+    self.window.rootViewController = navHomeVc;
+
     [self.window makeKeyAndVisible];
     
         

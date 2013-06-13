@@ -15,6 +15,7 @@
 
 #import "FormViewController.h"
 #import "CodeViewController.h"
+
 @interface SelectBankViewController ()
 
 @end
@@ -79,7 +80,7 @@
     
     SetViewController *setVC = [[SetViewController alloc]init];
     [self.navigationController pushViewController:setVC animated:YES];
-//
+
 //    FormViewController *formVC = [[FormViewController alloc] init];
 //    [self.navigationController pushViewController:formVC animated:YES];
     
@@ -135,7 +136,7 @@
     
     FatherBank *fatherBank = [self.banksArr objectAtIndex:indexPath.row];
 
-    MapViewController *mapVC = [[MapViewController alloc] init];
+    MapViewController *mapVC = [MapViewController instance];
     mapVC.homeVC=(HomeViewController *)_delegate;
     mapVC.fatherBank=fatherBank;
     [self.navigationController pushViewController:mapVC animated:YES];

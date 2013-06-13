@@ -141,6 +141,8 @@
         formVC.number=_number;
         [self.navigationController pushViewController:formVC animated:YES];
 
+    }else{
+        [self backToLastVC];
     }
 }
 

@@ -54,7 +54,7 @@
     BQNetClient *client = [BQNetClient sharedClient];
     [client postPath:@"filledform/sendformdata" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
-        [SVProgressHUD dismissWithSuccess:@"提交成功" afterDelay:1.0f];
+        [SVProgressHUD dismissWithSuccess:@"提交成功"];
 
         NSDictionary *dic =(NSDictionary *)responseObject;
         

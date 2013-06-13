@@ -34,8 +34,6 @@
 
 + (void)getBanksInfo:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block{
     
-    [SVProgressHUD show];
-
     [[BQNetClient sharedClient] getPath:@"bankInfo/getList" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
             NSMutableArray *bankArr = [NSMutableArray array];
         

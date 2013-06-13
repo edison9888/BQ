@@ -54,7 +54,7 @@
         [bgView addSubview:stampImageView];
         
         bankNameLabel = [[UILabel alloc] initWithFrame:CGRectMake(48-10, 20, 194, 30)];
-        bankNameLabel.text = @"您还未选择银行";
+        bankNameLabel.text = @"";
         bankNameLabel.font=[UIFont fontWithName:@"Helvetica-Bold" size:22];
         bankNameLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
         bankNameLabel.backgroundColor = [UIColor clearColor];
@@ -64,7 +64,7 @@
         timeLabel = [[UILabel alloc] initWithFrame:CGRectMake(104-10,50, 80, 12)];
         timeLabel.textColor = [UIColor colorWithRed:75.0f/255 green:85.0f/255 blue:95.0f/255 alpha:1.0f];
         timeLabel.font=[UIFont fontWithName:@"Helvetica" size:10];
-        timeLabel.text = @"2013/3/13  13:14";
+        timeLabel.text = @"";
         timeLabel.backgroundColor = [UIColor clearColor];
         [timeLabel setTextAlignment:NSTextAlignmentCenter];
         [timeLabel setLineBreakMode:NSLineBreakByClipping];
