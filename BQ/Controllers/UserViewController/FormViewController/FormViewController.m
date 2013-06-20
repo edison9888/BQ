@@ -66,7 +66,7 @@
 //    NSData* data = [str dataUsingEncoding:NSUTF8StringEncoding];
 //    [webView loadData:data MIMEType:nil textEncodingName:nil baseURL:nil];
 //
-//    [self.view addSubview:webView];
+    [self.view addSubview:webView];
     
     //加载html界面
     [self getHtmlData];

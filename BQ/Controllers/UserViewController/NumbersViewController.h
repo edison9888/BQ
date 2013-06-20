@@ -23,6 +23,8 @@
         NSInteger heightIphone5,reloadOneTicketIndex;
 
         NSArray *reloadOneTicketArr;
+    
+    UIDatePicker *datePicker;
 //    NSArray *regionArr;
 }
 

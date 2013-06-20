@@ -77,10 +77,11 @@
         }
     }
 }
-  
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     
     reloadOneTicketIndex=0;
     
@@ -118,7 +119,7 @@
     [selectBankButton setImage:[UIImage imageNamed:@"mapBtnSelected"] forState:UIControlStateSelected];
     [selectBankButton setFrame:CGRectMake(self.view.bounds.size.width/2-75/2,25, 75, 73)];
     [downTicketImage addSubview:selectBankButton];   
-
+     
 }
 
 - (void)viewWillAppear:(BOOL)animated{

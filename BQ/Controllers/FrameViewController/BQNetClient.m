@@ -10,7 +10,8 @@
 #import "AFJSONRequestOperation.h"
 #import "SVProgressHUD.h"
 
-#define BaseUrlString @"http://192.168.0.200:8080/bank/ver3/"
+#define OutNetUrlString @"http://223.4.32.153:8080/bank/ver3/" //外网
+#define BaseUrlString @"http://192.168.0.200:8080/bank/ver3/"  //内网
 
 @implementation BQNetClient
 
@@ -19,7 +20,7 @@
     static BQNetClient *_shareClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _shareClient = [[BQNetClient alloc]initWithBaseURL:[NSURL URLWithString:BaseUrlString]];
+        _shareClient = [[BQNetClient alloc]initWithBaseURL:[NSURL URLWithString:OutNetUrlString]];
     });
     return _shareClient;
 }
@@ -28,7 +29,7 @@
     static BQNetClient *_shareClient = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
-        _shareClient = [[BQNetClient alloc]initWithBaseURL:[NSURL URLWithString:BaseUrlString]];
+        _shareClient = [[BQNetClient alloc]initWithBaseURL:[NSURL URLWithString:OutNetUrlString]];
     });
 
     return _shareClient;
@@ -36,7 +37,7 @@
 
 +(NSURLRequest *)getHtmlUrl{
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@bankInfo/getform",BaseUrlString]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@bankInfo/getform",OutNetUrlString]];
     
     NSURLRequest *request=[[NSURLRequest alloc] initWithURL:url];
     

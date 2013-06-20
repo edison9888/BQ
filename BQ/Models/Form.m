@@ -16,7 +16,7 @@
     
     if (self=[super init]) {
         
-        _nameStr = [dic objectForKey:@""];
+        _nameStr = [dic objectForKey:@"name"];
         
         _html = [dic objectForKey:@"result"];
         
