@@ -15,6 +15,9 @@
 
 #define iPhone5 ([UIScreen instancesRespondToSelector:@selector(currentMode)] ? CGSizeEqualToSize(CGSizeMake(640, 1136), [[UIScreen mainScreen] currentMode].size) : NO)
 
+#define SystemVersion [[[UIDevice currentDevice] systemVersion] floatValue]
+
+
 #define SubLocality [[NSUserDefaults standardUserDefaults] objectForKey:@"SubLocality"]
 #define ProId [[[NSUserDefaults standardUserDefaults] objectForKey:@"ProId"] intValue]
 

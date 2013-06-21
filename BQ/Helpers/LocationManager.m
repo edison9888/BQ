@@ -21,7 +21,9 @@
         locationManager  = [[CLLocationManager alloc] init];
         locationManager.delegate = self;
         locationManager.distanceFilter=1000;
-        locationManager.pausesLocationUpdatesAutomatically=NO;
+        if (SystemVersion >6.0) {
+            locationManager.pausesLocationUpdatesAutomatically=NO;
+        }
         locationManager.desiredAccuracy = kCLLocationAccuracyBest;
         
     }
@@ -29,6 +31,8 @@
 }
 
 - (void)startUpdate{
+    [SVProgressHUD show];
+
     [locationManager startUpdatingLocation];
   }
 
@@ -43,6 +47,8 @@
 -(void)locationManager:(CLLocationManager *)manager
    didUpdateToLocation:(CLLocation *)newLocation fromLocation: (CLLocation *)oldLocation
 {
+    [SVProgressHUD dismissWithSuccess:@"定位成功"];
+
      CLGeocoder *geocoder = [[CLGeocoder alloc]init];
      [geocoder reverseGeocodeLocation:newLocation completionHandler:^(NSArray *placemarks, NSError *error) {
     
@@ -82,29 +88,26 @@
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error{
     NSLog(@"更新失败");
     
-    if (![[[NSUserDefaults standardUserDefaults] objectForKey:@"firstFailed"] isEqualToString:@"1"]) {
-        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"请打开定位" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil];
-        [alertView show];
-    }
+    UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"" message:@"请打开定位" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"确定",nil];
+    [alertView show];
 
     [SVProgressHUD dismissWithError:@"定位失败"];
     [self stopUpdate];
     
-    [[NSUserDefaults standardUserDefaults] setValue:[NSString stringWithFormat:@"1"] forKey:@"firstFailed"];
-
 }
 
-//- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
-//    if (buttonIndex) {
-//        NSURL *prefsURL = [NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
-//        
-//        if ([[UIApplication sharedApplication] canOpenURL:prefsURL]) {
-//            [[UIApplication sharedApplication] openURL:prefsURL];
-//        } else {
-//            NSLog(@"手动打开定位");
-//        }
-//    }
-//}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex) {
+        //5.0系统可调内部设置 
+        NSURL *prefsURL = [NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"];
+        
+        if ([[UIApplication sharedApplication] canOpenURL:prefsURL]) {
+            [[UIApplication sharedApplication] openURL:prefsURL];
+        } else {
+            NSLog(@"手动打开定位");
+        }
+    }
+}
 
 
 

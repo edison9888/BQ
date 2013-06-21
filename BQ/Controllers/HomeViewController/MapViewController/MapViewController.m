@@ -56,11 +56,12 @@ static MapViewController *instance = nil;
 //    self.navigationItem.leftBarButtonItem = [Helper leftBarButtonItem:self];
     
     self.navigationItem.rightBarButtonItem = [Helper rightBarButtonItem:self];
-    
-    self.title = _fatherBank.bankTypeName;
-    
+        
     locationManager = [[LocationManager alloc] init];
     locationManager.roloadDelegate=self;
+    //定位
+    [locationManager startUpdate];
+
     
     //工具条
     ToolBar *toolBar = [[ToolBar alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height-TabBarHeight-NavigationHeight, self.view.frame.size.width, TabBarHeight) viewController:self];
@@ -96,13 +97,11 @@ static MapViewController *instance = nil;
 - (void)viewWillAppear:(BOOL)animated{
 
     [super viewWillAppear:animated];
+    self.title = _fatherBank.bankTypeName;
+
     //清理之前数据
     [_locationArrs removeAllObjects];
     [self reloadData];
-
-    //定位
-    [locationManager startUpdate];
-    [SVProgressHUD show];
 
     //调用接口
 //    [self getDataFormApi];
