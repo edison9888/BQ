@@ -27,6 +27,7 @@
 
 
 +(void)getPersonalForm:(NSDictionary *)parameters  WithBlock:(void (^)(NSData *data))block{
+    [SVProgressHUD show];
 
     [[BQNetClient sharedClient] getPath:@"filledform/getform" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
@@ -36,10 +37,12 @@
         if (block) {
             block(data);
         }
+        [SVProgressHUD dismiss];
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
         NSLog(@"%@",error.localizedRecoverySuggestion);
         NSData* data = [error.localizedRecoverySuggestion dataUsingEncoding:NSUTF8StringEncoding];
+        [SVProgressHUD dismissWithError:@"网络异常" afterDelay:0.4f];
 
         if (block) {
             block(data);
@@ -72,7 +75,7 @@
             block();
         
     } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
-        //        [SVProgressHUD dismissWithError:@"网络异常" afterDelay:0.4f];
+        [SVProgressHUD dismissWithError:@"网络异常" afterDelay:0.4f];
 //        if(block)
 //            block(_html);
         NSLog(@"%@",error.localizedRecoverySuggestion);

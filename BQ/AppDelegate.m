@@ -38,7 +38,7 @@
 //    zeroAddress.sin_len = sizeof(zeroAddress);
 //    zeroAddress.sin_family = AF_INET;
     
-    unsigned int addr_test = inet_addr("192.168.1.200");
+    unsigned int addr_test = inet_addr("192.168.0.200");
     struct sockaddr_in serverAddress;
     serverAddress.sin_family = AF_INET;
     serverAddress.sin_port=htons(8080);

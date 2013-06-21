@@ -43,15 +43,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-//    NSString *bundle = [[NSBundle mainBundle] pathForResource:@"1.txt" ofType:nil];
-//    NSData *data = [[NSData alloc]initWithContentsOfFile:bundle];
 
-//    UIButton *btn = [UIButton buttonWithType:UIButtonTypeCustom];
-//    [btn setFrame:CGRectMake(100, 0, 100, 30)];
-//    [btn setBackgroundColor:[UIColor yellowColor]];
-//    [btn addTarget:self action:@selector(signClick) forControlEvents:UIControlEventTouchUpInside];
-//    [self.navigationController.navigationBar  addSubview:btn];
     self.title = @"预填单";
     
     self.navigationItem.rightBarButtonItem = [Helper rightBarButtonItemWithSendButton:self];

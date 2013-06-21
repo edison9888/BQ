@@ -22,7 +22,7 @@
 @end
 
 
-@interface LocationManager : NSObject<CLLocationManagerDelegate>
+@interface LocationManager : NSObject<CLLocationManagerDelegate,UIAlertViewDelegate>
 {
     CLLocationManager *locationManager;
 }

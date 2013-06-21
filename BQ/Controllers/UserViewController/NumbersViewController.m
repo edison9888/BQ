@@ -171,7 +171,6 @@
 //        _numberArr=[NSMutableArray array];
 //        [numberTableView reloadData];
         //无票提醒
-
         return;
     }
 
@@ -180,7 +179,6 @@
     
     NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:idsStr,@"ids", nil];
     
-    [SVProgressHUD show];
 
     [Number refreshBankNumbers:dic WithBlock:^(NSArray *arr) {
         
@@ -282,25 +280,6 @@
         }
     }];
 }
-
-//无票时显示
-//- (void)nullTicketView:(NSInteger)count :(UITableViewCell *)cell{
-//    NoTicketView *noTicketView =(NoTicketView *)[cell viewWithTag:120];
-//
-//    if (count==0) {
-//        if (iPhone5)
-//            heightIphone5=HeightIphone5;
-//        else
-//            heightIphone5=0;
-//
-//        NoTicketView *noTicketView =[[NoTicketView alloc] initWithFrame:CGRectMake(5, NoTicketHeight,310,400+heightIphone5*2) heightIphone5:heightIphone5];
-//        noTicketView.tag=120;
-//        [cell addSubview:noTicketView];
-//    }else{
-//        [noTicketView removeFromSuperview];
-//    }
-//}
-
 
 #pragma mark--
 #pragma mark--NetWork
@@ -420,7 +399,7 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
 
-        return 362;
+    return 362;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{

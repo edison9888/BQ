@@ -109,6 +109,13 @@ static MapViewController *instance = nil;
    
 }
 
+-(void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    //停止定位
+    [locationManager stopUpdate];
+}
+
+
 - (void)getDataFormApi{
     NSString *fatherBankId = [NSString stringWithFormat:@"%@",self.fatherBank.bankTypeId];
 
@@ -116,7 +123,6 @@ static MapViewController *instance = nil;
     NSString *logStr = [NSString stringWithFormat:@"%f",Log];
     
     if ([[NSString stringWithFormat:@"%f",Lat] isEqualToString:@"0.000000"] && [[NSString stringWithFormat:@"%f",Log] isEqualToString:@"0.000000"]) {
-
         if (debug) {
             NSLog(@"没定位");
         }

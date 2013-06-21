@@ -67,6 +67,7 @@
 
 //刷新我的排号
 + (void)refreshBankNumbers:(NSDictionary *)parameters WithBlock:(void (^)(NSArray*arr))block{
+    [SVProgressHUD show];
 
     [[BQNetClient sharedClient]getPath:@"number/getAllNum" parameters:parameters success:^(AFHTTPRequestOperation *operation, id responseObject) {
         
