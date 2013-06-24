@@ -174,17 +174,14 @@
         return;
     }
 
-
     NSString *idsStr = [idsArr componentsJoinedByString:@","];
     
     NSDictionary *dic =[NSDictionary dictionaryWithObjectsAndKeys:idsStr,@"ids", nil];
     
-
     [Number refreshBankNumbers:dic WithBlock:^(NSArray *arr) {
         
         if (arr.count!=0) {
             //消失
-            
             NSArray* reversedArray = [[arr reverseObjectEnumerator] allObjects];
             _numberArr=[NSMutableArray arrayWithArray:reversedArray];
             [numberTableView reloadData];
@@ -312,8 +309,8 @@
 //无票时显示
 - (void)nullTicketView:(NSInteger)count{
 
-      NoTicketView *noTicketView =(NoTicketView *)[numberTableView viewWithTag:120];
-    
+      NoTicketView *noTicketView =(NoTicketView *)[numberTableView viewWithTag:121];
+//    NSLog(@"noTicketView%@",noTicketView);
       if (count==0) {
           if (iPhone5)
               heightIphone5=HeightIphone5;
@@ -321,7 +318,7 @@
               heightIphone5=0;
     
           NoTicketView *noTicketView =[[NoTicketView alloc] initWithFrame:CGRectMake(5, NoTicketHeight,310,400+heightIphone5*2) heightIphone5:heightIphone5];
-          noTicketView.tag=120;
+          noTicketView.tag=121;
           [numberTableView addSubview:noTicketView];
           
           //draw tableView contentSize

@@ -43,6 +43,9 @@ typedef enum {
     
         NSInteger coverInt;
         NSString *imageFileStr;
+    
+        UITapGestureRecognizer *singleTap;//单击手势
+        UIButton *qrBtn;//二维码按钮
 }
 
 @property(nonatomic,strong) Number *number;

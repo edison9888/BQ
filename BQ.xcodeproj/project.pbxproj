@@ -166,6 +166,7 @@
 		C8AE8EE2171D28FD00098213 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8EDB171D28FD00098213 /* SBJsonParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C8AE8EE3171D28FD00098213 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = C8AE8EDD171D28FD00098213 /* SBJsonWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		C8B6EBA617278CDA00AEC617 /* Business.m in Sources */ = {isa = PBXBuildFile; fileRef = C8B6EBA517278CDA00AEC617 /* Business.m */; };
+		C8D8200917781D3E0010A43A /* erWeiMa@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8D8200817781D3E0010A43A /* erWeiMa@2x.png */; };
 		C8DB413017117D070055341F /* PickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = C8DB412F17117D070055341F /* PickerView.m */; };
 		C8F7898A1738F38C001A621D /* bigBack4@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8F789891738F38C001A621D /* bigBack4@2x.png */; };
 		C8F7898C1738F3A5001A621D /* bigBack5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = C8F7898B1738F3A5001A621D /* bigBack5@2x.png */; };
@@ -428,6 +429,7 @@
 		C8AE8EDD171D28FD00098213 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		C8B6EBA417278CDA00AEC617 /* Business.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Business.h; sourceTree = "<group>"; };
 		C8B6EBA517278CDA00AEC617 /* Business.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Business.m; sourceTree = "<group>"; };
+		C8D8200817781D3E0010A43A /* erWeiMa@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "erWeiMa@2x.png"; sourceTree = "<group>"; };
 		C8DB412E17117D070055341F /* PickerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PickerView.h; sourceTree = "<group>"; };
 		C8DB412F17117D070055341F /* PickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PickerView.m; sourceTree = "<group>"; };
 		C8F789891738F38C001A621D /* bigBack4@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bigBack4@2x.png"; sourceTree = "<group>"; };
@@ -828,6 +830,7 @@
 				C8F7898F1738F520001A621D /* downTicket@2x.png */,
 				C814F7A01743698800D9C708 /* refreshButton@2x.png */,
 				C8F789951738F889001A621D /* refreshImage@2x.png */,
+				C8D8200817781D3E0010A43A /* erWeiMa@2x.png */,
 			);
 			path = MyTicketImage;
 			sourceTree = "<group>";
@@ -1161,6 +1164,7 @@
 				C817094E1745D4D800811C24 /* lightGrayArrow@2x.png in Resources */,
 				C8943309175ED61E0084EC9D /* referButton@2x.png in Resources */,
 				C894330B175ED62C0084EC9D /* referSelectedButton@2x.png in Resources */,
+				C8D8200917781D3E0010A43A /* erWeiMa@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

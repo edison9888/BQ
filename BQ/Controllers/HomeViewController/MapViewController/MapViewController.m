@@ -59,9 +59,6 @@ static MapViewController *instance = nil;
         
     locationManager = [[LocationManager alloc] init];
     locationManager.roloadDelegate=self;
-    //定位
-    [locationManager startUpdate];
-
     
     //工具条
     ToolBar *toolBar = [[ToolBar alloc] initWithFrame:CGRectMake(0,self.view.bounds.size.height-TabBarHeight-NavigationHeight, self.view.frame.size.width, TabBarHeight) viewController:self];
@@ -98,7 +95,9 @@ static MapViewController *instance = nil;
 
     [super viewWillAppear:animated];
     self.title = _fatherBank.bankTypeName;
-
+    //定位
+    [locationManager startUpdate];
+    
     //清理之前数据
     [_locationArrs removeAllObjects];
     [self reloadData];

@@ -42,6 +42,15 @@
         bgView.userInteractionEnabled=YES;
         [self addSubview:bgView];
         
+        //二维码翻页按钮
+        qrBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        qrBtn.hidden=YES;
+        [qrBtn setFrame:CGRectMake(230.5, 283, 34, 22)];
+        [qrBtn setBackgroundImage:[UIImage imageNamed:@"erWeiMa@2x"] forState:UIControlStateNormal];
+        [qrBtn addTarget:self action:@selector(turnToQR:) forControlEvents:UIControlEventTouchUpInside];
+        [bgView addSubview:qrBtn];
+
+        
         breakPaperImg = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"breakPaper@2x"]];
         breakPaperImg.hidden=YES;
         [breakPaperImg setFrame:CGRectMake(0, 62,bgView.frame.size.width,66)];
@@ -161,14 +170,21 @@
         [refreshBtn addSubview:refreshImageView];
         
         //添加手势
-        UITapGestureRecognizer *doubleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
-        [doubleTap setNumberOfTapsRequired:2];
-        [self addGestureRecognizer:doubleTap];
-        doubleTap.delegate = self;
-        doubleTap.cancelsTouchesInView  =NO;
-
+        singleTap = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(handleSingleTap:)];
+        singleTap.delegate = self;
+        singleTap.cancelsTouchesInView  =NO;
+        
     }
     return self;
+}
+
+- (void)turnToQR:(id)sender{
+    qrBtn.hidden=YES;
+    qrView.hidden=NO;
+    bgView.hidden=YES;
+    [self turnBack:kCATransitionFromRight];
+    
+    [self addGestureRecognizer:singleTap];
 }
 
 - (void)rotateRefreshView:(UIImageView *)imageView{
@@ -267,6 +283,10 @@
     if (_number.isNeedForm==1) {
         imageFileStr = [self getPath];
         qrImageView.image = [UIImage imageWithContentsOfFile:imageFileStr];
+        if (imageFileStr) {
+            qrBtn.hidden=NO;
+        }else
+            qrBtn.hidden=YES;
     }
 }
 
@@ -297,23 +317,24 @@
 
 -(void)handleSingleTap:(id)sender{
     
-    if (_number.isNeedForm==2 || imageFileStr ==nil) {
-        return;
-    }
+    [self removeGestureRecognizer:singleTap];
+
+//    if (_number.isNeedForm==2 || imageFileStr ==nil) {
+//        return;
+//    }
     
-    if (coverInt) {
-        coverInt=0;
+//    if (coverInt) {
+//        coverInt=0;
+        qrBtn.hidden=NO;
         bgView.hidden=NO;
         qrView.hidden=YES;
         [self turnBack:kCATransitionFromLeft];
-
-    }else{
-        coverInt=1;
-        qrView.hidden=NO;
-        bgView.hidden=YES;
-        [self turnBack:kCATransitionFromRight];
-    }
-    
+//    }else{
+//        coverInt=1;
+//        qrView.hidden=NO;
+//        bgView.hidden=YES;
+//        [self turnBack:kCATransitionFromRight];
+//    }
 }
 
 - (void)turnBack:(NSString * const)leftOrRight{
